@@ -211,9 +211,53 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\AdminLTE.css" />
+    <Content Include="Content\AdminLTE.min.css" />
+    <Content Include="Content\alt\AdminLTE-bootstrap-social.css" />
+    <Content Include="Content\alt\AdminLTE-bootstrap-social.min.css" />
+    <Content Include="Content\alt\AdminLTE-fullcalendar.css" />
+    <Content Include="Content\alt\AdminLTE-fullcalendar.min.css" />
+    <Content Include="Content\alt\AdminLTE-select2.css" />
+    <Content Include="Content\alt\AdminLTE-select2.min.css" />
+    <Content Include="Content\alt\AdminLTE-without-plugins.css" />
+    <Content Include="Content\alt\AdminLTE-without-plugins.min.css" />
+    <Content Include="Content\bootstrap-materia.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\fonts\ionicons.svg" />
+    <Content Include="Content\ionicons.css" />
+    <Content Include="Content\ionicons.min.css" />
+    <Content Include="Content\jquery-jvectormap.css" />
+    <Content Include="Content\skins\skin-black-light.css" />
+    <Content Include="Content\skins\skin-black-light.min.css" />
+    <Content Include="Content\skins\skin-black.css" />
+    <Content Include="Content\skins\skin-black.min.css" />
+    <Content Include="Content\skins\skin-blue-light.css" />
+    <Content Include="Content\skins\skin-blue-light.min.css" />
+    <Content Include="Content\skins\skin-blue.css" />
+    <Content Include="Content\skins\skin-blue.min.css" />
+    <Content Include="Content\skins\skin-green-light.css" />
+    <Content Include="Content\skins\skin-green-light.min.css" />
+    <Content Include="Content\skins\skin-green.css" />
+    <Content Include="Content\skins\skin-green.min.css" />
+    <Content Include="Content\skins\skin-purple-light.css" />
+    <Content Include="Content\skins\skin-purple-light.min.css" />
+    <Content Include="Content\skins\skin-purple.css" />
+    <Content Include="Content\skins\skin-purple.min.css" />
+    <Content Include="Content\skins\skin-red-light.css" />
+    <Content Include="Content\skins\skin-red-light.min.css" />
+    <Content Include="Content\skins\skin-red.css" />
+    <Content Include="Content\skins\skin-red.min.css" />
+    <Content Include="Content\skins\skin-yellow-light.css" />
+    <Content Include="Content\skins\skin-yellow-light.min.css" />
+    <Content Include="Content\skins\skin-yellow.css" />
+    <Content Include="Content\skins\skin-yellow.min.css" />
+    <Content Include="Content\skins\_all-skins.css" />
+    <Content Include="Content\skins\_all-skins.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -222,6 +266,14 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\ionicons.eot" />
+    <Content Include="Content\fonts\ionicons.ttf" />
+    <Content Include="Content\fonts\ionicons.woff" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -267,6 +319,10 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_Leftsidebar.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_Sidebarcontrol.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
