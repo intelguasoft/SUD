@@ -38,8 +38,7 @@ namespace SUD
                       "~/Content/ionicons.css",
                       "~/Content/jquery-jvectormap.css",
                       "~/Content/AdminLTE.css",
-                      "~/Content/skins/_all-skins.min.css",
-                      "~/Content/site.css"));
+                      "~/Content/skins/_all-skins.min.css"));
         }
     }
 }
