@@ -9,7 +9,7 @@ namespace SUD.Models
     public class Client
     {
         [Key]
-        public int IdClient { get; set; }
+        public int ClientId { get; set; }
 
         [Required(ErrorMessage ="*Ingrese el DPI o NIT del cliente")]
         [Display (Name ="DPI o NIT", Description ="2117502980101")]
@@ -46,7 +46,7 @@ namespace SUD.Models
         [Display(Name = "Notas", Description = "Notas")]
         public String Note { get; set; }
 
-        public int IdDocumentType { get; set; }
+        public int DocumentTypeId { get; set; }
 
 
         public virtual DocumentType DocumentType { get; set; }

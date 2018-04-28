@@ -215,6 +215,7 @@
     <Compile Include="Models\Bar.cs" />
     <Compile Include="Models\Cellar.cs" />
     <Compile Include="Models\CellarProduct.cs" />
+    <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Inventory.cs" />
