@@ -29,5 +29,11 @@ namespace SUD.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<SUD.Models.Rol> Rols { get; set; }
+        //No se generaba al crear el controlador
+        public System.Data.Entity.DbSet<SUD.Models.User> Users { get; set; }
+
+        public System.Data.Entity.DbSet<SUD.Models.RolPermission> RolPermissions { get; set; }
     }
 }
