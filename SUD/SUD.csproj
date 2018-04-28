@@ -204,7 +204,6 @@
     <Compile Include="Controllers\ApiControllers\RolPermissionsController.cs" />
     <Compile Include="Controllers\ApiControllers\RolsController.cs" />
     <Compile Include="Controllers\ApiControllers\UsersController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RolPermissionsController.cs" />
     <Compile Include="Controllers\RolsController.cs" />
@@ -398,7 +397,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\ApiControllers\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
