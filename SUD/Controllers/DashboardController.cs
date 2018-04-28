@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace SUD.Controllers
 {
-    public class HomeController : Controller
+    public class DashboardController : Controller
     {
         public ActionResult Index()
         {
