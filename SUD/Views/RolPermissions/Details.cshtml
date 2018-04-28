@@ -1,0 +1,50 @@
+﻿@model SUD.Models.RolPermission
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RolPermission</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Rol.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rol.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CanSee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CanSee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CanModify)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CanModify)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CanErase)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CanErase)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDPermission }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
