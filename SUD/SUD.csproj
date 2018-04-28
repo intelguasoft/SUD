@@ -217,6 +217,7 @@
     <Compile Include="Models\CellarProduct.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\DocumentType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Inventory.cs" />
     <Compile Include="Models\InventoryDetail.cs" />
@@ -224,6 +225,7 @@
     <Compile Include="Models\Measure.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Sale.cs" />
+    <Compile Include="Models\ClientRefund.cs" />
     <Compile Include="Models\Supplier.cs" />
     <Compile Include="Models\Rol.cs" />
     <Compile Include="Models\RolPermission.cs" />

@@ -11,7 +11,7 @@ namespace SUD.Models
         [Key]
         public int SaleId { get; set; }
 
-        [Required(ErrorMessage ="Ingrese una fecha"]
+        [Required(ErrorMessage ="Ingrese una fecha")]
         [Display(Name = "Fecha", Description = "dd/mm/yyyy")]
         public DateTime Datetime { get; set; }
 
@@ -21,6 +21,8 @@ namespace SUD.Models
 
         public virtual Client Client { get; set; }
         public virtual Cellar Cellar { get; set; }
+
+        public virtual ICollection<ClientRefund> ClientRefunds { get; set; }
 
 
 

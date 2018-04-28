@@ -51,7 +51,10 @@ namespace SUD.Models
 
         public virtual DocumentType DocumentType { get; set; }
 
+
         public virtual ICollection<Sale> Sales { get; set; }
+
+
 
     }
 }
