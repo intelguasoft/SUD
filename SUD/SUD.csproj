@@ -212,8 +212,16 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Bar.cs" />
+    <Compile Include="Models\Cellar.cs" />
+    <Compile Include="Models\CellarProduct.cs" />
+    <Compile Include="Models\Department.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Inventory.cs" />
+    <Compile Include="Models\InventoryDetail.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Measure.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Sale.cs" />
     <Compile Include="Models\Supplier.cs" />
     <Compile Include="Models\Rol.cs" />
