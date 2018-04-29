@@ -11,13 +11,13 @@ namespace SUD.Models
     public class Rol
     {
         [Key]
-        public int IDRol { get; set; }
+        public int RolId { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es requerido")]
         [Display(Name = "Descripción")]
         public string Description { get; set; }
 
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<UserSud> Users { get; set; }
         public virtual ICollection<RolPermission> RolsPermission { get; set; }
     }
 }

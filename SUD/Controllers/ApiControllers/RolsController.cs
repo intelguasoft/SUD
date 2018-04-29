@@ -15,6 +15,7 @@ namespace SUD.Controllers.ApiControllers
     public class RolsController : ApiController
     {
         private ApplicationDbContext db;
+
         public RolsController()
         {
             db = new ApplicationDbContext();
@@ -48,7 +49,7 @@ namespace SUD.Controllers.ApiControllers
                 return BadRequest(ModelState);
             }
 
-            if (id != rol.IDRol)
+            if (id != rol.RolId)
             {
                 return BadRequest();
             }
@@ -86,7 +87,7 @@ namespace SUD.Controllers.ApiControllers
             db.Rols.Add(rol);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = rol.IDRol }, rol);
+            return CreatedAtRoute("DefaultApi", new { id = rol.RolId }, rol);
         }
 
         // DELETE: api/Rols/5
@@ -116,7 +117,7 @@ namespace SUD.Controllers.ApiControllers
 
         private bool RolExists(int id)
         {
-            return db.Rols.Count(e => e.IDRol == id) > 0;
+            return db.Rols.Count(e => e.RolId == id) > 0;
         }
     }
 }

@@ -200,14 +200,14 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\ApiControllers\RolPermissionsController.cs" />
     <Compile Include="Controllers\ApiControllers\RolsController.cs" />
-    <Compile Include="Controllers\ApiControllers\UsersController.cs" />
+    <Compile Include="Controllers\ApiControllers\UserSudsController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RolPermissionsController.cs" />
     <Compile Include="Controllers\RolsController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\UserSudsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -229,7 +229,7 @@
     <Compile Include="Models\Supplier.cs" />
     <Compile Include="Models\Rol.cs" />
     <Compile Include="Models\RolPermission.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserSud.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -395,11 +395,11 @@
     <Content Include="Views\Rols\Details.cshtml" />
     <Content Include="Views\Rols\Edit.cshtml" />
     <Content Include="Views\Rols\Index.cshtml" />
-    <Content Include="Views\Users\Create.cshtml" />
-    <Content Include="Views\Users\Delete.cshtml" />
-    <Content Include="Views\Users\Details.cshtml" />
-    <Content Include="Views\Users\Edit.cshtml" />
-    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\UserSuds\Create.cshtml" />
+    <Content Include="Views\UserSuds\Delete.cshtml" />
+    <Content Include="Views\UserSuds\Details.cshtml" />
+    <Content Include="Views\UserSuds\Edit.cshtml" />
+    <Content Include="Views\UserSuds\Index.cshtml" />
     <Content Include="Views\RolPermissions\Create.cshtml" />
     <Content Include="Views\RolPermissions\Delete.cshtml" />
     <Content Include="Views\RolPermissions\Details.cshtml" />

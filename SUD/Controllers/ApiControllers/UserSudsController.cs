@@ -12,48 +12,49 @@ using SUD.Models;
 
 namespace SUD.Controllers.ApiControllers
 {
-    public class UsersController : ApiController
+    public class UserSudsController : ApiController
     {
         private ApplicationDbContext db;
-        public UsersController()
+
+        public UserSudsController()
         {
             db = new ApplicationDbContext();
         }
 
-        // GET: api/Users
-        public IQueryable<User> GetUsers()
+        // GET: api/UserSuds
+        public IQueryable<UserSud> GetUserSuds()
         {
-            return db.Users;
+            return db.UserSuds;
         }
 
-        // GET: api/Users/5
-        [ResponseType(typeof(User))]
-        public IHttpActionResult GetUser(int id)
+        // GET: api/UserSuds/5
+        [ResponseType(typeof(UserSud))]
+        public IHttpActionResult GetUserSud(int id)
         {
-            User user = db.Users.Find(id);
-            if (user == null)
+            UserSud userSud = db.UserSuds.Find(id);
+            if (userSud == null)
             {
                 return NotFound();
             }
 
-            return Ok(user);
+            return Ok(userSud);
         }
 
-        // PUT: api/Users/5
+        // PUT: api/UserSuds/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutUser(int id, User user)
+        public IHttpActionResult PutUserSud(int id, UserSud userSud)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != user.IDUser)
+            if (id != userSud.UserSudId)
             {
                 return BadRequest();
             }
 
-            db.Entry(user).State = EntityState.Modified;
+            db.Entry(userSud).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +62,7 @@ namespace SUD.Controllers.ApiControllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(id))
+                if (!UserSudExists(id))
                 {
                     return NotFound();
                 }
@@ -74,35 +75,35 @@ namespace SUD.Controllers.ApiControllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Users
-        [ResponseType(typeof(User))]
-        public IHttpActionResult PostUser(User user)
+        // POST: api/UserSuds
+        [ResponseType(typeof(UserSud))]
+        public IHttpActionResult PostUserSud(UserSud userSud)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Users.Add(user);
+            db.UserSuds.Add(userSud);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = user.IDUser }, user);
+            return CreatedAtRoute("DefaultApi", new { id = userSud.UserSudId }, userSud);
         }
 
-        // DELETE: api/Users/5
-        [ResponseType(typeof(User))]
-        public IHttpActionResult DeleteUser(int id)
+        // DELETE: api/UserSuds/5
+        [ResponseType(typeof(UserSud))]
+        public IHttpActionResult DeleteUserSud(int id)
         {
-            User user = db.Users.Find(id);
-            if (user == null)
+            UserSud userSud = db.UserSuds.Find(id);
+            if (userSud == null)
             {
                 return NotFound();
             }
 
-            db.Users.Remove(user);
+            db.UserSuds.Remove(userSud);
             db.SaveChanges();
 
-            return Ok(user);
+            return Ok(userSud);
         }
 
         protected override void Dispose(bool disposing)
@@ -114,9 +115,9 @@ namespace SUD.Controllers.ApiControllers
             base.Dispose(disposing);
         }
 
-        private bool UserExists(int id)
+        private bool UserSudExists(int id)
         {
-            return db.Users.Count(e => e.IDUser == id) > 0;
+            return db.UserSuds.Count(e => e.UserSudId == id) > 0;
         }
     }
 }
