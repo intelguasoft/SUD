@@ -9,7 +9,7 @@ namespace SUD.Models
     public class Inventory
     {
         [Key]
-        public int IdInventory { get; set; }
+        public int InventoryId { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Fecha")]

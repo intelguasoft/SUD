@@ -9,7 +9,7 @@ namespace SUD.Models
     public class Cellar
     {
         [Key]
-        public int IdCellar { get; set; }
+        public int CellarId { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Descripción")]

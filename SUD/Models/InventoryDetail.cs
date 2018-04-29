@@ -9,7 +9,7 @@ namespace SUD.Models
     public class InventoryDetail
     {
         [Key]
-        public int IdLine { get; set; }
+        public int LineId { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Descripción")]

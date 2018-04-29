@@ -9,11 +9,13 @@ namespace SUD.Models
     public class Department
     {
         [Key]
-        public int IdDepartment { get; set; }
+        public int DepartmentId { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Descripción")]
         public string Description { get; set; }
+
+        public virtual ICollection<Product> Products { get; set; }
 
     }
 }

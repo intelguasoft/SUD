@@ -1,0 +1,69 @@
+﻿@model IEnumerable<SUD.Models.CellarProduct>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cellar.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stock)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Minimum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Maximum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReplacementDays)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MinimumAmount)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cellar.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Stock)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Minimum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Maximum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReplacementDays)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MinimumAmount)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CellarProductId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CellarProductId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CellarProductId })
+        </td>
+    </tr>
+}
+
+</table>

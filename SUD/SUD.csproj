@@ -200,11 +200,19 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BarCodesController.cs" />
+    <Compile Include="Controllers\CellarProductsController.cs" />
+    <Compile Include="Controllers\CellarsController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\ApiControllers\RolPermissionsController.cs" />
     <Compile Include="Controllers\ApiControllers\RolsController.cs" />
     <Compile Include="Controllers\ApiControllers\UsersController.cs" />
+    <Compile Include="Controllers\DepartmentsController.cs" />
+    <Compile Include="Controllers\InventoriesController.cs" />
+    <Compile Include="Controllers\InventoryDetailsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MeasuresController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\RolPermissionsController.cs" />
     <Compile Include="Controllers\RolsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -212,7 +220,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Bar.cs" />
+    <Compile Include="Models\BarCode.cs" />
     <Compile Include="Models\Cellar.cs" />
     <Compile Include="Models\CellarProduct.cs" />
     <Compile Include="Models\Department.cs" />
@@ -402,6 +410,46 @@
     <Content Include="Views\RolPermissions\Details.cshtml" />
     <Content Include="Views\RolPermissions\Edit.cshtml" />
     <Content Include="Views\RolPermissions\Index.cshtml" />
+    <Content Include="Views\Departments\Create.cshtml" />
+    <Content Include="Views\Departments\Delete.cshtml" />
+    <Content Include="Views\Departments\Details.cshtml" />
+    <Content Include="Views\Departments\Edit.cshtml" />
+    <Content Include="Views\Departments\Index.cshtml" />
+    <Content Include="Views\Measures\Create.cshtml" />
+    <Content Include="Views\Measures\Delete.cshtml" />
+    <Content Include="Views\Measures\Details.cshtml" />
+    <Content Include="Views\Measures\Edit.cshtml" />
+    <Content Include="Views\Measures\Index.cshtml" />
+    <Content Include="Views\Cellars\Create.cshtml" />
+    <Content Include="Views\Cellars\Delete.cshtml" />
+    <Content Include="Views\Cellars\Details.cshtml" />
+    <Content Include="Views\Cellars\Edit.cshtml" />
+    <Content Include="Views\Cellars\Index.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
+    <Content Include="Views\Products\Delete.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\BarCodes\Create.cshtml" />
+    <Content Include="Views\BarCodes\Delete.cshtml" />
+    <Content Include="Views\BarCodes\Details.cshtml" />
+    <Content Include="Views\BarCodes\Edit.cshtml" />
+    <Content Include="Views\BarCodes\Index.cshtml" />
+    <Content Include="Views\CellarProducts\Create.cshtml" />
+    <Content Include="Views\CellarProducts\Delete.cshtml" />
+    <Content Include="Views\CellarProducts\Details.cshtml" />
+    <Content Include="Views\CellarProducts\Edit.cshtml" />
+    <Content Include="Views\CellarProducts\Index.cshtml" />
+    <Content Include="Views\Inventories\Create.cshtml" />
+    <Content Include="Views\Inventories\Delete.cshtml" />
+    <Content Include="Views\Inventories\Details.cshtml" />
+    <Content Include="Views\Inventories\Edit.cshtml" />
+    <Content Include="Views\Inventories\Index.cshtml" />
+    <Content Include="Views\InventoryDetails\Create.cshtml" />
+    <Content Include="Views\InventoryDetails\Delete.cshtml" />
+    <Content Include="Views\InventoryDetails\Details.cshtml" />
+    <Content Include="Views\InventoryDetails\Edit.cshtml" />
+    <Content Include="Views\InventoryDetails\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
