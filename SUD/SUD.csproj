@@ -208,7 +208,6 @@
     <Compile Include="Controllers\ApiControllers\RolsController.cs" />
     <Compile Include="Controllers\ApiControllers\UserSudsController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
-    <Compile Include="Controllers\ApiControllers\UsersController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\InventoriesController.cs" />
     <Compile Include="Controllers\InventoryDetailsController.cs" />
