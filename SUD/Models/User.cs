@@ -11,7 +11,7 @@ namespace SUD.Models
     public class User
     {
         [Key]
-        public int IDUser { get; set; }
+        public int UserId { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es requerido")]
         [Display(Name = "Nombre")]
@@ -33,7 +33,7 @@ namespace SUD.Models
 
         [Required(ErrorMessage = "El campo {0} es requerido")]
         [Display(Name = "Rol:")]
-        public int IDRol { get; set; }
+        public int RolId { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es requerido")]
         [StringLength(255, ErrorMessage = "Debe contener entre 8 y 25 caracteres", MinimumLength = 8)]
