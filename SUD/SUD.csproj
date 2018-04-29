@@ -203,7 +203,6 @@
     <Compile Include="Controllers\BarCodesController.cs" />
     <Compile Include="Controllers\CellarProductsController.cs" />
     <Compile Include="Controllers\CellarsController.cs" />
-    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\ApiControllers\RolPermissionsController.cs" />
     <Compile Include="Controllers\ApiControllers\RolsController.cs" />
     <Compile Include="Controllers\ApiControllers\UserSudsController.cs" />
