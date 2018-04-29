@@ -11,7 +11,7 @@ namespace SUD.Models
     public class Rol
     {
         [Key]
-        public int IDRol { get; set; }
+        public int RolId { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es requerido")]
         [Display(Name = "Descripción")]
