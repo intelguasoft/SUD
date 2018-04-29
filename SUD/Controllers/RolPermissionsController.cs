@@ -44,7 +44,7 @@ namespace SUD.Controllers
         // GET: RolPermissions/Create
         public ActionResult Create()
         {
-            ViewBag.IDRol = new SelectList(db.Rols, "IDRol", "Description");
+            ViewBag.RolId = new SelectList(db.Rols, "RolId", "Description");
             return View();
         }
 
@@ -53,7 +53,7 @@ namespace SUD.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IDPermission,IDRol,CanSee,CanModify,CanErase")] RolPermission rolPermission)
+        public ActionResult Create([Bind(Include = "PermissionId,RolId,Form,CanSee,CanModify,CanErase")] RolPermission rolPermission)
         {
             if (ModelState.IsValid)
             {
@@ -62,7 +62,7 @@ namespace SUD.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IDRol = new SelectList(db.Rols, "IDRol", "Description", rolPermission.IDRol);
+            ViewBag.RolId = new SelectList(db.Rols, "RolId", "Description", rolPermission.RolId);
             return View(rolPermission);
         }
 
@@ -78,7 +78,7 @@ namespace SUD.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.IDRol = new SelectList(db.Rols, "IDRol", "Description", rolPermission.IDRol);
+            ViewBag.RolId = new SelectList(db.Rols, "RolId", "Description", rolPermission.RolId);
             return View(rolPermission);
         }
 
@@ -87,7 +87,7 @@ namespace SUD.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IDPermission,IDRol,CanSee,CanModify,CanErase")] RolPermission rolPermission)
+        public ActionResult Edit([Bind(Include = "PermissionId,RolId,Form,CanSee,CanModify,CanErase")] RolPermission rolPermission)
         {
             if (ModelState.IsValid)
             {
@@ -95,7 +95,7 @@ namespace SUD.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IDRol = new SelectList(db.Rols, "IDRol", "Description", rolPermission.IDRol);
+            ViewBag.RolId = new SelectList(db.Rols, "RolId", "Description", rolPermission.RolId);
             return View(rolPermission);
         }
 

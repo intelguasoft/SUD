@@ -13,7 +13,6 @@ namespace SUD.Controllers
     public class RolsController : Controller
     {
         private ApplicationDbContext db;
-
         public RolsController()
         {
             db = new ApplicationDbContext();
@@ -51,7 +50,7 @@ namespace SUD.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IDRol,Description")] Rol rol)
+        public ActionResult Create([Bind(Include = "RolId,Description")] Rol rol)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +82,7 @@ namespace SUD.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IDRol,Description")] Rol rol)
+        public ActionResult Edit([Bind(Include = "RolId,Description")] Rol rol)
         {
             if (ModelState.IsValid)
             {

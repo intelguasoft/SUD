@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,16 +8,23 @@ namespace SUD.Models
 {
     public class Sale
     {
-        public int Id { get; set; }
+        [Key]
+        public int SaleId { get; set; }
 
-        public DateTime Date { get; set; }
+        [Required(ErrorMessage ="Ingrese una fecha")]
+        [Display(Name = "Fecha", Description = "dd/mm/yyyy")]
+        public DateTime Datetime { get; set; }
 
-        public int SupplyId { get; set; }
+        public int ClientId { get; set; }
+        public int CellarId { get; set; }
 
-        public int BodegaId { get; set; }
 
-        public virtual Supplier Supplier { get; set; }
+        public virtual Client Client { get; set; }
+        public virtual Cellar Cellar { get; set; }
 
-        //public virtual Warehouse Warehouse { get; set; }
+        public virtual ICollection<ClientRefund> ClientRefunds { get; set; }
+
+
+
     }
 }

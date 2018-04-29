@@ -10,117 +10,117 @@ using SUD.Models;
 
 namespace SUD.Controllers
 {
-    public class UsersController : Controller
+    public class UserSudsController : Controller
     {
         private ApplicationDbContext db;
 
-        public UsersController()
+        public UserSudsController()
         {
             db = new ApplicationDbContext();
         }
 
-        // GET: Users
+        // GET: UserSuds
         public ActionResult Index()
         {
-            var users = db.Users.Include(u => u.Rol);
-            return View(users.ToList());
+            var userSuds = db.UserSuds.Include(u => u.Rol);
+            return View(userSuds.ToList());
         }
 
-        // GET: Users/Details/5
+        // GET: UserSuds/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
-            if (user == null)
+            UserSud userSud = db.UserSuds.Find(id);
+            if (userSud == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(userSud);
         }
 
-        // GET: Users/Create
+        // GET: UserSuds/Create
         public ActionResult Create()
         {
-            ViewBag.IDRol = new SelectList(db.Rols, "IDRol", "Description");
+            ViewBag.RolId = new SelectList(db.Rols, "RolId", "Description");
             return View();
         }
 
-        // POST: Users/Create
+        // POST: UserSuds/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IDUser,Name,LastName,Password,ModificationDatePassword,IDRol,Email")] User user)
+        public ActionResult Create([Bind(Include = "UserSudId,Name,LastName,Password,ModificationDatePassword,RolId,Email")] UserSud userSud)
         {
             if (ModelState.IsValid)
             {
-                db.Users.Add(user);
+                db.UserSuds.Add(userSud);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IDRol = new SelectList(db.Rols, "IDRol", "Description", user.IDRol);
-            return View(user);
+            ViewBag.RolId = new SelectList(db.Rols, "RolId", "Description", userSud.RolId);
+            return View(userSud);
         }
 
-        // GET: Users/Edit/5
+        // GET: UserSuds/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
-            if (user == null)
+            UserSud userSud = db.UserSuds.Find(id);
+            if (userSud == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.IDRol = new SelectList(db.Rols, "IDRol", "Description", user.IDRol);
-            return View(user);
+            ViewBag.RolId = new SelectList(db.Rols, "RolId", "Description", userSud.RolId);
+            return View(userSud);
         }
 
-        // POST: Users/Edit/5
+        // POST: UserSuds/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IDUser,Name,LastName,Password,ModificationDatePassword,IDRol,Email")] User user)
+        public ActionResult Edit([Bind(Include = "UserSudId,Name,LastName,Password,ModificationDatePassword,RolId,Email")] UserSud userSud)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
+                db.Entry(userSud).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IDRol = new SelectList(db.Rols, "IDRol", "Description", user.IDRol);
-            return View(user);
+            ViewBag.RolId = new SelectList(db.Rols, "RolId", "Description", userSud.RolId);
+            return View(userSud);
         }
 
-        // GET: Users/Delete/5
+        // GET: UserSuds/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
-            if (user == null)
+            UserSud userSud = db.UserSuds.Find(id);
+            if (userSud == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(userSud);
         }
 
-        // POST: Users/Delete/5
+        // POST: UserSuds/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            User user = db.Users.Find(id);
-            db.Users.Remove(user);
+            UserSud userSud = db.UserSuds.Find(id);
+            db.UserSuds.Remove(userSud);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

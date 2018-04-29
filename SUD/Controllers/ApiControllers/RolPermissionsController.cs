@@ -15,6 +15,7 @@ namespace SUD.Controllers.ApiControllers
     public class RolPermissionsController : ApiController
     {
         private ApplicationDbContext db;
+
         public RolPermissionsController()
         {
             db = new ApplicationDbContext();
@@ -48,7 +49,7 @@ namespace SUD.Controllers.ApiControllers
                 return BadRequest(ModelState);
             }
 
-            if (id != rolPermission.IDPermission)
+            if (id != rolPermission.PermissionId)
             {
                 return BadRequest();
             }
@@ -86,7 +87,7 @@ namespace SUD.Controllers.ApiControllers
             db.RolPermissions.Add(rolPermission);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = rolPermission.IDPermission }, rolPermission);
+            return CreatedAtRoute("DefaultApi", new { id = rolPermission.PermissionId }, rolPermission);
         }
 
         // DELETE: api/RolPermissions/5
@@ -116,7 +117,7 @@ namespace SUD.Controllers.ApiControllers
 
         private bool RolPermissionExists(int id)
         {
-            return db.RolPermissions.Count(e => e.IDPermission == id) > 0;
+            return db.RolPermissions.Count(e => e.PermissionId == id) > 0;
         }
     }
 }
