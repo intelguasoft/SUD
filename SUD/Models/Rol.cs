@@ -17,7 +17,7 @@ namespace SUD.Models
         [Display(Name = "Descripción")]
         public string Description { get; set; }
 
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<UserSud> Users { get; set; }
         public virtual ICollection<RolPermission> RolsPermission { get; set; }
     }
 }
