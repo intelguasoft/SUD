@@ -7,6 +7,8 @@ using System.Web;
 
 namespace SUD.Models
 {
+    [Table("tbl_CellarProducts")]
+
     public class CellarProduct
     {
         [Key]

@@ -7,8 +7,11 @@ using System.Web;
 
 namespace SUD.Models
 {
+    [Table("tbl_BarCodes")]
+
     public class BarCode
     {
+
         [Key]
         public int BarCodeId { get; set; }
 
