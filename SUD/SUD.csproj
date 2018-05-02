@@ -206,6 +206,8 @@
     <Compile Include="Controllers\ApiControllers\RolPermissionsController.cs" />
     <Compile Include="Controllers\ApiControllers\RolsController.cs" />
     <Compile Include="Controllers\ApiControllers\UserSudsController.cs" />
+    <Compile Include="Controllers\ClientRefundDetailsController.cs" />
+    <Compile Include="Controllers\ClientRefundsController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
@@ -224,6 +226,10 @@
     <Compile Include="Migrations\201804301756539_InitialCreate.cs" />
     <Compile Include="Migrations\201804301756539_InitialCreate.Designer.cs">
       <DependentUpon>201804301756539_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805020518577_cambioNombreTablaTblClients.cs" />
+    <Compile Include="Migrations\201805020518577_cambioNombreTablaTblClients.Designer.cs">
+      <DependentUpon>201805020518577_cambioNombreTablaTblClients.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -471,6 +477,16 @@
     <Content Include="Views\DocumentTypes\Details.cshtml" />
     <Content Include="Views\DocumentTypes\Edit.cshtml" />
     <Content Include="Views\DocumentTypes\Index.cshtml" />
+    <Content Include="Views\ClientRefunds\Create.cshtml" />
+    <Content Include="Views\ClientRefunds\Delete.cshtml" />
+    <Content Include="Views\ClientRefunds\Details.cshtml" />
+    <Content Include="Views\ClientRefunds\Edit.cshtml" />
+    <Content Include="Views\ClientRefunds\Index.cshtml" />
+    <Content Include="Views\ClientRefundDetails\Create.cshtml" />
+    <Content Include="Views\ClientRefundDetails\Delete.cshtml" />
+    <Content Include="Views\ClientRefundDetails\Details.cshtml" />
+    <Content Include="Views\ClientRefundDetails\Edit.cshtml" />
+    <Content Include="Views\ClientRefundDetails\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -494,6 +510,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201804301756539_InitialCreate.resx">
       <DependentUpon>201804301756539_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805020518577_cambioNombreTablaTblClients.resx">
+      <DependentUpon>201805020518577_cambioNombreTablaTblClients.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
