@@ -1,0 +1,34 @@
+﻿@model SUD.Models.ClientRefund
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ClientRefund</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Sale.SaleId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sale.SaleId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ClientRefundId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

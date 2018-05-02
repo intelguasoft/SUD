@@ -55,5 +55,11 @@ namespace SUD.Models
         public System.Data.Entity.DbSet<SUD.Models.Client> Clients { get; set; }
 
         public System.Data.Entity.DbSet<SUD.Models.DocumentType> DocumentTypes { get; set; }
+
+        public System.Data.Entity.DbSet<SUD.Models.ClientRefund> ClientRefunds { get; set; }
+
+        public System.Data.Entity.DbSet<SUD.Models.Sale> Sales { get; set; }
+
+        public System.Data.Entity.DbSet<SUD.Models.ClientRefundDetail> ClientRefundDetails { get; set; }
     }
 }
