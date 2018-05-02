@@ -26,7 +26,7 @@ namespace SUD.Models
         public virtual Cellar Cellar { get; set; }
 
         public virtual ICollection<ClientRefund> ClientRefunds { get; set; }
-
+        public virtual ICollection<SaleDetail> SaleDetails { get; set; }
 
 
     }

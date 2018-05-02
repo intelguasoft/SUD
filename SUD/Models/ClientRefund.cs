@@ -19,6 +19,8 @@ namespace SUD.Models
         public int SaleId { get; set; }
 
 
+        public virtual ICollection<ClientRefundDetail> ClientRefundDetails { get; set; }
+
         public virtual Sale Sale { get; set; }
 
         

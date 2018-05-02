@@ -39,9 +39,15 @@ namespace SUD.Models
 
         public virtual ICollection<BarCode> BarCodes { get; set; }
 
+        public virtual ICollection<ClientRefundDetail> ClientRefundDetails { get; set; }
+
+        public virtual ICollection<SaleDetail> SaleDetails { get; set; }
+
         public virtual Department Department { get; set; }
 
         public virtual Measure Measure { get; set; }
+
+        
 
 
     }

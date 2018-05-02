@@ -36,7 +36,8 @@ namespace SUD.Models
         public int KardexId { get; set; }
 
 
-
+        public virtual ClientRefund ClientRefund { get; set; }
+        public virtual Product Product { get; set; }
 
 
 
