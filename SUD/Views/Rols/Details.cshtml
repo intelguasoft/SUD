@@ -3,7 +3,7 @@
 
 @{
     ViewBag.Title = "Perfil";
-    ViewBag.Message = "Este es un Perfil de SUD";
+    ViewBag.Message = "";
 }
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -12,8 +12,8 @@
         @ViewBag.Title - <small>@ViewBag.Message</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#">Detalles de Perfil</a></li>
-        <li class="active">Perfil</li>
+        <li><a href="@Url.Action("Index", new {id = Model.RolId })">Detalles de Perfil</a></li>
+        <li class="active">Detalles</li>
     </ol>
 </section>
 <!-- Main content -->
