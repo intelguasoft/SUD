@@ -14,6 +14,10 @@ namespace SUD.Models
         [Key]
         public int InventoryId { get; set; }
 
+        [Required(ErrorMessage = "El campo {0} es requerido")]
+        [Display(Name = "Bodega:")]
+        public int CellarId { get; set; }
+
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Fecha")]
         [DataType(DataType.DateTime)]

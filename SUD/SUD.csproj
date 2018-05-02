@@ -225,6 +225,10 @@
     <Compile Include="Migrations\201804301756539_InitialCreate.Designer.cs">
       <DependentUpon>201804301756539_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805020640139_Modificacion_Relaciones_Inventario.cs" />
+    <Compile Include="Migrations\201805020640139_Modificacion_Relaciones_Inventario.Designer.cs">
+      <DependentUpon>201805020640139_Modificacion_Relaciones_Inventario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BarCode.cs" />
@@ -494,6 +498,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201804301756539_InitialCreate.resx">
       <DependentUpon>201804301756539_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805020640139_Modificacion_Relaciones_Inventario.resx">
+      <DependentUpon>201805020640139_Modificacion_Relaciones_Inventario.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

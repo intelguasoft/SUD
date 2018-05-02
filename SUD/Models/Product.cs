@@ -15,6 +15,14 @@ namespace SUD.Models
         public int ProductId { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
+        [Display(Name = "Departamento")]
+        public int DepartmentId { get; set; }
+
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
+        [Display(Name = "Medida")]
+        public int MeasureId { get; set; }
+
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Descripción")]
         public string Description { get; set; }
 

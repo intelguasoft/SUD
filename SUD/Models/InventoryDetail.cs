@@ -14,6 +14,14 @@ namespace SUD.Models
         [Key]
         public int LineId { get; set; }
 
+        [Required(ErrorMessage = "El campo {0} es requerido")]
+        [Display(Name = "Inventario:")]
+        public int InventoryId { get; set; }
+
+        [Required(ErrorMessage = "El campo {0} es requerido")]
+        [Display(Name = "Producto:")]
+        public int ProductId { get; set; }
+
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Descripción")]
         public string Description { get; set; }
@@ -37,6 +45,16 @@ namespace SUD.Models
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Ajuste Inventario")]
         public float Adjustment { get; set; }
+
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
+        [Display(Name = "Kardex")]
+        public int KardexId { get; set; }
+
+        public virtual Product Product { get; set; }
+
+        public virtual Inventory Inventory { get; set; }
+
+
 
     }
 }
