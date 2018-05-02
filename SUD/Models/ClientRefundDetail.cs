@@ -6,6 +6,7 @@ using System.Web;
 
 namespace SUD.Models
 {
+    [Table("tbl_ClientRefundDetails")]
     public class ClientRefundDetail
     {
         [Key]
