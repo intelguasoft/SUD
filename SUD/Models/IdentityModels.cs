@@ -51,5 +51,9 @@ namespace SUD.Models
         public System.Data.Entity.DbSet<SUD.Models.Inventory> Inventories { get; set; }
 
         public System.Data.Entity.DbSet<SUD.Models.InventoryDetail> InventoryDetails { get; set; }
+
+        public System.Data.Entity.DbSet<SUD.Models.Client> Clients { get; set; }
+
+        public System.Data.Entity.DbSet<SUD.Models.DocumentType> DocumentTypes { get; set; }
     }
 }
