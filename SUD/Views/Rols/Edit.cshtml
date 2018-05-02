@@ -17,7 +17,7 @@
             @ViewBag.Title - <small>@ViewBag.Message</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="@Url.Action("Index", new {id = Model.RolId })">Perfil</a></li>
+            <li><a href="@Url.Action("Index")">Perfil</a></li>
             <li class="active">Modificar Perfil</li>
         </ol>
     </section>
@@ -37,6 +37,8 @@
                     </button>
                 </div>
             </div>
+
+
             <div class="box-body">
                 <!-- Aca se incluye todo el contenido de la pagina que se desea mostrar -->
                 <!-- por ejemplo el index/tabla de algun recurso -->
@@ -67,6 +69,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
                 <!-- /.box-footer-->
             </div>
             <!-- /.box -->
