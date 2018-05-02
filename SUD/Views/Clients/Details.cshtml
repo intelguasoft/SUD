@@ -1,0 +1,98 @@
+﻿@model SUD.Models.Client
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Client</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DocumentType.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DocumentType.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Document)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Document)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ComertialName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ComertialName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstNameContact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstNameContact)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastNameContact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastNameContact)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telephone1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telephone1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telephone2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telephone2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Note)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ClientId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

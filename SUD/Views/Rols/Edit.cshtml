@@ -1,7 +1,7 @@
 ﻿@model SUD.Models.Rol
 
 @{
-    ViewBag.Title = "Perfil";
+    ViewBag.Title = "Perfil Usuario";
     ViewBag.Message = "Modificar Perfil";
 }
 
@@ -17,8 +17,8 @@
             @ViewBag.Title - <small>@ViewBag.Message</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#">Modificar</a></li>
-            <li class="active">perfil</li>
+            <li><a href="@Url.Action("Index", new {id = Model.RolId })">Perfil</a></li>
+            <li class="active">Modificar Perfil</li>
         </ol>
     </section>
     <!-- Main content -->

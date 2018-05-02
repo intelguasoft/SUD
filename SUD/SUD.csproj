@@ -206,8 +206,10 @@
     <Compile Include="Controllers\ApiControllers\RolPermissionsController.cs" />
     <Compile Include="Controllers\ApiControllers\RolsController.cs" />
     <Compile Include="Controllers\ApiControllers\UserSudsController.cs" />
+    <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
+    <Compile Include="Controllers\DocumentTypesController.cs" />
     <Compile Include="Controllers\InventoriesController.cs" />
     <Compile Include="Controllers\InventoryDetailsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -229,6 +231,7 @@
     <Compile Include="Models\Cellar.cs" />
     <Compile Include="Models\CellarProduct.cs" />
     <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\ClientRefundDetail.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\DocumentType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -458,6 +461,16 @@
     <Content Include="Views\InventoryDetails\Details.cshtml" />
     <Content Include="Views\InventoryDetails\Edit.cshtml" />
     <Content Include="Views\InventoryDetails\Index.cshtml" />
+    <Content Include="Views\Clients\Create.cshtml" />
+    <Content Include="Views\Clients\Delete.cshtml" />
+    <Content Include="Views\Clients\Details.cshtml" />
+    <Content Include="Views\Clients\Edit.cshtml" />
+    <Content Include="Views\Clients\Index.cshtml" />
+    <Content Include="Views\DocumentTypes\Create.cshtml" />
+    <Content Include="Views\DocumentTypes\Delete.cshtml" />
+    <Content Include="Views\DocumentTypes\Details.cshtml" />
+    <Content Include="Views\DocumentTypes\Edit.cshtml" />
+    <Content Include="Views\DocumentTypes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
