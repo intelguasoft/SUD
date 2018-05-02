@@ -1,0 +1,63 @@
+﻿@model IEnumerable<SUD.Models.InventoryDetail>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stock)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Count1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Count2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Count3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adjustment)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Stock)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Count1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Count2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Count3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Adjustment)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.LineId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.LineId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.LineId })
+        </td>
+    </tr>
+}
+
+</table>

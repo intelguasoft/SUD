@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
 namespace SUD.Models
 {
+    [Table("tbl_Products")]
+
     public class Product
     {
         [Key]
-        public int IdProduct { get; set; }
+        public int ProductId { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Descripción")]
@@ -34,7 +37,7 @@ namespace SUD.Models
 
         public virtual ICollection<CellarProduct> CellarProducts { get; set; }
 
-        public virtual ICollection<Bar> Bars { get; set; }
+        public virtual ICollection<BarCode> BarCodes { get; set; }
 
         public virtual Department Department { get; set; }
 

@@ -19,6 +19,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Form)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Form)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.CanSee)
         </dt>
 
@@ -45,6 +53,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IDPermission }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PermissionId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

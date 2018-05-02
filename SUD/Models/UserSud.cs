@@ -7,11 +7,13 @@ using System.Web;
 
 namespace SUD.Models
 {
-    [Table("tbl_Users")]
-    public class User
+    [Table("tbl_UsersSud")]
+
+        //se le colocó el Nombre de UserSud debido que al crear el controlador con el Nombre User, no se generaba la entidad en el IdentityModel
+    public class UserSud
     {
         [Key]
-        public int IDUser { get; set; }
+        public int UserSudId { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es requerido")]
         [Display(Name = "Nombre")]
@@ -33,14 +35,13 @@ namespace SUD.Models
 
         [Required(ErrorMessage = "El campo {0} es requerido")]
         [Display(Name = "Rol:")]
-        public int IDRol { get; set; }
+        public int RolId { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es requerido")]
         [StringLength(255, ErrorMessage = "Debe contener entre 8 y 25 caracteres", MinimumLength = 8)]
         [RegularExpression("^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-.]+$", ErrorMessage = "Debe ser un correo electronico valido")]
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Correo Electronico")]
-        //[Index ("User_Email_Index", IsUnique = true)]
         public string Email { get; set; }
 
         public virtual Rol Rol { get; set; }

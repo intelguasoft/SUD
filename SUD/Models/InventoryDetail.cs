@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
 namespace SUD.Models
 {
+    [Table("tbl_InventoryDetails")]
+
     public class InventoryDetail
     {
         [Key]
-        public int IdLine { get; set; }
+        public int LineId { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Descripción")]

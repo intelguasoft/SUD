@@ -10,117 +10,107 @@ using SUD.Models;
 
 namespace SUD.Controllers
 {
-    public class UsersController : Controller
+    public class InventoryDetailsController : Controller
     {
-        private ApplicationDbContext db;
+        private ApplicationDbContext db = new ApplicationDbContext();
 
-        public UsersController()
-        {
-            db = new ApplicationDbContext();
-        }
-
-        // GET: Users
+        // GET: InventoryDetails
         public ActionResult Index()
         {
-            var users = db.Users.Include(u => u.Rol);
-            return View(users.ToList());
+            return View(db.InventoryDetails.ToList());
         }
 
-        // GET: Users/Details/5
+        // GET: InventoryDetails/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
-            if (user == null)
+            InventoryDetail inventoryDetail = db.InventoryDetails.Find(id);
+            if (inventoryDetail == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(inventoryDetail);
         }
 
-        // GET: Users/Create
+        // GET: InventoryDetails/Create
         public ActionResult Create()
         {
-            ViewBag.IDRol = new SelectList(db.Rols, "IDRol", "Description");
             return View();
         }
 
-        // POST: Users/Create
+        // POST: InventoryDetails/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IDUser,Name,LastName,Password,ModificationDatePassword,IDRol,Email")] User user)
+        public ActionResult Create([Bind(Include = "LineId,Description,Stock,Count1,Count2,Count3,Adjustment")] InventoryDetail inventoryDetail)
         {
             if (ModelState.IsValid)
             {
-                db.Users.Add(user);
+                db.InventoryDetails.Add(inventoryDetail);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IDRol = new SelectList(db.Rols, "IDRol", "Description", user.IDRol);
-            return View(user);
+            return View(inventoryDetail);
         }
 
-        // GET: Users/Edit/5
+        // GET: InventoryDetails/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
-            if (user == null)
+            InventoryDetail inventoryDetail = db.InventoryDetails.Find(id);
+            if (inventoryDetail == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.IDRol = new SelectList(db.Rols, "IDRol", "Description", user.IDRol);
-            return View(user);
+            return View(inventoryDetail);
         }
 
-        // POST: Users/Edit/5
+        // POST: InventoryDetails/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IDUser,Name,LastName,Password,ModificationDatePassword,IDRol,Email")] User user)
+        public ActionResult Edit([Bind(Include = "LineId,Description,Stock,Count1,Count2,Count3,Adjustment")] InventoryDetail inventoryDetail)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
+                db.Entry(inventoryDetail).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IDRol = new SelectList(db.Rols, "IDRol", "Description", user.IDRol);
-            return View(user);
+            return View(inventoryDetail);
         }
 
-        // GET: Users/Delete/5
+        // GET: InventoryDetails/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
-            if (user == null)
+            InventoryDetail inventoryDetail = db.InventoryDetails.Find(id);
+            if (inventoryDetail == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(inventoryDetail);
         }
 
-        // POST: Users/Delete/5
+        // POST: InventoryDetails/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            User user = db.Users.Find(id);
-            db.Users.Remove(user);
+            InventoryDetail inventoryDetail = db.InventoryDetails.Find(id);
+            db.InventoryDetails.Remove(inventoryDetail);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

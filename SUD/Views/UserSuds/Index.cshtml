@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SUD.Models.User>
+﻿@model IEnumerable<SUD.Models.UserSud>
 
 @{
     ViewBag.Title = "Index";
@@ -53,9 +53,9 @@
             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IDUser }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IDUser }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IDUser })
+            @Html.ActionLink("Edit", "Edit", new { id=item.UserSudId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.UserSudId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.UserSudId })
         </td>
     </tr>
 }

@@ -1,26 +1,67 @@
 ﻿@model SUD.Models.Rol
 
+
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Perfil";
+    ViewBag.Message = "Este es un Perfil de SUD";
 }
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        <!--aqui va el titulo de la pagina que se va a mostrar, como el siguiente ejemplo -->
+        @ViewBag.Title - <small>@ViewBag.Message</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#">Detalles de Perfil</a></li>
+        <li class="active">Perfil</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- Default box -->
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Detalles del Perfil</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                        title="Collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove" disabled>
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="box-body">
+            <!-- Aca se incluye todo el contenido de la pagina que se desea mostrar -->
+            <!-- por ejemplo el index/tabla de algun recurso -->
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </dt>
 
-<h2>Details</h2>
+                    <dd>
+                        @Html.DisplayFor(model => model.Description)
+                    </dd>
 
-<div>
-    <h4>Rol</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+                </dl>
+            </div>
+        </div>
+        <!-- /.box-body -->
+    <div class="box-footer">
+        <!-- Aca se incluye aquellas acciones relacionadas con lo antes mostrado -->
+        <!-- por ejemplo botones de facturacion, exportar a excel/pdf o similares -->
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+        <p>
+            <a href="@Url.Action("Index")" class="btn btn-success"> <i class="fa fa-undo" aria-hidden="true"></i> Regresar</a>
+            <a href="@Url.Action("Edit", new {id = Model.RolId })" class="btn btn-warning"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Modificar</a>
+        </p>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IDRol }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    </div>
+        <!-- /.box-footer-->
+    </div>
+    <!-- /.box -->
+</section>
+<!-- /.content -->
+

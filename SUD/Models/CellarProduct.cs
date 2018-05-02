@@ -1,18 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
 namespace SUD.Models
 {
+    [Table("tbl_CellarProducts")]
+
     public class CellarProduct
     {
         [Key]
-        public int IdCellar { get; set; }
+        public int CellarProductId { get; set; }
 
-        [Key]
-        public int IdProduct { get; set; }
+        [Index("CellarProduct_Bodega", IsUnique = true, Order = 1)]
+        public int CellarId { get; set; }
+
+        [Index("CellarProducto_Producto", IsUnique = true, Order = 2)]
+        public int ProductId { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Stock")]

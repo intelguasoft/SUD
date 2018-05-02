@@ -1,0 +1,80 @@
+﻿@model SUD.Models.CellarProduct
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>CellarProduct</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cellar.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cellar.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stock)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Minimum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Minimum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Maximum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Maximum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReplacementDays)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReplacementDays)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MinimumAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MinimumAmount)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

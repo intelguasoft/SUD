@@ -1,0 +1,66 @@
+﻿@model SUD.Models.InventoryDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>InventoryDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stock)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Count1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Count1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Count2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Count2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Count3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Count3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adjustment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adjustment)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.LineId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

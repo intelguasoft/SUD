@@ -15,6 +15,9 @@
             @Html.DisplayNameFor(model => model.Rol.Description)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Form)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.CanSee)
         </th>
         <th>
@@ -32,6 +35,9 @@
             @Html.DisplayFor(modelItem => item.Rol.Description)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Form)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.CanSee)
         </td>
         <td>
@@ -41,9 +47,9 @@
             @Html.DisplayFor(modelItem => item.CanErase)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IDPermission }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IDPermission }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IDPermission })
+            @Html.ActionLink("Edit", "Edit", new { id=item.PermissionId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PermissionId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PermissionId })
         </td>
     </tr>
 }
