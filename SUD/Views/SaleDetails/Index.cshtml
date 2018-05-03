@@ -1,0 +1,75 @@
+﻿@model IEnumerable<SUD.Models.SaleDetail>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Product.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sale.SaleId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IVAPercentage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiscountRate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KardexId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sale.SaleId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IVAPercentage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiscountRate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KardexId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SaleDetailId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SaleDetailId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SaleDetailId })
+        </td>
+    </tr>
+}
+
+</table>
