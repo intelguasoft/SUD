@@ -219,6 +219,7 @@
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\RolPermissionsController.cs" />
     <Compile Include="Controllers\RolsController.cs" />
+    <Compile Include="Controllers\SaleDetailsController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
     <Compile Include="Controllers\UserSudsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -494,6 +495,11 @@
     <Content Include="Views\Sales\Details.cshtml" />
     <Content Include="Views\Sales\Edit.cshtml" />
     <Content Include="Views\Sales\Index.cshtml" />
+    <Content Include="Views\SaleDetails\Create.cshtml" />
+    <Content Include="Views\SaleDetails\Delete.cshtml" />
+    <Content Include="Views\SaleDetails\Details.cshtml" />
+    <Content Include="Views\SaleDetails\Edit.cshtml" />
+    <Content Include="Views\SaleDetails\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

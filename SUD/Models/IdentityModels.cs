@@ -61,5 +61,7 @@ namespace SUD.Models
         public System.Data.Entity.DbSet<SUD.Models.Sale> Sales { get; set; }
 
         public System.Data.Entity.DbSet<SUD.Models.ClientRefundDetail> ClientRefundDetails { get; set; }
+
+        public System.Data.Entity.DbSet<SUD.Models.SaleDetail> SaleDetails { get; set; }
     }
 }
