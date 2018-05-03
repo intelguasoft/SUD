@@ -17,7 +17,7 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="@Url.Action("Index")">Permisos</a></li>
-            <li class="active">Modificar permisos</li>
+            <li class="active">Modificar</li>
         </ol>
     </section>
     <!-- Main content -->
@@ -60,50 +60,53 @@
                             @Html.ValidationMessageFor(model => model.Form, "", new { @class = "text-danger" })
                         </div>
                     </div>
-            </div>
+                </div>
 
-            <div class="row">
-                <div class="form-check-inline">
-                    <div class="col-xs-12 col-md-4">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.CanSee, htmlAttributes: new { @class = "" })
-                            @Html.EditorFor(model => model.CanSee, new { htmlAttributes = new { @class = "col-md-1 " } })
-                            @Html.ValidationMessageFor(model => model.CanSee, "", new { @class = "text-danger" })
+                <div class="row">
+                    <div class="form-check-inline">
+                        <div class="col-xs-12 col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.CanSee, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.CanSee, new { htmlAttributes = new { @class = "col-md-1 " } })
+                                @Html.ValidationMessageFor(model => model.CanSee, "", new { @class = "text-danger" })
 
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-xs-12 col-md-4">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.CanModify, htmlAttributes: new { @class = "" })
-                            @Html.EditorFor(model => model.CanModify, new { htmlAttributes = new { @class = "col-md-1 " } })
-                            @Html.ValidationMessageFor(model => model.CanModify, "", new { @class = "text-danger" })
+                        <div class="col-xs-12 col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.CanModify, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.CanModify, new { htmlAttributes = new { @class = "col-md-1 " } })
+                                @Html.ValidationMessageFor(model => model.CanModify, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-xs-12 col-md-4">
-                        <div class="form-group">
-                                    @Html.LabelFor(model => model.CanErase, htmlAttributes: new { @class = "" })
-                                    @Html.EditorFor(model => model.CanErase, new { htmlAttributes = new { @class = "col-md-1 " } })
-                                    @Html.ValidationMessageFor(model => model.CanErase, "", new { @class = "text-danger" })
-                                </div>
+                        <div class="col-xs-12 col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.CanErase, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.CanErase, new { htmlAttributes = new { @class = "col-md-1 " } })
+                                @Html.ValidationMessageFor(model => model.CanErase, "", new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
             <!-- /.box-body -->
-        <div class="box-footer">
-            <!-- Aca se incluye aquellas acciones relacionadas con lo antes mostrado -->
-            <!-- por ejemplo botones de facturacion, exportar a excel/pdf o similares -->
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <a href="@Url.Action("Index")" class="btn btn-success"> <i class="fa fa-undo" aria-hidden="true"></i> Regresar</a>
-                    <button type="submit" class="btn btn-info">
-                        <i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar
-                    </button>
+            <div class="box-footer">
+                <!-- Aca se incluye aquellas acciones relacionadas con lo antes mostrado -->
+                <!-- por ejemplo botones de facturacion, exportar a excel/pdf o similares -->
+                <div class="row">
+                    <div class="col-md-offset-5">
+                        <div class="form-group">
+                            <a href="@Url.Action("Index")" class="btn btn-success"> <i class="fa fa-undo" aria-hidden="true"></i> Regresar</a>
+                            <button type="submit" class="btn btn-info">
+                                <i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        
             <!-- /.box-footer-->
         </div>
         <!-- /.box -->
