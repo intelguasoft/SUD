@@ -500,6 +500,7 @@
     <Content Include="Views\InventoryDetails\Details.cshtml" />
     <Content Include="Views\InventoryDetails\Edit.cshtml" />
     <Content Include="Views\InventoryDetails\Index.cshtml" />
+    <Content Include="Views\RolPermissions\DisplayTemplates\Boolean.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
