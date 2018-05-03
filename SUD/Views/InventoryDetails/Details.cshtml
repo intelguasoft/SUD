@@ -11,6 +11,14 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.Inventory.InventoryId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Inventory.InventoryId)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Product.Description)
         </dt>
 
@@ -64,6 +72,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.Adjustment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KardexId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KardexId)
         </dd>
 
     </dl>
