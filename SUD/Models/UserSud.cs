@@ -29,8 +29,9 @@ namespace SUD.Models
         [Display(Name = "Contraseña")]
         public string Password { get; set; }
 
-        [Display(Name = "Fecha de Modificación de la Contraseña")]
+        [Display(Name = "Fecha de Modificación")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString ="{0:yyyy-MM-dd}", ApplyFormatInEditMode =true)]
         public DateTime ModificationDatePassword { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es requerido")]
