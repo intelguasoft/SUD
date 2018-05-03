@@ -17,7 +17,8 @@ namespace SUD.Controllers
         // GET: InventoryDetails
         public ActionResult Index()
         {
-            return View(db.InventoryDetails.ToList());
+            var inventoryDetails = db.InventoryDetails.Include(i => i.Inventory).Include(i => i.Product);
+            return View(inventoryDetails.ToList());
         }
 
         // GET: InventoryDetails/Details/5
@@ -38,6 +39,8 @@ namespace SUD.Controllers
         // GET: InventoryDetails/Create
         public ActionResult Create()
         {
+            ViewBag.InventoryId = new SelectList(db.Inventories, "InventoryId", "InventoryId");
+            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "Description");
             return View();
         }
 
@@ -46,7 +49,7 @@ namespace SUD.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "LineId,Description,Stock,Count1,Count2,Count3,Adjustment")] InventoryDetail inventoryDetail)
+        public ActionResult Create([Bind(Include = "LineId,InventoryId,ProductId,Description,Stock,Count1,Count2,Count3,Adjustment,KardexId")] InventoryDetail inventoryDetail)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +58,8 @@ namespace SUD.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.InventoryId = new SelectList(db.Inventories, "InventoryId", "InventoryId", inventoryDetail.InventoryId);
+            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "Description", inventoryDetail.ProductId);
             return View(inventoryDetail);
         }
 
@@ -70,6 +75,8 @@ namespace SUD.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.InventoryId = new SelectList(db.Inventories, "InventoryId", "InventoryId", inventoryDetail.InventoryId);
+            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "Description", inventoryDetail.ProductId);
             return View(inventoryDetail);
         }
 
@@ -78,7 +85,7 @@ namespace SUD.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "LineId,Description,Stock,Count1,Count2,Count3,Adjustment")] InventoryDetail inventoryDetail)
+        public ActionResult Edit([Bind(Include = "LineId,InventoryId,ProductId,Description,Stock,Count1,Count2,Count3,Adjustment,KardexId")] InventoryDetail inventoryDetail)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +93,8 @@ namespace SUD.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.InventoryId = new SelectList(db.Inventories, "InventoryId", "InventoryId", inventoryDetail.InventoryId);
+            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "Description", inventoryDetail.ProductId);
             return View(inventoryDetail);
         }
 

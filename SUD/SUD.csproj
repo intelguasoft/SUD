@@ -445,11 +445,6 @@
     <Content Include="Views\Cellars\Details.cshtml" />
     <Content Include="Views\Cellars\Edit.cshtml" />
     <Content Include="Views\Cellars\Index.cshtml" />
-    <Content Include="Views\Products\Create.cshtml" />
-    <Content Include="Views\Products\Delete.cshtml" />
-    <Content Include="Views\Products\Details.cshtml" />
-    <Content Include="Views\Products\Edit.cshtml" />
-    <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\BarCodes\Create.cshtml" />
     <Content Include="Views\BarCodes\Delete.cshtml" />
     <Content Include="Views\BarCodes\Details.cshtml" />
@@ -460,16 +455,6 @@
     <Content Include="Views\CellarProducts\Details.cshtml" />
     <Content Include="Views\CellarProducts\Edit.cshtml" />
     <Content Include="Views\CellarProducts\Index.cshtml" />
-    <Content Include="Views\Inventories\Create.cshtml" />
-    <Content Include="Views\Inventories\Delete.cshtml" />
-    <Content Include="Views\Inventories\Details.cshtml" />
-    <Content Include="Views\Inventories\Edit.cshtml" />
-    <Content Include="Views\Inventories\Index.cshtml" />
-    <Content Include="Views\InventoryDetails\Create.cshtml" />
-    <Content Include="Views\InventoryDetails\Delete.cshtml" />
-    <Content Include="Views\InventoryDetails\Details.cshtml" />
-    <Content Include="Views\InventoryDetails\Edit.cshtml" />
-    <Content Include="Views\InventoryDetails\Index.cshtml" />
     <Content Include="Views\Clients\Create.cshtml" />
     <Content Include="Views\Clients\Delete.cshtml" />
     <Content Include="Views\Clients\Details.cshtml" />
@@ -500,6 +485,21 @@
     <Content Include="Views\SaleDetails\Details.cshtml" />
     <Content Include="Views\SaleDetails\Edit.cshtml" />
     <Content Include="Views\SaleDetails\Index.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
+    <Content Include="Views\Products\Delete.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Inventories\Create.cshtml" />
+    <Content Include="Views\Inventories\Delete.cshtml" />
+    <Content Include="Views\Inventories\Details.cshtml" />
+    <Content Include="Views\Inventories\Edit.cshtml" />
+    <Content Include="Views\Inventories\Index.cshtml" />
+    <Content Include="Views\InventoryDetails\Create.cshtml" />
+    <Content Include="Views\InventoryDetails\Delete.cshtml" />
+    <Content Include="Views\InventoryDetails\Details.cshtml" />
+    <Content Include="Views\InventoryDetails\Edit.cshtml" />
+    <Content Include="Views\InventoryDetails\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
