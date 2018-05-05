@@ -217,6 +217,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MeasuresController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\PurchasesController.cs" />
     <Compile Include="Controllers\RolPermissionsController.cs" />
     <Compile Include="Controllers\RolsController.cs" />
     <Compile Include="Controllers\SaleDetailsController.cs" />
@@ -232,6 +233,10 @@
     <Compile Include="Migrations\201805020640139_Modificacion_Relaciones_Inventario.cs" />
     <Compile Include="Migrations\201805020640139_Modificacion_Relaciones_Inventario.Designer.cs">
       <DependentUpon>201805020640139_Modificacion_Relaciones_Inventario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805041848167_CreatePurchaseTable.cs" />
+    <Compile Include="Migrations\201805041848167_CreatePurchaseTable.Designer.cs">
+      <DependentUpon>201805041848167_CreatePurchaseTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -509,6 +514,11 @@
     <Content Include="Views\InventoryDetails\Edit.cshtml" />
     <Content Include="Views\InventoryDetails\Index.cshtml" />
     <Content Include="Views\RolPermissions\DisplayTemplates\Boolean.cshtml" />
+    <Content Include="Views\Purchases\Create.cshtml" />
+    <Content Include="Views\Purchases\Delete.cshtml" />
+    <Content Include="Views\Purchases\Details.cshtml" />
+    <Content Include="Views\Purchases\Edit.cshtml" />
+    <Content Include="Views\Purchases\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -535,6 +545,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805020518577_cambioNombreTablaTblClients.resx">
       <DependentUpon>201805020518577_cambioNombreTablaTblClients.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805041848167_CreatePurchaseTable.resx">
+      <DependentUpon>201805041848167_CreatePurchaseTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
