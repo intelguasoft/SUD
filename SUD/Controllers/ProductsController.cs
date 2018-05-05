@@ -17,7 +17,8 @@ namespace SUD.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            return View(db.Products.ToList());
+            var products = db.Products.Include(p => p.Department).Include(p => p.Measure);
+            return View(products.ToList());
         }
 
         // GET: Products/Details/5
@@ -38,6 +39,8 @@ namespace SUD.Controllers
         // GET: Products/Create
         public ActionResult Create()
         {
+            ViewBag.DepartmentId = new SelectList(db.Departments, "DepartmentId", "Description");
+            ViewBag.MeasureId = new SelectList(db.Measures, "MeasureId", "Description");
             return View();
         }
 
@@ -46,7 +49,7 @@ namespace SUD.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductId,Description,Price,Note,Image,Medida")] Product product)
+        public ActionResult Create([Bind(Include = "ProductId,DepartmentId,MeasureId,Description,Price,Note,Image,Medida")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +58,8 @@ namespace SUD.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.DepartmentId = new SelectList(db.Departments, "DepartmentId", "Description", product.DepartmentId);
+            ViewBag.MeasureId = new SelectList(db.Measures, "MeasureId", "Description", product.MeasureId);
             return View(product);
         }
 
@@ -70,6 +75,8 @@ namespace SUD.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.DepartmentId = new SelectList(db.Departments, "DepartmentId", "Description", product.DepartmentId);
+            ViewBag.MeasureId = new SelectList(db.Measures, "MeasureId", "Description", product.MeasureId);
             return View(product);
         }
 
@@ -78,7 +85,7 @@ namespace SUD.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductId,Description,Price,Note,Image,Medida")] Product product)
+        public ActionResult Edit([Bind(Include = "ProductId,DepartmentId,MeasureId,Description,Price,Note,Image,Medida")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +93,8 @@ namespace SUD.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.DepartmentId = new SelectList(db.Departments, "DepartmentId", "Description", product.DepartmentId);
+            ViewBag.MeasureId = new SelectList(db.Measures, "MeasureId", "Description", product.MeasureId);
             return View(product);
         }
 

@@ -15,7 +15,7 @@
             @ViewBag.Title - <small>@ViewBag.Message</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="@Url.Action("Index")">Usuarios</a></li>
+            <li><a href="@Url.Action("Index")"><i class="fa fa-user"></i>  Usuarios</a></li>
             <li class="active">Modificar</li>
         </ol>
     </section>
@@ -38,60 +38,64 @@
             <div class="box-body">
                 <!-- Aca se incluye todo el contenido de la pagina que se desea mostrar -->
                 <!-- por ejemplo el index/tabla de algun recurso -->
-                <div class="form-horizontal">
-                    <hr />
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    @Html.HiddenFor(model => model.UserSudId)
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-5">
+                <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.HiddenFor(model => model.UserSudId)
+                            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "c" })
                             @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-5">
+                    <div class="col-xs-12 col-md-6">
+                        @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "" })
+                        <div class="form-group">
                             @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-5">
-                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.ModificationDatePassword, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-5">
-                            @Html.EditorFor(model => model.ModificationDatePassword, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.ModificationDatePassword, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.RolId, "RolId", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-5">
-                            @Html.DropDownList("RolId", null, htmlAttributes: new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.RolId, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-5">
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "" })
+                        <div class="form-group">
                             @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    
+                    <div class="col-xs-12 col-md-6">
+                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "" })
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
                 </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        @Html.LabelFor(model => model.ModificationDatePassword, htmlAttributes: new { @class = "" })
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.ModificationDatePassword, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ModificationDatePassword, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        @Html.LabelFor(model => model.RolId, htmlAttributes: new { @class = "" })
+                        <div class="form-group">
+                            @Html.DropDownList("RolId", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.RolId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+             </div>
                 <!-- /.box-body -->
-                <div class="box-footer">
-                    <!-- Aca se incluye aquellas acciones relacionadas con lo antes mostrado -->
-                    <!-- por ejemplo botones de facturacion, exportar a excel/pdf o similares -->
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
+            <div class="box-footer">
+                <!-- Aca se incluye aquellas acciones relacionadas con lo antes mostrado -->
+                <!-- por ejemplo botones de facturacion, exportar a excel/pdf o similares -->
+                <div class="row">
+                    <div class="trans text-center">
+                        <div class="form-group">
                             <a href="@Url.Action("Index")" class="btn btn-success"> <i class="fa fa-undo" aria-hidden="true"></i> Regresar</a>
                             <button type="submit" class="btn btn-info">
                                 <i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar
@@ -99,10 +103,11 @@
                         </div>
                     </div>
                 </div>
+              </div>
                 <!-- /.box-footer-->
             </div>
-            <!-- /.box -->
-    </section>
+                <!-- /.box -->
+</section>
     <!-- /.content -->
 }
 

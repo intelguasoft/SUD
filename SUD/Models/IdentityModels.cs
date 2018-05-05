@@ -32,36 +32,40 @@ namespace SUD.Models
 
         public DbSet<Rol> Rols { get; set; }
 
-        public System.Data.Entity.DbSet<SUD.Models.UserSud> UserSuds { get; set; }
+        public DbSet<UserSud> UserSuds { get; set; }
 
-        public System.Data.Entity.DbSet<SUD.Models.RolPermission> RolPermissions { get; set; }
+        public DbSet<RolPermission> RolPermissions { get; set; }
 
-        public System.Data.Entity.DbSet<SUD.Models.Department> Departments { get; set; }
+        public DbSet<Department> Departments { get; set; }
 
-        public System.Data.Entity.DbSet<SUD.Models.Measure> Measures { get; set; }
+        public DbSet<Measure> Measures { get; set; }
 
-        public System.Data.Entity.DbSet<SUD.Models.Cellar> Cellars { get; set; }
+        public DbSet<Cellar> Cellars { get; set; }
 
-        public System.Data.Entity.DbSet<SUD.Models.Product> Products { get; set; }
+        public DbSet<Product> Products { get; set; }
 
-        public System.Data.Entity.DbSet<SUD.Models.BarCode> BarCodes { get; set; }
+        public DbSet<BarCode> BarCodes { get; set; }
 
-        public System.Data.Entity.DbSet<SUD.Models.CellarProduct> CellarProducts { get; set; }
+        public DbSet<CellarProduct> CellarProducts { get; set; }
 
-        public System.Data.Entity.DbSet<SUD.Models.Inventory> Inventories { get; set; }
+        public DbSet<Inventory> Inventories { get; set; }
 
-        public System.Data.Entity.DbSet<SUD.Models.InventoryDetail> InventoryDetails { get; set; }
+        public DbSet<InventoryDetail> InventoryDetails { get; set; }
 
-        public System.Data.Entity.DbSet<SUD.Models.Client> Clients { get; set; }
+        public DbSet<Client> Clients { get; set; }
 
-        public System.Data.Entity.DbSet<SUD.Models.DocumentType> DocumentTypes { get; set; }
+        public DbSet<DocumentType> DocumentTypes { get; set; }
 
-        public System.Data.Entity.DbSet<SUD.Models.ClientRefund> ClientRefunds { get; set; }
+        public DbSet<ClientRefund> ClientRefunds { get; set; }
 
-        public System.Data.Entity.DbSet<SUD.Models.Sale> Sales { get; set; }
+        public DbSet<Sale> Sales { get; set; }
 
-        public System.Data.Entity.DbSet<SUD.Models.ClientRefundDetail> ClientRefundDetails { get; set; }
+        public DbSet<ClientRefundDetail> ClientRefundDetails { get; set; }
 
-        public System.Data.Entity.DbSet<SUD.Models.SaleDetail> SaleDetails { get; set; }
+        public DbSet<SaleDetail> SaleDetails { get; set; }
+
+        public DbSet<Purchase> Purchases { get; set; }
+
+        public DbSet<Supplier> Suppliers { get; set; }
     }
 }

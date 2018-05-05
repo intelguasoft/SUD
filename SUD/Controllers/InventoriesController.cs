@@ -17,7 +17,8 @@ namespace SUD.Controllers
         // GET: Inventories
         public ActionResult Index()
         {
-            return View(db.Inventories.ToList());
+            var inventories = db.Inventories.Include(i => i.Cellar);
+            return View(inventories.ToList());
         }
 
         // GET: Inventories/Details/5
@@ -38,6 +39,7 @@ namespace SUD.Controllers
         // GET: Inventories/Create
         public ActionResult Create()
         {
+            ViewBag.CellarId = new SelectList(db.Cellars, "CellarId", "Description");
             return View();
         }
 
@@ -46,7 +48,7 @@ namespace SUD.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "InventoryId,Date,Step")] Inventory inventory)
+        public ActionResult Create([Bind(Include = "InventoryId,CellarId,Date,Step")] Inventory inventory)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +57,7 @@ namespace SUD.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.CellarId = new SelectList(db.Cellars, "CellarId", "Description", inventory.CellarId);
             return View(inventory);
         }
 
@@ -70,6 +73,7 @@ namespace SUD.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.CellarId = new SelectList(db.Cellars, "CellarId", "Description", inventory.CellarId);
             return View(inventory);
         }
 
@@ -78,7 +82,7 @@ namespace SUD.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "InventoryId,Date,Step")] Inventory inventory)
+        public ActionResult Edit([Bind(Include = "InventoryId,CellarId,Date,Step")] Inventory inventory)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +90,7 @@ namespace SUD.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.CellarId = new SelectList(db.Cellars, "CellarId", "Description", inventory.CellarId);
             return View(inventory);
         }
 

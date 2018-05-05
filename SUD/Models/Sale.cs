@@ -16,9 +16,13 @@ namespace SUD.Models
 
         [Required(ErrorMessage ="Ingrese una fecha")]
         [Display(Name = "Fecha", Description = "dd/mm/yyyy")]
+        [DataType(DataType.Date)]
         public DateTime Datetime { get; set; }
 
+        [Display(Name = "Cliente")]
         public int ClientId { get; set; }
+
+        [Display(Name = "Bodega")]
         public int CellarId { get; set; }
 
 

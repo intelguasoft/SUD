@@ -217,6 +217,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MeasuresController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\PurchasesController.cs" />
     <Compile Include="Controllers\RolPermissionsController.cs" />
     <Compile Include="Controllers\RolsController.cs" />
     <Compile Include="Controllers\SaleDetailsController.cs" />
@@ -233,6 +234,14 @@
     <Compile Include="Migrations\201805020640139_Modificacion_Relaciones_Inventario.Designer.cs">
       <DependentUpon>201805020640139_Modificacion_Relaciones_Inventario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805050334545_Correccion-problema-con-vistas.cs" />
+    <Compile Include="Migrations\201805050334545_Correccion-problema-con-vistas.Designer.cs">
+      <DependentUpon>201805050334545_Correccion-problema-con-vistas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805041848167_CreatePurchaseTable.cs" />
+    <Compile Include="Migrations\201805041848167_CreatePurchaseTable.Designer.cs">
+      <DependentUpon>201805041848167_CreatePurchaseTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BarCode.cs" />
@@ -240,15 +249,23 @@
     <Compile Include="Models\CellarProduct.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\ClientRefundDetail.cs" />
+    <Compile Include="Models\Concept.cs" />
     <Compile Include="Models\ClientViewModel.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\DocumentType.cs" />
+    <Compile Include="Models\Egress.cs" />
+    <Compile Include="Models\EgressDetails.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Inventory.cs" />
     <Compile Include="Models\InventoryDetail.cs" />
+    <Compile Include="Models\Kardex.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Measure.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Purchase.cs" />
+    <Compile Include="Models\PurchaseDetails.cs" />
+    <Compile Include="Models\RefundSupplier.cs" />
+    <Compile Include="Models\RefundSupplierDetails.cs" />
     <Compile Include="Models\Sale.cs" />
     <Compile Include="Models\ClientRefund.cs" />
     <Compile Include="Models\SaleDetail.cs" />
@@ -450,11 +467,6 @@
     <Content Include="Views\Cellars\Details.cshtml" />
     <Content Include="Views\Cellars\Edit.cshtml" />
     <Content Include="Views\Cellars\Index.cshtml" />
-    <Content Include="Views\Products\Create.cshtml" />
-    <Content Include="Views\Products\Delete.cshtml" />
-    <Content Include="Views\Products\Details.cshtml" />
-    <Content Include="Views\Products\Edit.cshtml" />
-    <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\BarCodes\Create.cshtml" />
     <Content Include="Views\BarCodes\Delete.cshtml" />
     <Content Include="Views\BarCodes\Details.cshtml" />
@@ -465,16 +477,6 @@
     <Content Include="Views\CellarProducts\Details.cshtml" />
     <Content Include="Views\CellarProducts\Edit.cshtml" />
     <Content Include="Views\CellarProducts\Index.cshtml" />
-    <Content Include="Views\Inventories\Create.cshtml" />
-    <Content Include="Views\Inventories\Delete.cshtml" />
-    <Content Include="Views\Inventories\Details.cshtml" />
-    <Content Include="Views\Inventories\Edit.cshtml" />
-    <Content Include="Views\Inventories\Index.cshtml" />
-    <Content Include="Views\InventoryDetails\Create.cshtml" />
-    <Content Include="Views\InventoryDetails\Delete.cshtml" />
-    <Content Include="Views\InventoryDetails\Details.cshtml" />
-    <Content Include="Views\InventoryDetails\Edit.cshtml" />
-    <Content Include="Views\InventoryDetails\Index.cshtml" />
     <Content Include="Views\Clients\Create.cshtml" />
     <Content Include="Views\Clients\Delete.cshtml" />
     <Content Include="Views\Clients\Details.cshtml" />
@@ -505,6 +507,27 @@
     <Content Include="Views\SaleDetails\Details.cshtml" />
     <Content Include="Views\SaleDetails\Edit.cshtml" />
     <Content Include="Views\SaleDetails\Index.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
+    <Content Include="Views\Products\Delete.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Inventories\Create.cshtml" />
+    <Content Include="Views\Inventories\Delete.cshtml" />
+    <Content Include="Views\Inventories\Details.cshtml" />
+    <Content Include="Views\Inventories\Edit.cshtml" />
+    <Content Include="Views\Inventories\Index.cshtml" />
+    <Content Include="Views\InventoryDetails\Create.cshtml" />
+    <Content Include="Views\InventoryDetails\Delete.cshtml" />
+    <Content Include="Views\InventoryDetails\Details.cshtml" />
+    <Content Include="Views\InventoryDetails\Edit.cshtml" />
+    <Content Include="Views\InventoryDetails\Index.cshtml" />
+    <Content Include="Views\RolPermissions\DisplayTemplates\Boolean.cshtml" />
+    <Content Include="Views\Purchases\Create.cshtml" />
+    <Content Include="Views\Purchases\Delete.cshtml" />
+    <Content Include="Views\Purchases\Details.cshtml" />
+    <Content Include="Views\Purchases\Edit.cshtml" />
+    <Content Include="Views\Purchases\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
