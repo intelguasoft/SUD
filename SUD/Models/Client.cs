@@ -17,7 +17,7 @@ namespace SUD.Models
         [Required(ErrorMessage ="*Ingrese el DPI o NIT del cliente")]
         [Display (Name ="DPI o NIT", Description ="2117502980101")]
         [MaxLength(13)]
-        [RegularExpression(@"^[0-9][a-z]{13}$", ErrorMessage ="No. de Documento invalido")]
+        
         public String Document { get; set; }
 
         [Display(Name ="Nombre Comercial", Description ="Nombre Comercial")]

@@ -120,6 +120,38 @@ namespace SUD.Controllers
             return RedirectToAction("Index");
         }
 
+
+        [HttpPost, ActionName("getClients")]
+        public ActionResult ObtenerClientes()
+        {
+            //db.Configuration.ProxyCreationEnabled = false;
+
+            List<ClientViewModel> clients = new List<ClientViewModel>();
+            using (ApplicationDbContext sc = new ApplicationDbContext())
+            {
+                var x = (from clt in sc.Clients
+
+                         select new ClientViewModel
+                         {
+                             
+                             FirstNameContact = clt.FirstNameContact.ToString(),
+                             LastNameContact = clt.LastNameContact.ToString(),
+                             ComertialName = clt.ComertialName.ToString(),
+                             
+
+
+
+
+
+                         }).ToList();
+                clients = x;
+            }
+
+            return Json(new { data = clients }, JsonRequestBehavior.AllowGet);
+
+        }
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

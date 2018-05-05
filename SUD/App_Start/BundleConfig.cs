@@ -30,6 +30,8 @@ namespace SUD
                       "~/Scripts/Chart.js",
                       "~/Scripts/pages/dashboard2.js",
                       "~/Scripts/demo.js",
+                      "~/Scripts/site.js",
+                      "~/Scripts/jquery.dataTables.min.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
@@ -39,6 +41,7 @@ namespace SUD
                       "~/Content/jquery-jvectormap.css",
                       "~/Content/AdminLTE.css",
                       "~/Content/skins/_all-skins.min.css",
+                      "~/Content/jquery.dataTables.min.css",
                       "~/Content/skins/Site.css"));
         }
     }
