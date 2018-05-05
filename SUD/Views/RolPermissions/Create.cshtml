@@ -16,7 +16,7 @@
             @ViewBag.Title - <small>@ViewBag.Message</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="@Url.Action("Index")">Permisos</a></li>
+            <li><a href="@Url.Action("Index")"><i class="fa fa-key"></i>  Permisos</a></li>
             <li class="active">Crear</li>
         </ol>
     </section>
@@ -91,7 +91,7 @@
                 <!-- Aca se incluye aquellas acciones relacionadas con lo antes mostrado -->
                 <!-- por ejemplo botones de facturacion, exportar a excel/pdf o similares -->
                 <div class="row">
-                    <div class="col-md-offset-5">
+                    <div class="trans text-center">
                         <div class="form-group">
                             <a href="@Url.Action("Index")" class="btn btn-success"> <i class="fa fa-undo" aria-hidden="true"></i> Regresar</a>
                             <button type="submit" class="btn btn-primary">
