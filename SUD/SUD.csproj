@@ -234,6 +234,10 @@
     <Compile Include="Migrations\201805020640139_Modificacion_Relaciones_Inventario.Designer.cs">
       <DependentUpon>201805020640139_Modificacion_Relaciones_Inventario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805050334545_Correccion-problema-con-vistas.cs" />
+    <Compile Include="Migrations\201805050334545_Correccion-problema-con-vistas.Designer.cs">
+      <DependentUpon>201805050334545_Correccion-problema-con-vistas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201805041848167_CreatePurchaseTable.cs" />
     <Compile Include="Migrations\201805041848167_CreatePurchaseTable.Designer.cs">
       <DependentUpon>201805041848167_CreatePurchaseTable.cs</DependentUpon>
@@ -545,9 +549,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805020518577_cambioNombreTablaTblClients.resx">
       <DependentUpon>201805020518577_cambioNombreTablaTblClients.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805041848167_CreatePurchaseTable.resx">
-      <DependentUpon>201805041848167_CreatePurchaseTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
