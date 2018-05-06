@@ -22,6 +22,7 @@ namespace SUD
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/fastclick.js",
+                      "~/Scripts/select2.js",
                       "~/Scripts/adminlte.min.js",
                       "~/Scripts/jquery.sparkline.min.js",
                       "~/Scripts/jquery-jvectormap-1.2.2.min.js",
@@ -37,6 +38,7 @@ namespace SUD
                       "~/Content/font-awesome.css",
                       "~/Content/ionicons.css",
                       "~/Content/jquery-jvectormap.css",
+                      "~/Content/select2.css",
                       "~/Content/AdminLTE.css",
                       "~/Content/skins/_all-skins.min.css",
                       "~/Content/skins/Site.css"));
