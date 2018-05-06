@@ -124,6 +124,37 @@ namespace SUD.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost, ActionName("getSaleDetails")]
+        public ActionResult ObtenerDetallesVenta()
+        {
+            //db.Configuration.ProxyCreationEnabled = false;
+
+            List<SaleDetailsViewModel> saleDetails = new List<SaleDetailsViewModel>();
+            using (ApplicationDbContext sc = new ApplicationDbContext())
+            {
+                var x = (from sd in sc.SaleDetails
+
+                         select new SaleDetailsViewModel
+                         {
+                             SaleDetailId = sd.SaleDetailId,
+                             Description = sd.Description.ToString(),
+                             Price = sd.Price,
+                             Quantity = sd.Quantity,
+                             IVAPercentage = sd.IVAPercentage,
+                             DiscountRate = sd.DiscountRate,
+                             
+
+
+
+
+                         }).ToList();
+                saleDetails = x;
+            }
+
+            return Json(new { data = saleDetails }, JsonRequestBehavior.AllowGet);
+
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

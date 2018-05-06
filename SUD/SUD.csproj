@@ -254,6 +254,7 @@
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\ClientRefundDetail.cs" />
     <Compile Include="Models\Concept.cs" />
+    <Compile Include="Models\ClientViewModel.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\DocumentType.cs" />
     <Compile Include="Models\Egress.cs" />
@@ -272,6 +273,7 @@
     <Compile Include="Models\Sale.cs" />
     <Compile Include="Models\ClientRefund.cs" />
     <Compile Include="Models\SaleDetail.cs" />
+    <Compile Include="Models\SaleDetailsViewModel.cs" />
     <Compile Include="Models\Supplier.cs" />
     <Compile Include="Models\Rol.cs" />
     <Compile Include="Models\RolPermission.cs" />
@@ -330,6 +332,7 @@
     <Content Include="Content\ionicons.css" />
     <Content Include="Content\ionicons.min.css" />
     <Content Include="Content\jquery-jvectormap.css" />
+    <Content Include="Content\jquery.dataTables.min.css" />
     <Content Include="Content\RecursosDistribuidora\DER General.png" />
     <Content Include="Content\RecursosDistribuidora\DER Movimientos.png" />
     <Content Include="Content\RecursosDistribuidora\DER Productos.png" />
@@ -447,6 +450,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -454,6 +458,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Site.js" />
     <Content Include="Scripts\select2.full.js" />
     <Content Include="Scripts\select2.full.min.js" />
     <Content Include="Scripts\select2.js" />
