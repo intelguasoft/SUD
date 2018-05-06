@@ -1,7 +1,7 @@
 ﻿@model SUD.Models.Department
 
 @{
-    ViewBag.Title = "Departamento";
+    ViewBag.Title = "Departamentos";
     ViewBag.Message = "Este es un Departamento";
 }
 
@@ -12,8 +12,8 @@
         @ViewBag.Title - <small>@ViewBag.Message</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#">Detalles del Departamento</a></li>
-        <li class="active">Departamento</li>
+        <li><a href="@Url.Action("Index")"><i class="fa fa-building"></i>  Departamentos</a></li>
+        <li class="active">Detalles</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -48,18 +48,19 @@
 
             </dl>
         </div>
-    </div>
-    <!-- /.box-body -->
-    <div class="box-footer">
-        <!-- Aca se incluye aquellas acciones relacionadas con lo antes mostrado -->
-        <!-- por ejemplo botones de facturacion, exportar a excel/pdf o similares -->
+        <!-- /.box-body -->
+        <div class="box-footer">
+            <!-- Aca se incluye aquellas acciones relacionadas con lo antes mostrado -->
+            <!-- por ejemplo botones de facturacion, exportar a excel/pdf o similares -->
 
-        <p>
-            <a href="@Url.Action("Index")" class="btn btn-success"> <i class="fa fa-undo" aria-hidden="true"></i> Regresar</a>
-            <a href="@Url.Action("Edit", new {id = Model.DepartmentId })" class="btn btn-warning"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Modificar</a>
-        </p>
+            <p>
+                <a href="@Url.Action("Index")" class="btn btn-success"> <i class="fa fa-undo" aria-hidden="true"></i> Regresar</a>
+                <a href="@Url.Action("Edit", new {id = Model.DepartmentId })" class="btn btn-warning"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Modificar</a>
+            </p>
 
-    </div>
-    <!-- /.box-footer-->
+        </div>
+        <!-- /.box-footer-->
+   </div>
+   <!-- /.box -->
 </section>
 <!-- /.content -->

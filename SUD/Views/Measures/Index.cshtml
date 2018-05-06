@@ -11,7 +11,7 @@
         @ViewBag.Title - <small>@ViewBag.Message</small>
     </h1>
     <ol class="breadcrumb">
-        <li class="active">Medidas</li>
+        <li class="active"> <i class="fa fa-cogs"></i> Medidas</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -55,6 +55,7 @@
                                 @Html.ActionLink(" ", "Details", new { id = item.MeasureId }, new { @class = "btn btn-info fa fa-info-circle" })
                                 @Html.ActionLink(" ", "Delete", new { id = item.MeasureId }, new { @class = "btn btn-danger fa fa-trash" })
                             </div>
+                        </td>
                     </tr>
                 }
             </table>

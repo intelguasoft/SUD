@@ -11,7 +11,7 @@
         @ViewBag.Title - <small>@ViewBag.Message</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="@Url.Action("Index", new {id = Model.MeasureId })">Medidas</a></li>
+        <li><a href="@Url.Action("Index")"><i class="fa fa-cogs"></i>  Medida</a></li>
         <li class="active">Detalles</li>
     </ol>
 </section>
@@ -20,7 +20,7 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Detalles del Medida</h3>
+            <h3 class="box-title">Detalles de Medida</h3>
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                         title="Collapse">
@@ -44,17 +44,17 @@
                 </dd>
             </dl>
         </div>
-    </div>
-    <!-- /.box-body -->
-    <div class="box-footer">
-        <!-- Aca se incluye aquellas acciones relacionadas con lo antes mostrado -->
-        <!-- por ejemplo botones de facturacion, exportar a excel/pdf o similares -->
-        <p>
-            <a href="@Url.Action("Index")" class="btn btn-success"> <i class="fa fa-undo" aria-hidden="true"></i> Regresar</a>
-            <a href="@Url.Action("Edit", new {id = Model.MeasureId })" class="btn btn-warning"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Modificar</a>
-        </p>
-    </div>
-    <!-- /.box-footer-->
+        <div class="box-footer">
+            <!-- Aca se incluye aquellas acciones relacionadas con lo antes mostrado -->
+            <!-- por ejemplo botones de facturacion, exportar a excel/pdf o similares -->
+
+            <p>
+                <a href="@Url.Action("Index")" class="btn btn-success"> <i class="fa fa-undo" aria-hidden="true"></i> Regresar</a>
+                <a href="@Url.Action("Edit", new {id = Model.MeasureId })" class="btn btn-warning"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Modificar</a>
+            </p>
+
+        </div>
+        <!-- /.box-footer-->
     </div>
     <!-- /.box -->
 </section>

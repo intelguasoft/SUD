@@ -1,23 +1,24 @@
 ﻿@model SUD.Models.Department
 
 @{
-    ViewBag.Title = "Departamento";
-    ViewBag.Message = "Modificar Departamento";
+
+                ViewBag.Title = "Departamentos";
+                ViewBag.Message = "Modificar Departamento";
 }
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <!-- Content Header (Page header) -->
+    <!--Content Header(Page header)-->
     <section class="content-header">
         <h1>
             <!--aqui va el titulo de la pagina que se va a mostrar, como el siguiente ejemplo -->
             @ViewBag.Title - <small>@ViewBag.Message</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#">Modificar</a></li>
-            <li class="active">Departamento</li>
+            <li><a href="@Url.Action("Index")"><i class="fa fa-building"></i>  Departamentos</a></li>
+            <li class="active">Modificar</li>
         </ol>
     </section>
     <!-- Main content -->
@@ -25,7 +26,7 @@
         <!-- Default box -->
         <div class="box">
             <div class="box-header with-border">
-                <h3 class="box-title">¿Desea hacer algún cambio al Departamento seleccionado?</h3>
+                <h3 class="box-title">¿Desea hacer algún cambio al departamento seleccionado?</h3>
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                             title="Collapse">
@@ -39,29 +40,29 @@
             <div class="box-body">
                 <!-- Aca se incluye todo el contenido de la pagina que se desea mostrar -->
                 <!-- por ejemplo el index/tabla de algun recurso -->
+                <div class="row">
+                    <div class="col-xs-12 col-md-offset-2 col-md-8">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.DepartmentId)
 
-
-                <div class="form-horizontal">
-                    <h4>Department</h4>
-                    <hr />
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    @Html.HiddenFor(model => model.DepartmentId)
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
-                <!-- /.box-body -->
-                <div class="box-footer">
-                    <!-- Aca se incluye aquellas acciones relacionadas con lo antes mostrado -->
-                    <!-- por ejemplo botones de facturacion, exportar a excel/pdf o similares -->
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <!-- Aca se incluye aquellas acciones relacionadas con lo antes mostrado -->
+                <!-- por ejemplo botones de facturacion, exportar a excel/pdf o similares -->
+                <div class="row">
+                    <div class="trans text-center">
+                        <div class="form-group">
                             <a href="@Url.Action("Index")" class="btn btn-success"> <i class="fa fa-undo" aria-hidden="true"></i> Regresar</a>
                             <button type="submit" class="btn btn-info">
                                 <i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar
@@ -69,10 +70,10 @@
                         </div>
                     </div>
                 </div>
-                <!-- /.box-footer-->
-
             </div>
-            <!-- /.box -->
+            <!-- /.box-footer-->
+        </div>
+        <!-- /.box -->
     </section>
     <!-- /.content -->
 }

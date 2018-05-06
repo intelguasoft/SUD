@@ -1,8 +1,8 @@
 ﻿@model SUD.Models.CellarProduct
 
 @{
-    ViewBag.Title = "Bodegas";
-    ViewBag.Message = "Bodegas de productos";
+    ViewBag.Title = "Bodegas de Producto";
+    ViewBag.Message = "Modificar";
 }
 
 @using (Html.BeginForm())
@@ -16,8 +16,8 @@
             @ViewBag.Title - <small>@ViewBag.Message</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="@Url.Action("Index")">Bodegas de producto</a></li>
-            <li class="active">Modificar de bodega</li>
+            <li><a href="@Url.Action("Index")"><i class="fa fa-bank"></i> Bodegas Productos</a></li>
+            <li class="active">Modificar</li>
         </ol>
     </section>
     <!-- Main content -->
@@ -25,7 +25,7 @@
         <!-- Default box -->
         <div class="box">
             <div class="box-header with-border">
-                <h3 class="box-title">¿Desea hacer algún cambio al perfil seleccionado?</h3>
+                <h3 class="box-title">¿Desea hacer algún cambio a la bodega seleccionada?</h3>
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                             title="Collapse">
@@ -46,7 +46,7 @@
                     @Html.HiddenFor(model => model.CellarProductId)
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.CellarId, "CellarId", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.CellarId, "Bodega", htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             @Html.DropDownList("CellarId", null, htmlAttributes: new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.CellarId, "", new { @class = "text-danger" })
@@ -54,7 +54,7 @@
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.ProductId, "ProductId", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.ProductId, "Producto", htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             @Html.DropDownList("ProductId", null, htmlAttributes: new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.ProductId, "", new { @class = "text-danger" })
