@@ -1,7 +1,7 @@
 ﻿@model SUD.Models.Cellar
 
 @{
-    ViewBag.Title = "Bodega";
+    ViewBag.Title = "Bodegas";
     ViewBag.Message = "Eliminar Bodega";
 }
 
@@ -12,8 +12,8 @@
         @ViewBag.Title - <small>@ViewBag.Message</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#">Eliminar Bodega</a></li>
-        <li class="active">Bodega</li>
+        <li><a href="@Url.Action("Index")"><i class="fa fa-bank"></i>  Bodegas</a></li>
+        <li class="active">Eliminar</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -21,7 +21,7 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">¿Está seguro de eliminar el registro?</h3>
+            <h3 class="box-title">¿Está seguro de eliminar la bodega?</h3>
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                         title="Collapse">
@@ -35,8 +35,6 @@
         <div class="box-body">
             <!-- Aca se incluye todo el contenido de la pagina que se desea mostrar -->
             <!-- por ejemplo el index/tabla de algun recurso -->
-
-
             <dl class="dl-horizontal">
                 <dt>
                     @Html.DisplayNameFor(model => model.Description)
@@ -52,8 +50,6 @@
         <div class="box-footer">
             <!-- Aca se incluye aquellas acciones relacionadas con lo antes mostrado -->
             <!-- por ejemplo botones de facturacion, exportar a excel/pdf o similares -->
-
-
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()

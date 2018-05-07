@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<SUD.Models.Cellar>
 
 @{
-    ViewBag.Title = "Bodega";
+    ViewBag.Title = "Bodegas";
     ViewBag.Message = "Listado de Bodegas";
 }
 
@@ -12,7 +12,7 @@
         @ViewBag.Title - <small>@ViewBag.Message</small>
     </h1>
     <ol class="breadcrumb">
-        <li class="active">Bodegas</li>
+        <li class="active"><i class="fa fa-bank"></i> Bodegas</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -34,8 +34,6 @@
         <div class="box-body">
             <!-- Aca se incluye todo el contenido de la pagina que se desea mostrar -->
             <!-- por ejemplo el index/tabla de algun recurso -->
-
-
             <p>
                 <a href="@Url.Action("Create")" class="btn btn-success"> <i class="fa fa-plus" aria-hidden="true"></i> Crear</a>
             </p>
@@ -54,9 +52,11 @@
                             @Html.DisplayFor(modelItem => item.Description)
                         </td>
                         <td>
-                            @Html.ActionLink(" ", "Edit", new { id = item.CellarId }, new { @class = "btn btn-warning fa fa-pencil-square-o" }) |
-                            @Html.ActionLink(" ", "Details", new { id = item.CellarId }, new { @class = "btn btn-info fa fa-info-circle" }) |
-                            @Html.ActionLink(" ", "Delete", new { id = item.CellarId }, new { @class = "btn btn-danger fa fa-trash" })
+                            <div class="btn-group">
+                                @Html.ActionLink(" ", "Edit", new { id = item.CellarId }, new { @class = "btn btn-warning fa fa-pencil-square-o" })
+                                @Html.ActionLink(" ", "Details", new { id = item.CellarId }, new { @class = "btn btn-info fa fa-info-circle" })
+                                @Html.ActionLink(" ", "Delete", new { id = item.CellarId }, new { @class = "btn btn-danger fa fa-trash" })
+                            </div>
                         </td>
                     </tr>
                 }

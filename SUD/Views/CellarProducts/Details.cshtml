@@ -1,8 +1,8 @@
 ﻿@model SUD.Models.CellarProduct
 
 @{
-    ViewBag.Title = "Bodegas";
-    ViewBag.Message = "Bodegas de productos";
+    ViewBag.Title = "Bodegas de Producto";
+    ViewBag.Message = "Detalles";
 }
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -11,8 +11,8 @@
         @ViewBag.Title - <small>@ViewBag.Message</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="@Url.Action("Index")">Bodegas de producto</a></li>
-        <li class="active">Detalles de bodega</li>
+        <li><a href="@Url.Action("Index")"><i class="fa fa-bank"></i> Bodegas Productos</a></li>
+        <li class="active">Detalles</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -40,7 +40,7 @@
                 <hr />
                 <dl class="dl-horizontal">
                     <dt>
-                        @Html.DisplayNameFor(model => model.Cellar.Description)
+                        @Html.LabelFor(model => model.Cellar.Description, "Bodega")
                     </dt>
 
                     <dd>
@@ -48,7 +48,7 @@
                     </dd>
 
                     <dt>
-                        @Html.DisplayNameFor(model => model.Product.Description)
+                        @Html.LabelFor(model => model.Product.Description, "Producto")
                     </dt>
 
                     <dd>

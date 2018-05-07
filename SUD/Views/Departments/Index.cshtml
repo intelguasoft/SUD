@@ -1,11 +1,9 @@
 ﻿@model IEnumerable<SUD.Models.Department>
 
 @{
-    ViewBag.Title = "Departamento";
+    ViewBag.Title = "Departamentos";
     ViewBag.Message = "Listado de Departamentos";
 }
-
-<h2>Index</h2>
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -14,7 +12,7 @@
         @ViewBag.Title - <small>@ViewBag.Message</small>
     </h1>
     <ol class="breadcrumb">
-        <li class="active">Departamento</li>
+        <li class="active"><i class="fa fa-building"></i> Departamentos</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -36,8 +34,6 @@
         <div class="box-body">
             <!-- Aca se incluye todo el contenido de la pagina que se desea mostrar -->
             <!-- por ejemplo el index/tabla de algun recurso -->
-
-
             <p>
                 <a href="@Url.Action("Create")" class="btn btn-success"> <i class="fa fa-plus" aria-hidden="true"></i> Crear</a>
             </p>
@@ -57,9 +53,11 @@
                             @Html.DisplayFor(modelItem => item.Description)
                         </td>
                         <td>
-                            @Html.ActionLink(" ", "Edit", new { id = item.DepartmentId }, new { @class = "btn btn-warning fa fa-pencil-square-o" }) |
-                            @Html.ActionLink(" ", "Details", new { id = item.DepartmentId }, new { @class = "btn btn-info fa fa-info-circle" }) |
-                            @Html.ActionLink(" ", "Delete", new { id = item.DepartmentId }, new { @class = "btn btn-danger fa fa-trash" })
+                            <div class="btn-group">
+                                @Html.ActionLink(" ", "Edit", new { id = item.DepartmentId }, new { @class = "btn btn-warning fa fa-pencil-square-o" })
+                                @Html.ActionLink(" ", "Details", new { id = item.DepartmentId }, new { @class = "btn btn-info fa fa-info-circle" })
+                                @Html.ActionLink(" ", "Delete", new { id = item.DepartmentId }, new { @class = "btn btn-danger fa fa-trash" })
+                            </div>
                         </td>
                     </tr>
                 }

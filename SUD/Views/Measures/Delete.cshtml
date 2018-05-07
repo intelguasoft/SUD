@@ -11,7 +11,7 @@
         @ViewBag.Title - <small>@ViewBag.Message</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="@Url.Action("Index")">Medidas</a></li>
+        <li><a href="@Url.Action("Index")"><i class="fa fa-cogs"></i>  Medida</a></li>
         <li class="active">Eliminar</li>
     </ol>
 </section>
@@ -53,8 +53,8 @@
                 @Html.AntiForgeryToken()
 
                 <div class="form-actions no-color">
-                    <a href="@Url.Action("Index")" class="btn btn-success"> <i class="fa fa-undo" aria-hidden="true"></i> Regresar</a>
-                    <button type="submit" class="btn btn-danger">
+                    <a href = "@Url.Action("Index")" class="btn btn-success"> <i class="fa fa-undo" aria-hidden="true"></i> Regresar</a>
+                    <button type = "submit" class="btn btn-danger">
                         <i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar
                     </button>
                 </div>

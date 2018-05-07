@@ -2,8 +2,8 @@
 
 @{
 
-                ViewBag.Title = "Bodega";
-                ViewBag.Message = "Crear una nueva Bodega";
+    ViewBag.Title = "Bodegas";
+    ViewBag.Message = "Crear una nueva Bodega";
 }
 
 
@@ -18,8 +18,8 @@
             @ViewBag.Title - <small>@ViewBag.Message</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#">Bodegas</a></li>
-            <li class="active">Crear Bodega</li>
+            <li><a href="@Url.Action("Index")"> <i class="fa fa-bank"></i> Bodegas</a></li>
+            <li class="active">Crear</li>
         </ol>
     </section>
     <!-- Main content -->
@@ -41,31 +41,28 @@
             <div class="box-body">
                 <!-- Aca se incluye todo el contenido de la pagina que se desea mostrar -->
                 <!-- por ejemplo el index/tabla de algun recurso -->
-
-
-                <div class="form-horizontal">
-                    <h4>Cellar</h4>
-                    <hr />
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                <div class="row">
+                    <div class="col-xs-12 col-md-offset-2 col-md-8">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!-- /.box-body -->
-                <div class="box-footer">
-                    <!-- Aca se incluye aquellas acciones relacionadas con lo antes mostrado -->
-                    <!-- por ejemplo botones de facturacion, exportar a excel/pdf o similares -->
-
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <!-- Aca se incluye aquellas acciones relacionadas con lo antes mostrado -->
+                <!-- por ejemplo botones de facturacion, exportar a excel/pdf o similares -->
+                <div class="row">
+                    <div class="trans text-center">
+                        <div class="form-group">
                             <a href="@Url.Action("Index")" class="btn btn-success"> <i class="fa fa-undo" aria-hidden="true"></i> Regresar</a>
-
                             <button type="submit" class="btn btn-primary">
-
                                 <i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar
                             </button>
                         </div>
