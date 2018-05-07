@@ -34,43 +34,16 @@
             </div>
         </div>
         <div class="box-body">
-            <p>
-                @Html.ActionLink("Nueva compra", "Create", null, new { @class = "btn btn-success" })
-            </p>
-            <table class="table">
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Cellar.Description)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Supplier.Tradename)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Date)
-                    </th>
-                    <th></th>
-                </tr>
 
-                @foreach (var item in Model)
-                {
+            <table id="myTable" class="display table table-bordered table-dark" style="width:100%">
+                <thead>
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Cellar.Description)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Supplier.Tradename)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Date)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.PurchaseId }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.PurchaseId }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.PurchaseId })
-                        </td>
+                        <th>ID</th>
+                        <th>Fecha</th>
+                        <th>Proveedor</th>
+                        <th>Bodega</th>
                     </tr>
-                }
-
+                </thead>
             </table>
         </div>
         <!-- /.box-body -->
@@ -83,3 +56,29 @@
     <!-- /.box -->
 </section>
 <!-- /.content -->
+
+@section Scripts{
+
+    <script>
+        $(document).ready(function () {
+            $("#myTable").DataTable({
+                "processing": true, // for show progress bar
+                "serverSide": true, // for process server side
+                "orderMulti": false, // for disable multiple column at once
+                "ajax": {
+                    "url": '@Url.Action("getPurchases", "Purchases")',
+                    "type": "POST",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "PurchaseId", "name": "PurchaseId", "autoWidth": true },
+                    { "data": "Date", "name": "Date", "autoWidth": true },
+                    { "data": "Supplier.Tradename", "name": "Supplier.Tradename", "autoWidth": true },
+                    { "data": "Cellar.Description", "name": "Cellar.Description", "autoWidth": true }
+                ]
+            });
+        });
+    </script>
+
+
+}

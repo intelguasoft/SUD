@@ -21,6 +21,8 @@ namespace SUD
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
+                      "~/Scripts/DataTables/jquery.dataTables.js",
+                      "~/Scripts/DataTables/dataTables.bootstrap.js",
                       "~/Scripts/fastclick.js",
                       "~/Scripts/select2.js",
                       "~/Scripts/adminlte.min.js",
@@ -31,19 +33,18 @@ namespace SUD
                       "~/Scripts/Chart.js",
                       "~/Scripts/pages/dashboard2.js",
                       "~/Scripts/demo.js",
-                      "~/Scripts/site.js",
-                      "~/Scripts/jquery.dataTables.min.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/site.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/font-awesome.css",
                       "~/Content/ionicons.css",
+                      "~/Content/DataTables/css/dataTables.bootstrap.css",
                       "~/Content/jquery-jvectormap.css",
                       "~/Content/select2.css",
                       "~/Content/AdminLTE.css",
                       "~/Content/skins/_all-skins.min.css",
-                      "~/Content/jquery.dataTables.min.css",
                       "~/Content/skins/Site.css"));
         }
     }

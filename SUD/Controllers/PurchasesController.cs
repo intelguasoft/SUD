@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Dynamic;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -22,8 +23,62 @@ namespace SUD.Controllers
         // GET: Purchases
         public ActionResult Index()
         {
-            var purchases = db.Purchases.Include(p => p.Cellar).Include(p => p.Supplier);
-            return View(purchases.ToList());
+
+            return View();
+        }
+
+        //public ActionResult getPurchases()
+        //{
+        //    var draw = Request.Form.GetValues("draw").FirstOrDefault();
+        //    var model = (db.Purchases.ToList()
+        //    .Select(x => new
+        //    {
+        //        masterId = x.PurchaseId,
+        //        customerName = x.SupplierId,
+        //        address = x.CellarId,
+        //        orderDate = x.OrderDate.ToString("D")
+        //    })).ToList();
+
+        //    return Json(new
+        //    {
+        //        draw = draw,
+        //        recordsFiltered = model.Count,
+        //        recordsTotal = model.Count,
+        //        data = model
+        //    }, JsonRequestBehavior.AllowGet);
+        //}
+
+        [HttpPost]
+        public JsonResult getPurchases()
+        {
+            // TODO Falta que hacer el filtrado del lado del servidor.
+            var draw = Request.Form.GetValues("draw").FirstOrDefault();
+            var start = Request.Form.GetValues("start").FirstOrDefault();
+            var length = Request.Form.GetValues("length").FirstOrDefault();
+            //Find Order Column
+            var sortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
+            var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
+
+
+            int pageSize = length != null ? Convert.ToInt32(length) : 0;
+            int skip = start != null ? Convert.ToInt32(start) : 0;
+            int recordsTotal = 0;
+            using (ApplicationDbContext _context = new ApplicationDbContext())
+            {
+                _context.Configuration.LazyLoadingEnabled = false; // esto es necesario si nuestra tabla esta relacionado y por cosiguiente tiene claves foraneas
+
+                var v = (from a in _context.Purchases.Include("Cellar").Include("Supplier") select a);
+
+                //SORT
+                if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDir)))
+                {
+                    v = v.OrderBy(sortColumn + " " + sortColumnDir);
+                }
+
+                recordsTotal = v.Count();
+                var data = v.Skip(skip).Take(pageSize).ToList();
+                return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         // GET: Purchases/Details/5
