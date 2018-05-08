@@ -36,7 +36,7 @@ namespace SUD.Models
         public String Address { get; set; }
 
         [Required(ErrorMessage ="*Ingrese un numero de telefono")]
-        [Display(Name ="*Telefono 1", Description ="Telefono 1")]
+        [Display(Name ="Telefono 1", Description ="Telefono 1")]
         public int Telephone1 { get; set; }
 
         [Display(Name ="Telefono 2", Description ="Telefono 2 (Opcional)")]
@@ -49,10 +49,10 @@ namespace SUD.Models
         [Display(Name = "Notas", Description = "Notas")]
         public String Note { get; set; }
 
-        [Display(Name = "Tipo de Documento", Description = "Tipo de Documento")]
+        
         public int DocumentTypeId { get; set; }
 
-
+        [Display(Name = "Documento", Description = "Docuemnto")]
         public virtual DocumentType DocumentType { get; set; }
 
 
