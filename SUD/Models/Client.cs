@@ -49,6 +49,7 @@ namespace SUD.Models
         [Display(Name = "Notas", Description = "Notas")]
         public String Note { get; set; }
 
+        [Display(Name = "Tipo de Documento", Description = "Tipo de Documento")]
         public int DocumentTypeId { get; set; }
 
 
