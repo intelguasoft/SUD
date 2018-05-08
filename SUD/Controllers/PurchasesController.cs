@@ -55,7 +55,7 @@ namespace SUD.Controllers
             var draw = Request.Form.GetValues("draw").FirstOrDefault();
             var start = Request.Form.GetValues("start").FirstOrDefault();
             var length = Request.Form.GetValues("length").FirstOrDefault();
-            var filter = Request.Form.GetValues("filter").FirstOrDefault();
+            //var filter = Request.Form.GetValues("filter").FirstOrDefault();
             //Find Order Column
             var sortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
             var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
