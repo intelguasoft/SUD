@@ -39,13 +39,15 @@
                 <a href="@Url.Action("Create")" class="btn btn-success"> <i class="fa fa-plus" aria-hidden="true"></i> Crear</a>
             </p>
 
-            <table id="miTablaCliente" class="table table-bordered table-striped text-center">
+            <table id="tblclients" class="table table-bordered table-striped text-center">
                 <thead>
                     <tr>
 
-                        <th class="text-center">Primer Nombre</th>
+                        <th class="text-center">ID</th>
+                        <th class="text-center">Tipo de Documento</th>
+                        <th class="text-center">No. de Documento</th>
+                        <th class="text-center">Nombre</th>
                         <th class="text-center">Apellido</th>
-                        <th class="text-center">Nombre Comercial</th>
                         <th class="text-center">Acciones</th>
                     </tr>
                 </thead>
@@ -62,5 +64,66 @@
     <!-- /.box -->
 </section>
 <!-- /.content -->
+
+@section Scripts{
+
+    <script>
+        $(document).ready(function () {
+            var selected = [];
+
+            //$.fn.dataTable.moment('HH:mm MMM D, YY');
+            //$.fn.dataTable.moment('dddd, MMMM Do, YYYY');
+
+            $("#tblclients").DataTable({
+                "processing": true, // for show progress bar
+                "serverSide": true, // for process server side
+                "filter": true, // this is for disable filter (search box)
+                "orderMulti": false, // for disable multiple column at once
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+                },
+                "ajax": {
+                    "url": '@Url.Action("getClients", "Clients")',
+                    "type": "POST",
+                    "datatype": "json"
+                },
+                //"rowCallback": function (row, data) {
+                //    if ($.inArray(data.DT_RowId, selected) !== -1) {
+                //        $(row).addClass('selected');
+                //    }
+                //},
+                "columns": [
+                    { "data": "ClientId", "name": "ClientId", "autoWidth": true },
+                    { "data": "DocumentType.Description", "name": "DocumentType.Description", "autoWidth": true },
+                    { "data": "Document", "name": "Document", "autoWidth": true },
+                    { "data": "FirstNameContact", "name": "FirstNameContact", "autoWidth": true },
+                    { "data": "LastNameContact", "name": "LastNameContact", "autoWidth": true },
+
+                    {
+                        "data": function (data, type, row, meta) {
+                            return '<a class="btn btn-warning fa fa-pencil-square-o" href="../Clients/Edit/' + data.ClientId + '"></a><a class="btn btn-info fa fa-info-circle" href="../Clients/Details/' + data.ClientId + '" ></a><a class="btn btn-danger fa fa-trash" href="../Clients/Delete/' + data.ClientId + '" ></a>';
+
+
+                        }
+                        , "autoWidth": true
+                    }
+                ]
+            });
+
+            //$('#tblPurchases tbody').on('click', 'tr', function () {
+            //    var id = this.id;
+            //    var index = $.inArray(id, selected);
+
+            //    if (index === -1) {
+            //        selected.push(id);
+            //    } else {
+            //        selected.splice(index, 1);
+            //    }
+
+            //    $(this).toggleClass('selected');
+            //});
+        });
+    </script>
+    }
 
 

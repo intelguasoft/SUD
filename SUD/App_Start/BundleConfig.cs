@@ -35,8 +35,7 @@ namespace SUD
                       "~/Scripts/Chart.js",
                       "~/Scripts/pages/dashboard2.js",
                       "~/Scripts/demo.js",
-                      "~/Scripts/respond.js",
-                      "~/Scripts/site.js"));
+                      "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

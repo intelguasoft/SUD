@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Dynamic;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -121,34 +122,38 @@ namespace SUD.Controllers
         }
 
 
-        [HttpPost, ActionName("getClients")]
-        public ActionResult ObtenerClientes()
+        [HttpPost]
+        public JsonResult getClients()
         {
-            //db.Configuration.ProxyCreationEnabled = false;
+            // TODO Falta que hacer el filtrado del lado del servidor.
+            var draw = Request.Form.GetValues("draw").FirstOrDefault();
+            var start = Request.Form.GetValues("start").FirstOrDefault();
+            var length = Request.Form.GetValues("length").FirstOrDefault();
+            //var filter = Request.Form.GetValues("filter").FirstOrDefault();
+            //Find Order Column
+            var sortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
+            var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
 
-            List<ClientViewModel> clients = new List<ClientViewModel>();
-            using (ApplicationDbContext sc = new ApplicationDbContext())
+
+            int pageSize = length != null ? Convert.ToInt32(length) : 0;
+            int skip = start != null ? Convert.ToInt32(start) : 0;
+            int recordsTotal = 0;
+            using (ApplicationDbContext _context = new ApplicationDbContext())
             {
-                var x = (from clt in sc.Clients
+                _context.Configuration.LazyLoadingEnabled = false; // esto es necesario si nuestra tabla esta relacionado y por cosiguiente tiene claves foraneas
 
-                         select new ClientViewModel
-                         {
-                             
-                             FirstNameContact = clt.FirstNameContact.ToString(),
-                             LastNameContact = clt.LastNameContact.ToString(),
-                             ComertialName = clt.ComertialName.ToString(),
-                             
+                var v = (from a in _context.Clients.Include("DocumentType") select a);
 
+                //SORT
+                if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDir)))
+                {
+                    v = v.OrderBy(sortColumn + " " + sortColumnDir);
+                }
 
-
-
-
-                         }).ToList();
-                clients = x;
+                recordsTotal = v.Count();
+                var data = v.Skip(skip).Take(pageSize).ToList();
+                return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data }, JsonRequestBehavior.AllowGet);
             }
-
-            return Json(new { data = clients }, JsonRequestBehavior.AllowGet);
-
         }
 
 
