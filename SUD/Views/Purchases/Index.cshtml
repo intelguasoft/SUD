@@ -35,7 +35,7 @@
         </div>
         <div class="box-body">
 
-            <table id="myTable" class="display table table-bordered table-dark" style="width:100%">
+            <table id="tblPurchases" class="display table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -61,15 +61,29 @@
 
     <script>
         $(document).ready(function () {
-            $("#myTable").DataTable({
+            var selected = [];
+
+            //$.fn.dataTable.moment('HH:mm MMM D, YY');
+            //$.fn.dataTable.moment('dddd, MMMM Do, YYYY');
+
+            $("#tblPurchases").DataTable({
                 "processing": true, // for show progress bar
                 "serverSide": true, // for process server side
+                "filter": true, // this is for disable filter (search box)
                 "orderMulti": false, // for disable multiple column at once
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+                },
                 "ajax": {
                     "url": '@Url.Action("getPurchases", "Purchases")',
                     "type": "POST",
                     "datatype": "json"
                 },
+                //"rowCallback": function (row, data) {
+                //    if ($.inArray(data.DT_RowId, selected) !== -1) {
+                //        $(row).addClass('selected');
+                //    }
+                //},
                 "columns": [
                     { "data": "PurchaseId", "name": "PurchaseId", "autoWidth": true },
                     { "data": "Date", "name": "Date", "autoWidth": true },
@@ -77,6 +91,19 @@
                     { "data": "Cellar.Description", "name": "Cellar.Description", "autoWidth": true }
                 ]
             });
+
+            //$('#tblPurchases tbody').on('click', 'tr', function () {
+            //    var id = this.id;
+            //    var index = $.inArray(id, selected);
+
+            //    if (index === -1) {
+            //        selected.push(id);
+            //    } else {
+            //        selected.splice(index, 1);
+            //    }
+
+            //    $(this).toggleClass('selected');
+            //});
         });
     </script>
 
