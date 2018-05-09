@@ -54,6 +54,9 @@ namespace SUD.Models
 
         public virtual Inventory Inventory { get; set; }
 
+        public virtual Kardex Kardex { get; set; }
+
+
 
 
     }

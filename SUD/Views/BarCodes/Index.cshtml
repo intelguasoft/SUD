@@ -12,7 +12,7 @@
         @ViewBag.Title - <small>@ViewBag.Message</small>
     </h1>
     <ol class="breadcrumb">
-        <li class="active">Códigos de Barras</li>
+        <li class="active"><i class="fa fa-barcode"></i> Código de Barras</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -61,9 +61,11 @@
                             @Html.DisplayFor(modelItem => item.Bar)
                         </td>
                         <td>
-                            @Html.ActionLink(" ", "Edit", new { id = item.BarCodeId }, new { @class = "btn btn-warning fa fa-pencil-square-o" }) |
-                            @Html.ActionLink(" ", "Details", new { id = item.BarCodeId }, new { @class = "btn btn-info fa fa-info-circle" }) |
-                            @Html.ActionLink(" ", "Delete", new { id = item.BarCodeId }, new { @class = "btn btn-danger fa fa-trash" })
+                            <div class="btn-group">
+                                @Html.ActionLink(" ", "Edit", new { id = item.BarCodeId }, new { @class = "btn btn-warning fa fa-pencil-square-o" })
+                                @Html.ActionLink(" ", "Details", new { id = item.BarCodeId }, new { @class = "btn btn-info fa fa-info-circle" })
+                                @Html.ActionLink(" ", "Delete", new { id = item.BarCodeId }, new { @class = "btn btn-danger fa fa-trash" })
+                            </div>
                         </td>
                     </tr>
                 }

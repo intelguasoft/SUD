@@ -51,6 +51,8 @@ namespace SUD.Models
 
         public virtual ICollection<SaleDetail> SaleDetails { get; set; }
 
+        public virtual ICollection<PurchaseDetails> PurchaseDetails { get; set; }
+
         public virtual Department Department { get; set; }
 
         public virtual Measure Measure { get; set; }
