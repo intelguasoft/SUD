@@ -15,7 +15,7 @@ namespace SUD.Models
         public int DepartmentId { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        [Display(Name = "Descripción")]
+        [Display(Name = "Categoria")]
         public string Description { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }

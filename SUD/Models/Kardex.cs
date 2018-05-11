@@ -27,5 +27,7 @@ namespace SUD.Models
         public decimal AverageCost { get; set; }
 
         public virtual ICollection<EgressDetails> EgressDetails { get; set; }
+
+        public virtual ICollection<InventoryDetail> InventoryDetails { get; set; }
     }
 }
