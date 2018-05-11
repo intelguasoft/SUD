@@ -42,10 +42,6 @@ namespace SUD.Models
         [Display(Name = "Cantidad Minima")]
         public int MinimumAmount { get; set; }
 
-        [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        [Display(Name = "Ubicación en Bodega")]
-        public string Location { get; set; }
-
         public virtual Cellar Cellar { get; set; }
 
         public virtual Product Product { get; set; }
