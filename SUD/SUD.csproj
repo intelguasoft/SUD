@@ -229,33 +229,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201804301756539_InitialCreate.cs" />
-    <Compile Include="Migrations\201804301756539_InitialCreate.Designer.cs">
-      <DependentUpon>201804301756539_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805020640139_Modificacion_Relaciones_Inventario.cs" />
-    <Compile Include="Migrations\201805020640139_Modificacion_Relaciones_Inventario.Designer.cs">
-      <DependentUpon>201805020640139_Modificacion_Relaciones_Inventario.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805050334545_Correccion-problema-con-vistas.cs" />
-    <Compile Include="Migrations\201805050334545_Correccion-problema-con-vistas.Designer.cs">
-      <DependentUpon>201805050334545_Correccion-problema-con-vistas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805041848167_CreatePurchaseTable.cs" />
-    <Compile Include="Migrations\201805041848167_CreatePurchaseTable.Designer.cs">
-      <DependentUpon>201805041848167_CreatePurchaseTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805052007047_NoSeQueRallosEstaPasando.cs" />
-    <Compile Include="Migrations\201805052007047_NoSeQueRallosEstaPasando.Designer.cs">
-      <DependentUpon>201805052007047_NoSeQueRallosEstaPasando.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805090323355_CorrecionRelacionDocumentType.cs" />
-    <Compile Include="Migrations\201805090323355_CorrecionRelacionDocumentType.Designer.cs">
-      <DependentUpon>201805090323355_CorrecionRelacionDocumentType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805090713380_RelacionesEntidadBodega.cs" />
-    <Compile Include="Migrations\201805090713380_RelacionesEntidadBodega.Designer.cs">
-      <DependentUpon>201805090713380_RelacionesEntidadBodega.cs</DependentUpon>
+    <Compile Include="Migrations\201805130459535_Initial_Create.cs" />
+    <Compile Include="Migrations\201805130459535_Initial_Create.Designer.cs">
+      <DependentUpon>201805130459535_Initial_Create.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -867,6 +843,7 @@
     <Content Include="Views\Purchases\Edit.cshtml" />
     <Content Include="Views\Purchases\Index.cshtml" />
     <Content Include="Views\Purchases\Index - Copy.cshtml" />
+    <Content Include="Views\Products\DetailsOriginal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -890,20 +867,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201804301756539_InitialCreate.resx">
-      <DependentUpon>201804301756539_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805020518577_cambioNombreTablaTblClients.resx">
-      <DependentUpon>201805020518577_cambioNombreTablaTblClients.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805052007047_NoSeQueRallosEstaPasando.resx">
-      <DependentUpon>201805052007047_NoSeQueRallosEstaPasando.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805090323355_CorrecionRelacionDocumentType.resx">
-      <DependentUpon>201805090323355_CorrecionRelacionDocumentType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805090713380_RelacionesEntidadBodega.resx">
-      <DependentUpon>201805090713380_RelacionesEntidadBodega.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805130459535_Initial_Create.resx">
+      <DependentUpon>201805130459535_Initial_Create.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

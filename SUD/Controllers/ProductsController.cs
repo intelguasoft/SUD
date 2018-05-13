@@ -60,7 +60,7 @@ namespace SUD.Controllers
 
                 if (product.FotografiaFile != null)
                 {
-                    var folder = "~/Uploads/Products/";
+                    var folder = "~/Uploads/Products";
                     var response = FilesHelper.UploadPhoto(product.FotografiaFile, folder, string.Format("{0}.jpg", product.ProductId));
                     if (response)
                     {
