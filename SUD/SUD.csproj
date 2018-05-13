@@ -845,7 +845,6 @@
     <Content Include="Views\Purchases\Edit.cshtml" />
     <Content Include="Views\Purchases\Index.cshtml" />
     <Content Include="Views\Purchases\Index - Copy.cshtml" />
-    <Content Include="Views\Products\DetailsOriginal.cshtml" />
     <Content Include="Views\UserSuds\DisplayTemplates\Boolean.cshtml" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,8 @@
 ﻿@model SUD.Models.Product
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Producto";
+    ViewBag.Message = "Este es un Producto";
 }
 
 <section class="content-header">
@@ -27,7 +28,7 @@
                 <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove" disabled>
                     <i class="fa fa-times"></i>
                 </button>
-                </div>
+            </div>
                 <div class="center-block table table-striped">
                     <div class="row ">
 
@@ -45,36 +46,53 @@
                             </p>
 
                         </div>
+                    <div class="col-xs-4 col-sm-4 ">
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Description)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Description)
+                            </dd>
 
-                        <div>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Department)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Department.Description)
+                            </dd>
 
-                            <div class="col-xs-4 col-sm-4">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Measure)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Measure.Description)
+                            </dd>
 
-                                <b>@Html.DisplayNameFor(model => model.Description)</b>
-                                <p>@Html.DisplayFor(model => model.Description)</p>
-                                <b>@Html.DisplayNameFor(model => model.Department)</b>
-                                <p>@Html.DisplayFor(model => model.Department.Description)</p>
-                                <b>@Html.DisplayNameFor(model => model.Measure)</b>
-                                <p>@Html.DisplayFor(model => model.Measure.Description)</p>
-                                <b>@Html.DisplayNameFor(model => model.Note)</b>
-                                <p>@Html.DisplayFor(model => model.Note)</p>
-                                <b>@Html.DisplayNameFor(model => model.Price)</b>
-                                <p>@Html.DisplayFor(model => model.Price)</p>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Note)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Note)
+                            </dd>
 
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Price)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Price)
+                            </dd>
 
-                            </div>
-
-                        </div>
-
+                        </dl>
                     </div>
-
                 </div>
-
             </div>
-
+                
         </div>
-
-    </section>
+        
+    </div>
+    
+</section>
 
 
 
