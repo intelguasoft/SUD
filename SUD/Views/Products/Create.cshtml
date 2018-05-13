@@ -1,13 +1,13 @@
 ﻿@model SUD.Models.Product
 
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = "Productos";
-                ViewBag.Message = "Crear un Nuevo Producto";
+    ViewBag.Title = "Productos";
+    ViewBag.Message = "Crear un Nuevo Producto";
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -91,12 +91,13 @@
                         </div>
                     </div>
 
+
                     <div class="col-xs-12 col-md-6">
                         <div class="form-group">
-                            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.Medida, htmlAttributes: new { @class = "control-label col-md-2" })
 
-                            @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.Medida, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Medida, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
@@ -104,10 +105,18 @@
                 <div class="row">
                     <div class="col-xs-12 col-md-6">
                         <div class="form-group">
-                            @Html.LabelFor(model => model.Medida, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
 
-                            @Html.EditorFor(model => model.Medida, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Medida, "", new { @class = "text-danger" })
+                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
+                                <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" id="file" name="file"></span>
+                                <a id="buttonr" href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                            </div>
+                            <hr>
+                            <div id="preview"></div>
+
+                            @*@Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
@@ -134,6 +143,33 @@
     <!-- /.content -->
 
 }
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+
+        document.getElementById("file").onchange = function (e) {
+            let reader = new FileReader();
+
+            reader.onload = function () {
+                let preview = document.getElementById('preview'),
+                    image = document.createElement('img');
+
+                image.src = reader.result;
+
+                preview.innerHTML = '';
+                preview.append(image);
+            };
+
+            reader.readAsDataURL(e.target.files[0]);
+        }
+
+        $("#buttonr").click(function () {
+            let preview = document.getElementById('preview');
+            preview.innerHTML = '';
+        });
+
+    </script>
+}

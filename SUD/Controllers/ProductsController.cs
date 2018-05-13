@@ -49,13 +49,34 @@ namespace SUD.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductId,DepartmentId,MeasureId,Description,Price,Note,Image,Medida")] Product product)
+        public ActionResult Create([Bind(Include = "ProductId,DepartmentId,MeasureId,Description,Price,Note,Image,Medida,FotografiaFile")] Product product)
         {
+            
+      
             if (ModelState.IsValid)
             {
-                db.Products.Add(product);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                    db.Products.Add(product);
+                    db.SaveChanges();
+
+                if (product.FotografiaFile != null)
+                {
+                    var folder = "~/Uploads/Products/";
+                    var response = FilesHelper.UploadPhoto(product.FotografiaFile, folder, string.Format("{0}.jpg", product.ProductId));
+                    if (response)
+                    {
+                        var pic = string.Format("{0}/{1}.jpg", folder, product.ProductId);
+                        product.Image = pic;
+
+                        db.Entry(product).State = EntityState.Modified;
+                        db.SaveChanges();
+
+
+                    }
+                }
+                    return RedirectToAction("Index");
+                
+
+                
             }
 
             ViewBag.DepartmentId = new SelectList(db.Departments, "DepartmentId", "Description", product.DepartmentId);

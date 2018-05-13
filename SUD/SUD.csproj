@@ -270,6 +270,7 @@
     <Compile Include="Models\DocumentType.cs" />
     <Compile Include="Models\Egress.cs" />
     <Compile Include="Models\EgressDetails.cs" />
+    <Compile Include="Models\FilesHelper.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Inventory.cs" />
     <Compile Include="Models\InventoryDetail.cs" />
@@ -500,6 +501,7 @@
     <Content Include="Content\img\user8-128x128.jpg" />
     <Content Include="Content\ionicons.css" />
     <Content Include="Content\ionicons.min.css" />
+    <Content Include="Content\jasny-bootstrap.css" />
     <Content Include="Content\jquery-jvectormap.css" />
     <Content Include="Content\jquery.dataTables.min.css" />
     <Content Include="Content\RecursosDistribuidora\DER General.png" />
@@ -700,6 +702,7 @@
     <Content Include="Scripts\i18n\vi.js" />
     <Content Include="Scripts\i18n\zh-CN.js" />
     <Content Include="Scripts\i18n\zh-TW.js" />
+    <Content Include="Scripts\jasny-bootstrap.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -867,7 +870,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\Products\" />
     <Folder Include="ViewModels\" />
+    <Folder Include="Views\Upload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\DataTables\css\glyphicons-halflings-regular.woff" />
