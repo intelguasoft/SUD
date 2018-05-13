@@ -226,6 +226,8 @@
     <Compile Include="Controllers\SaleDetailsController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
     <Compile Include="Controllers\UserSudsController.cs" />
+    <Compile Include="Generic\EmailHelper.cs" />
+    <Compile Include="Generic\UsersHelper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

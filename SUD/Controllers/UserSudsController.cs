@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using SUD.Generic;
 using SUD.Models;
 
 namespace SUD.Controllers
@@ -59,6 +60,7 @@ namespace SUD.Controllers
             {
                 db.UserSuds.Add(userSud);
                 db.SaveChanges();
+                UsersHelper.CreateUserASP(userSud.Email, "Usuario");
                 return RedirectToAction("Index");
             }
 
@@ -93,6 +95,13 @@ namespace SUD.Controllers
             {
                 db.Entry(userSud).State = EntityState.Modified;
                 db.SaveChanges();
+                var db2 = new ApplicationDbContext();
+                var currentUser = db2.UserSuds.Find(userSud.UserSudId);
+                if(currentUser.Email != userSud.Email)
+                {
+                    UsersHelper.UpdateUsername(currentUser.Email, userSud.Email);
+                }
+                db2.Dispose();
                 return RedirectToAction("Index");
             }
             ViewBag.RolId = new SelectList(db.Rols, "RolId", "Description", userSud.RolId);
@@ -122,6 +131,7 @@ namespace SUD.Controllers
             UserSud userSud = db.UserSuds.Find(id);
             db.UserSuds.Remove(userSud);
             db.SaveChanges();
+            UsersHelper.DeleteUserSud(userSud.Email);
             return RedirectToAction("Index");
         }
 
