@@ -54,7 +54,7 @@ namespace SUD.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserSudId,Name,LastName,Password,ModificationDatePassword,RolId,Email")] UserSud userSud)
+        public ActionResult Create([Bind(Include = "UserSudId,Name,LastName,Password,ModificationDatePassword,RolId,Email, Status")] UserSud userSud)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +89,7 @@ namespace SUD.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserSudId,Name,LastName,Password,ModificationDatePassword,RolId,Email")] UserSud userSud)
+        public ActionResult Edit([Bind(Include = "UserSudId,Name,LastName,Password,ModificationDatePassword,RolId,Email, Status")] UserSud userSud)
         {
             if (ModelState.IsValid)
             {
