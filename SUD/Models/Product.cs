@@ -36,7 +36,7 @@ namespace SUD.Models
         public string Note { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        [Display(Name = "Imagen")]
+        [Display(Name = "Nota")]
         public string Image { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
