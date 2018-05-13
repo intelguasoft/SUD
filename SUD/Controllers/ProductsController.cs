@@ -49,15 +49,30 @@ namespace SUD.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductId,DepartmentId,MeasureId,Description,Price,Note,Image,Medida")] Product product, HttpPostedFileBase file)
+        public ActionResult Create([Bind(Include = "ProductId,DepartmentId,MeasureId,Description,Price,Note,Image,Medida,FotografiaFile")] Product product)
         {
-            product.Image = Server.MapPath("~/Uploads/Products/" + product.ProductId);
-            file.SaveAs(Server.MapPath("~/Uploads/Products/" + product.ProductId));
-
+            
+      
             if (ModelState.IsValid)
             {
                     db.Products.Add(product);
                     db.SaveChanges();
+
+                if (product.FotografiaFile != null)
+                {
+                    var folder = "~/Uploads/Products/";
+                    var response = FilesHelper.UploadPhoto(product.FotografiaFile, folder, string.Format("{0}.jpg", product.ProductId));
+                    if (response)
+                    {
+                        var pic = string.Format("{0}/{1}.jpg", folder, product.ProductId);
+                        product.Image = pic;
+
+                        db.Entry(product).State = EntityState.Modified;
+                        db.SaveChanges();
+
+
+                    }
+                }
                     return RedirectToAction("Index");
                 
 
