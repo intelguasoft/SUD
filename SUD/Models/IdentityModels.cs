@@ -67,5 +67,9 @@ namespace SUD.Models
         public DbSet<Purchase> Purchases { get; set; }
 
         public DbSet<Supplier> Suppliers { get; set; }
+
+        public System.Data.Entity.DbSet<SUD.Models.AccountingDocument> AccountingDocuments { get; set; }
+
+        public System.Data.Entity.DbSet<SUD.Models.PaymentMethod> PaymentMethods { get; set; }
     }
 }

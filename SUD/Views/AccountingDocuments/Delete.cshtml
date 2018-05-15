@@ -1,0 +1,80 @@
+﻿@model SUD.Models.AccountingDocument
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>AccountingDocument</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Document)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Document)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SerialNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SerialNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InitialNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InitialNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FinalNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FinalNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResolutionNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResolutionNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExpirationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExpirationDate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

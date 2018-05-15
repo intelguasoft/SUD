@@ -203,6 +203,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AccountingDocumentsController.cs" />
     <Compile Include="Controllers\BarCodesController.cs" />
     <Compile Include="Controllers\CellarProductsController.cs" />
     <Compile Include="Controllers\CellarsController.cs" />
@@ -219,6 +220,7 @@
     <Compile Include="Controllers\InventoryDetailsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MeasuresController.cs" />
+    <Compile Include="Controllers\PaymentMethodsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\PurchasesController.cs" />
     <Compile Include="Controllers\RolPermissionsController.cs" />
@@ -236,6 +238,7 @@
       <DependentUpon>201805130459535_Initial_Create.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountingDocument.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BarCode.cs" />
     <Compile Include="Models\Cellar.cs" />
@@ -255,6 +258,7 @@
     <Compile Include="Models\Kardex.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Measure.cs" />
+    <Compile Include="Models\PaymentMethod.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Purchase.cs" />
     <Compile Include="Models\PurchaseDetails.cs" />
@@ -846,6 +850,16 @@
     <Content Include="Views\Purchases\Index.cshtml" />
     <Content Include="Views\Purchases\Index - Copy.cshtml" />
     <Content Include="Views\UserSuds\DisplayTemplates\Boolean.cshtml" />
+    <Content Include="Views\AccountingDocuments\Create.cshtml" />
+    <Content Include="Views\AccountingDocuments\Delete.cshtml" />
+    <Content Include="Views\AccountingDocuments\Details.cshtml" />
+    <Content Include="Views\AccountingDocuments\Edit.cshtml" />
+    <Content Include="Views\AccountingDocuments\Index.cshtml" />
+    <Content Include="Views\PaymentMethods\Create.cshtml" />
+    <Content Include="Views\PaymentMethods\Delete.cshtml" />
+    <Content Include="Views\PaymentMethods\Details.cshtml" />
+    <Content Include="Views\PaymentMethods\Edit.cshtml" />
+    <Content Include="Views\PaymentMethods\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
