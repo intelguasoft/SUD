@@ -237,6 +237,10 @@
     <Compile Include="Migrations\201805130459535_Initial_Create.Designer.cs">
       <DependentUpon>201805130459535_Initial_Create.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805150536177_AddModels_Ventas.cs" />
+    <Compile Include="Migrations\201805150536177_AddModels_Ventas.Designer.cs">
+      <DependentUpon>201805150536177_AddModels_Ventas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountingDocument.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -885,6 +889,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201805130459535_Initial_Create.resx">
       <DependentUpon>201805130459535_Initial_Create.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805150536177_AddModels_Ventas.resx">
+      <DependentUpon>201805150536177_AddModels_Ventas.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
