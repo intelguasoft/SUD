@@ -45,7 +45,12 @@ namespace SUD.Models
         [Display(Name = "Correo Electronico")]
         public string Email { get; set; }
 
+        [Display (Name = "Activo")]
+        public Boolean Status { get; set; }
+
         public virtual Rol Rol { get; set; }
+
+        
 
     }
 

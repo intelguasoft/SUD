@@ -203,6 +203,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AccountingDocumentsController.cs" />
     <Compile Include="Controllers\BarCodesController.cs" />
     <Compile Include="Controllers\CellarProductsController.cs" />
     <Compile Include="Controllers\CellarsController.cs" />
@@ -219,6 +220,7 @@
     <Compile Include="Controllers\InventoryDetailsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MeasuresController.cs" />
+    <Compile Include="Controllers\PaymentMethodsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\PurchasesController.cs" />
     <Compile Include="Controllers\RolPermissionsController.cs" />
@@ -226,10 +228,21 @@
     <Compile Include="Controllers\SaleDetailsController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
     <Compile Include="Controllers\UserSudsController.cs" />
+    <Compile Include="Generic\EmailHelper.cs" />
+    <Compile Include="Generic\UsersHelper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805130459535_Initial_Create.cs" />
+    <Compile Include="Migrations\201805130459535_Initial_Create.Designer.cs">
+      <DependentUpon>201805130459535_Initial_Create.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805150536177_AddModels_Ventas.cs" />
+    <Compile Include="Migrations\201805150536177_AddModels_Ventas.Designer.cs">
+      <DependentUpon>201805150536177_AddModels_Ventas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountingDocument.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BarCode.cs" />
     <Compile Include="Models\Cellar.cs" />
@@ -242,12 +255,14 @@
     <Compile Include="Models\DocumentType.cs" />
     <Compile Include="Models\Egress.cs" />
     <Compile Include="Models\EgressDetails.cs" />
+    <Compile Include="Models\FilesHelper.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Inventory.cs" />
     <Compile Include="Models\InventoryDetail.cs" />
     <Compile Include="Models\Kardex.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Measure.cs" />
+    <Compile Include="Models\PaymentMethod.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Purchase.cs" />
     <Compile Include="Models\PurchaseDetails.cs" />
@@ -275,6 +290,7 @@
     <Content Include="Content\alt\AdminLTE-select2.min.css" />
     <Content Include="Content\alt\AdminLTE-without-plugins.css" />
     <Content Include="Content\alt\AdminLTE-without-plugins.min.css" />
+    <Content Include="Content\blue.css" />
     <Content Include="Content\bootstrap-materia.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -472,8 +488,15 @@
     <Content Include="Content\img\user8-128x128.jpg" />
     <Content Include="Content\ionicons.css" />
     <Content Include="Content\ionicons.min.css" />
+    <Content Include="Content\jasny-bootstrap.css" />
     <Content Include="Content\jquery-jvectormap.css" />
     <Content Include="Content\jquery.dataTables.min.css" />
+    <Content Include="Content\Multimedia\bodega.jpg" />
+    <Content Include="Content\Multimedia\compras.jpg" />
+    <Content Include="Content\Multimedia\contabilidad.jpg" />
+    <Content Include="Content\Multimedia\logistica.jpg" />
+    <Content Include="Content\Multimedia\mercado.png" />
+    <Content Include="Content\Multimedia\ventas.jpg" />
     <Content Include="Content\RecursosDistribuidora\DER General.png" />
     <Content Include="Content\RecursosDistribuidora\DER Movimientos.png" />
     <Content Include="Content\RecursosDistribuidora\DER Productos.png" />
@@ -672,6 +695,8 @@
     <Content Include="Scripts\i18n\vi.js" />
     <Content Include="Scripts\i18n\zh-CN.js" />
     <Content Include="Scripts\i18n\zh-TW.js" />
+    <Content Include="Scripts\icheck.min.js" />
+    <Content Include="Scripts\jasny-bootstrap.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -683,6 +708,7 @@
     <Content Include="Scripts\jquery-jvectormap-usa-en.js" />
     <Content Include="Scripts\jquery-jvectormap-world-mill-en.js" />
     <Content Include="Scripts\jquery.dataTables.min.js" />
+    <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.slimscroll.js" />
     <Content Include="Scripts\jquery.slimscroll.min.js" />
     <Content Include="Scripts\jquery.sparkline.js" />
@@ -836,10 +862,23 @@
     <Content Include="Views\Purchases\Edit.cshtml" />
     <Content Include="Views\Purchases\Index.cshtml" />
     <Content Include="Views\Purchases\Index - Copy.cshtml" />
+    <Content Include="Views\UserSuds\DisplayTemplates\Boolean.cshtml" />
+    <Content Include="Views\AccountingDocuments\Create.cshtml" />
+    <Content Include="Views\AccountingDocuments\Delete.cshtml" />
+    <Content Include="Views\AccountingDocuments\Details.cshtml" />
+    <Content Include="Views\AccountingDocuments\Edit.cshtml" />
+    <Content Include="Views\AccountingDocuments\Index.cshtml" />
+    <Content Include="Views\PaymentMethods\Create.cshtml" />
+    <Content Include="Views\PaymentMethods\Delete.cshtml" />
+    <Content Include="Views\PaymentMethods\Details.cshtml" />
+    <Content Include="Views\PaymentMethods\Edit.cshtml" />
+    <Content Include="Views\PaymentMethods\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\Products\" />
     <Folder Include="ViewModels\" />
+    <Folder Include="Views\Upload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\DataTables\css\glyphicons-halflings-regular.woff" />
@@ -855,6 +894,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201805130459535_Initial_Create.resx">
+      <DependentUpon>201805130459535_Initial_Create.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805150536177_AddModels_Ventas.resx">
+      <DependentUpon>201805150536177_AddModels_Ventas.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

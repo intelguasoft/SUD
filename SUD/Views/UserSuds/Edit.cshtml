@@ -88,7 +88,19 @@
                         </div>
                     </div>
                 </div>
-             </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-md-4">
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "" })
+                            @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "col-md-1 " } })
+                            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                </div>
+            </div>
                 <!-- /.box-body -->
             <div class="box-footer">
                 <!-- Aca se incluye aquellas acciones relacionadas con lo antes mostrado -->

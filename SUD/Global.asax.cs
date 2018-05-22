@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SUD.Generic;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -20,6 +21,15 @@ namespace SUD
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            CheckRolsandSuperUser();
+        }
+
+        private void CheckRolsandSuperUser()
+        {
+            UsersHelper.CheckRole("Administrador");
+            UsersHelper.CheckRole("Usuario");
+            UsersHelper.CheckSuperUser();
+            //throw new NotImplementedException();
         }
     }
 }

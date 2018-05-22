@@ -1,90 +1,129 @@
 ﻿@model SUD.Models.InventoryDetail
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Inventarios";
+    ViewBag.Message = "Este es un Inventario";
 }
 
-<h2>Details</h2>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        <!--aqui va el titulo de la pagina que se va a mostrar, como el siguiente ejemplo -->
+        @ViewBag.Title - <small>@ViewBag.Message</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index")"><i class="fa fa-calendar"></i>  Inventarios</a></li>
+        <li class="active">Detalles</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- Default box -->
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Detalles del Inventario</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                        title="Collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove" disabled>
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="box-body">
+            <!-- Aca se incluye todo el contenido de la pagina que se desea mostrar -->
+            <!-- por ejemplo el index/tabla de algun recurso -->
 
-<div>
-    <h4>InventoryDetail</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Inventory.InventoryId)
-        </dt>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.LabelFor(model => model.Inventory.InventoryId, "Inventario")
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Inventory.InventoryId)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Inventory.InventoryId)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Product.Description)
-        </dt>
+                <dt>
+                    @Html.LabelFor(model => model.Product.Description, "Producto")
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Product.Description)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Product.Description)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Stock)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Stock)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Stock)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Stock)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Count1)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Count1)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Count1)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Count1)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Count2)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Count2)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Count2)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Count2)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Count3)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Count3)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Count3)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Count3)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Adjustment)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Adjustment)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Adjustment)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Adjustment)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.KardexId)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.KardexId)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.KardexId)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.KardexId)
+                </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.LineId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            </dl>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+            <!-- Aca se incluye aquellas acciones relacionadas con lo antes mostrado -->
+            <!-- por ejemplo botones de facturacion, exportar a excel/pdf o similares -->
+
+            <p>
+                <a href="@Url.Action("Index")" class="btn btn-success"> <i class="fa fa-undo" aria-hidden="true"></i> Regresar</a>
+                <a href="@Url.Action("Edit", new {id = Model.LineId })" class="btn btn-warning"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Modificar</a>
+            </p>
+
+        </div>
+        <!-- /.box-footer-->
+    </div>
+    <!-- /.box -->
+</section>
+<!-- /.content -->

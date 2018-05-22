@@ -21,6 +21,7 @@ namespace SUD
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
+                      "~/Scripts/jasny-bootstrap.js",
                       "~/Scripts/moment.js",
                       "~/Scripts/datetime.js",
                       "~/Scripts/DataTables/jquery.dataTables.js",
@@ -35,11 +36,11 @@ namespace SUD
                       "~/Scripts/Chart.js",
                       "~/Scripts/pages/dashboard2.js",
                       "~/Scripts/demo.js",
-                      "~/Scripts/respond.js",
-                      "~/Scripts/site.js"));
+                      "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/jasny-bootstrap.css",
                       "~/Content/font-awesome.css",
                       "~/Content/ionicons.css",
                       "~/Content/DataTables/css/dataTables.bootstrap.css",

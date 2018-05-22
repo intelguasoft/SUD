@@ -1,11 +1,10 @@
 ﻿@model SUD.Models.Product
 
 @{
-    ViewBag.Title = "Productos";
+    ViewBag.Title = "Producto";
     ViewBag.Message = "Este es un Producto";
 }
 
-<!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
         <!--aqui va el titulo de la pagina que se va a mostrar, como el siguiente ejemplo -->
@@ -16,7 +15,6 @@
         <li class="active">Detalles</li>
     </ol>
 </section>
-<!-- Main content -->
 <section class="content">
     <!-- Default box -->
     <div class="box">
@@ -31,84 +29,70 @@
                     <i class="fa fa-times"></i>
                 </button>
             </div>
+                <div class="center-block table table-striped">
+                    <div class="row ">
+
+                        <div class="col-xs-4 col-sm-4 ">
+                            @if (!string.IsNullOrEmpty(Model.Image))
+                    {
+                        <img class="center-block" src="@Url.Content(Model.Image)" alt="Image" style="width:350px;height:100px;max-width: 100%; height: auto;" />
+            }
+
+                            <hr />
+                            <p class="text-center">
+                                <a href="@Url.Action("Edit", new { id = Model.ProductId })" class="btn btn-warning"> <i class="fa fa-edit" aria-hidden="true"></i> Editar</a>
+                                <a href="@Url.Action("Delete", new { id = Model.ProductId })" class="btn btn-danger"> <i class="fa fa-remove" aria-hidden="true"></i> Eliminar</a>
+
+                            </p>
+
+                        </div>
+                    <div class="col-xs-4 col-sm-4 ">
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Description)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Description)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Department)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Department.Description)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Measure)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Measure.Description)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Note)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Note)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Price)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Price)
+                            </dd>
+
+                        </dl>
+                    </div>
+                </div>
+            </div>
+                
         </div>
-        <div class="box-body">
-            <!-- Aca se incluye todo el contenido de la pagina que se desea mostrar -->
-            <!-- por ejemplo el index/tabla de algun recurso -->
-
-            <hr />
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.Department.Description)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Department.Description)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Measure.Description)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Measure.Description)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Description)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Description)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Price)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Price)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Note)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Note)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Image)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Image)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Medida)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Medida)
-                </dd>
-
-            </dl>
-        </div>
-        <!-- /.box-body -->
-        <div class="box-footer">
-            <!-- Aca se incluye aquellas acciones relacionadas con lo antes mostrado -->
-            <!-- por ejemplo botones de facturacion, exportar a excel/pdf o similares -->
-
-            <p>
-                <a href="@Url.Action("Index")" class="btn btn-success"> <i class="fa fa-undo" aria-hidden="true"></i> Regresar</a>
-                <a href="@Url.Action("Edit", new {id = Model.ProductId })" class="btn btn-warning"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Modificar</a>
-            </p>
-
-        </div>
-        <!-- /.box-footer-->
+        
     </div>
-    <!-- /.box -->
+    
 </section>
-<!-- /.content -->
+
+
+

@@ -12,23 +12,22 @@ namespace SUD.Models
     {
         [Key]
         public int SaleDetailId { get; set; }
-        
 
         [Display(Name = "Descripcion")]
         [Required(ErrorMessage = "Ingrese una descripcion")]
         [MaxLength(140, ErrorMessage = "Texto muy largo")]
         public string Description { get; set; }
 
+
+        // El valor de esta propiedad debe recibir el valor actual de Product.Price
         [Display(Name = "Precio", Description = "0.00")]
         [Required(ErrorMessage = "Precio Requerido")]
         public float Price { get; set; }
-
 
         [Display(Name = "Cantidad", Description = "0.00")]
         [Required(ErrorMessage = "Cantidad Requerida")]
         public int Quantity { get; set; }
         
-
         [Display(Name = "Porcentaje de IVA", Description = "0.00")]
         [RegularExpression(@"^[1-9]\d*(\.\d +)?$", ErrorMessage = "Porcentaje Invalido, solo se permiten numeros.")]
         public float IVAPercentage { get; set; }
@@ -36,7 +35,6 @@ namespace SUD.Models
         [Display(Name = "Porcentaje de descuento", Description = "0.00")]
         [RegularExpression(@"^[1-9]\d*(\.\d +)?$", ErrorMessage = "Porcentaje Invalido, solo se permiten numeros.")]
         public float DiscountRate { get; set; }
-
 
 
         public int SaleId { get; set; }

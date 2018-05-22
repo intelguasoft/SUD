@@ -22,6 +22,11 @@ namespace SUD.Models
 
         public virtual ICollection<Inventory> Inventories { get; set; }
 
+        public virtual ICollection<Sale> Sales { get; set; }
+
+        public virtual ICollection<Purchase> Purchases { get; set; }
+
+
 
     }
 }

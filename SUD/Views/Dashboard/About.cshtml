@@ -1,16 +1,15 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "SUD";
 }
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
         @ViewBag.Title.
-        <small>@ViewBag.Message</small>
+        <small>Sistema Único de Distribución</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
-        <li class="active">Blank page</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> SUD</a></li>
+        <li><a href="#"> ¿Que es SUD? </a></li>
     </ol>
 </section>
 <!-- Main content -->
@@ -18,7 +17,7 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Title</h3>
+            <h3 class="box-title">Sistema Único de Distribución</h3>
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                         title="Collapse">
@@ -30,11 +29,12 @@
             </div>
         </div>
         <div class="box-body">
-            @ViewBag.Message
+           <p> Sistema automatizado que cuenta con registros, servicios, reportes y administración, 
+            ofreciendo control de compras, ventas, inventarios, bodegas, facturación de la Distribuidora X S.A.</p>
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-            Footer
+            @Html.Partial("_Footer")
         </div>
         <!-- /.box-footer-->
     </div>

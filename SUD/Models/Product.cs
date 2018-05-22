@@ -15,7 +15,7 @@ namespace SUD.Models
         public int ProductId { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        [Display(Name = "Departamento")]
+        [Display(Name = "Categoria")]
         public int DepartmentId { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
@@ -35,13 +35,16 @@ namespace SUD.Models
         [Display(Name = "Nota")]
         public string Note { get; set; }
 
-        [Required(ErrorMessage = "El campo {0} es obligatorio")]
+        
         [Display(Name = "Imagen")]
         public string Image { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Medida")]
         public string Medida { get; set; }
+
+        [NotMapped]
+        public HttpPostedFileBase FotografiaFile { get; set; }
 
         public virtual ICollection<CellarProduct> CellarProducts { get; set; }
 
@@ -50,6 +53,8 @@ namespace SUD.Models
         public virtual ICollection<ClientRefundDetail> ClientRefundDetails { get; set; }
 
         public virtual ICollection<SaleDetail> SaleDetails { get; set; }
+
+        public virtual ICollection<PurchaseDetails> PurchaseDetails { get; set; }
 
         public virtual Department Department { get; set; }
 
