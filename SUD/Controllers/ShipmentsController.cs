@@ -10,116 +10,112 @@ using SUD.Models;
 
 namespace SUD.Controllers
 {
-    public class CellarProductsController : Controller
+    public class ShipmentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: CellarProducts
+        // GET: Shipments
         public ActionResult Index()
         {
-            var cellarProducts = db.CellarProducts.Include(c => c.Cellar).Include(c => c.Product);
-            return View(cellarProducts.ToList());
+            var shippings = db.Shippings.Include(s => s.Order);
+            return View(shippings.ToList());
         }
 
-        // GET: CellarProducts/Details/5
+        // GET: Shipments/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CellarProduct cellarProduct = db.CellarProducts.Find(id);
-            if (cellarProduct == null)
+            Shipping shipping = db.Shippings.Find(id);
+            if (shipping == null)
             {
                 return HttpNotFound();
             }
-            return View(cellarProduct);
+            return View(shipping);
         }
 
-        // GET: CellarProducts/Create
+        // GET: Shipments/Create
         public ActionResult Create()
         {
-            ViewBag.CellarId = new SelectList(db.Cellars, "CellarId", "Description");
-            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "Description");
+            ViewBag.OrderId = new SelectList(db.Orders, "OrderId", "OrderId");
             return View();
         }
 
-        // POST: CellarProducts/Create
+        // POST: Shipments/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CellarProductId,CellarId,ProductId,Stock,Minimum,Maximum,ReplacementDays,MinimumAmount,Location")] CellarProduct cellarProduct)
+        public ActionResult Create([Bind(Include = "ShippingId,OrderId,Date,InvoiceNumber,StateId")] Shipping shipping)
         {
             if (ModelState.IsValid)
             {
-                db.CellarProducts.Add(cellarProduct);
+                db.Shippings.Add(shipping);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CellarId = new SelectList(db.Cellars, "CellarId", "Description", cellarProduct.CellarId);
-            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "Description", cellarProduct.ProductId);
-            return View(cellarProduct);
+            ViewBag.OrderId = new SelectList(db.Orders, "OrderId", "OrderId", shipping.OrderId);
+            return View(shipping);
         }
 
-        // GET: CellarProducts/Edit/5
+        // GET: Shipments/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CellarProduct cellarProduct = db.CellarProducts.Find(id);
-            if (cellarProduct == null)
+            Shipping shipping = db.Shippings.Find(id);
+            if (shipping == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CellarId = new SelectList(db.Cellars, "CellarId", "Description", cellarProduct.CellarId);
-            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "Description", cellarProduct.ProductId);
-            return View(cellarProduct);
+            ViewBag.OrderId = new SelectList(db.Orders, "OrderId", "OrderId", shipping.OrderId);
+            return View(shipping);
         }
 
-        // POST: CellarProducts/Edit/5
+        // POST: Shipments/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CellarProductId,CellarId,ProductId,Stock,Minimum,Maximum,ReplacementDays,MinimumAmount,Location")] CellarProduct cellarProduct)
+        public ActionResult Edit([Bind(Include = "ShippingId,OrderId,Date,InvoiceNumber,StateId")] Shipping shipping)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cellarProduct).State = EntityState.Modified;
+                db.Entry(shipping).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CellarId = new SelectList(db.Cellars, "CellarId", "Description", cellarProduct.CellarId);
-            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "Description", cellarProduct.ProductId);
-            return View(cellarProduct);
+            ViewBag.OrderId = new SelectList(db.Orders, "OrderId", "OrderId", shipping.OrderId);
+            return View(shipping);
         }
 
-        // GET: CellarProducts/Delete/5
+        // GET: Shipments/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CellarProduct cellarProduct = db.CellarProducts.Find(id);
-            if (cellarProduct == null)
+            Shipping shipping = db.Shippings.Find(id);
+            if (shipping == null)
             {
                 return HttpNotFound();
             }
-            return View(cellarProduct);
+            return View(shipping);
         }
 
-        // POST: CellarProducts/Delete/5
+        // POST: Shipments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            CellarProduct cellarProduct = db.CellarProducts.Find(id);
-            db.CellarProducts.Remove(cellarProduct);
+            Shipping shipping = db.Shippings.Find(id);
+            db.Shippings.Remove(shipping);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
