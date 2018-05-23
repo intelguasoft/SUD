@@ -9,8 +9,8 @@ namespace SUD.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
-            ContextKey = "SUD.Models.ApplicationDbContext";
+            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(SUD.Models.ApplicationDbContext context)

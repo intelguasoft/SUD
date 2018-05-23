@@ -300,6 +300,7 @@
     <Content Include="Content\alt\AdminLTE-select2.min.css" />
     <Content Include="Content\alt\AdminLTE-without-plugins.css" />
     <Content Include="Content\alt\AdminLTE-without-plugins.min.css" />
+    <Content Include="Content\blue.css" />
     <Content Include="Content\bootstrap-materia.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -500,6 +501,12 @@
     <Content Include="Content\jasny-bootstrap.css" />
     <Content Include="Content\jquery-jvectormap.css" />
     <Content Include="Content\jquery.dataTables.min.css" />
+    <Content Include="Content\Multimedia\bodega.jpg" />
+    <Content Include="Content\Multimedia\compras.jpg" />
+    <Content Include="Content\Multimedia\contabilidad.jpg" />
+    <Content Include="Content\Multimedia\logistica.jpg" />
+    <Content Include="Content\Multimedia\mercado.png" />
+    <Content Include="Content\Multimedia\ventas.jpg" />
     <Content Include="Content\RecursosDistribuidora\DER General.png" />
     <Content Include="Content\RecursosDistribuidora\DER Movimientos.png" />
     <Content Include="Content\RecursosDistribuidora\DER Productos.png" />
@@ -698,6 +705,7 @@
     <Content Include="Scripts\i18n\vi.js" />
     <Content Include="Scripts\i18n\zh-CN.js" />
     <Content Include="Scripts\i18n\zh-TW.js" />
+    <Content Include="Scripts\icheck.min.js" />
     <Content Include="Scripts\jasny-bootstrap.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -710,6 +718,7 @@
     <Content Include="Scripts\jquery-jvectormap-usa-en.js" />
     <Content Include="Scripts\jquery-jvectormap-world-mill-en.js" />
     <Content Include="Scripts\jquery.dataTables.min.js" />
+    <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.slimscroll.js" />
     <Content Include="Scripts\jquery.slimscroll.min.js" />
     <Content Include="Scripts\jquery.sparkline.js" />
