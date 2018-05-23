@@ -7,13 +7,13 @@ namespace SUD.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddModels_Ventas : IMigrationMetadata
+    public sealed partial class Initial_Create : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddModels_Ventas));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial_Create));
         
         string IMigrationMetadata.Id
         {
-            get { return "201805150536177_AddModels_Ventas"; }
+            get { return "201805230515131_Initial_Create"; }
         }
         
         string IMigrationMetadata.Source
