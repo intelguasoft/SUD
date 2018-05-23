@@ -233,14 +233,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805130459535_Initial_Create.cs" />
-    <Compile Include="Migrations\201805130459535_Initial_Create.Designer.cs">
-      <DependentUpon>201805130459535_Initial_Create.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805150536177_AddModels_Ventas.cs" />
-    <Compile Include="Migrations\201805150536177_AddModels_Ventas.Designer.cs">
-      <DependentUpon>201805150536177_AddModels_Ventas.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountingDocument.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -272,6 +264,7 @@
     <Compile Include="Models\ClientRefund.cs" />
     <Compile Include="Models\SaleDetail.cs" />
     <Compile Include="Models\SaleDetailsViewModel.cs" />
+    <Compile Include="Models\State.cs" />
     <Compile Include="Models\Supplier.cs" />
     <Compile Include="Models\Rol.cs" />
     <Compile Include="Models\RolPermission.cs" />
@@ -724,6 +717,7 @@
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\pages\dashboard.js" />
     <Content Include="Scripts\pages\dashboard2.js" />
+    <Content Include="Scripts\purchases.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Site.js" />
@@ -732,7 +726,9 @@
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\select2.min.js" />
     <Content Include="Scripts\typeahead.bundle.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -894,14 +890,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805130459535_Initial_Create.resx">
-      <DependentUpon>201805130459535_Initial_Create.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805150536177_AddModels_Ventas.resx">
-      <DependentUpon>201805150536177_AddModels_Ventas.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
