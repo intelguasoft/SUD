@@ -37,10 +37,10 @@ namespace SUD.Controllers
         }
 
         // GET: CellarProducts/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
             ViewBag.CellarId = new SelectList(db.Cellars, "CellarId", "Description");
-            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "Description");
+            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "Description", id);
             return View();
         }
 
@@ -49,7 +49,7 @@ namespace SUD.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CellarProductId,CellarId,ProductId,Stock,Minimum,Maximum,ReplacementDays,MinimumAmount,Location")] CellarProduct cellarProduct)
+        public ActionResult Create([Bind(Include = "CellarProductId,CellarId,ProductId,Stock,Minimum,Maximum,ReplacementDays,MinimumAmount,Location")] CellarProduct cellarProduct, int? id)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +59,7 @@ namespace SUD.Controllers
             }
 
             ViewBag.CellarId = new SelectList(db.Cellars, "CellarId", "Description", cellarProduct.CellarId);
-            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "Description", cellarProduct.ProductId);
+            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "Description", id);
             return View(cellarProduct);
         }
 

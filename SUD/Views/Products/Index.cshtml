@@ -90,9 +90,8 @@
                         </td>
                         <td>
                             <div class="btn-group">
-                                @Html.ActionLink(" ", "Edit", new { id = item.ProductId }, new { @class = "btn btn-warning fa fa-pencil-square-o" })
+                                @Html.ActionLink("Asignar a Bodega", "Create", "CellarProducts", new { id = item.ProductId }, new { @class = "btn btn-warning fa fa-check-square-o" })
                                 @Html.ActionLink(" ", "Details", new { id = item.ProductId }, new { @class = "btn btn-info fa fa-info-circle" })
-                                @Html.ActionLink(" ", "Delete", new { id = item.ProductId }, new { @class = "btn btn-danger fa fa-trash" })
                             </div>
                         </td>
                     </tr>
