@@ -906,6 +906,7 @@
     <Content Include="Views\Shipments\Edit.cshtml" />
     <Content Include="Views\Shipments\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutGuest.cshtml" />
+    <Content Include="Views\Account\Register - Copia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
