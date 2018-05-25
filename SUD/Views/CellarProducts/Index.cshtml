@@ -75,19 +75,19 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Product.Description)
                             </td>
-                            <td>
-                                <span class="hint--error" aria-label="La existencia se encuentra por debajo de su nivel mínimo">@Html.DisplayFor(modelItem => item.Stock) <i class="fa fa-info-circle"></i></span>
+                            <td align="right">
+                                <span class="hint--error" aria-label="La existencia se encuentra por debajo de su nivel mínimo"> <i class="fa fa fa-exclamation-triangle"></i> &nbsp; @Html.DisplayFor(modelItem => item.Stock) </span>
                             </td>
-                            <td>
+                            <td align="right">
                                 @Html.DisplayFor(modelItem => item.Minimum)
                             </td>
-                            <td>
+                            <td align="right">
                                 @Html.DisplayFor(modelItem => item.Maximum)
                             </td>
-                            <td>
+                            <td align="right">
                                 @Html.DisplayFor(modelItem => item.ReplacementDays)
                             </td>
-                            <td>
+                            <td align="right">
                                 @Html.DisplayFor(modelItem => item.MinimumAmount)
                             </td>
                             <td>
@@ -110,19 +110,19 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Product.Description)
                             </td>
-                            <td>
-                                <span class="hint--warning" aria-label="La existencia se encuentra por encima de su nivel máximo">@Html.DisplayFor(modelItem => item.Stock) <i class="fa fa-info-circle"></i></span>
+                            <td align="right">
+                                <span class="hint--warning" aria-label="La existencia se encuentra por encima de su nivel mínimo"> <i class="fa fa fa-exclamation-triangle"></i> &nbsp; @Html.DisplayFor(modelItem => item.Stock) </span>
                             </td>
-                            <td>
+                            <td align="right">
                                 @Html.DisplayFor(modelItem => item.Minimum)
                             </td>
-                            <td>
+                            <td align="right">
                                 @Html.DisplayFor(modelItem => item.Maximum)
                             </td>
-                            <td>
+                            <td align="right">
                                 @Html.DisplayFor(modelItem => item.ReplacementDays)
                             </td>
-                            <td>
+                            <td align="right">
                                 @Html.DisplayFor(modelItem => item.MinimumAmount)
                             </td>
                             <td>
@@ -145,19 +145,19 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Product.Description)
                             </td>
-                            <td>
+                            <td align="right">
                                 @Html.DisplayFor(modelItem => item.Stock)
                             </td>
-                            <td>
+                            <td align="right">
                                 @Html.DisplayFor(modelItem => item.Minimum)
                             </td>
-                            <td>
+                            <td align="right">
                                 @Html.DisplayFor(modelItem => item.Maximum)
                             </td>
-                            <td>
+                            <td align="right">
                                 @Html.DisplayFor(modelItem => item.ReplacementDays)
                             </td>
-                            <td>
+                            <td align="right">
                                 @Html.DisplayFor(modelItem => item.MinimumAmount)
                             </td>
                             <td>
