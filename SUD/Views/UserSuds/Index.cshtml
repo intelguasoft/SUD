@@ -35,81 +35,105 @@
             <!-- Aca se incluye todo el contenido de la pagina que se desea mostrar -->
             <!-- por ejemplo el index/tabla de algun recurso -->
 
+
             <p>
                 <a href="@Url.Action("Create")" class="btn btn-success"> <i class="fa fa-plus" aria-hidden="true"></i> Crear</a>
             </p>
 
-            <table class="table">
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Rol.Description)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.LastName)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Password)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ModificationDatePassword)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Email)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Status)
-                    </th>
-                    <th></th>
-                </tr>
+            <table id="tblUserSud" class="table table-bordered table-striped text-center">
+                <thead>
+                    <tr>
 
-                @foreach (var item in Model)
-        {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Rol.Description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LastName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Password)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ModificationDatePassword)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Email)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Status)
-                    </td>
-                    <td>
-                        <div class="btn-group">
-                            @Html.ActionLink(" ", "Edit", new { id = item.UserSudId }, new { @class = "btn btn-warning fa fa-pencil-square-o" })
-                            @Html.ActionLink(" ", "Details", new { id = item.UserSudId }, new { @class = "btn btn-info fa fa-info-circle" })
-                            @Html.ActionLink(" ", "Delete", new { id = item.UserSudId }, new { @class = "btn btn-danger fa fa-trash" })
-                        </div>
-                </tr>
-}
-
+                        <th class="text-center">No.</th>
+                        <th class="text-center">Nombre</th>
+                        <th class="text-center">Apellido</th>
+                        <th class="text-center">Correo</th>
+                        <th class="text-center">Perfil</th>
+                        <th class="text-center">Estado</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
             </table>
 
         </div>
-        <!-- /.box-body -->
-        <div class="box-footer">
-            <!-- Aca se incluye aquellas acciones relacionadas con lo antes mostrado -->
-            <!-- por ejemplo botones de facturacion, exportar a excel/pdf o similares -->
-        </div>
-        <!-- /.box-footer-->
+
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer">
+        <!-- Aca se incluye aquellas acciones relacionadas con lo antes mostrado -->
+        <!-- por ejemplo botones de facturacion, exportar a excel/pdf o similares -->
+    </div>
+    <!-- /.box-footer-->
     </div>
     <!-- /.box -->
 </section>
 <!-- /.content -->
 
+
+@section Scripts{
+
+    <script>
+        $(document).ready(function () {
+            var selected = [];
+
+            //$.fn.dataTable.moment('HH:mm MMM D, YY');
+            //$.fn.dataTable.moment('dddd, MMMM Do, YYYY');
+
+            $("#tblUserSud").DataTable({
+                "processing": true, // for show progress bar
+                "serverSide": true, // for process server side
+                "filter": true, // this is for disable filter (search box)
+                "orderMulti": false, // for disable multiple column at once
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+                },
+                "ajax": {
+                    "url": '@Url.Action("getUserSuds", "UserSuds")',
+                    "type": "POST",
+                    "datatype": "json"
+                },
+                //"rowCallback": function (row, data) {
+                //    if ($.inArray(data.DT_RowId, selected) !== -1) {
+                //        $(row).addClass('selected');
+                //    }
+                //},
+                "columns": [
+                    { "data": "UserSudId", "name": "UserSudId", "autoWidth": true },
+                    { "data": "Name", "name": "Name", "autoWidth": true },
+                    { "data": "LastName", "name": "LastName", "autoWidth": true },
+                    { "data": "Email", "name": "Email", "autoWidth": true },
+                    { "data": "Rol.Description", "name": "Rol.Description", "autoWidth": true },
+                    { "data": "Status", "name": "Status", "autoWidth": true },
+
+
+
+
+                    {
+                        "data": function (data, type, row, meta) {
+                            return '<a class="btn btn-warning fa fa-pencil-square-o" href="@Url.Action("Edit")"' + data.UserSudId +
+                                '"></a><a class="btn btn-info fa fa-info-circle" href="@Url.Action("Details")"' + data.UserSudId +
+                                '" ></a><a class="btn btn-danger fa fa-trash" href="@Url.Action("Delete")"' + data.UserSudId + '" ></a>';
+
+
+                        }
+                        , "autoWidth": true
+                    }
+                ]
+            });
+
+            //$('#tblPurchases tbody').on('click', 'tr', function () {
+            //    var id = this.id;
+            //    var index = $.inArray(id, selected);
+
+            //    if (index === -1) {
+            //        selected.push(id);
+            //    } else {
+            //        selected.splice(index, 1);
+            //    }
+
+            //    $(this).toggleClass('selected');
+            //});
+        });
+    </script>
+}
 

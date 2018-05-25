@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SUD.Models.Route>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AccountingDocument.Document)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Seller.Document)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RouteNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Territory)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AccountingDocument.Document)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Seller.Document)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RouteNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Territory)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RouteId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RouteId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RouteId })
+        </td>
+    </tr>
+}
+
+</table>

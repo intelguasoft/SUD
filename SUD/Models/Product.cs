@@ -19,23 +19,22 @@ namespace SUD.Models
         public int DepartmentId { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        [Display(Name = "Medida")]
+        [Display(Name = "Unidad de Medida")]
         public int MeasureId { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        [Display(Name = "Descripción")]
+        [Display(Name = "Producto")]
         public string Description { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es obligatorio" )]
-        [Display(Name = "Precio")]
+        [Display(Name = "Precio", Description = "0.00")]
         [DataType(DataType.Currency)]
         public decimal Price { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Nota")]
         public string Note { get; set; }
-
-        
+    
         [Display(Name = "Imagen")]
         public string Image { get; set; }
 
@@ -55,6 +54,8 @@ namespace SUD.Models
         public virtual ICollection<SaleDetail> SaleDetails { get; set; }
 
         public virtual ICollection<PurchaseDetails> PurchaseDetails { get; set; }
+
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
 
         public virtual Department Department { get; set; }
 

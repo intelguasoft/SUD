@@ -24,16 +24,18 @@
     <div class="wrapper">
 
         @* Header top *@
+        @Html.Partial("_LoginPartial")
+
         @Html.Partial("_Header")
+
 
         @* Left side bar *@
         @Html.Partial("_Leftsidebar")
 
-
-
         <div class="content-wrapper">
             @RenderBody()
         </div>
+
         @* Footer *@
         @Html.Partial("_Footer")
 

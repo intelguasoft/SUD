@@ -34,7 +34,7 @@
             <!-- Aca se incluye todo el contenido de la pagina que se desea mostrar -->
             <!-- por ejemplo el index/tabla de algun recurso -->
             <p>
-                <a href="@Url.Action("Create")" class="btn btn-success"> <i class="fa fa-plus" aria-hidden="true"></i> Crear</a>
+                <a href="@Url.Action("Index", "Products")" class="btn btn-success"> <i class="fa fa-external-link" aria-hidden="true"></i> Ir a Productos</a>
             </p>
             <table class="table">
                 <tr>
@@ -59,40 +59,45 @@
                     <th>
                         @Html.DisplayNameFor(model => model.MinimumAmount)
                     </th>
-                    <th></th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Location)
+                    </th>
                 </tr>
 
        @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cellar.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Product.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Stock)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Minimum)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Maximum)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ReplacementDays)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MinimumAmount)
-                </td>
-                <td>
-                    <div class="btn-group">
-                        @Html.ActionLink(" ", "Edit", new { id = item.CellarProductId }, new { @class = "btn btn-warning fa fa-pencil-square-o" })
-                        @Html.ActionLink(" ", "Details", new { id = item.CellarProductId }, new { @class = "btn btn-info fa fa-info-circle" })
-                        @Html.ActionLink(" ", "Delete", new { id = item.CellarProductId }, new { @class = "btn btn-danger fa fa-trash" })
-                    </div>
-            </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cellar.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Stock)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Minimum)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Maximum)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReplacementDays)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MinimumAmount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Location)
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            @Html.ActionLink(" ", "Edit", new { id = item.CellarProductId }, new { @class = "btn btn-warning fa fa-pencil-square-o" })
+                            @Html.ActionLink(" ", "Details", new { id = item.CellarProductId }, new { @class = "btn btn-info fa fa-info-circle" })
+                            @Html.ActionLink(" ", "Delete", new { id = item.CellarProductId }, new { @class = "btn btn-danger fa fa-trash" })
+                        </div>
+                </tr>
         }
 
             </table>
