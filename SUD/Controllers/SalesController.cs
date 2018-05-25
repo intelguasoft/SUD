@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Dynamic;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -123,6 +124,46 @@ namespace SUD.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public JsonResult getSales()
+        {
+            var draw = Request.Form.GetValues("draw").FirstOrDefault();
+            var length = Request.Form.GetValues("length").FirstOrDefault();
+            var start = Request.Form.GetValues("start").FirstOrDefault();
+
+            var sortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
+            var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
+
+
+            int pageSize = length != null ? Convert.ToInt32(length) : 0;
+            int skip = start != null ? Convert.ToInt32(start) : 0;
+            int recordsTotal = 0;
+            using (ApplicationDbContext _context = new ApplicationDbContext())
+            {
+                _context.Configuration.LazyLoadingEnabled = false; // esto es necesario si nuestra tabla esta relacionado y por cosiguiente tiene claves foraneas
+
+                var w = (from a in _context.Sales.Include("Client") select a);
+                var x = (from a in _context.Sales.Include("Client") select a);
+                var y = (from a in _context.Sales.Include("AccountingDocument") select a);
+                var z = (from a in _context.Sales.Include("PaymentMethod") select a);
+
+                //SORT
+                if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDir)))
+                {
+                    w = w.OrderBy(sortColumn + " " + sortColumnDir);
+                    x = x.OrderBy(sortColumn + " " + sortColumnDir);
+                    y = y.OrderBy(sortColumn + " " + sortColumnDir);
+                    z = z.OrderBy(sortColumn + " " + sortColumnDir);
+                }
+
+                recordsTotal = w.Count();
+                var data = w.Skip(skip).Take(pageSize).ToList();
+                return Json(new { draw, recordsFiltered = recordsTotal, recordsTotal, data }, JsonRequestBehavior.AllowGet);
+            }
+        
+        }
+      
 
         protected override void Dispose(bool disposing)
         {
