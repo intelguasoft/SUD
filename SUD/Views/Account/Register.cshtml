@@ -1,41 +1,63 @@
 ﻿@model SUD.Models.RegisterViewModel
+
 @{
-    ViewBag.Title = "Registrarse";
+    Layout = "~/Views/Shared/_LayoutGuest.cshtml";
 }
+<body class="register-page">
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="register-box">
+            <div class="register-logo">
+                <a href="../../index2.html">
+                    <b>SUD</b>
+                </a>
+            </div>
+            <div class="register-box-body">
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+                <p class="login-box-msg">Registrar nuevo usuario</p>
+                <div class="form-group has-feedback">
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                    <span class="fa fa-envelope  form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                    <span class="fa fa-lock form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                    <span class="fa fa-sign-in form-control-feedback"></span>
+                </div>
+                <div class="row trans text-center">
+                    <div class="col-xs-6">
+                        <div class="checkbox icheck">
+                            <label>
+                                <input type="checkbox"> I agree to the
+                                <a href="#">terms</a>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-xs-6">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Registrar</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+                @*<a href="login.html" class="text-center">I already have a membership</a>*@
+            </div>
+        </div>
 
-<h2>@ViewBag.Title.</h2>
-
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
-    </div>
-}
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+        <!-- /.form-box -->
+    }
+</body>
+<!-- /.register-box -->
+@section Scripts { @Scripts.Render("~/bundles/jqueryval")
+@*<script>
+    $(function () {
+        $('input').iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            radioClass: 'iradio_square-blue',
+            increaseArea: '20%' // optional
+        });
+    });</script>*@
 }

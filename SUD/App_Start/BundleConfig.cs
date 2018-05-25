@@ -36,6 +36,7 @@ namespace SUD
                       "~/Scripts/Chart.js",
                       "~/Scripts/pages/dashboard2.js",
                       "~/Scripts/demo.js",
+                      "~/Scripts/icheck.min.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
@@ -49,7 +50,9 @@ namespace SUD
                       "~/Content/AdminLTE.css",
                       "~/Content/hint.min.css",
                       "~/Content/skins/_all-skins.min.css",
+                      "~/Content/blue.css",
                       "~/Content/skins/Site.css"));
+
         }
     }
 }
