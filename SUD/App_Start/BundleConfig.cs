@@ -47,6 +47,7 @@ namespace SUD
                       "~/Content/jquery-jvectormap.css",
                       "~/Content/select2.css",
                       "~/Content/AdminLTE.css",
+                      "~/Content/hint.min.css",
                       "~/Content/skins/_all-skins.min.css",
                       "~/Content/skins/Site.css"));
         }

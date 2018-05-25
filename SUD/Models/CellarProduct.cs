@@ -14,11 +14,9 @@ namespace SUD.Models
         [Key]
         public int CellarProductId { get; set; }
 
-        [Index("CellarProduct_Bodega", IsUnique = true, Order = 1)]
         [Display(Name = "Bodega")]
         public int CellarId { get; set; }
 
-        [Index("CellarProducto_Producto", IsUnique = true, Order = 2)]
         [Display(Name = "Producto")]
         public int ProductId { get; set; }
 
