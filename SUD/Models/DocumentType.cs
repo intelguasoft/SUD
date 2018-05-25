@@ -19,7 +19,7 @@ namespace SUD.Models
         [MaxLength(50, ErrorMessage ="*El nombre no puede llevar mas de 50 Caracteres")]
         public string Description { get; set; }
 
-        public virtual ICollection<Client> Clients { get; set; }
+        //public virtual ICollection<Client> Clients { get; set; }
 
     }
 }
