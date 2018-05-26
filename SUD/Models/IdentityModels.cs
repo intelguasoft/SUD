@@ -65,11 +65,15 @@ namespace SUD.Models
         public DbSet<SaleDetail> SaleDetails { get; set; }
 
         public DbSet<Purchase> Purchases { get; set; }
+        public DbSet<PurchaseDetail> PurchaseDetails { get; set; }
+        public DbSet<PurchaseDetailBk> PurchaseDetailBkps { get; set; }
 
         public DbSet<Supplier> Suppliers { get; set; }
 
-        public System.Data.Entity.DbSet<SUD.Models.AccountingDocument> AccountingDocuments { get; set; }
+        public DbSet<AccountingDocument> AccountingDocuments { get; set; }
 
-        public System.Data.Entity.DbSet<SUD.Models.PaymentMethod> PaymentMethods { get; set; }
+        public DbSet<PaymentMethod> PaymentMethods { get; set; }
+
+        public System.Data.Entity.DbSet<SUD.Models.State> States { get; set; }
     }
 }

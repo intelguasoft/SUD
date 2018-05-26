@@ -1,9 +1,11 @@
-﻿namespace SUD.Models
+﻿using System.Collections.Generic;
+
+namespace SUD.Models
 {
     public class Supplier
     {
 
-        public int SupplierId { get; set; }
+        public long SupplierId { get; set; }
 
         public string Tradename { get; set; }
 
@@ -27,6 +29,6 @@
 
         public virtual DocumentType DocumentType { get; set; }
 
-
+        public virtual ICollection<Purchase> Purchases { get; set; }
     }
 }

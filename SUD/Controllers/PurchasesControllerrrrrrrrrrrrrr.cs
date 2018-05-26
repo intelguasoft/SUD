@@ -3,63 +3,87 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Dynamic;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SUD.Models;
-using SUD.ViewModels;
 
 namespace SUD.Controllers
 {
-    public class PurchasesController : Controller
+    public class PurchasesControllerrrrrrrrrrrrrr : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationDbContext db;
 
-        /// <summary>
-        /// Lanza la vista que permite agregar el producto
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult AddProduct()
+        public PurchasesControllerrrrrrrrrrrrrr()
         {
-            ViewBag.ProductId = new SelectList(db.Products.OrderBy(p => p.Description), "ProductId", "Description");
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult AddProduct(AddProductView view)
-        {
-            if (ModelState.IsValid)
-            {
-                var product = db.Products.Find(view.ProductId);
-                var purchaseDetailBk = new PurchaseDetailBk
-                {
-                    Description = product.Description,
-                    User = User.Identity.Name,
-                    Cost = product.Price,
-                    ProductId = product.ProductId,
-                    Quantity = view.Quantity,
-                    ManufacturingLot = view.ManufacturingLot,
-                    DueDate = view.DueDate
-
-                };
-
-                db.PurchaseDetailBkps.Add(purchaseDetailBk);
-                db.SaveChanges();
-                return RedirectToAction("Create");
-            }
-            ViewBag.ProductId = new SelectList(db.Products.OrderBy(p => p.Description), "ProductId", "Description");
-            return View();
+            db = new ApplicationDbContext();
         }
 
         // GET: Purchases
         public ActionResult Index()
         {
-            var purchases = db.Purchases.Include(p => p.Cellar).Include(p => p.States).Include(p => p.Supplier);
-            return View(purchases.ToList());
+
+            return View();
+        }
+
+        //public ActionResult getPurchases()
+        //{
+        //    var draw = Request.Form.GetValues("draw").FirstOrDefault();
+        //    var model = (db.Purchases.ToList()
+        //    .Select(x => new
+        //    {
+        //        masterId = x.PurchaseId,
+        //        customerName = x.SupplierId,
+        //        address = x.CellarId,
+        //        orderDate = x.OrderDate.ToString("D")
+        //    })).ToList();
+
+        //    return Json(new
+        //    {
+        //        draw = draw,
+        //        recordsFiltered = model.Count,
+        //        recordsTotal = model.Count,
+        //        data = model
+        //    }, JsonRequestBehavior.AllowGet);
+        //}
+
+        [HttpPost]
+        public JsonResult getPurchases()
+        {
+            // TODO Falta que hacer el filtrado del lado del servidor.
+            var draw = Request.Form.GetValues("draw").FirstOrDefault();
+            var start = Request.Form.GetValues("start").FirstOrDefault();
+            var length = Request.Form.GetValues("length").FirstOrDefault();
+            //var filter = Request.Form.GetValues("filter").FirstOrDefault();
+            //Find Order Column
+            var sortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
+            var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
+
+
+            int pageSize = length != null ? Convert.ToInt32(length) : 0;
+            int skip = start != null ? Convert.ToInt32(start) : 0;
+            int recordsTotal = 0;
+            using (ApplicationDbContext _context = new ApplicationDbContext())
+            {
+                _context.Configuration.LazyLoadingEnabled = false; // esto es necesario si nuestra tabla esta relacionado y por cosiguiente tiene claves foraneas
+
+                var v = (from a in _context.Purchases.Include("Cellar").Include("Supplier") select a);
+
+                //SORT
+                if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDir)))
+                {
+                    v = v.OrderBy(sortColumn + " " + sortColumnDir);
+                }
+
+                recordsTotal = v.Count();
+                var data = v.Skip(skip).Take(pageSize).ToList();
+                return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         // GET: Purchases/Details/5
-        public ActionResult Details(long? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -78,14 +102,7 @@ namespace SUD.Controllers
         {
             ViewBag.CellarId = new SelectList(db.Cellars, "CellarId", "Description");
             ViewBag.SupplierId = new SelectList(db.Suppliers, "SupplierId", "Tradename");
-
-            var view = new NewPurchaseView
-            {
-                Date = DateTime.Now,
-                Details = db.PurchaseDetailBkps.Where(pdb => pdb.User == User.Identity.Name).ToList()
-            };
-
-            return View(view);
+            return View();
         }
 
         // POST: Purchases/Create
@@ -93,7 +110,7 @@ namespace SUD.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PurchaseId,Date,SupplierId,CellarId,StateId")] Purchase purchase)
+        public ActionResult Create([Bind(Include = "PurchaseId,Date,SupplierId,CellarId")] Purchase purchase)
         {
             if (ModelState.IsValid)
             {
@@ -108,7 +125,7 @@ namespace SUD.Controllers
         }
 
         // GET: Purchases/Edit/5
-        public ActionResult Edit(long? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -120,7 +137,6 @@ namespace SUD.Controllers
                 return HttpNotFound();
             }
             ViewBag.CellarId = new SelectList(db.Cellars, "CellarId", "Description", purchase.CellarId);
-            ViewBag.StateId = new SelectList(db.States, "StateId", "Description", purchase.StateId);
             ViewBag.SupplierId = new SelectList(db.Suppliers, "SupplierId", "Tradename", purchase.SupplierId);
             return View(purchase);
         }
@@ -130,7 +146,7 @@ namespace SUD.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PurchaseId,Date,SupplierId,CellarId,StateId")] Purchase purchase)
+        public ActionResult Edit([Bind(Include = "PurchaseId,Date,SupplierId,CellarId")] Purchase purchase)
         {
             if (ModelState.IsValid)
             {
@@ -139,13 +155,12 @@ namespace SUD.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.CellarId = new SelectList(db.Cellars, "CellarId", "Description", purchase.CellarId);
-            ViewBag.StateId = new SelectList(db.States, "StateId", "Description", purchase.StateId);
             ViewBag.SupplierId = new SelectList(db.Suppliers, "SupplierId", "Tradename", purchase.SupplierId);
             return View(purchase);
         }
 
         // GET: Purchases/Delete/5
-        public ActionResult Delete(long? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -162,7 +177,7 @@ namespace SUD.Controllers
         // POST: Purchases/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(long id)
+        public ActionResult DeleteConfirmed(int id)
         {
             Purchase purchase = db.Purchases.Find(id);
             db.Purchases.Remove(purchase);

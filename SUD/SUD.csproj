@@ -223,10 +223,12 @@
     <Compile Include="Controllers\PaymentMethodsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\PurchasesController.cs" />
+    <Compile Include="Controllers\PurchasesControllerrrrrrrrrrrrrr.cs" />
     <Compile Include="Controllers\RolPermissionsController.cs" />
     <Compile Include="Controllers\RolsController.cs" />
     <Compile Include="Controllers\SaleDetailsController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
+    <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Controllers\UserSudsController.cs" />
     <Compile Include="Generic\EmailHelper.cs" />
     <Compile Include="Generic\UsersHelper.cs" />
@@ -257,7 +259,8 @@
     <Compile Include="Models\PaymentMethod.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Purchase.cs" />
-    <Compile Include="Models\PurchaseDetails.cs" />
+    <Compile Include="Models\PurchaseDetail.cs" />
+    <Compile Include="Models\PurchaseDetailBk.cs" />
     <Compile Include="Models\RefundSupplier.cs" />
     <Compile Include="Models\RefundSupplierDetails.cs" />
     <Compile Include="Models\Sale.cs" />
@@ -271,6 +274,8 @@
     <Compile Include="Models\UserSud.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AddProductView.cs" />
+    <Compile Include="ViewModels\NewPurchaseView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\AdminLTE.css" />
@@ -852,12 +857,12 @@
     <Content Include="Views\InventoryDetails\Edit.cshtml" />
     <Content Include="Views\InventoryDetails\Index.cshtml" />
     <Content Include="Views\RolPermissions\DisplayTemplates\Boolean.cshtml" />
-    <Content Include="Views\Purchases\Create.cshtml" />
-    <Content Include="Views\Purchases\Delete.cshtml" />
-    <Content Include="Views\Purchases\Details.cshtml" />
-    <Content Include="Views\Purchases\Edit.cshtml" />
-    <Content Include="Views\Purchases\Index.cshtml" />
-    <Content Include="Views\Purchases\Index - Copy.cshtml" />
+    <Content Include="Views\Purchasessssssssssss\Create.cshtml" />
+    <Content Include="Views\Purchasessssssssssss\Delete.cshtml" />
+    <Content Include="Views\Purchasessssssssssss\Details.cshtml" />
+    <Content Include="Views\Purchasessssssssssss\Edit.cshtml" />
+    <Content Include="Views\Purchasessssssssssss\Index.cshtml" />
+    <Content Include="Views\Purchasessssssssssss\Index - Copy.cshtml" />
     <Content Include="Views\UserSuds\DisplayTemplates\Boolean.cshtml" />
     <Content Include="Views\AccountingDocuments\Create.cshtml" />
     <Content Include="Views\AccountingDocuments\Delete.cshtml" />
@@ -869,11 +874,21 @@
     <Content Include="Views\PaymentMethods\Details.cshtml" />
     <Content Include="Views\PaymentMethods\Edit.cshtml" />
     <Content Include="Views\PaymentMethods\Index.cshtml" />
+    <Content Include="Views\Purchases\Create.cshtml" />
+    <Content Include="Views\Purchases\Delete.cshtml" />
+    <Content Include="Views\Purchases\Details.cshtml" />
+    <Content Include="Views\Purchases\Edit.cshtml" />
+    <Content Include="Views\Purchases\Index.cshtml" />
+    <Content Include="Views\Purchases\AddProduct.cshtml" />
+    <Content Include="Views\Suppliers\Create.cshtml" />
+    <Content Include="Views\Suppliers\Delete.cshtml" />
+    <Content Include="Views\Suppliers\Details.cshtml" />
+    <Content Include="Views\Suppliers\Edit.cshtml" />
+    <Content Include="Views\Suppliers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Uploads\Products\" />
-    <Folder Include="ViewModels\" />
     <Folder Include="Views\Upload\" />
   </ItemGroup>
   <ItemGroup>

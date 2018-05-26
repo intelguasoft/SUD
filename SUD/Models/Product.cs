@@ -26,7 +26,7 @@ namespace SUD.Models
         [Display(Name = "Descripción")]
         public string Description { get; set; }
 
-        [Required(ErrorMessage = "El campo {0} es obligatorio" )]
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Precio")]
         [DataType(DataType.Currency)]
         public decimal Price { get; set; }
@@ -35,7 +35,7 @@ namespace SUD.Models
         [Display(Name = "Nota")]
         public string Note { get; set; }
 
-        
+
         [Display(Name = "Imagen")]
         public string Image { get; set; }
 
@@ -54,13 +54,15 @@ namespace SUD.Models
 
         public virtual ICollection<SaleDetail> SaleDetails { get; set; }
 
-        public virtual ICollection<PurchaseDetails> PurchaseDetails { get; set; }
+        public virtual ICollection<PurchaseDetail> PurchaseDetails { get; set; }
+
+        public virtual ICollection<PurchaseDetailBk> PurchaseDetailBkps { get; set; }
 
         public virtual Department Department { get; set; }
 
         public virtual Measure Measure { get; set; }
 
-        
+
 
 
     }

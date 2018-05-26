@@ -1,111 +1,51 @@
 ﻿@model IEnumerable<SUD.Models.Purchase>
 
 @{
-    ViewBag.Title = "Compras";
-    ViewBag.Message = "Listado de compras";
+    ViewBag.Title = "Index";
 }
 
+<h2>Index</h2>
 
-<!-- Content Header (Page header) -->
-<section class="content-header">
-    <h1>
-        <!--aqui va el titulo de la pagina que se va a mostrar, como el siguiente ejemplo -->
-        @ViewBag.Title - <small>@ViewBag.Message</small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-cart"></i> @ViewBag.Title</a></li>
-        <li class="active"> @ViewBag.Message</li>
-    </ol>
-</section>
-<!-- Main content -->
-<section class="content">
-    <!-- Default box -->
-    <div class="box">
-        <div class="box-header with-border">
-            <h3 class="box-title">@ViewBag.Message</h3>
-            <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                        title="Collapse">
-                    <i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove" disabled>
-                    <i class="fa fa-times"></i>
-                </button>
-            </div>
-        </div>
-        <div class="box-body">
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cellar.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.States.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Supplier.Tradename)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th></th>
+    </tr>
 
-            <table id="tblPurchases" class="display table table-striped table-bordered" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Fecha</th>
-                        <th>Proveedor</th>
-                        <th>Bodega</th>
-                    </tr>
-                </thead>
-            </table>
-        </div>
-        <!-- /.box-body -->
-        <div class="box-footer">
-            <!-- Aca se incluye aquellas acciones relacionadas con lo antes mostrado -->
-            <!-- por ejemplo botones de facturacion, exportar a excel/pdf o similares -->
-        </div>
-        <!-- /.box-footer-->
-    </div>
-    <!-- /.box -->
-</section>
-<!-- /.content -->
-
-@section Scripts{
-
-    <script>
-        $(document).ready(function () {
-            var selected = [];
-
-            //$.fn.dataTable.moment('HH:mm MMM D, YY');
-            //$.fn.dataTable.moment('dddd, MMMM Do, YYYY');
-
-            $("#tblPurchases").DataTable({
-                "processing": true, // for show progress bar
-                "serverSide": true, // for process server side
-                "filter": true, // this is for disable filter (search box)
-                "orderMulti": false, // for disable multiple column at once
-                "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
-                },
-                "ajax": {
-                    "url": '@Url.Action("getPurchases", "Purchases")',
-                    "type": "POST",
-                    "datatype": "json"
-                },
-                //"rowCallback": function (row, data) {
-                //    if ($.inArray(data.DT_RowId, selected) !== -1) {
-                //        $(row).addClass('selected');
-                //    }
-                //},
-                "columns": [
-                    { "data": "PurchaseId", "name": "PurchaseId", "autoWidth": true },
-                    { "data": "Date", "name": "Date", "autoWidth": true },
-                    { "data": "Supplier.Tradename", "name": "Supplier.Tradename", "autoWidth": true },
-                    { "data": "Cellar.Description", "name": "Cellar.Description", "autoWidth": true }
-                ]
-            });
-
-            //$('#tblPurchases tbody').on('click', 'tr', function () {
-            //    var id = this.id;
-            //    var index = $.inArray(id, selected);
-
-            //    if (index === -1) {
-            //        selected.push(id);
-            //    } else {
-            //        selected.splice(index, 1);
-            //    }
-
-            //    $(this).toggleClass('selected');
-            //});
-        });
-    </script>
-
-
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cellar.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.States.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Supplier.Tradename)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PurchaseId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PurchaseId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PurchaseId })
+        </td>
+    </tr>
 }
+
+</table>

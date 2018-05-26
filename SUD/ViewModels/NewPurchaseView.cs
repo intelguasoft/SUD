@@ -1,14 +1,14 @@
-﻿using System;
+﻿using SUD.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace SUD.Models
+namespace SUD.ViewModels
 {
-    public class Purchase
+    public class NewPurchaseView
     {
-        [Key]
         public long PurchaseId { get; set; }
 
         [Required]
@@ -25,17 +25,13 @@ namespace SUD.Models
         [Display(Name = "Bodega")]
         public int CellarId { get; set; }
 
-        [Required]
-        [Display(Name = "Estado")]
-        public short StateId { get; set; }
+        public List<PurchaseDetailBk> Details { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:N2}", ApplyFormatInEditMode = false)]
+        public double TotalQuantity { get { return Details == null ? 0 : Details.Sum(d => d.Quantity); } }
 
-        public virtual Supplier Supplier { get; set; }
+        [DisplayFormat(DataFormatString = "{0:N2}", ApplyFormatInEditMode = false)]
+        public decimal TotalValue { get { return Details == null ? 0 : Details.Sum(d => d.Cost); } }
 
-        public virtual Cellar Cellar { get; set; }
-
-        public virtual State States { get; set; }
-
-        public virtual ICollection<PurchaseDetail> PurchaseDetails { get; set; }
     }
 }
