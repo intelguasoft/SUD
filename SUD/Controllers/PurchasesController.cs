@@ -30,20 +30,31 @@ namespace SUD.Controllers
         {
             if (ModelState.IsValid)
             {
-                var product = db.Products.Find(view.ProductId);
-                var purchaseDetailBk = new PurchaseDetailBk
+                var purchaseDetailBk = db.PurchaseDetailBkps.Where(pdb => pdb.User == User.Identity.Name && pdb.ProductId == view.ProductId).FirstOrDefault();
+                if (purchaseDetailBk == null)
                 {
-                    Description = product.Description,
-                    User = User.Identity.Name,
-                    Cost = product.Price,
-                    ProductId = product.ProductId,
-                    Quantity = view.Quantity,
-                    ManufacturingLot = view.ManufacturingLot,
-                    DueDate = view.DueDate
+                    var product = db.Products.Find(view.ProductId);
+                    purchaseDetailBk = new PurchaseDetailBk
+                    {
+                        Description = product.Description,
+                        User = User.Identity.Name,
+                        Cost = product.Price,
+                        ProductId = product.ProductId,
+                        Quantity = view.Quantity,
+                        ManufacturingLot = view.ManufacturingLot,
+                        DueDate = view.DueDate
 
-                };
+                    };
 
-                db.PurchaseDetailBkps.Add(purchaseDetailBk);
+                    db.PurchaseDetailBkps.Add(purchaseDetailBk);
+
+                }
+                else
+                {
+                    purchaseDetailBk.Quantity += view.Quantity;
+                    db.Entry(purchaseDetailBk).State = EntityState.Modified;
+                }
+
                 db.SaveChanges();
                 return RedirectToAction("Create");
             }
