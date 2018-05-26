@@ -15,7 +15,7 @@ namespace SUD.Models
         public int CellarId { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        [Display(Name = "Descripción")]
+        [Display(Name = "Bodega")]
         public string Description { get; set; }
 
         public virtual ICollection<CellarProduct> CellarProducts { get; set; }
@@ -26,7 +26,6 @@ namespace SUD.Models
 
         public virtual ICollection<Purchase> Purchases { get; set; }
 
-
-
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

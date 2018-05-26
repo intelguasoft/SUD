@@ -1,63 +1,73 @@
-﻿@using SUD.Models
-@model LoginViewModel
+﻿
+@model SUD.Models.LoginViewModel
 @{
     ViewBag.Title = "Iniciar sesión";
+    Layout = "~/Views/Shared/_LayoutGuest.cshtml";
+
 }
 
-<h2>@ViewBag.Title.</h2>
-<div class="row">
-    <div class="col-md-8">
-        <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+<body class="login-page">
+    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="login-box">
+            <div class="login-logo">
+                <a href="#"><b>Bienvenido a SUD</b></a>
+            </div>+
+            <!-- /.login-logo -->
+            <div class="login-box-body">
+                <p class="login-box-msg">Usa una cuenta local para iniciar sesión</p>
+
+                <form action="#" method="post">
+                    <div class="form-group has-feedback">
+                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @type = "email" })
+                        <span class="fa fa-envelope  form-control-feedback"></span>
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                     </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    <div class="form-group has-feedback">
+
+                        @*<input type="password" class="form-control" placeholder="Contraseña">*@
+                        @Html.TextBoxFor(model => model.Password, new { @class = "form-control", @type = "password" })
+                        <span class="fa fa-sign-in form-control-feedback"></span>
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
+                    <div class="row text-center">
+                        <div class="col-xs-6">
+                            <div class="checkbox icheck">
+                                <label>
+                                    <input type="checkbox">
+                                    @Html.LabelFor(model => model.RememberMe)
+                                </label>
+                            </div>
                         </div>
+                        <!-- /.col -->
+                        <div class="col-xs-6">
+                            <button type="submit" class="btn btn-primary btn-block btn-flat">Iniciar sesión</button>
+                        </div>
+                        <!-- /.col -->
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
-                    </div>
-                </div>
-                <p>
-                    @Html.ActionLink("Register as a new user", "Register")
-                </p>
-                @* Enable this once you have account confirmation enabled for password reset functionality
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>*@
-            }
-        </section>
-    </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-    </div>
-</div>
+                </form>
+
+                @*<a href="#">I forgot my password</a><br>*@
+
+            </div>
+            <!-- /.login-box-body -->
+        </div>
+    }
+</body>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @*<script>
+            $(function () {
+                $('input').iCheck({
+                    checkboxClass: 'icheckbox_square-blue',
+                    radioClass: 'iradio_square-blue',
+                    increaseArea: '20%' /* optional */
+                });
+            });
+        </script>*@
 }
+

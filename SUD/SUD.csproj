@@ -220,20 +220,29 @@
     <Compile Include="Controllers\InventoryDetailsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MeasuresController.cs" />
+    <Compile Include="Controllers\OrderDetailsController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\PaymentMethodsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\PurchasesController.cs" />
     <Compile Include="Controllers\PurchasesControllerrrrrrrrrrrrrr.cs" />
     <Compile Include="Controllers\RolPermissionsController.cs" />
     <Compile Include="Controllers\RolsController.cs" />
+    <Compile Include="Controllers\RoutesController.cs" />
     <Compile Include="Controllers\SaleDetailsController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
     <Compile Include="Controllers\SuppliersController.cs" />
+    <Compile Include="Controllers\SellersController.cs" />
+    <Compile Include="Controllers\ShipmentsController.cs" />
     <Compile Include="Controllers\UserSudsController.cs" />
     <Compile Include="Generic\EmailHelper.cs" />
     <Compile Include="Generic\UsersHelper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805230515131_Initial_Create.cs" />
+    <Compile Include="Migrations\201805230515131_Initial_Create.Designer.cs">
+      <DependentUpon>201805230515131_Initial_Create.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountingDocument.cs" />
@@ -256,6 +265,8 @@
     <Compile Include="Models\Kardex.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Measure.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\PaymentMethod.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Purchase.cs" />
@@ -263,11 +274,14 @@
     <Compile Include="Models\PurchaseDetailBk.cs" />
     <Compile Include="Models\RefundSupplier.cs" />
     <Compile Include="Models\RefundSupplierDetails.cs" />
+    <Compile Include="Models\Route.cs" />
     <Compile Include="Models\Sale.cs" />
     <Compile Include="Models\ClientRefund.cs" />
     <Compile Include="Models\SaleDetail.cs" />
     <Compile Include="Models\SaleDetailsViewModel.cs" />
     <Compile Include="Models\State.cs" />
+    <Compile Include="Models\Seller.cs" />
+    <Compile Include="Models\Shipping.cs" />
     <Compile Include="Models\Supplier.cs" />
     <Compile Include="Models\Rol.cs" />
     <Compile Include="Models\RolPermission.cs" />
@@ -289,6 +303,7 @@
     <Content Include="Content\alt\AdminLTE-without-plugins.css" />
     <Content Include="Content\alt\AdminLTE-without-plugins.min.css" />
     <Content Include="Content\blue.css" />
+    <Content Include="Content\bootstrap-darkly.css" />
     <Content Include="Content\bootstrap-materia.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -456,6 +471,7 @@
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\ionicons.svg" />
+    <Content Include="Content\hint.min.css" />
     <Content Include="Content\img\avatar.png" />
     <Content Include="Content\img\avatar04.png" />
     <Content Include="Content\img\avatar2.png" />
@@ -885,6 +901,34 @@
     <Content Include="Views\Suppliers\Details.cshtml" />
     <Content Include="Views\Suppliers\Edit.cshtml" />
     <Content Include="Views\Suppliers\Index.cshtml" />
+    <Content Include="Views\Sellers\Create.cshtml" />
+    <Content Include="Views\Sellers\Delete.cshtml" />
+    <Content Include="Views\Sellers\Details.cshtml" />
+    <Content Include="Views\Sellers\Edit.cshtml" />
+    <Content Include="Views\Sellers\Index.cshtml" />
+    <Content Include="Views\Routes\Create.cshtml" />
+    <Content Include="Views\Routes\Delete.cshtml" />
+    <Content Include="Views\Routes\Details.cshtml" />
+    <Content Include="Views\Routes\Edit.cshtml" />
+    <Content Include="Views\Routes\Index.cshtml" />
+    <Content Include="Views\Orders\Create.cshtml" />
+    <Content Include="Views\Orders\Delete.cshtml" />
+    <Content Include="Views\Orders\Details.cshtml" />
+    <Content Include="Views\Orders\Edit.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="Views\OrderDetails\Create.cshtml" />
+    <Content Include="Views\OrderDetails\Delete.cshtml" />
+    <Content Include="Views\OrderDetails\Details.cshtml" />
+    <Content Include="Views\OrderDetails\Edit.cshtml" />
+    <Content Include="Views\OrderDetails\Index.cshtml" />
+    <Content Include="Views\Shipments\Create.cshtml" />
+    <Content Include="Views\Shipments\Delete.cshtml" />
+    <Content Include="Views\Shipments\Details.cshtml" />
+    <Content Include="Views\Shipments\Edit.cshtml" />
+    <Content Include="Views\Shipments\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutGuest.cshtml" />
+    <Content Include="Views\Account\Register - Copia.cshtml" />
+    <Content Include="Views\Sales\Indexoriginal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -905,6 +949,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201805230515131_Initial_Create.resx">
+      <DependentUpon>201805230515131_Initial_Create.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

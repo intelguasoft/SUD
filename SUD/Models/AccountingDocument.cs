@@ -45,6 +45,7 @@ namespace SUD.Models
         public DateTime ExpirationDate { get; set; }
 
         public virtual ICollection<Sale> Sales { get; set; }
+        public virtual ICollection<Route> Routes { get; set; }
 
     }
 }
