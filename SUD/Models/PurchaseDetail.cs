@@ -9,7 +9,7 @@ namespace SUD.Models
     public class PurchaseDetail
     {
         [Key]
-        public long PurchaseDetailId { get; set; }
+        public long PurchaseDetailsId { get; set; }
 
         [Required]
         [Display(Name = "Compra")]
