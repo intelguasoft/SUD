@@ -38,7 +38,5 @@ namespace SUD.Models
         [Display(Name = "Notas", Description = "Notas")]
         public string Note { get; set; }
 
-        public virtual ICollection<Route> Routes { get; set; }
-
     }
 }

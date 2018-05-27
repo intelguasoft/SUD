@@ -16,19 +16,15 @@ namespace SUD.Models
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Numero de Ruta")]
-        public int RouteNumber { get; set; }
+        public string RouteNumber { get; set; }
 
         [Display(Name = "Tipo Documento")]
         public int AccountingDocumentId { get; set; }
-
-        [Display(Name = "Vendedor")]
-        public int SellerId { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Territorio de Ruta")]
         public string Territory { get; set; }
 
-        public virtual Seller Seller { get; set; }
         public virtual AccountingDocument AccountingDocument { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }

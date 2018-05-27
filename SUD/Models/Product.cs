@@ -26,8 +26,9 @@ namespace SUD.Models
         [Display(Name = "Producto")]
         public string Description { get; set; }
 
-        [Required(ErrorMessage = "El campo {0} es obligatorio" )]
-        [Display(Name = "Precio", Description = "0.00")]
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
+        [Display(Name = "Precio")]
+        [DisplayFormat(DataFormatString = "{0:C2}", ApplyFormatInEditMode = false)]
         [DataType(DataType.Currency)]
         public decimal Price { get; set; }
 

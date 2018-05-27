@@ -20,10 +20,17 @@ namespace SUD.Models
         [Display(Name = "Producto")]
         public int ProductId { get; set; }
 
+        // Descripcion del producto agregado
+        [Required]
+        [Display(Name = "Description")]
+        public string Description { get; set; }
+
         // El valor de esta propiedad debe recibir el valor actual de Product.Price
-        [Display(Name = "Precio", Description = "0.00")]
         [Required(ErrorMessage = "Precio Requerido")]
-        public float Price { get; set; }
+        [Display(Name = "Precio")]
+        [DisplayFormat(DataFormatString = "{0:C2}", ApplyFormatInEditMode = false)]
+        [DataType(DataType.Currency)]
+        public decimal Price { get; set; }
 
         [Display(Name = "Cantidad")]
         [Required(ErrorMessage = "Cantidad Requerida")]
