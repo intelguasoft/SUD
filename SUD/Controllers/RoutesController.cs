@@ -10,112 +10,112 @@ using SUD.Models;
 
 namespace SUD.Controllers
 {
-    public class ShipmentsController : Controller
+    public class RoutesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Shipments
+        // GET: Routes
         public ActionResult Index()
         {
-            var shippings = db.Shippings.Include(s => s.Order);
-            return View(shippings.ToList());
+            var routes = db.Routes.Include(r => r.AccountingDocument);
+            return View(routes.ToList());
         }
 
-        // GET: Shipments/Details/5
+        // GET: Routes/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Shipping shipping = db.Shippings.Find(id);
-            if (shipping == null)
+            Route route = db.Routes.Find(id);
+            if (route == null)
             {
                 return HttpNotFound();
             }
-            return View(shipping);
+            return View(route);
         }
 
-        // GET: Shipments/Create
+        // GET: Routes/Create
         public ActionResult Create()
         {
-            ViewBag.OrderId = new SelectList(db.Orders, "OrderId", "OrderId");
+            ViewBag.AccountingDocumentId = new SelectList(db.AccountingDocuments, "AccountingDocumentId", "Document");
             return View();
         }
 
-        // POST: Shipments/Create
+        // POST: Routes/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ShippingId,OrderId,Date,InvoiceNumber,StateId")] Shipping shipping)
+        public ActionResult Create([Bind(Include = "RouteId,RouteNumber,AccountingDocumentId,Territory")] Route route)
         {
             if (ModelState.IsValid)
             {
-                db.Shippings.Add(shipping);
+                db.Routes.Add(route);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.OrderId = new SelectList(db.Orders, "OrderId", "OrderId", shipping.OrderId);
-            return View(shipping);
+            ViewBag.AccountingDocumentId = new SelectList(db.AccountingDocuments, "AccountingDocumentId", "Document", route.AccountingDocumentId);
+            return View(route);
         }
 
-        // GET: Shipments/Edit/5
+        // GET: Routes/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Shipping shipping = db.Shippings.Find(id);
-            if (shipping == null)
+            Route route = db.Routes.Find(id);
+            if (route == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.OrderId = new SelectList(db.Orders, "OrderId", "OrderId", shipping.OrderId);
-            return View(shipping);
+            ViewBag.AccountingDocumentId = new SelectList(db.AccountingDocuments, "AccountingDocumentId", "Document", route.AccountingDocumentId);
+            return View(route);
         }
 
-        // POST: Shipments/Edit/5
+        // POST: Routes/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ShippingId,OrderId,Date,InvoiceNumber,StateId")] Shipping shipping)
+        public ActionResult Edit([Bind(Include = "RouteId,RouteNumber,AccountingDocumentId,Territory")] Route route)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(shipping).State = EntityState.Modified;
+                db.Entry(route).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.OrderId = new SelectList(db.Orders, "OrderId", "OrderId", shipping.OrderId);
-            return View(shipping);
+            ViewBag.AccountingDocumentId = new SelectList(db.AccountingDocuments, "AccountingDocumentId", "Document", route.AccountingDocumentId);
+            return View(route);
         }
 
-        // GET: Shipments/Delete/5
+        // GET: Routes/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Shipping shipping = db.Shippings.Find(id);
-            if (shipping == null)
+            Route route = db.Routes.Find(id);
+            if (route == null)
             {
                 return HttpNotFound();
             }
-            return View(shipping);
+            return View(route);
         }
 
-        // POST: Shipments/Delete/5
+        // POST: Routes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Shipping shipping = db.Shippings.Find(id);
-            db.Shippings.Remove(shipping);
+            Route route = db.Routes.Find(id);
+            db.Routes.Remove(route);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

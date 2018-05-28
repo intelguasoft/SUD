@@ -7,15 +7,16 @@ using System.Web;
 
 namespace SUD.Models
 {
-    [Table("tbl_OrderDetails")]
 
-    public class OrderDetail
+    [Table("tbl_OrderDetailsBk")]
+
+    public class OrderDetailBk
     {
         [Key]
         public int OrderDetailId { get; set; }
 
-        [Display(Name = "Número de Orden")]
-        public int OrderId { get; set; }
+        [Display(Name = "Usuario")]
+        public string User { get; set; }
 
         [Display(Name = "Producto")]
         public int ProductId { get; set; }
@@ -47,7 +48,6 @@ namespace SUD.Models
         [RegularExpression(@"^[1-9]\d*(\.\d +)?$", ErrorMessage = "Porcentaje Invalido, solo se permiten numeros.")]
         public float DiscountRate { get; set; }
 
-        public virtual Order Order { get; set; }
         public virtual Product Product { get; set; }
 
     }

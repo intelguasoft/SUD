@@ -1,0 +1,201 @@
+﻿@model SUD.ViewModels.NewOrderView
+
+@{
+    ViewBag.Title = "Ordenes";
+    ViewBag.Message = "Crear Orden";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            <!--aqui va el titulo de la pagina que se va a mostrar, como el siguiente ejemplo -->
+            @ViewBag.Title - <small>@ViewBag.Message</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index")"><i class="fa fa-pencil-square-o"></i> Ordenes</a></li>
+            <li class="active">Crear</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Default box -->
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">@ViewBag.Message</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                            title="Collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove" disabled>
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="box-body">
+                <!-- Aca se incluye todo el contenido de la pagina que se desea mostrar -->
+                <!-- por ejemplo el index/tabla de algun recurso -->
+                <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ClientId, "Cliente", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                            @Html.DropDownList("ClientId", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ClientId, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CellarId, "Bodega", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                            @Html.DropDownList("CellarId", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CellarId, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.RouteId, "Ruta", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                            @Html.DropDownList("RouteId", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.RouteId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-12 col-md-6">
+                        <div class="form-group">
+                            @Html.ActionLink("Agregar producto", "AddProduct", new { }, new { @class = "btn btn-primary" })
+                        </div>
+                    </div>
+                </div>
+
+                <span class="border"></span>
+                @if (Model.Details.Count == 0)
+                {
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Details[0].Description)
+                            </th>
+                            <th align="center">
+                                @Html.DisplayNameFor(model => model.Details[0].Price)
+                            </th>
+                            <th align="center">
+                                @Html.DisplayNameFor(model => model.Details[0].Quantity)
+                            </th>
+                            <th align="center">
+                                @Html.DisplayNameFor(model => model.Details[0].Value)
+                            </th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td class="info" colspan="7" align="center">
+                                <h4>No hay detalles para esta orden.</h4>
+                            </td>
+                        </tr>
+                    </table>
+
+                }
+                else
+                {
+                    <table class="table table-condensed">
+                        <tr class="bg-info border-secondary border-dark">
+                            <th>
+                                @Html.DisplayNameFor(model => model.Details[0].Description)
+                            </th>
+                            <th align="center">
+                                @Html.DisplayNameFor(model => model.Details[0].Price)
+                            </th>
+                            <th align="center">
+                                @Html.DisplayNameFor(model => model.Details[0].Quantity)
+                            </th>
+                            <th align="center">
+                                @Html.DisplayNameFor(model => model.Details[0].Value)
+                            </th>
+                        </tr>
+
+                        @foreach (var item in Model.Details)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </td>
+                                <td align="right">
+                                    @Html.DisplayFor(modelItem => item.Price)
+                                </td>
+                                <td align="right">
+                                    @Html.DisplayFor(modelItem => item.Quantity)
+                                </td>
+                                <td align="right">
+                                    @Html.DisplayFor(modelItem => item.Value)
+                                </td>
+                                <td align="center">
+                                    <div class="btn-group">
+                                        @Html.ActionLink(" ", "DeleteProduct", new { id = item.ProductId }, new { @class = "btn btn-danger fa fa-trash", onclick = "return confirm('Realmente desea eliminar el producto.?');" })
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                        <tr class="bg-info border-dark">
+                            <td colspan="4" align="right">
+                                <strong>Total </strong>
+                            </td>
+                            <td align="right">
+                                <strong>@Html.DisplayFor(modelItem => Model.TotalQuantity)</strong>
+                            </td>
+                            <td align="right">
+                                <strong>@Html.DisplayFor(modelItem => Model.TotalValue)</strong>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </table>
+                }
+
+            </div>
+            <!-- /.box-body -->
+
+            <div class="box-footer">
+                <!-- Aca se incluye aquellas acciones relacionadas con lo antes mostrado -->
+                <!-- por ejemplo botones de facturacion, exportar a excel/pdf o similares -->
+                @if (Model.Details.Count > 0)
+                {
+                    <div class="form-group pull-right">
+                        <a href="@Url.Action("Index")" class="btn btn-success"> <i class="fa fa-undo" aria-hidden="true"></i> Regresar</a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar
+                        </button>
+                    </div>
+                }
+
+            </div>
+
+            <!-- /.box-footer-->
+        </div>
+        <!-- /.box -->
+    </section>
+    <!-- /.content -->
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
