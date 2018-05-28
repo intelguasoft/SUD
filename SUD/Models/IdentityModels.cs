@@ -74,16 +74,16 @@ namespace SUD.Models
 
         public DbSet<PaymentMethod> PaymentMethods { get; set; }
 
-        public System.Data.Entity.DbSet<SUD.Models.State> States { get; set; }
+        public DbSet<State> States { get; set; }
 
-        public System.Data.Entity.DbSet<SUD.Models.Route> Routes { get; set; }
+        public DbSet<Route> Routes { get; set; }
 
-        public System.Data.Entity.DbSet<SUD.Models.Order> Orders { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
-        public System.Data.Entity.DbSet<SUD.Models.OrderDetail> OrderDetails { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
 
-        public System.Data.Entity.DbSet<SUD.Models.OrderDetailBk> OrderDetailBkps { get; set; }
+        public DbSet<OrderDetailBk> OrderDetailBkps { get; set; }
 
-        public System.Data.Entity.DbSet<SUD.Models.Shipping> Shippings { get; set; }
+        public DbSet<Shipping> Shippings { get; set; }
     }
 }

@@ -26,14 +26,14 @@ namespace SUD.Controllers
         {
             if (ModelState.IsValid)
             {
-                var orderDetailBk = db.OrderDetailBkps.Where(odb => odb.ProductId == view.ProductId).FirstOrDefault();
+                var orderDetailBk = db.OrderDetailBkps.Where(odb => odb.User == User.Identity.Name && odb.ProductId == view.ProductId).FirstOrDefault();
 
                 if (orderDetailBk == null)
                 {
                     var product = db.Products.Find(view.ProductId);
                     orderDetailBk = new OrderDetailBk
                     {
-                        User = "Thomas",
+                        User = User.Identity.Name,
                         Description = product.Description,
                         Price = product.Price,
                         ProductId = product.ProductId,
@@ -91,10 +91,10 @@ namespace SUD.Controllers
             var view = new NewOrderView
             {
                 Date = DateTime.Now,
-                Details = db.OrderDetailBkps.ToList()
+                Details = db.OrderDetailBkps.Where(pdb => pdb.User == User.Identity.Name).ToList()
             };
 
-            return View();
+            return View(view);
         }
 
         // POST: Orders/Create
@@ -112,7 +112,7 @@ namespace SUD.Controllers
             }
 
             ViewBag.CellarId = new SelectList(db.Cellars, "CellarId", "Description", order.CellarId);
-            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "Document", order.ClientId);
+            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "ComertialName", order.ClientId);
             ViewBag.RouteId = new SelectList(db.Routes, "RouteId", "RouteNumber", order.RouteId);
             return View(order);
         }
@@ -130,7 +130,7 @@ namespace SUD.Controllers
                 return HttpNotFound();
             }
             ViewBag.CellarId = new SelectList(db.Cellars, "CellarId", "Description", order.CellarId);
-            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "Document", order.ClientId);
+            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "ComertialName", order.ClientId);
             ViewBag.RouteId = new SelectList(db.Routes, "RouteId", "RouteNumber", order.RouteId);
             return View(order);
         }
@@ -149,7 +149,7 @@ namespace SUD.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.CellarId = new SelectList(db.Cellars, "CellarId", "Description", order.CellarId);
-            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "Document", order.ClientId);
+            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "ComertialName", order.ClientId);
             ViewBag.RouteId = new SelectList(db.Routes, "RouteId", "RouteNumber", order.RouteId);
             return View(order);
         }

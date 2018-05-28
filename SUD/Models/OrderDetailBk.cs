@@ -41,11 +41,11 @@ namespace SUD.Models
         public decimal Value { get { return Price * (decimal)Quantity; } }
 
         [Display(Name = "Porcentaje de IVA", Description = "0.00")]
-        [RegularExpression(@"^[1-9]\d*(\.\d +)?$", ErrorMessage = "Porcentaje Invalido, solo se permiten numeros.")]
+        //[RegularExpression(@"^[1-9]\d*(\.\d +)?$", ErrorMessage = "Porcentaje Invalido, solo se permiten numeros.")]
         public float IVAPercentage { get; set; }
 
         [Display(Name = "Porcentaje de descuento", Description = "0.00")]
-        [RegularExpression(@"^[1-9]\d*(\.\d +)?$", ErrorMessage = "Porcentaje Invalido, solo se permiten numeros.")]
+        //[RegularExpression(@"^[1-9]\d*(\.\d +)?$", ErrorMessage = "Porcentaje Invalido, solo se permiten numeros.")]
         public float DiscountRate { get; set; }
 
         public virtual Product Product { get; set; }
