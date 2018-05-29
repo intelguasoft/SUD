@@ -228,7 +228,6 @@
     <Compile Include="Controllers\RolPermissionsController.cs" />
     <Compile Include="Controllers\RolsController.cs" />
     <Compile Include="Controllers\RoutesController.cs" />
-    <Compile Include="Controllers\SaleDetailsController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
     <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Controllers\UserSudsController.cs" />
@@ -240,6 +239,14 @@
     <Compile Include="Migrations\201805281810517_Initial.cs" />
     <Compile Include="Migrations\201805281810517_Initial.Designer.cs">
       <DependentUpon>201805281810517_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805290413456_MaestroDetalle_Ventas.cs" />
+    <Compile Include="Migrations\201805290413456_MaestroDetalle_Ventas.Designer.cs">
+      <DependentUpon>201805290413456_MaestroDetalle_Ventas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805290423281_MaestroDetalle_Ventas1.cs" />
+    <Compile Include="Migrations\201805290423281_MaestroDetalle_Ventas1.Designer.cs">
+      <DependentUpon>201805290423281_MaestroDetalle_Ventas1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountingDocument.cs" />
@@ -276,6 +283,7 @@
     <Compile Include="Models\Sale.cs" />
     <Compile Include="Models\ClientRefund.cs" />
     <Compile Include="Models\SaleDetail.cs" />
+    <Compile Include="Models\SaleDetailBk.cs" />
     <Compile Include="Models\SaleDetailsViewModel.cs" />
     <Compile Include="Models\State.cs" />
     <Compile Include="Models\Shipping.cs" />
@@ -288,6 +296,7 @@
     <Compile Include="ViewModels\AddProductView.cs" />
     <Compile Include="ViewModels\NewOrderView.cs" />
     <Compile Include="ViewModels\NewPurchaseView.cs" />
+    <Compile Include="ViewModels\NewSaleView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\AdminLTE.css" />
@@ -901,7 +910,7 @@
     <Content Include="Views\Suppliers\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutGuest.cshtml" />
     <Content Include="Views\Account\Register - Copia.cshtml" />
-    <Content Include="Views\Sales\Indexoriginal.cshtml" />
+    <Content Include="Views\Sales\zzIndexoriginal.cshtml" />
     <Content Include="Views\Routes\Create.cshtml" />
     <Content Include="Views\Routes\Delete.cshtml" />
     <Content Include="Views\Routes\Details.cshtml" />
@@ -913,6 +922,8 @@
     <Content Include="Views\Orders\Edit.cshtml" />
     <Content Include="Views\Orders\Index.cshtml" />
     <Content Include="Views\Orders\AddProduct.cshtml" />
+    <Content Include="Views\Sales\zzCreateoriginal.cshtml" />
+    <Content Include="Views\Sales\AddProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -937,6 +948,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201805281810517_Initial.resx">
       <DependentUpon>201805281810517_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805290413456_MaestroDetalle_Ventas.resx">
+      <DependentUpon>201805290413456_MaestroDetalle_Ventas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805290423281_MaestroDetalle_Ventas1.resx">
+      <DependentUpon>201805290423281_MaestroDetalle_Ventas1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

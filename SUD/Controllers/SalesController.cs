@@ -8,12 +8,62 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SUD.Models;
+using SUD.ViewModels; // New
 
 namespace SUD.Controllers
 {
     public class SalesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+
+        //New
+
+        public ActionResult AddProduct()
+        {
+            ViewBag.ProductId = new SelectList(db.Products.OrderBy(p => p.Description), "ProductId", "Description");
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddProduct(AddProductView view)
+        {
+            if (ModelState.IsValid)
+            {
+                var saleDetailBk = db.SaleDetailBkps.Where(odb => odb.User == User.Identity.Name && odb.ProductId == view.ProductId).FirstOrDefault();
+
+                if (saleDetailBk == null)
+                {
+                    var product = db.Products.Find(view.ProductId);
+                    saleDetailBk = new SaleDetailBk
+                    {
+                        User = User.Identity.Name,
+                        Description = product.Description,
+                        Price = product.Price,
+                        ProductId = product.ProductId,
+                        Quantity = view.Quantity
+                    };
+
+                    db.SaleDetailBkps.Add(saleDetailBk);
+
+                }
+                else
+                {
+                    saleDetailBk.Quantity += view.Quantity;
+                    db.Entry(saleDetailBk).State = EntityState.Modified;
+                }
+
+
+                db.SaveChanges();
+                return RedirectToAction("Create");
+
+            }
+            ViewBag.ProductId = new SelectList(db.Products.OrderBy(p => p.Description), "ProductId", "Description");
+            return View();
+        }
+
+        //EndNew
+
+
 
         // GET: Sales
         public ActionResult Index()
@@ -42,7 +92,14 @@ namespace SUD.Controllers
         {
             ViewBag.CellarId = new SelectList(db.Cellars, "CellarId", "Description");
             ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "Document");
-            return View();
+
+            var view = new NewSaleView
+            {
+                Date = DateTime.Now,
+                Details = db.SaleDetailBkps.Where(pdb => pdb.User == User.Identity.Name).ToList()
+            };
+
+            return View(view);
         }
 
         // POST: Sales/Create
