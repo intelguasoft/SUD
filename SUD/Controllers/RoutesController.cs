@@ -17,7 +17,7 @@ namespace SUD.Controllers
         // GET: Routes
         public ActionResult Index()
         {
-            var routes = db.Routes.Include(r => r.AccountingDocument).Include(r => r.Seller);
+            var routes = db.Routes.Include(r => r.AccountingDocument);
             return View(routes.ToList());
         }
 
@@ -40,7 +40,6 @@ namespace SUD.Controllers
         public ActionResult Create()
         {
             ViewBag.AccountingDocumentId = new SelectList(db.AccountingDocuments, "AccountingDocumentId", "Document");
-            ViewBag.SellerId = new SelectList(db.Sellers, "SellerId", "Document");
             return View();
         }
 
@@ -49,7 +48,7 @@ namespace SUD.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RouteId,RouteNumber,AccountingDocumentId,SellerId,Territory")] Route route)
+        public ActionResult Create([Bind(Include = "RouteId,RouteNumber,AccountingDocumentId,Territory")] Route route)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +58,6 @@ namespace SUD.Controllers
             }
 
             ViewBag.AccountingDocumentId = new SelectList(db.AccountingDocuments, "AccountingDocumentId", "Document", route.AccountingDocumentId);
-            ViewBag.SellerId = new SelectList(db.Sellers, "SellerId", "Document", route.SellerId);
             return View(route);
         }
 
@@ -76,7 +74,6 @@ namespace SUD.Controllers
                 return HttpNotFound();
             }
             ViewBag.AccountingDocumentId = new SelectList(db.AccountingDocuments, "AccountingDocumentId", "Document", route.AccountingDocumentId);
-            ViewBag.SellerId = new SelectList(db.Sellers, "SellerId", "Document", route.SellerId);
             return View(route);
         }
 
@@ -85,7 +82,7 @@ namespace SUD.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RouteId,RouteNumber,AccountingDocumentId,SellerId,Territory")] Route route)
+        public ActionResult Edit([Bind(Include = "RouteId,RouteNumber,AccountingDocumentId,Territory")] Route route)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +91,6 @@ namespace SUD.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.AccountingDocumentId = new SelectList(db.AccountingDocuments, "AccountingDocumentId", "Document", route.AccountingDocumentId);
-            ViewBag.SellerId = new SelectList(db.Sellers, "SellerId", "Document", route.SellerId);
             return View(route);
         }
 

@@ -31,6 +31,8 @@ namespace SUD.Models
         public int StateId { get; set; }
 
         public virtual Order Order { get; set; }
+        public virtual State State { get; set; }
+
 
     }
 }

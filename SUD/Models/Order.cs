@@ -14,12 +14,8 @@ namespace SUD.Models
         [Key]
         public int OrderId { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Display(Name = "Número de Orden")]
-        public int OrderNumber { get; set; }
-
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        [Display(Name = "Fecha de Orden")]
+        [Display(Name = "Fecha")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
@@ -39,6 +35,7 @@ namespace SUD.Models
         public virtual Client Client { get; set; }
         public virtual Cellar Cellar { get; set; }
         public virtual Route Route { get; set; }
+        public virtual State State { get; set; }
 
         public virtual ICollection<Shipping> Shipments { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }

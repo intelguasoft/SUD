@@ -14,21 +14,21 @@
         <div class="login-box">
             <div class="login-logo">
                 <a href="#"><b>Bienvenido a SUD</b></a>
-            </div>+
+            </div>
             <!-- /.login-logo -->
             <div class="login-box-body">
                 <p class="login-box-msg">Usa una cuenta local para iniciar sesión</p>
 
                 <form action="#" method="post">
                     <div class="form-group has-feedback">
-                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @type = "email" })
+                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @type = "email", @placeholder = "Correo Electrónico" })
                         <span class="fa fa-envelope  form-control-feedback"></span>
                         @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group has-feedback">
 
                         @*<input type="password" class="form-control" placeholder="Contraseña">*@
-                        @Html.TextBoxFor(model => model.Password, new { @class = "form-control", @type = "password" })
+                        @Html.TextBoxFor(model => model.Password, new { @class = "form-control", @type = "password", @placeholder = "Contraseña " })
                         <span class="fa fa-sign-in form-control-feedback"></span>
                         @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                     </div>

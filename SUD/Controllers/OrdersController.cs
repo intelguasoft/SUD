@@ -7,12 +7,57 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SUD.Models;
+using SUD.ViewModels;
 
 namespace SUD.Controllers
 {
     public class OrdersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+
+        public ActionResult AddProduct()
+        {
+            ViewBag.ProductId = new SelectList(db.Products.OrderBy(p => p.Description), "ProductId", "Description");
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddProduct(AddProductView view)
+        {
+            if (ModelState.IsValid)
+            {
+                var orderDetailBk = db.OrderDetailBkps.Where(odb => odb.User == User.Identity.Name && odb.ProductId == view.ProductId).FirstOrDefault();
+
+                if (orderDetailBk == null)
+                {
+                    var product = db.Products.Find(view.ProductId);
+                    orderDetailBk = new OrderDetailBk
+                    {
+                        User = User.Identity.Name,
+                        Description = product.Description,
+                        Price = product.Price,
+                        ProductId = product.ProductId,
+                        Quantity = view.Quantity
+                    };
+
+                    db.OrderDetailBkps.Add(orderDetailBk);
+
+                }
+                else
+                {
+                    orderDetailBk.Quantity += view.Quantity;
+                    db.Entry(orderDetailBk).State = EntityState.Modified;
+                }
+
+
+                db.SaveChanges();
+                return RedirectToAction("Create");
+
+            }
+            ViewBag.ProductId = new SelectList(db.Products.OrderBy(p => p.Description), "ProductId", "Description");
+            return View();
+        }
+
 
         // GET: Orders
         public ActionResult Index()
@@ -40,9 +85,16 @@ namespace SUD.Controllers
         public ActionResult Create()
         {
             ViewBag.CellarId = new SelectList(db.Cellars, "CellarId", "Description");
-            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "Document");
-            ViewBag.RouteId = new SelectList(db.Routes, "RouteId", "Territory");
-            return View();
+            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "ComertialName");
+            ViewBag.RouteId = new SelectList(db.Routes, "RouteId", "RouteNumber");
+
+            var view = new NewOrderView
+            {
+                Date = DateTime.Now,
+                Details = db.OrderDetailBkps.Where(pdb => pdb.User == User.Identity.Name).ToList()
+            };
+
+            return View(view);
         }
 
         // POST: Orders/Create
@@ -50,7 +102,7 @@ namespace SUD.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OrderId,OrderNumber,Date,ClientId,CellarId,RouteId,StateId")] Order order)
+        public ActionResult Create([Bind(Include = "OrderId,Date,ClientId,CellarId,RouteId,StateId")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -60,8 +112,8 @@ namespace SUD.Controllers
             }
 
             ViewBag.CellarId = new SelectList(db.Cellars, "CellarId", "Description", order.CellarId);
-            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "Document", order.ClientId);
-            ViewBag.RouteId = new SelectList(db.Routes, "RouteId", "Territory", order.RouteId);
+            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "ComertialName", order.ClientId);
+            ViewBag.RouteId = new SelectList(db.Routes, "RouteId", "RouteNumber", order.RouteId);
             return View(order);
         }
 
@@ -78,8 +130,8 @@ namespace SUD.Controllers
                 return HttpNotFound();
             }
             ViewBag.CellarId = new SelectList(db.Cellars, "CellarId", "Description", order.CellarId);
-            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "Document", order.ClientId);
-            ViewBag.RouteId = new SelectList(db.Routes, "RouteId", "Territory", order.RouteId);
+            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "ComertialName", order.ClientId);
+            ViewBag.RouteId = new SelectList(db.Routes, "RouteId", "RouteNumber", order.RouteId);
             return View(order);
         }
 
@@ -88,7 +140,7 @@ namespace SUD.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OrderId,OrderNumber,Date,ClientId,CellarId,RouteId,StateId")] Order order)
+        public ActionResult Edit([Bind(Include = "OrderId,Date,ClientId,CellarId,RouteId,StateId")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -97,8 +149,8 @@ namespace SUD.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.CellarId = new SelectList(db.Cellars, "CellarId", "Description", order.CellarId);
-            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "Document", order.ClientId);
-            ViewBag.RouteId = new SelectList(db.Routes, "RouteId", "Territory", order.RouteId);
+            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "ComertialName", order.ClientId);
+            ViewBag.RouteId = new SelectList(db.Routes, "RouteId", "RouteNumber", order.RouteId);
             return View(order);
         }
 
