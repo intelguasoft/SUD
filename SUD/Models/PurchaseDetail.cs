@@ -31,19 +31,7 @@ namespace SUD.Models
         [Required]
         [DisplayFormat(DataFormatString = "{0:N2}", ApplyFormatInEditMode = false)]
         [Range(1, double.MaxValue, ErrorMessage = "Debe ingresar en el campo {0} un valor entre {1} y {2}")]
-        public float Quantity { get; set; }
-
-        [Required]
-        [Display(Name = "Kardex")]
-        public long KardexId { get; set; }
-
-        [Required]
-        [Display(Name = "Porcentaje de impuesto")]
-        public float VATRate { get; set; }
-
-        [Required]
-        [Display(Name = "Porcentaje de descuento")]
-        public float DiscountRate { get; set; }
+        public double Quantity { get; set; }
 
         [Display(Name = "Lote")]
         public string ManufacturingLot { get; set; }
