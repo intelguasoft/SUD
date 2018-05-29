@@ -44,7 +44,7 @@ namespace SUD.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime ExpirationDate { get; set; }
 
-        public virtual ICollection<Sale> Sales { get; set; }
+       // public virtual ICollection<Sale> Sales { get; set; }
         public virtual ICollection<Route> Routes { get; set; }
 
     }

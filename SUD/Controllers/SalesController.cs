@@ -21,11 +21,13 @@ namespace SUD.Controllers
         public ActionResult AddProduct()
         {
             ViewBag.ProductId = new SelectList(db.Products.OrderBy(p => p.Description), "ProductId", "Description");
+            
+
             return View();
         }
 
         [HttpPost]
-        public ActionResult AddProduct(AddProductView view)
+        public ActionResult AddProduct(AddProductSaleView view)
         {
             if (ModelState.IsValid)
             {
@@ -40,7 +42,10 @@ namespace SUD.Controllers
                         Description = product.Description,
                         Price = product.Price,
                         ProductId = product.ProductId,
-                        Quantity = view.Quantity
+                        Quantity = view.Quantity,
+                        IVAPercentage = view.IVAPercentage,
+                        DiscountRate = view.DiscountRate
+                        
                     };
 
                     db.SaleDetailBkps.Add(saleDetailBk);
@@ -265,21 +270,26 @@ namespace SUD.Controllers
                 _context.Configuration.LazyLoadingEnabled = false; // esto es necesario si nuestra tabla esta relacionado y por cosiguiente tiene claves foraneas
 
                 var w = (from a in _context.Sales.Include("Client") select a);
-                var x = (from a in _context.Sales.Include("Client") select a);
-                var y = (from a in _context.Sales.Include("AccountingDocument") select a);
-                var z = (from a in _context.Sales.Include("PaymentMethod") select a);
+                var x = (from b in _context.Sales.Include("Cellar") select b);
+                var y = (from c in _context.Sales.Include("AccountingDocument") select c);
+                var z = (from d in _context.Sales.Include("PaymentMethod") select d);
 
                 //SORT
                 if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDir)))
                 {
                     w = w.OrderBy(sortColumn + " " + sortColumnDir);
-                    x = x.OrderBy(sortColumn + " " + sortColumnDir);
-                    y = y.OrderBy(sortColumn + " " + sortColumnDir);
-                    z = z.OrderBy(sortColumn + " " + sortColumnDir);
+                    
                 }
 
                 recordsTotal = w.Count();
                 var data = w.Skip(skip).Take(pageSize).ToList();
+                data.Union(x).ToList();
+                data.Union(y).ToList();
+                data.Union(z).ToList();
+                
+                    
+               
+            
                 return Json(new { draw, recordsFiltered = recordsTotal, recordsTotal, data }, JsonRequestBehavior.AllowGet);
             }
         

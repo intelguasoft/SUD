@@ -87,6 +87,7 @@
                     "url": '@Url.Action("getsales", "Sales")',
                     "type": "POST",
                     "datatype": "json"
+                    
                 },
                 //"rowCallback": function (row, data) {
                 //    if ($.inArray(data.DT_RowId, selected) !== -1) {
@@ -95,12 +96,12 @@
                 //},
                 "columns": [
                     { "data": "SaleId", "name": "SaleId", "autoWidth": true },
-                    { "data": "DateTime", "name": "DateTime", "autoWidth": true },
-                    { "data": "ClientId", "name": "ClientId", "autoWidth": true },
-                    { "data": "CellarId", "name": "CellarId", "autoWidth": true },
-                    { "data": "AccountingDocumentId", "name": "AccountingDocumentId", "autoWidth": true },
+                    { "data": "Datetime", "name": "Datetime", "autoWidth": true },
+                    { "data": "Client.ComertialName", "name": "ComertialName", "autoWidth": true },
+                    { "data": "Cellar.Description", "name": "Cellar", "autoWidth": true },
+                    { "data": "AccountingDocument.Document", "name": "AccountingDocument", "autoWidth": true },
                     { "data": "DocumentNumber", "name": "DocumentNumber", "autoWidth": true },
-
+                   
                     {
                         "data": function (data, type, row, meta) {
                             return '<a class="btn btn-warning fa fa-pencil-square-o" href="../Sales/Edit/' + data.SaleId + '"></a><a class="btn btn-info fa fa-info-circle" href="../Sales/Details/' + data.SaleId + '" ></a><a class="btn btn-danger fa fa-trash" href="../Sales/Delete/' + data.SaleId + '" ></a>';
@@ -110,8 +111,9 @@
                         , "autoWidth": true
                     }
                 ]
+                
             });
-
+            
             //$('#tblPurchases tbody').on('click', 'tr', function () {
             //    var id = this.id;
             //    var index = $.inArray(id, selected);
@@ -125,6 +127,7 @@
             //    $(this).toggleClass('selected');
             //});
         });
+       
     </script>
 }
 
