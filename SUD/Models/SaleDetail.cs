@@ -45,13 +45,13 @@ namespace SUD.Models
         [Display(Name ="Producto")]
         public int ProductId { get; set; }
 
-        [Required]
-        [Display(Name ="Kardex")]
-        public int KardexId { get; set; }
+        //[Required]
+        //[Display(Name ="Kardex")]
+        //public int KardexId { get; set; }
 
         public virtual Sale Sale { get; set; }
         public virtual Product Product { get; set; }
-        public virtual Kardex Kardex { get; set; }
+       // public virtual Kardex Kardex { get; set; }
 
     }
 }
