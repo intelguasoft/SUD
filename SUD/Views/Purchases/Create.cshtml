@@ -126,7 +126,7 @@
                                 @Html.DisplayNameFor(model => model.Details[0].Value)
                             </th>
                             <th width="70px">
-                                @Html.ActionLink(" Todos", "DeleteAllProduct", new { user = Model.Details[0].User }, new { @class = "btn btn-danger fa fa-trash", onclick = "return confirm('Realmente desea eliminar todos los productos del detalle.?');" })
+                                @Html.ActionLink(" Todos", "DeleteAllProduct", new { @class = "btn btn-danger fa fa-trash", onclick = "return confirm('Realmente desea eliminar todos los productos del detalle.?');" })
                             </th>
                         </tr>
 
@@ -153,7 +153,7 @@
                                 </td>
                                 <td align="center">
                                     <div class="btn-group">
-                                        @Html.ActionLink(" ", "DeleteProduct", new { id = item.ProductId }, new { @class = "btn btn-danger fa fa-trash", onclick = "return confirm('Realmente desea eliminar el producto.?');" })
+                                        @Html.ActionLink(" ", "DeleteProducts", new { id = item.ProductId }, new { @class = "btn btn-danger fa fa-trash", onclick = "return confirm('Realmente desea eliminar el producto.?');" })
                                     </div>
                                 </td>
                             </tr>

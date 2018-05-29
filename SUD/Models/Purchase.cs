@@ -25,11 +25,6 @@ namespace SUD.Models
         [Display(Name = "Bodega")]
         public int CellarId { get; set; }
 
-        [Required]
-        [Display(Name = "Estado")]
-        public short StateId { get; set; }
-
-
         public virtual Supplier Supplier { get; set; }
 
         public virtual Cellar Cellar { get; set; }

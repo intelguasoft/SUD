@@ -62,6 +62,40 @@ namespace SUD.Controllers
             return View();
         }
 
+        public ActionResult DeleteProduct(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var purchaseDetailBkps = db.PurchaseDetailBkps.Where(pdb => pdb.User == User.Identity.Name && pdb.ProductId == id).FirstOrDefault();
+            if (purchaseDetailBkps == null)
+            {
+                return HttpNotFound();
+            }
+
+            db.PurchaseDetailBkps.Remove(purchaseDetailBkps);
+            db.SaveChanges();
+
+            return RedirectToAction("Create");
+        }
+
+        public ActionResult DeleteAllProduct()
+        {
+
+            var purchaseDetailBkps = db.PurchaseDetailBkps.Where(pdb => pdb.User == User.Identity.Name).ToList();
+            if (purchaseDetailBkps == null)
+            {
+                return HttpNotFound();
+            }
+            foreach (var detail in purchaseDetailBkps)
+            {
+                db.PurchaseDetailBkps.Remove(detail);
+            }
+            db.SaveChanges();
+
+            return RedirectToAction("Create");
+        }
         // GET: Purchases
         public ActionResult Index()
         {
@@ -104,18 +138,59 @@ namespace SUD.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PurchaseId,Date,SupplierId,CellarId,StateId")] Purchase purchase)
+        public ActionResult Create(NewPurchaseView view)
         {
             if (ModelState.IsValid)
             {
-                db.Purchases.Add(purchase);
-                db.SaveChanges();
+                using (var transaction = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        var purchase = new Purchase
+                        {
+                            Date = view.Date,
+                            SupplierId = view.SupplierId,
+                            CellarId = view.CellarId
+                        };
+
+                        db.Purchases.Add(purchase);
+                        db.SaveChanges();
+
+                        var details = db.PurchaseDetailBkps.Where(pdb => pdb.User == User.Identity.Name).ToList();
+                        foreach (var detail in details)
+                        {
+                            var purchaseDetail = new PurchaseDetail
+                            {
+                                PurchaseId = purchase.PurchaseId,
+                                ProductId = detail.ProductId,
+                                Description = detail.Description,
+                                Cost = detail.Cost,
+                                Quantity = detail.Quantity,
+                                ManufacturingLot = detail.ManufacturingLot,
+                                DueDate = detail.DueDate
+                            };
+
+                            db.PurchaseDetails.Add(purchaseDetail);
+                            db.PurchaseDetailBkps.Remove(detail);
+                        }
+
+                        db.SaveChanges();
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        ModelState.AddModelError(string.Empty, ex.Message);
+                    }
+                }
+
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CellarId = new SelectList(db.Cellars, "CellarId", "Description", purchase.CellarId);
-            ViewBag.SupplierId = new SelectList(db.Suppliers, "SupplierId", "Tradename", purchase.SupplierId);
-            return View(purchase);
+            ViewBag.CellarId = new SelectList(db.Cellars, "CellarId", "Description", view.CellarId);
+            ViewBag.SupplierId = new SelectList(db.Suppliers, "SupplierId", "Tradename", view.SupplierId);
+            view.Details = db.PurchaseDetailBkps.Where(pdb => pdb.User == User.Identity.Name).ToList();
+            return View(view);
         }
 
         // GET: Purchases/Edit/5
@@ -131,7 +206,6 @@ namespace SUD.Controllers
                 return HttpNotFound();
             }
             ViewBag.CellarId = new SelectList(db.Cellars, "CellarId", "Description", purchase.CellarId);
-            ViewBag.StateId = new SelectList(db.States, "StateId", "Description", purchase.StateId);
             ViewBag.SupplierId = new SelectList(db.Suppliers, "SupplierId", "Tradename", purchase.SupplierId);
             return View(purchase);
         }
@@ -150,7 +224,6 @@ namespace SUD.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.CellarId = new SelectList(db.Cellars, "CellarId", "Description", purchase.CellarId);
-            ViewBag.StateId = new SelectList(db.States, "StateId", "Description", purchase.StateId);
             ViewBag.SupplierId = new SelectList(db.Suppliers, "SupplierId", "Tradename", purchase.SupplierId);
             return View(purchase);
         }
