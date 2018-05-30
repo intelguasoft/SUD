@@ -236,13 +236,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805290413456_MaestroDetalle_Ventas.cs" />
-    <Compile Include="Migrations\201805290413456_MaestroDetalle_Ventas.Designer.cs">
-      <DependentUpon>201805290413456_MaestroDetalle_Ventas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805290423281_MaestroDetalle_Ventas1.cs" />
-    <Compile Include="Migrations\201805290423281_MaestroDetalle_Ventas1.Designer.cs">
-      <DependentUpon>201805290423281_MaestroDetalle_Ventas1.cs</DependentUpon>
+    <Compile Include="Migrations\201805302004316_CellarProducts_Stock_double.cs" />
+    <Compile Include="Migrations\201805302004316_CellarProducts_Stock_double.Designer.cs">
+      <DependentUpon>201805302004316_CellarProducts_Stock_double.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountingDocument.cs" />
@@ -943,11 +939,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805290413456_MaestroDetalle_Ventas.resx">
-      <DependentUpon>201805290413456_MaestroDetalle_Ventas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805290423281_MaestroDetalle_Ventas1.resx">
-      <DependentUpon>201805290423281_MaestroDetalle_Ventas1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805302004316_CellarProducts_Stock_double.resx">
+      <DependentUpon>201805302004316_CellarProducts_Stock_double.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

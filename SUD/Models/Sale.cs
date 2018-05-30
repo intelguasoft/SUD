@@ -12,7 +12,7 @@ namespace SUD.Models
     public class Sale
     {
         [Key]
-        public int SaleId { get; set; }
+        public long SaleId { get; set; }
 
         [Required(ErrorMessage ="Ingrese una fecha")]
         [Display(Name = "Fecha", Description = "dd/mm/yyyy")]
@@ -31,7 +31,7 @@ namespace SUD.Models
         // El valor de esta propiedad debe ser tomada del modelo AccoutingDocument en su propiedad InitialNumber.
         // No debe ser ingresada por el usuario, debe generarse desde el momento en que una venta es ejecutada, 
         // Al momento de guardar la venta el InitialNumber en el modelo AccoutingDocument debe ser incrementado en 1.
-        public int DocumentNumber { get; set; }
+        public long DocumentNumber { get; set; }
 
         [Display(Name = "Metodo de Pago")]
         public int PaymentMethodId { get; set; }

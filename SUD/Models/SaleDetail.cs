@@ -11,7 +11,7 @@ namespace SUD.Models
     public class SaleDetail
     {
         [Key]
-        public int SaleDetailId { get; set; }
+        public long SaleDetailId { get; set; }
 
         [Display(Name = "Descripcion")]
         [Required(ErrorMessage = "Ingrese una descripcion")]
@@ -30,16 +30,16 @@ namespace SUD.Models
         [Required(ErrorMessage ="Cantidad Requerida")]
         [Display(Name = "Porcentaje de IVA", Description = "0.00")]
         [RegularExpression(@"^[0-9]\d*(\.\d +)?$", ErrorMessage = "Porcentaje Invalido, solo se permiten numeros enteros.")]
-        public float IVAPercentage { get; set; }
+        public decimal IVAPercentage { get; set; }
 
         [Required(ErrorMessage = "Cantidad Requerida")]
         [Display(Name = "Porcentaje de descuento", Description = "0.00")]
         [RegularExpression(@"^[0-9]\d*(\.\d +)?$", ErrorMessage = "Porcentaje Invalido, solo se permiten numeros enteros.")]
-        public float DiscountRate { get; set; }
+        public decimal DiscountRate { get; set; }
 
         [Required]
         [Display(Name ="Venta")]
-        public int SaleId { get; set; }
+        public long SaleId { get; set; }
 
         [Required]
         [Display(Name ="Producto")]
