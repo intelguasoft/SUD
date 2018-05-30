@@ -10,14 +10,14 @@ using SUD.Models;
 
 namespace SUD.Controllers
 {
-    public class DepartmentsController : Controller
+    public class CategoriesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Departments
         public ActionResult Index()
         {
-            return View(db.Departments.ToList());
+            return View(db.Categories.ToList());
         }
 
         // GET: Departments/Details/5
@@ -27,12 +27,12 @@ namespace SUD.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department department = db.Departments.Find(id);
-            if (department == null)
+            Category category = db.Categories.Find(id);
+            if (category == null)
             {
                 return HttpNotFound();
             }
-            return View(department);
+            return View(category);
         }
 
         // GET: Departments/Create
@@ -46,16 +46,16 @@ namespace SUD.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DepartmentId,Description")] Department department)
+        public ActionResult Create([Bind(Include = "CategoryId,Description")] Category category)
         {
             if (ModelState.IsValid)
             {
-                db.Departments.Add(department);
+                db.Categories.Add(category);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(department);
+            return View(category);
         }
 
         // GET: Departments/Edit/5
@@ -65,12 +65,12 @@ namespace SUD.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department department = db.Departments.Find(id);
-            if (department == null)
+            Category category = db.Categories.Find(id);
+            if (category == null)
             {
                 return HttpNotFound();
             }
-            return View(department);
+            return View(category);
         }
 
         // POST: Departments/Edit/5
@@ -78,15 +78,15 @@ namespace SUD.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "DepartmentId,Description")] Department department)
+        public ActionResult Edit([Bind(Include = "CategoryId,Description")] Category category)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(department).State = EntityState.Modified;
+                db.Entry(category).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(department);
+            return View(category);
         }
 
         // GET: Departments/Delete/5
@@ -96,12 +96,12 @@ namespace SUD.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department department = db.Departments.Find(id);
-            if (department == null)
+            Category category = db.Categories.Find(id);
+            if (category == null)
             {
                 return HttpNotFound();
             }
-            return View(department);
+            return View(category);
         }
 
         // POST: Departments/Delete/5
@@ -109,8 +109,8 @@ namespace SUD.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Department department = db.Departments.Find(id);
-            db.Departments.Remove(department);
+            Category category = db.Categories.Find(id);
+            db.Categories.Remove(category);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

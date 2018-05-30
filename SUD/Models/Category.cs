@@ -7,12 +7,12 @@ using System.Web;
 
 namespace SUD.Models
 {
-    [Table("tbl_Departments")]
+    [Table("tbl_Categories")]
 
-    public class Department
+    public class Category
     {
         [Key]
-        public int DepartmentId { get; set; }
+        public int CategoryId { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Categoria")]

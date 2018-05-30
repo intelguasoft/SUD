@@ -12,7 +12,7 @@ namespace SUD.Models
     public class Order
     {
         [Key]
-        public int OrderId { get; set; }
+        public long OrderId { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Fecha")]
