@@ -16,7 +16,7 @@ namespace SUD.Models
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Categoria")]
-        public int DepartmentId { get; set; }
+        public int CategoryId { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Unidad de Medida")]
@@ -60,7 +60,7 @@ namespace SUD.Models
 
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
 
-        public virtual Department Department { get; set; }
+        public virtual Category Category { get; set; }
 
         public virtual Measure Measure { get; set; }
 

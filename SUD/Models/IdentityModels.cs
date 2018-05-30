@@ -36,7 +36,7 @@ namespace SUD.Models
 
         public DbSet<RolPermission> RolPermissions { get; set; }
 
-        public DbSet<Department> Departments { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         public DbSet<Measure> Measures { get; set; }
 
@@ -87,6 +87,6 @@ namespace SUD.Models
 
         public DbSet<Shipping> Shippings { get; set; }
 
-        
+
     }
 }

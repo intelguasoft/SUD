@@ -28,11 +28,11 @@ namespace SUD.Models
 
         [Required(ErrorMessage = "El campo {0} es requerido")]
         [Display(Name = "Numero Inicial")]
-        public int InitialNumber { get; set; }
+        public long InitialNumber { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es requerido")]
         [Display(Name = "Numero Final")]
-        public int FinalNumber { get; set; }
+        public long FinalNumber { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es requerido")]
         [Display(Name = "Numero de Resolución")]
@@ -44,7 +44,7 @@ namespace SUD.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime ExpirationDate { get; set; }
 
-       // public virtual ICollection<Sale> Sales { get; set; }
+        // public virtual ICollection<Sale> Sales { get; set; }
         public virtual ICollection<Route> Routes { get; set; }
 
     }

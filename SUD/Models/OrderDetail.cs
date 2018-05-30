@@ -12,10 +12,10 @@ namespace SUD.Models
     public class OrderDetail
     {
         [Key]
-        public int OrderDetailId { get; set; }
+        public long OrderDetailId { get; set; }
 
         [Display(Name = "Número de Orden")]
-        public int OrderId { get; set; }
+        public long OrderId { get; set; }
 
         [Display(Name = "Producto")]
         public int ProductId { get; set; }
@@ -37,14 +37,15 @@ namespace SUD.Models
         public double Quantity { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:C2}", ApplyFormatInEditMode = false)]
+        [DataType(DataType.Currency)]
         public decimal Value { get { return Price * (decimal)Quantity; } }
 
         [Display(Name = "Porcentaje de IVA", Description = "0.00")]
-        [RegularExpression(@"^[1-9]\d*(\.\d +)?$", ErrorMessage = "Porcentaje Invalido, solo se permiten numeros.")]
+        [DataType(DataType.Currency)]
         public float IVAPercentage { get; set; }
 
         [Display(Name = "Porcentaje de descuento", Description = "0.00")]
-        [RegularExpression(@"^[1-9]\d*(\.\d +)?$", ErrorMessage = "Porcentaje Invalido, solo se permiten numeros.")]
+        [DataType(DataType.Currency)]
         public float DiscountRate { get; set; }
 
         public virtual Order Order { get; set; }

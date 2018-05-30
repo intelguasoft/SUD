@@ -214,7 +214,7 @@
     <Compile Include="Controllers\ClientRefundsController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
-    <Compile Include="Controllers\DepartmentsController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\DocumentTypesController.cs" />
     <Compile Include="Controllers\InventoriesController.cs" />
     <Compile Include="Controllers\InventoryDetailsController.cs" />
@@ -236,13 +236,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805290413456_MaestroDetalle_Ventas.cs" />
-    <Compile Include="Migrations\201805290413456_MaestroDetalle_Ventas.Designer.cs">
-      <DependentUpon>201805290413456_MaestroDetalle_Ventas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805290423281_MaestroDetalle_Ventas1.cs" />
-    <Compile Include="Migrations\201805290423281_MaestroDetalle_Ventas1.Designer.cs">
-      <DependentUpon>201805290423281_MaestroDetalle_Ventas1.cs</DependentUpon>
+    <Compile Include="Migrations\201805300539265_Initial.cs" />
+    <Compile Include="Migrations\201805300539265_Initial.Designer.cs">
+      <DependentUpon>201805300539265_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountingDocument.cs" />
@@ -254,7 +250,7 @@
     <Compile Include="Models\ClientRefundDetail.cs" />
     <Compile Include="Models\Concept.cs" />
     <Compile Include="Models\ClientViewModel.cs" />
-    <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\DocumentType.cs" />
     <Compile Include="Models\Egress.cs" />
     <Compile Include="Models\EgressDetails.cs" />
@@ -806,11 +802,11 @@
     <Content Include="Views\RolPermissions\Details.cshtml" />
     <Content Include="Views\RolPermissions\Edit.cshtml" />
     <Content Include="Views\RolPermissions\Index.cshtml" />
-    <Content Include="Views\Departments\Create.cshtml" />
-    <Content Include="Views\Departments\Delete.cshtml" />
-    <Content Include="Views\Departments\Details.cshtml" />
-    <Content Include="Views\Departments\Edit.cshtml" />
-    <Content Include="Views\Departments\Index.cshtml" />
+    <Content Include="Views\Categories\Create.cshtml" />
+    <Content Include="Views\Categories\Delete.cshtml" />
+    <Content Include="Views\Categories\Details.cshtml" />
+    <Content Include="Views\Categories\Edit.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
     <Content Include="Views\Measures\Create.cshtml" />
     <Content Include="Views\Measures\Delete.cshtml" />
     <Content Include="Views\Measures\Details.cshtml" />
@@ -943,11 +939,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805290413456_MaestroDetalle_Ventas.resx">
-      <DependentUpon>201805290413456_MaestroDetalle_Ventas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805290423281_MaestroDetalle_Ventas1.resx">
-      <DependentUpon>201805290423281_MaestroDetalle_Ventas1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805300539265_Initial.resx">
+      <DependentUpon>201805300539265_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
