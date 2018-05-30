@@ -35,7 +35,7 @@ namespace SUD.ViewModels
         public double TotalQuantity { get { return Details == null ? 0 : Details.Sum(d => d.Quantity); } }
 
         [DisplayFormat(DataFormatString = "{0:N2}", ApplyFormatInEditMode = false)]
-        public decimal TotalValue { get { return Details == null ? 0 : Details.Sum(d => d.Price); } }
+        public decimal TotalValue { get { return Details == null ? 0 : Details.Sum(d => d.Value); } }
 
     }
 }
