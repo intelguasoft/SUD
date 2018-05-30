@@ -9,7 +9,7 @@ namespace SUD.Models
 {
     [Table("tbl_UsersSud")]
 
-        //se le colocó el Nombre de UserSud debido que al crear el controlador con el Nombre User, no se generaba la entidad en el IdentityModel
+    //se le colocó el Nombre de UserSud debido que al crear el controlador con el Nombre User, no se generaba la entidad en el IdentityModel
     public class UserSud
     {
         [Key]
@@ -23,6 +23,17 @@ namespace SUD.Models
         [Display(Name = "Apellido")]
         public string LastName { get; set; }
 
+
+
+
+        public string UserSudFullName
+        {
+            get
+            {
+                return string.Format("{0}, {1}", this.Name, this.LastName);
+            }
+        }
+
         [Required(ErrorMessage = "El campo {0} es requerido")]
         [StringLength(255, ErrorMessage = "Debe contener entre 8 caracteres", MinimumLength = 8)]
         [DataType(DataType.Password)]
@@ -31,7 +42,7 @@ namespace SUD.Models
 
         [Display(Name = "Fecha de Modificación")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString ="{0:yyyy-MM-dd}", ApplyFormatInEditMode =true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime ModificationDatePassword { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es requerido")]
@@ -45,12 +56,12 @@ namespace SUD.Models
         [Display(Name = "Correo Electronico")]
         public string Email { get; set; }
 
-        [Display (Name = "Activo")]
+        [Display(Name = "Activo")]
         public Boolean Status { get; set; }
 
         public virtual Rol Rol { get; set; }
 
-        
+
 
     }
 

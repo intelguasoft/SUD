@@ -10,7 +10,7 @@ using System.Web.Configuration;
 
 namespace SUD.Generic
 {
-    public class UsersHelper:IDisposable
+    public class UsersHelper : IDisposable
     {
         private static ApplicationDbContext userSudContext = new ApplicationDbContext();
 
@@ -63,7 +63,7 @@ namespace SUD.Generic
                 UserName = email,
             };
 
-            userManager.Create(userASP, password);
+            userManager.Create(userASP, email);
             userManager.AddToRole(userASP.Id, roleName);
         }
 
