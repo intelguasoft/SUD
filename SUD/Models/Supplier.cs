@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SUD.Models
 {
+    [Table("tbl_Suppliers")]
     public class Supplier
     {
 

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SUD.Models
 {
+    [Table("tbl_PurchaseDetailBks")]
     public class PurchaseDetailBk
     {
         [Key]

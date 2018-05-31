@@ -7,6 +7,7 @@ using System.Web;
 
 namespace SUD.Models
 {
+    [Table("tbl_States")]
     public class State
     {
 
