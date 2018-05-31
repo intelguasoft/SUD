@@ -21,6 +21,6 @@ namespace SUD.Models
         [Display(Name = "Detalles")]
         public string Details { get; set; }
 
-        public virtual ICollection<Sale> Sales { get; set; }
+       // public virtual ICollection<Sale> Sales { get; set; }
     }
 }

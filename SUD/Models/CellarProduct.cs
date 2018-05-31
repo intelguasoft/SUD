@@ -22,7 +22,7 @@ namespace SUD.Models
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Stock")]
-        public int Stock { get; set; }
+        public double Stock { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Minimos")]

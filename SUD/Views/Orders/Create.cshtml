@@ -133,6 +133,9 @@
                             <th align="center">
                                 @Html.DisplayNameFor(model => model.Details[0].Value)
                             </th>
+                            <th width="70px">
+                                @Html.ActionLink(" Todos", "DeleteAllProduct", new { @class = "btn btn-danger fa fa-trash", onclick = "return confirm('Realmente desea eliminar todos los productos del detalle.?');" })
+                            </th>
                         </tr>
 
                         @foreach (var item in Model.Details)
@@ -141,13 +144,13 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Description)
                                 </td>
-                                <td align="right">
+                                <td align="left">
                                     @Html.DisplayFor(modelItem => item.Price)
                                 </td>
-                                <td align="right">
+                                <td align="left">
                                     @Html.DisplayFor(modelItem => item.Quantity)
                                 </td>
-                                <td align="right">
+                                <td align="left">
                                     @Html.DisplayFor(modelItem => item.Value)
                                 </td>
                                 <td align="center">
@@ -158,13 +161,13 @@
                             </tr>
                         }
                         <tr class="bg-info border-dark">
-                            <td colspan="4" align="right">
+                            <td colspan="2" align="left">
                                 <strong>Total </strong>
                             </td>
-                            <td align="right">
+                            <td align="left">
                                 <strong>@Html.DisplayFor(modelItem => Model.TotalQuantity)</strong>
                             </td>
-                            <td align="right">
+                            <td align="left">
                                 <strong>@Html.DisplayFor(modelItem => Model.TotalValue)</strong>
                             </td>
                             <td></td>

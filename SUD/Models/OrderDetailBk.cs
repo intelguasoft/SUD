@@ -38,6 +38,7 @@ namespace SUD.Models
         public double Quantity { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:C2}", ApplyFormatInEditMode = false)]
+        [DataType(DataType.Currency)]
         public decimal Value { get { return Price * (decimal)Quantity; } }
 
         [Display(Name = "Porcentaje de IVA", Description = "0.00")]
@@ -46,6 +47,7 @@ namespace SUD.Models
 
         [Display(Name = "Porcentaje de descuento", Description = "0.00")]
         //[RegularExpression(@"^[1-9]\d*(\.\d +)?$", ErrorMessage = "Porcentaje Invalido, solo se permiten numeros.")]
+        [DataType(DataType.Currency)]
         public float DiscountRate { get; set; }
 
         public virtual Product Product { get; set; }

@@ -214,7 +214,7 @@
     <Compile Include="Controllers\ClientRefundsController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
-    <Compile Include="Controllers\DepartmentsController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\DocumentTypesController.cs" />
     <Compile Include="Controllers\InventoriesController.cs" />
     <Compile Include="Controllers\InventoryDetailsController.cs" />
@@ -228,7 +228,6 @@
     <Compile Include="Controllers\RolPermissionsController.cs" />
     <Compile Include="Controllers\RolsController.cs" />
     <Compile Include="Controllers\RoutesController.cs" />
-    <Compile Include="Controllers\SaleDetailsController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
     <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Controllers\UserSudsController.cs" />
@@ -237,9 +236,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805281810517_Initial.cs" />
-    <Compile Include="Migrations\201805281810517_Initial.Designer.cs">
-      <DependentUpon>201805281810517_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201805300539265_Initial.cs" />
+    <Compile Include="Migrations\201805300539265_Initial.Designer.cs">
+      <DependentUpon>201805300539265_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountingDocument.cs" />
@@ -251,7 +250,7 @@
     <Compile Include="Models\ClientRefundDetail.cs" />
     <Compile Include="Models\Concept.cs" />
     <Compile Include="Models\ClientViewModel.cs" />
-    <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\DocumentType.cs" />
     <Compile Include="Models\Egress.cs" />
     <Compile Include="Models\EgressDetails.cs" />
@@ -276,6 +275,7 @@
     <Compile Include="Models\Sale.cs" />
     <Compile Include="Models\ClientRefund.cs" />
     <Compile Include="Models\SaleDetail.cs" />
+    <Compile Include="Models\SaleDetailBk.cs" />
     <Compile Include="Models\SaleDetailsViewModel.cs" />
     <Compile Include="Models\State.cs" />
     <Compile Include="Models\Shipping.cs" />
@@ -285,9 +285,11 @@
     <Compile Include="Models\UserSud.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AddProductSaleView.cs" />
     <Compile Include="ViewModels\AddProductView.cs" />
     <Compile Include="ViewModels\NewOrderView.cs" />
     <Compile Include="ViewModels\NewPurchaseView.cs" />
+    <Compile Include="ViewModels\NewSaleView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\AdminLTE.css" />
@@ -800,11 +802,11 @@
     <Content Include="Views\RolPermissions\Details.cshtml" />
     <Content Include="Views\RolPermissions\Edit.cshtml" />
     <Content Include="Views\RolPermissions\Index.cshtml" />
-    <Content Include="Views\Departments\Create.cshtml" />
-    <Content Include="Views\Departments\Delete.cshtml" />
-    <Content Include="Views\Departments\Details.cshtml" />
-    <Content Include="Views\Departments\Edit.cshtml" />
-    <Content Include="Views\Departments\Index.cshtml" />
+    <Content Include="Views\Categories\Create.cshtml" />
+    <Content Include="Views\Categories\Delete.cshtml" />
+    <Content Include="Views\Categories\Details.cshtml" />
+    <Content Include="Views\Categories\Edit.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
     <Content Include="Views\Measures\Create.cshtml" />
     <Content Include="Views\Measures\Delete.cshtml" />
     <Content Include="Views\Measures\Details.cshtml" />
@@ -901,7 +903,7 @@
     <Content Include="Views\Suppliers\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutGuest.cshtml" />
     <Content Include="Views\Account\Register - Copia.cshtml" />
-    <Content Include="Views\Sales\Indexoriginal.cshtml" />
+    <Content Include="Views\Sales\zzIndexoriginal.cshtml" />
     <Content Include="Views\Routes\Create.cshtml" />
     <Content Include="Views\Routes\Delete.cshtml" />
     <Content Include="Views\Routes\Details.cshtml" />
@@ -913,6 +915,8 @@
     <Content Include="Views\Orders\Edit.cshtml" />
     <Content Include="Views\Orders\Index.cshtml" />
     <Content Include="Views\Orders\AddProduct.cshtml" />
+    <Content Include="Views\Sales\zzCreateoriginal.cshtml" />
+    <Content Include="Views\Sales\AddProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -935,8 +939,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805281810517_Initial.resx">
-      <DependentUpon>201805281810517_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805300539265_Initial.resx">
+      <DependentUpon>201805300539265_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

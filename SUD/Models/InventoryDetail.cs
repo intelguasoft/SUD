@@ -12,7 +12,7 @@ namespace SUD.Models
     public class InventoryDetail
     {
         [Key]
-        public int LineId { get; set; }
+        public long LineId { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es requerido")]
         [Display(Name = "Inventario:")]
@@ -55,9 +55,6 @@ namespace SUD.Models
         public virtual Inventory Inventory { get; set; }
 
         public virtual Kardex Kardex { get; set; }
-
-
-
 
     }
 }

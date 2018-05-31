@@ -36,7 +36,7 @@ namespace SUD.Models
 
         public DbSet<RolPermission> RolPermissions { get; set; }
 
-        public DbSet<Department> Departments { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         public DbSet<Measure> Measures { get; set; }
 
@@ -63,6 +63,7 @@ namespace SUD.Models
         public DbSet<ClientRefundDetail> ClientRefundDetails { get; set; }
 
         public DbSet<SaleDetail> SaleDetails { get; set; }
+        public DbSet<SaleDetailBk> SaleDetailBkps { get; set; }
 
         public DbSet<Purchase> Purchases { get; set; }
         public DbSet<PurchaseDetail> PurchaseDetails { get; set; }
@@ -85,5 +86,7 @@ namespace SUD.Models
         public DbSet<OrderDetailBk> OrderDetailBkps { get; set; }
 
         public DbSet<Shipping> Shippings { get; set; }
+
+
     }
 }

@@ -7,9 +7,10 @@ using System.Web;
 
 namespace SUD.ViewModels
 {
-    public class NewOrderView
+    public class NewSaleView
     {
-        public int OrderId { get; set; }
+
+        public int SaleId { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
@@ -25,17 +26,24 @@ namespace SUD.ViewModels
         [Display(Name = "Bodega")]
         public int CellarId { get; set; }
 
-        [Required]
-        [Display(Name = "Ruta")]
-        public int RouteId { get; set; }
+        [Display(Name = "Tipo de Documento")]
+        public int AccountingDocumentId { get; set; }
 
-        public List<OrderDetailBk> Details { get; set; }
+        // El valor de esta propiedad debe ser tomada del modelo AccoutingDocument en su propiedad InitialNumber.
+        // No debe ser ingresada por el usuario, debe generarse desde el momento en que una venta es ejecutada, 
+        // Al momento de guardar la venta el InitialNumber en el modelo AccoutingDocument debe ser incrementado en 1.
+        public int DocumentNumber { get; set; }
+
+        [Display(Name = "Metodo de Pago")]
+        public int PaymentMethodId { get; set; }
+
+        public List<SaleDetailBk> Details { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:N2}", ApplyFormatInEditMode = false)]
         public double TotalQuantity { get { return Details == null ? 0 : Details.Sum(d => d.Quantity); } }
 
         [DisplayFormat(DataFormatString = "{0:N2}", ApplyFormatInEditMode = false)]
-        public decimal TotalValue { get { return Details == null ? 0 : Details.Sum(d => d.Value); } }
+        public decimal TotalValue { get { return Details == null ? 0 : Details.Sum(d => d.Price); } }
 
     }
 }

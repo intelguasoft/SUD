@@ -12,10 +12,10 @@ namespace SUD.Models
     public class Shipping
     {
         [Key]
-        public int ShippingId { get; set; }
+        public long ShippingId { get; set; }
 
         [Display(Name = "Número de Orden")]
-        public int OrderId { get; set; }
+        public long OrderId { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Fecha de Despacho")]
@@ -25,7 +25,7 @@ namespace SUD.Models
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Número de Factura")]
-        public int InvoiceNumber { get; set; }
+        public long InvoiceNumber { get; set; }
 
         [Display(Name = "Estado")]
         public int StateId { get; set; }

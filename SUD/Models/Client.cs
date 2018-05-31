@@ -36,10 +36,10 @@ namespace SUD.Models
 
         [Required(ErrorMessage ="*Ingrese un numero de telefono")]
         [Display(Name ="Telefono 1", Description ="Telefono 1")]
-        public int Telephone1 { get; set; }
+        public string Telephone1 { get; set; }
 
         [Display(Name ="Telefono 2", Description ="Telefono 2 (Opcional)")]
-        public int Telephone2 { get; set; }
+        public string Telephone2 { get; set; }
 
         [Display(Name = "Correo Electronico", Description = "Correo Electronico")]
         [EmailAddress(ErrorMessage ="Ingrese un correo electronico valido")]
@@ -55,7 +55,7 @@ namespace SUD.Models
         public virtual DocumentType DocumentType { get; set; }
 
 
-        public virtual ICollection<Sale> Sales { get; set; }
+        //public virtual ICollection<Sale> Sales { get; set; }
 
 
 

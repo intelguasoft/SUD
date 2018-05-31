@@ -8,12 +8,67 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SUD.Models;
+using SUD.ViewModels; // New
 
 namespace SUD.Controllers
 {
     public class SalesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+
+        //New
+
+        public ActionResult AddProduct()
+        {
+            ViewBag.ProductId = new SelectList(db.Products.OrderBy(p => p.Description), "ProductId", "Description");
+            
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddProduct(AddProductSaleView view)
+        {
+            if (ModelState.IsValid)
+            {
+                var saleDetailBk = db.SaleDetailBkps.Where(odb => odb.User == User.Identity.Name && odb.ProductId == view.ProductId).FirstOrDefault();
+
+                if (saleDetailBk == null)
+                {
+                    var product = db.Products.Find(view.ProductId);
+                    saleDetailBk = new SaleDetailBk
+                    {
+                        User = User.Identity.Name,
+                        Description = product.Description,
+                        Price = product.Price,
+                        ProductId = product.ProductId,
+                        Quantity = view.Quantity,
+                        IVAPercentage = view.IVAPercentage,
+                        DiscountRate = view.DiscountRate
+                        
+                    };
+
+                    db.SaleDetailBkps.Add(saleDetailBk);
+
+                }
+                else
+                {
+                    saleDetailBk.Quantity += view.Quantity;
+                    db.Entry(saleDetailBk).State = EntityState.Modified;
+                }
+
+
+                db.SaveChanges();
+                return RedirectToAction("Create");
+
+            }
+            ViewBag.ProductId = new SelectList(db.Products.OrderBy(p => p.Description), "ProductId", "Description");
+            return View();
+        }
+
+        //EndNew
+
+
 
         // GET: Sales
         public ActionResult Index()
@@ -41,31 +96,102 @@ namespace SUD.Controllers
         public ActionResult Create()
         {
             ViewBag.CellarId = new SelectList(db.Cellars, "CellarId", "Description");
-            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "Document");
-            return View();
+            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "ComertialName");
+            ViewBag.AccountingDocumentId = new SelectList(db.AccountingDocuments, "AccountingDocumentId", "Description");
+            ViewBag.PaymentMethodId = new SelectList(db.PaymentMethods, "PaymentMethodId", "Description");
+
+            var view = new NewSaleView
+            {
+                Date = DateTime.Now,
+                Details = db.SaleDetailBkps.Where(pdb => pdb.User == User.Identity.Name).ToList()
+            };
+
+            return View(view);
         }
 
-        // POST: Sales/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SaleId,Datetime,ClientId,CellarId")] Sale sale)
+        public ActionResult Create(NewSaleView view)
         {
             if (ModelState.IsValid)
             {
-                db.Sales.Add(sale);
-                db.SaveChanges();
+                using (var transaction = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        var sale = new Sale
+                        {
+                            Datetime = view.Date,
+                            CellarId = view.CellarId,
+                            ClientId = view.ClientId,
+                            AccountingDocumentId = view.AccountingDocumentId,
+                            PaymentMethodId = view.PaymentMethodId
+                        };
+
+                        db.Sales.Add(sale);
+                        db.SaveChanges();
+
+                        var details = db.SaleDetailBkps.Where(pdb => pdb.User == User.Identity.Name).ToList();
+                        foreach (var detail in details)
+                        {
+                            var saleDetail = new SaleDetail
+                            {
+                                SaleId = sale.SaleId,
+                                ProductId = detail.ProductId,
+                                Description = detail.Description,
+                                Price = detail.Price,
+                                Quantity = detail.Quantity,
+                                IVAPercentage = detail.IVAPercentage,
+                                DiscountRate = detail.DiscountRate
+                            };
+
+                            db.SaleDetails.Add(saleDetail);
+                            db.SaleDetailBkps.Remove(detail);
+                        }
+
+                        db.SaveChanges();
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        ModelState.AddModelError(string.Empty, ex.Message);
+                    }
+                }
+
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CellarId = new SelectList(db.Cellars, "CellarId", "Description", sale.CellarId);
-            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "Document", sale.ClientId);
-            return View(sale);
+            ViewBag.CellarId = new SelectList(db.Cellars, "CellarId", "Description", view.CellarId);
+            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "Cliente", view.ClientId);
+            ViewBag.AccountingDocumentId = new SelectList(db.AccountingDocuments, "AccountingDocumentId", "Tipo de Documento", view.AccountingDocumentId);
+            ViewBag.PaymentMethodId = new SelectList(db.PaymentMethods, "PaymentMethodId", "Metodo de Pago", view.PaymentMethodId);
+            view.Details = db.SaleDetailBkps.Where(pdb => pdb.User == User.Identity.Name).ToList();
+            return View(view);
+
         }
 
-        // GET: Sales/Edit/5
-        public ActionResult Edit(int? id)
+            // POST: Sales/Create
+            // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+            // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
+            //[HttpPost]
+            //[ValidateAntiForgeryToken]
+            //public ActionResult Create([Bind(Include = "SaleId,Datetime,ClientId,CellarId")] Sale sale)
+            //{
+            //    if (ModelState.IsValid)
+            //    {
+            //        db.Sales.Add(sale);
+            //        db.SaveChanges();
+            //        return RedirectToAction("Index");
+            //    }
+
+            //    ViewBag.CellarId = new SelectList(db.Cellars, "CellarId", "Description", sale.CellarId);
+            //    ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "Document", sale.ClientId);
+            //    return View(sale);
+            //}
+
+            // GET: Sales/Edit/5
+            public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -144,21 +270,26 @@ namespace SUD.Controllers
                 _context.Configuration.LazyLoadingEnabled = false; // esto es necesario si nuestra tabla esta relacionado y por cosiguiente tiene claves foraneas
 
                 var w = (from a in _context.Sales.Include("Client") select a);
-                var x = (from a in _context.Sales.Include("Client") select a);
-                var y = (from a in _context.Sales.Include("AccountingDocument") select a);
-                var z = (from a in _context.Sales.Include("PaymentMethod") select a);
+                var x = (from b in _context.Sales.Include("Cellar") select b);
+                var y = (from c in _context.Sales.Include("AccountingDocument") select c);
+                var z = (from d in _context.Sales.Include("PaymentMethod") select d);
 
                 //SORT
                 if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDir)))
                 {
                     w = w.OrderBy(sortColumn + " " + sortColumnDir);
-                    x = x.OrderBy(sortColumn + " " + sortColumnDir);
-                    y = y.OrderBy(sortColumn + " " + sortColumnDir);
-                    z = z.OrderBy(sortColumn + " " + sortColumnDir);
+                    
                 }
 
                 recordsTotal = w.Count();
                 var data = w.Skip(skip).Take(pageSize).ToList();
+                data.Union(x).ToList();
+                data.Union(y).ToList();
+                data.Union(z).ToList();
+                
+                    
+               
+            
                 return Json(new { draw, recordsFiltered = recordsTotal, recordsTotal, data }, JsonRequestBehavior.AllowGet);
             }
         
