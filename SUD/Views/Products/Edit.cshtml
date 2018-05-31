@@ -45,10 +45,10 @@
                         @Html.HiddenFor(model => model.ProductId)
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.DepartmentId, "Departamento", htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.Category, "Categoria", htmlAttributes: new { @class = "control-label col-md-2" })
 
-                            @Html.DropDownList("DepartmentId", null, htmlAttributes: new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.DepartmentId, "", new { @class = "text-danger" })
+                            @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
                         </div>
                     </div>
 

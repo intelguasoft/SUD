@@ -29,23 +29,23 @@
                     <i class="fa fa-times"></i>
                 </button>
             </div>
-                <div class="center-block table table-striped">
-                    <div class="row ">
+            <div class="center-block table table-striped">
+                <div class="row ">
 
-                        <div class="col-xs-4 col-sm-4 ">
-                            @if (!string.IsNullOrEmpty(Model.Image))
-                    {
-                        <img class="center-block" src="@Url.Content(Model.Image)" alt="Image" style="width:350px;height:100px;max-width: 100%; height: auto;" />
-            }
+                    <div class="col-xs-4 col-sm-4 ">
+                        @if (!string.IsNullOrEmpty(Model.Image))
+                        {
+                            <img class="center-block" src="@Url.Content(Model.Image)" alt="Image" style="width:350px;height:100px;max-width: 100%; height: auto;" />
+                        }
 
-                            <hr />
-                            <p class="text-center">
-                                <a href="@Url.Action("Edit", new { id = Model.ProductId })" class="btn btn-warning"> <i class="fa fa-edit" aria-hidden="true"></i> Editar</a>
-                                <a href="@Url.Action("Delete", new { id = Model.ProductId })" class="btn btn-danger"> <i class="fa fa-remove" aria-hidden="true"></i> Eliminar</a>
+                        <hr />
+                        <p class="text-center">
+                            <a href="@Url.Action("Edit", new { id = Model.ProductId })" class="btn btn-warning"> <i class="fa fa-edit" aria-hidden="true"></i> Editar</a>
+                            <a href="@Url.Action("Delete", new { id = Model.ProductId })" class="btn btn-danger"> <i class="fa fa-remove" aria-hidden="true"></i> Eliminar</a>
 
-                            </p>
+                        </p>
 
-                        </div>
+                    </div>
                     <div class="col-xs-4 col-sm-4 ">
                         <dl class="dl-horizontal">
                             <dt>
@@ -56,10 +56,10 @@
                             </dd>
 
                             <dt>
-                                @Html.DisplayNameFor(model => model.Department)
+                                @Html.DisplayNameFor(model => model.Category)
                             </dt>
                             <dd>
-                                @Html.DisplayFor(model => model.Department.Description)
+                                @Html.DisplayFor(model => model.Category.Description)
                             </dd>
 
                             <dt>
@@ -87,11 +87,11 @@
                     </div>
                 </div>
             </div>
-                
+
         </div>
-        
+
     </div>
-    
+
 </section>
 
 
