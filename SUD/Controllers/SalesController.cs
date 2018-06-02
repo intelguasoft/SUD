@@ -44,7 +44,8 @@ namespace SUD.Controllers
                         ProductId = product.ProductId,
                         Quantity = view.Quantity,
                         IVAPercentage = view.IVAPercentage,
-                        DiscountRate = view.DiscountRate
+                        DiscountRate = view.DiscountRate,
+                        KardexId = 100 //TODO quitar la variable estatica cuando se tenga kardex listo.
                         
                     };
 
@@ -125,7 +126,13 @@ namespace SUD.Controllers
                             CellarId = view.CellarId,
                             ClientId = view.ClientId,
                             AccountingDocumentId = view.AccountingDocumentId,
-                            PaymentMethodId = view.PaymentMethodId
+                            PaymentMethodId = view.PaymentMethodId,
+                            DocumentNumber = 10000 //TODO quitar la variable estatica cuando el numero de documento se genere automatico.
+                            
+
+                            
+                            
+                            
                         };
 
                         db.Sales.Add(sale);
@@ -143,14 +150,34 @@ namespace SUD.Controllers
                                 Quantity = detail.Quantity,
                                 IVAPercentage = detail.IVAPercentage,
                                 DiscountRate = detail.DiscountRate
+                                
+                                
                             };
 
+                            
                             db.SaleDetails.Add(saleDetail);
                             db.SaleDetailBkps.Remove(detail);
+                            var status = true;
+
+
+                            if (status == true)
+                            {
+                                CellarProduct c = (from x in db.CellarProducts
+                                                   where x.ProductId == detail.ProductId
+                                                   select x).First();
+                                c.Stock = c.Stock - detail.Quantity;
+                                db.SaveChanges();
+
+                            }
+
                         }
+
+
 
                         db.SaveChanges();
                         transaction.Commit();
+
+                        
                     }
                     catch (Exception ex)
                     {
@@ -171,27 +198,62 @@ namespace SUD.Controllers
 
         }
 
-            // POST: Sales/Create
-            // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-            // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
-            //[HttpPost]
-            //[ValidateAntiForgeryToken]
-            //public ActionResult Create([Bind(Include = "SaleId,Datetime,ClientId,CellarId")] Sale sale)
-            //{
-            //    if (ModelState.IsValid)
-            //    {
-            //        db.Sales.Add(sale);
-            //        db.SaveChanges();
-            //        return RedirectToAction("Index");
-            //    }
+        public ActionResult DeleteProduct(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var saleDetailBk = db.SaleDetailBkps.Where(pdb => pdb.User == User.Identity.Name && pdb.ProductId == id).FirstOrDefault();
+            if (saleDetailBk == null)
+            {
+                return HttpNotFound();
+            }
 
-            //    ViewBag.CellarId = new SelectList(db.Cellars, "CellarId", "Description", sale.CellarId);
-            //    ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "Document", sale.ClientId);
-            //    return View(sale);
-            //}
+            db.SaleDetailBkps.Remove(saleDetailBk);
+            db.SaveChanges();
 
-            // GET: Sales/Edit/5
-            public ActionResult Edit(int? id)
+            return RedirectToAction("Create");
+        }
+
+        public ActionResult DeleteAllProduct()
+        {
+
+            var saleDetailBk = db.SaleDetailBkps.Where(pdb => pdb.User == User.Identity.Name).ToList();
+            if (saleDetailBk == null)
+            {
+                return HttpNotFound();
+            }
+            foreach (var detail in saleDetailBk)
+            {
+                db.SaleDetailBkps.Remove(detail);
+            }
+            db.SaveChanges();
+
+            return RedirectToAction("Create");
+        }
+
+        // POST: Sales/Create
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "SaleId,Datetime,ClientId,CellarId")] Sale sale)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Sales.Add(sale);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    ViewBag.CellarId = new SelectList(db.Cellars, "CellarId", "Description", sale.CellarId);
+        //    ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "Document", sale.ClientId);
+        //    return View(sale);
+        //}
+
+        // GET: Sales/Edit/5
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
