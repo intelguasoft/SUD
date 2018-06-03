@@ -18,19 +18,23 @@
             <!-- /.login-logo -->
             <div class="login-box-body">
                 <p class="login-box-msg">Usa una cuenta local para iniciar sesión</p>
-
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <form action="#" method="post">
                     <div class="form-group has-feedback">
-                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @type = "email", @placeholder = "Correo Electrónico" })
+                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", id = "Email", type = "email", placeholder = "Correo electrónico" })
                         <span class="fa fa-envelope  form-control-feedback"></span>
                         @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                     </div>
-                    <div class="form-group has-feedback">
 
-                        @*<input type="password" class="form-control" placeholder="Contraseña">*@
-                        @Html.TextBoxFor(model => model.Password, new { @class = "form-control", @type = "password", @placeholder = "Contraseña " })
-                        <span class="fa fa-sign-in form-control-feedback"></span>
+
+                    @*<input type="password" class="form-control" placeholder="Contraseña" id="showpassword">*@
+                    <div class="form-group has-feedback">
+                        @Html.PasswordFor(model => model.Password, new { @class = "form-control", id = "Password", type = "password", placeholder = "Contraseña" })
                         @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+                        <i onclick="ShowPassword()" title="Mostrar/Ocultar" class="fa fa-eye form-control-feedback form-control-feedback-click" id="eye"></i>
+
+
                     </div>
                     <div class="row text-center">
                         <div class="col-xs-6">
@@ -58,8 +62,36 @@
 </body>
 
 
+
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        function ShowPassword() {
+            var x = document.getElementById("Password");
+            if (x.type === "password") {
+                x.type = "text";
+
+                x.focus();
+            } else {
+                x.type = "password";
+                //$("#eye").title = "Mostrar contraseña";
+                x.focus();
+            }
+        }
+
+
+        $('i').click(function () {
+            $(this).toggleClass('fa-eye-slash');
+            //$(this).val = "Ocultar contraseña";
+
+        });
+
+    </script>
+
+
+
     @*<script>
             $(function () {
                 $('input').iCheck({

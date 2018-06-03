@@ -34,6 +34,8 @@ namespace SUD.Models
             }
         }
 
+
+
         [Required(ErrorMessage = "El campo {0} es requerido")]
         [StringLength(255, ErrorMessage = "Debe contener entre 8 caracteres", MinimumLength = 8)]
         [DataType(DataType.Password)]
@@ -54,6 +56,7 @@ namespace SUD.Models
         [RegularExpression("^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-.]+$", ErrorMessage = "Debe ser un correo electronico valido")]
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Correo Electronico")]
+        [Index("UserSud_Email_Index", IsUnique = true)]
         public string Email { get; set; }
 
         [Display(Name = "Activo")]
