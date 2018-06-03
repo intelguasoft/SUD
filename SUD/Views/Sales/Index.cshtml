@@ -94,9 +94,18 @@
                 //        $(row).addClass('selected');
                 //    }
                 //},
+                
                 "columns": [
                     { "data": "SaleId", "name": "SaleId", "autoWidth": true },
-                    { "data": "Datetime", "name": "Datetime", "autoWidth": true },
+                    { "data": "Datetime", "name": "Datetime", "autoWidth": true,
+                        "render": function (data) {
+                            var str = /Date\(([^)]+)\)/;
+                            var formato = str.exec(data);
+                            var fecha = new Date(parseFloat(formato[1]));
+
+                            return (fecha.getDate() + "/" + (fecha.getMonth() + 1) + "/" + fecha.getFullYear());
+                        }
+                    },
                     { "data": "Client.ComertialName", "name": "ComertialName", "autoWidth": true },
                     { "data": "Cellar.Description", "name": "Cellar", "autoWidth": true },
                     { "data": "AccountingDocument.Document", "name": "AccountingDocument", "autoWidth": true },
