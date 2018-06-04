@@ -26,8 +26,45 @@ namespace SUD.Controllers
             return View(view);
         }
 
+        //[HttpPost]
+        //public ActionResult AddProduct(AddProductView view)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var orderDetailBk = db.OrderDetailBkps.Where(odb => odb.User == User.Identity.Name && odb.ProductId == view.ProductId).FirstOrDefault();
+
+        //        if (orderDetailBk == null)
+        //        {
+        //            var product = db.Products.Find(view.ProductId);
+        //            orderDetailBk = new OrderDetailBk
+        //            {
+        //                User = User.Identity.Name,
+        //                Description = product.Description,
+        //                Price = product.Price,
+        //                ProductId = product.ProductId,
+        //                Quantity = view.Quantity
+        //            };
+
+        //            db.OrderDetailBkps.Add(orderDetailBk);
+
+        //        }
+        //        else
+        //        {
+        //            orderDetailBk.Quantity += view.Quantity;
+        //            db.Entry(orderDetailBk).State = EntityState.Modified;
+        //        }
+
+
+        //        db.SaveChanges();
+        //        return RedirectToAction("AddProduct");
+
+        //    }
+        //    ViewBag.ProductId = new SelectList(db.Products.OrderBy(p => p.Description), "ProductId", "Description");
+        //    return View();
+        //}
+
         [HttpPost]
-        public ActionResult AddProduct(AddProductView view)
+        public JsonResult AddProduct(AddProductView view)
         {
             if (ModelState.IsValid)
             {
@@ -56,11 +93,9 @@ namespace SUD.Controllers
 
 
                 db.SaveChanges();
-                return RedirectToAction("AddProduct");
 
             }
-            ViewBag.ProductId = new SelectList(db.Products.OrderBy(p => p.Description), "ProductId", "Description");
-            return View();
+            return Json(view);
         }
 
         public ActionResult DeleteProduct(int? id)

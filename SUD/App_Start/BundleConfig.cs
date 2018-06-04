@@ -11,6 +11,9 @@ namespace SUD
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jquery-unobtrusive-ajax").Include(
+                        "~/Scripts/jquery.unobtrusive-ajax.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
@@ -48,6 +51,8 @@ namespace SUD
                       "~/Content/DataTables/css/dataTables.bootstrap.css",
                       "~/Content/jquery-jvectormap.css",
                       "~/Content/select2.css",
+                      "~/Content/loading.css",
+                      "~/Content/loading-btn.css",
                       "~/Content/AdminLTE.css",
                       "~/Content/hint.min.css",
                       "~/Content/skins/_all-skins.min.css",

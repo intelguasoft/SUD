@@ -5,7 +5,17 @@
     ViewBag.Message = "Crear Orden";
 }
 
-@using (Html.BeginForm())
+@using (Ajax.BeginForm("AddProduct", "Orders",
+
+            new AjaxOptions
+            {
+
+                OnSuccess = "OnSuccess",
+                OnFailure = "OnFailure",
+                LoadingElementId = "progress"
+
+            }))
+
 {
     @Html.AntiForgeryToken()
 
@@ -63,12 +73,11 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="form-group pull-right">
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fa fa-floppy-o" aria-hidden="true"></i> Agregar Producto
-                        </button>
-                    </div>
+                <div class="form-group pull-right">
+                    <button type="submit" class="btn btn-primary ld-ext-right" id="btn-add-product">
+                        <i class="fa fa-floppy-o" aria-hidden="true"> </i> Agregar
+                        <div class="ld ld-ring ld-spin"></div>
+                    </button>
                 </div>
 
                 <span class="border"></span>
@@ -138,7 +147,7 @@
                                 </td>
                                 <td align="center">
                                     <div class="btn-group">
-                                        @Html.ActionLink(" ", "DeleteProduct", new { id = item.ProductId }, new { @class = "btn btn-danger fa fa-trash", onclick = "swal({position: 'top-end', type: 'success', title: 'Your work has been saved', showConfirmButton: false, timer: 1500})" })
+                                        @Html.ActionLink(" ", "DeleteProduct", new { id = item.ProductId }, new { @class = "btn btn-danger fa fa-trash", onclick = "swal({position: 'top-end', type: 'success', title: 'Detalle eliminado correctamente', showConfirmButton: false, timer: 1500})" })
                                     </div>
                                 </td>
                             </tr>
@@ -167,8 +176,8 @@
                 @if (Model.Details.Count > 0)
                 {
                     <div class="form-group pull-right">
-                        <a href="@Url.Action("Index")" class="btn btn-success"> <i class="fa fa-undo" aria-hidden="true"></i> Regresar</a>
-                        <a href="@Url.Action("Create")" class="btn btn-primary"> <i class="fa fa-floppy-o" aria-hidden="true"></i> Siguiente</a>
+                        <a href="@Url.Action("Index")" class="btn btn-success"> <i class="fa fa-undo" aria-hidden="true"> </i> Regresar</a>
+                        <a href="@Url.Action("Create")" class="btn btn-primary"> <i class="fa fa-forward" aria-hidden="true"> </i> Siguiente</a>
                     </div>
                 }
 
@@ -182,5 +191,29 @@
 }
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+
+        $(document).ready(function () {
+
+            $("#btn-add-product").click(function () {
+
+                $("#btn-add-product").addClass("running");
+            });
+        });
+
+        function OnSuccess(response) {
+
+            $("#btn-add-product").removeClass("running");
+            //alert("Producto Agregado Correctamente");
+            swal({ position: 'top-end', type: 'success', title: 'Producto Agregado Correctamente', showConfirmButton: false, timer: 1500 })
+        }
+
+        function OnFailure(response) {
+
+            alert("Ocurrió un Error");
+        }
+
+    </script>
 
 }
