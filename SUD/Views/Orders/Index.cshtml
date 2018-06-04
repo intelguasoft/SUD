@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear Orden", "AddProduct")
 </p>
 <table class="table">
     <tr>
@@ -24,7 +24,7 @@
             @Html.DisplayNameFor(model => model.Date)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.StateId)
+            @Html.DisplayNameFor(model => model.State.Description)
         </th>
         <th></th>
     </tr>
@@ -45,7 +45,7 @@
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.StateId)
+                @Html.DisplayFor(modelItem => item.State.Description)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.OrderId }) |

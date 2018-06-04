@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Ordenes";
-    ViewBag.Message = "Crear Orden";
+    ViewBag.Message = "Confirmación";
 }
 
 @using (Html.BeginForm())
@@ -17,7 +17,8 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="@Url.Action("Index")"><i class="fa fa-pencil-square-o"></i> Ordenes</a></li>
-            <li class="active">Crear</li>
+            <li><a href="@Url.Action("AddProduct")"><i class="fa fa-pencil-square-o"></i> Crear</a></li>
+            <li class="active">Confirmar</li>
         </ol>
     </section>
     <!-- Main content -->
@@ -82,14 +83,6 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-xl-12 col-md-6">
-                        <div class="form-group">
-                            @Html.ActionLink("Agregar producto", "AddProduct", new { }, new { @class = "btn btn-primary" })
-                        </div>
-                    </div>
-                </div>
-
                 <span class="border"></span>
                 @if (Model.Details.Count == 0)
                 {
@@ -133,9 +126,6 @@
                             <th align="center">
                                 @Html.DisplayNameFor(model => model.Details[0].Value)
                             </th>
-                            <th width="70px">
-                                @Html.ActionLink(" Todos", "DeleteAllProduct", new { @class = "btn btn-danger fa fa-trash", onclick = "return confirm('Realmente desea eliminar todos los productos del detalle.?');" })
-                            </th>
                         </tr>
 
                         @foreach (var item in Model.Details)
@@ -152,11 +142,6 @@
                                 </td>
                                 <td align="left">
                                     @Html.DisplayFor(modelItem => item.Value)
-                                </td>
-                                <td align="center">
-                                    <div class="btn-group">
-                                        @Html.ActionLink(" ", "DeleteProduct", new { id = item.ProductId }, new { @class = "btn btn-danger fa fa-trash", onclick = "return confirm('Realmente desea eliminar el producto.?');" })
-                                    </div>
                                 </td>
                             </tr>
                         }
@@ -184,7 +169,7 @@
                 @if (Model.Details.Count > 0)
                 {
                     <div class="form-group pull-right">
-                        <a href="@Url.Action("Index")" class="btn btn-success"> <i class="fa fa-undo" aria-hidden="true"></i> Regresar</a>
+                        <a href="@Url.Action("AddProduct")" class="btn btn-success"> <i class="fa fa-undo" aria-hidden="true"></i> Regresar</a>
                         <button type="submit" class="btn btn-primary">
                             <i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar
                         </button>

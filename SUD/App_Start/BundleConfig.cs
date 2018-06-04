@@ -28,6 +28,7 @@ namespace SUD
                       "~/Scripts/DataTables/dataTables.bootstrap.js",
                       "~/Scripts/fastclick.js",
                       "~/Scripts/select2.js",
+                      "~/Scripts/sweetalert2.all.js",
                       "~/Scripts/adminlte.min.js",
                       "~/Scripts/jquery.sparkline.min.js",
                       "~/Scripts/jquery-jvectormap-1.2.2.min.js",

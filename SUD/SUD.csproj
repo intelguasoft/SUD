@@ -746,6 +746,7 @@
     <Content Include="Scripts\select2.full.min.js" />
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\select2.min.js" />
+    <Content Include="Scripts\sweetalert2.all.js" />
     <Content Include="Scripts\typeahead.bundle.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

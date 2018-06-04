@@ -18,7 +18,12 @@ namespace SUD.Controllers
         public ActionResult AddProduct()
         {
             ViewBag.ProductId = new SelectList(db.Products.OrderBy(p => p.Description), "ProductId", "Description");
-            return View();
+            var view = new AddProductView
+            {
+                Details = db.OrderDetailBkps.Where(pdb => pdb.User == User.Identity.Name).ToList()
+            };
+
+            return View(view);
         }
 
         [HttpPost]
@@ -51,7 +56,7 @@ namespace SUD.Controllers
 
 
                 db.SaveChanges();
-                return RedirectToAction("Create");
+                return RedirectToAction("AddProduct");
 
             }
             ViewBag.ProductId = new SelectList(db.Products.OrderBy(p => p.Description), "ProductId", "Description");
@@ -73,7 +78,7 @@ namespace SUD.Controllers
             db.OrderDetailBkps.Remove(orderDetailBk);
             db.SaveChanges();
 
-            return RedirectToAction("Create");
+            return RedirectToAction("AddProduct");
         }
 
         public ActionResult DeleteAllProduct()
@@ -90,7 +95,7 @@ namespace SUD.Controllers
             }
             db.SaveChanges();
 
-            return RedirectToAction("Create");
+            return RedirectToAction("AddProduct");
         }
 
         // GET: Orders
@@ -157,6 +162,7 @@ namespace SUD.Controllers
                         db.SaveChanges();
 
                         var detailbks = db.OrderDetailBkps.Where(pdb => pdb.User == User.Identity.Name).ToList();
+
                         foreach (var detail in detailbks)
                         {
                             var orderDetail = new OrderDetail
@@ -168,8 +174,17 @@ namespace SUD.Controllers
                                 Quantity = detail.Quantity
                             };
 
-                            db.OrderDetails.Add(orderDetail);
-                            db.OrderDetailBkps.Remove(detail);
+                            var bodega = db.CellarProducts.Find(detail.ProductId);
+
+                            if (bodega.Stock > detail.Quantity)
+                            {
+                                bodega.Stock -= detail.Quantity;
+                                db.Entry(bodega).State = EntityState.Modified;
+
+                                db.OrderDetails.Add(orderDetail);
+                                db.OrderDetailBkps.Remove(detail);
+                            }
+
                         }
 
                         db.SaveChanges();
