@@ -52,7 +52,9 @@ namespace SUD
                       "~/Content/hint.min.css",
                       "~/Content/skins/_all-skins.min.css",
                       "~/Content/blue.css",
-                      "~/Content/skins/Site.css"));
+                      "~/Content/skins/Site.css",
+                      "~/Content/click-form-control-feedback.css"
+                      ));
 
         }
     }

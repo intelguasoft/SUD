@@ -26,16 +26,16 @@ namespace SUD.Models
         [Display(Name = "Cantidad", Description = "0.00")]
         [Required(ErrorMessage = "Cantidad Requerida")]
         public double Quantity { get; set; }
-
+        //TODO Modificar las Expresiones regulares para que acepten decimales.
         [Required(ErrorMessage ="Cantidad Requerida")]
         [Display(Name = "Porcentaje de IVA", Description = "0.00")]
-        [RegularExpression(@"^[0-9]\d*(\.\d +)?$", ErrorMessage = "Porcentaje Invalido, solo se permiten numeros enteros.")]
-        public decimal IVAPercentage { get; set; }
+        //[RegularExpression(@"^[0-9]\d*(\.\d +)?$", ErrorMessage = "Porcentaje Invalido, solo se permiten numeros enteros.")]
+        public decimal? IVAPercentage { get; set; }
 
         [Required(ErrorMessage = "Cantidad Requerida")]
         [Display(Name = "Porcentaje de descuento", Description = "0.00")]
-        [RegularExpression(@"^[0-9]\d*(\.\d +)?$", ErrorMessage = "Porcentaje Invalido, solo se permiten numeros enteros.")]
-        public decimal DiscountRate { get; set; }
+       // [RegularExpression(@"^[0-9]\d*(\.\d +)?$", ErrorMessage = "Porcentaje Invalido, solo se permiten numeros enteros.")]
+        public decimal? DiscountRate { get; set; }
 
         [Required]
         [Display(Name ="Venta")]

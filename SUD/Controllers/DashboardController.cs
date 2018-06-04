@@ -17,7 +17,7 @@ namespace SUD.Controllers
         }
         public ActionResult Index()
         {
-            //var user = db.UserSuds.Where(us => us.Email == User.Identity.Name).FirstOrDefault();
+            var user = db.UserSuds.Where(u => u.Email == User.Identity.Name).FirstOrDefault();
             //string[] myUser = { user.Email, user.LastName, user.Name, user.Password, user.Rol.Description, user.Status.ToString() };
 
             //System.Web.HttpContext.Current.Session["UserInfo"] = myUser;

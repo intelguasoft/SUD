@@ -43,14 +43,14 @@
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group">
                         @Html.LabelFor(model => model.IVAPercentage, htmlAttributes: new { @class = "control-label col-md-12" })
-                        @Html.TextBoxFor(u => u.IVAPercentage, new { @class = "form-control", @readonly = "readonly", Value = "12" })
+                        @Html.TextBoxFor(u => u.IVAPercentage, new { @class = "form-control", @readonly = "readonly", Value = "12.5" })
 
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-1">
                     <div class="form-group">
                         @Html.LabelFor(model => model.DiscountRate, "Descuento", htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.TextBoxFor(u => u.DiscountRate, new { @class = "form-control", Value = "0" })
+                        @Html.TextBoxFor(u => u.DiscountRate, new { @class = "form-control", Value = "1.5" })
                         @Html.ValidationMessageFor(model => model.DiscountRate, "", new { @class = "text-danger" })
                     </div>
                 </div>
