@@ -46,7 +46,7 @@ namespace SUD.Controllers
                         IVAPercentage = view.IVAPercentage,
                         DiscountRate = view.DiscountRate,
                         KardexId = 100 //TODO quitar la variable estatica cuando se tenga kardex listo.
-                        
+
                     };
 
                     db.SaleDetailBkps.Add(saleDetailBk);
@@ -120,6 +120,10 @@ namespace SUD.Controllers
                 {
                     try
                     {
+
+                        Sale dn = (from x in db.Sales orderby x.SaleId descending select x).FirstOrDefault();
+                        var docnumber = dn.DocumentNumber + 1;
+           
                         var sale = new Sale
                         {
                             Datetime = view.Date,
@@ -127,17 +131,17 @@ namespace SUD.Controllers
                             ClientId = view.ClientId,
                             AccountingDocumentId = view.AccountingDocumentId,
                             PaymentMethodId = view.PaymentMethodId,
-                            DocumentNumber = 10000 //TODO quitar la variable estatica cuando el numero de documento se genere automatico.
-                            
+                            DocumentNumber = docnumber,
 
-                            
-                            
-                            
+
+
+
+
                         };
 
                         db.Sales.Add(sale);
                         db.SaveChanges();
-
+                      
                         var details = db.SaleDetailBkps.Where(pdb => pdb.User == User.Identity.Name).ToList();
                         foreach (var detail in details)
                         {
@@ -163,8 +167,8 @@ namespace SUD.Controllers
                             if (status == true)
                             {
                                 CellarProduct c = (from x in db.CellarProducts
-                                                   where x.ProductId == detail.ProductId
-                                                   select x).First();
+                                           where x.ProductId == detail.ProductId
+                                           select x).First();
                                 c.Stock = c.Stock - detail.Quantity;
                                 db.SaveChanges();
 
