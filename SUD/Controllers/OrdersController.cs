@@ -69,6 +69,7 @@ namespace SUD.Controllers
             if (ModelState.IsValid)
             {
                 var orderDetailBk = db.OrderDetailBkps.Where(odb => odb.User == User.Identity.Name && odb.ProductId == view.ProductId).FirstOrDefault();
+                var bodega = db.CellarProducts.Find(view.ProductId);
 
                 if (orderDetailBk == null)
                 {
@@ -82,13 +83,23 @@ namespace SUD.Controllers
                         Quantity = view.Quantity
                     };
 
-                    db.OrderDetailBkps.Add(orderDetailBk);
+
+
+                    if (bodega.Stock > view.Quantity)
+                    {
+                        db.OrderDetailBkps.Add(orderDetailBk);
+                    }
 
                 }
                 else
                 {
-                    orderDetailBk.Quantity += view.Quantity;
-                    db.Entry(orderDetailBk).State = EntityState.Modified;
+
+                    if (bodega.Stock > view.Quantity)
+                    {
+                        orderDetailBk.Quantity += view.Quantity;
+                        db.Entry(orderDetailBk).State = EntityState.Modified;
+                    }
+
                 }
 
 
@@ -211,14 +222,12 @@ namespace SUD.Controllers
 
                             var bodega = db.CellarProducts.Find(detail.ProductId);
 
-                            if (bodega.Stock > detail.Quantity)
-                            {
-                                bodega.Stock -= detail.Quantity;
-                                db.Entry(bodega).State = EntityState.Modified;
+                            bodega.Stock -= detail.Quantity;
+                            db.Entry(bodega).State = EntityState.Modified;
 
-                                db.OrderDetails.Add(orderDetail);
-                                db.OrderDetailBkps.Remove(detail);
-                            }
+                            db.OrderDetails.Add(orderDetail);
+                            db.OrderDetailBkps.Remove(detail);
+
 
                         }
 

@@ -83,7 +83,7 @@
                 <span class="border"></span>
                 @if (Model.Details.Count == 0)
                 {
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" id="detailProducts">
                         <tr>
                             <th>
                                 @Html.DisplayNameFor(model => model.Details[0].Description)
@@ -125,7 +125,7 @@
                             </th>
                             <th width="70px">
                                 <div class="btn-group">
-                                    @Html.ActionLink(" Todos", "DeleteAllProduct", new { @class = "btn btn-danger fa fa-trash", onclick = "swal({position: 'top-end', type: 'success', title: 'Your work has been saved', showConfirmButton: false, timer: 1500})" })
+                                    @Html.ActionLink(" Todos", "DeleteAllProduct", new { @class = "btn btn-danger fa fa-trash", onclick = "const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500}); toast({type: 'success', title: 'Ejecución correcta'})" })
                                 </div>
                             </th>
                         </tr>
@@ -147,7 +147,7 @@
                                 </td>
                                 <td align="center">
                                     <div class="btn-group">
-                                        @Html.ActionLink(" ", "DeleteProduct", new { id = item.ProductId }, new { @class = "btn btn-danger fa fa-trash", onclick = "swal({position: 'top-end', type: 'success', title: 'Detalle eliminado correctamente', showConfirmButton: false, timer: 1500})" })
+                                        @Html.ActionLink(" ", "DeleteProduct", new { id = item.ProductId }, new { @class = "btn btn-danger fa fa-trash", onclick = "const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500}); toast({type: 'success', title: 'Detalle eliminado correctamente'})" })
                                     </div>
                                 </td>
                             </tr>
@@ -177,7 +177,7 @@
                 {
                     <div class="form-group pull-right">
                         <a href="@Url.Action("Index")" class="btn btn-success"> <i class="fa fa-undo" aria-hidden="true"> </i> Regresar</a>
-                        <a href="@Url.Action("Create")" class="btn btn-primary"> <i class="fa fa-forward" aria-hidden="true"> </i> Siguiente</a>
+                        <a href="@Url.Action("Create")" class="btn btn-primary"> <i class="fa fa-forward" aria-hidden="true"> </i> Confirmar</a>
                     </div>
                 }
 
@@ -196,9 +196,16 @@
 
         $(document).ready(function () {
 
+            function RefreshTable() {
+                $("#detailProducts").load("AddProduct.html #detailProducts");
+            }
+
+            $("#btn-add-product").on("click", RefreshTable);
+
             $("#btn-add-product").click(function () {
 
                 $("#btn-add-product").addClass("running");
+
             });
         });
 
@@ -206,7 +213,21 @@
 
             $("#btn-add-product").removeClass("running");
             //alert("Producto Agregado Correctamente");
-            swal({ position: 'top-end', type: 'success', title: 'Producto Agregado Correctamente', showConfirmButton: false, timer: 1500 })
+            const toast = swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1500
+            });
+
+            toast({
+                type: 'success',
+                title: 'Producto agregado correctamente'
+            })
+
+
+
+
         }
 
         function OnFailure(response) {
