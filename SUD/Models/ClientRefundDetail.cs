@@ -20,7 +20,7 @@ namespace SUD.Models
 
         [Display(Name ="Precio", Description ="0.00")]
         [Required(ErrorMessage ="Precio Requerido")]
-        public float price { get; set; }
+        public float Price { get; set; }
 
         [Display(Name ="Cantidad", Description ="0")]
         [Required(ErrorMessage ="Cantidad Requerida")]
