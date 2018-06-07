@@ -52,12 +52,12 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Price)
                     </th>
-                    <th>
+                    @*<th>
                         @Html.DisplayNameFor(model => model.Note)
-                    </th>
-                    <th>
+                    </th>*@
+                    @*<th>
                         @Html.DisplayNameFor(model => model.Image)
-                    </th>
+                    </th>*@
                     <th>
                         @Html.DisplayNameFor(model => model.Medida)
                     </th>
@@ -79,18 +79,18 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Price)
                         </td>
-                        <td>
+                        @*<td>
                             @Html.DisplayFor(modelItem => item.Note)
-                        </td>
-                        <td>
+                        </td>*@
+                        @*<td>
                             @Html.DisplayFor(modelItem => item.Image)
-                        </td>
+                        </td>*@
                         <td>
                             @Html.DisplayFor(modelItem => item.Medida)
                         </td>
                         <td>
                             <div class="btn-group">
-                                @Html.ActionLink("Asignar a Bodega", "Create", "CellarProducts", new { id = item.ProductId }, new { @class = "btn btn-warning fa fa-check-square-o" })
+                                @Html.ActionLink("Asignar Bodega", "Create", "CellarProducts", new { id = item.ProductId }, new { @class = "btn btn-warning fa fa-check-square-o" })
                                 @Html.ActionLink(" ", "Details", new { id = item.ProductId }, new { @class = "btn btn-info fa fa-info-circle" })
                             </div>
                         </td>
