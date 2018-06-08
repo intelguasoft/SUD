@@ -7,6 +7,8 @@ using System.Web.Mvc;
 
 namespace SUD.Controllers
 {
+    [Authorize]
+
     public class DashboardController : Controller
     {
         private ApplicationDbContext db;

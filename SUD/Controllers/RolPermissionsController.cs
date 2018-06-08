@@ -10,6 +10,8 @@ using SUD.Models;
 
 namespace SUD.Controllers
 {
+    [Authorize(Roles = "Administrador")]
+
     public class RolPermissionsController : Controller
     {
         private ApplicationDbContext db;
