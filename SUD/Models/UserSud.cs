@@ -16,11 +16,11 @@ namespace SUD.Models
         public int UserSudId { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es requerido")]
-        [Display(Name = "Nombre")]
+        [Display(Name = "Nombre:")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es requerido")]
-        [Display(Name = "Apellido")]
+        [Display(Name = "Apellido:")]
         public string LastName { get; set; }
 
 
@@ -39,10 +39,10 @@ namespace SUD.Models
         [Required(ErrorMessage = "El campo {0} es requerido")]
         [StringLength(255, ErrorMessage = "Debe contener entre 8 caracteres", MinimumLength = 8)]
         [DataType(DataType.Password)]
-        [Display(Name = "Contraseña")]
+        [Display(Name = "Contraseña:")]
         public string Password { get; set; }
 
-        [Display(Name = "Fecha de Modificación")]
+        [Display(Name = "Fecha de Modificación:")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime ModificationDatePassword { get; set; }
@@ -55,7 +55,7 @@ namespace SUD.Models
         [StringLength(255, ErrorMessage = "Debe contener entre 8 y 25 caracteres", MinimumLength = 8)]
         [RegularExpression("^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-.]+$", ErrorMessage = "Debe ser un correo electronico valido")]
         [DataType(DataType.EmailAddress)]
-        [Display(Name = "Correo Electronico")]
+        [Display(Name = "Correo Electrónico")]
         [Index("UserSud_Email_Index", IsUnique = true)]
         public string Email { get; set; }
 

@@ -10,6 +10,8 @@ using SUD.Models;
 
 namespace SUD.Controllers
 {
+    [Authorize(Roles = "Jefe de bodega, Administrador")]
+
     public class ProductsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -79,7 +81,7 @@ namespace SUD.Controllers
 
             }
 
-            ViewBag.DepartmentId = new SelectList(db.Categories, "CategoryId", "Description", product.CategoryId);
+            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Description", product.CategoryId);
             ViewBag.MeasureId = new SelectList(db.Measures, "MeasureId", "Description", product.MeasureId);
             return View(product);
         }
@@ -96,7 +98,7 @@ namespace SUD.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.DepartmentId = new SelectList(db.Categories, "CategoryId", "Description", product.CategoryId);
+            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Description", product.CategoryId);
             ViewBag.MeasureId = new SelectList(db.Measures, "MeasureId", "Description", product.MeasureId);
             return View(product);
         }
@@ -132,7 +134,7 @@ namespace SUD.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.DepartmentId = new SelectList(db.Categories, "CategoryId", "Description", product.CategoryId);
+            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Description", product.CategoryId);
             ViewBag.MeasureId = new SelectList(db.Measures, "MeasureId", "Description", product.MeasureId);
             return View(product);
         }

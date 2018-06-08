@@ -10,6 +10,8 @@ using SUD.Models;
 
 namespace SUD.Controllers
 {
+    [Authorize(Roles = "Gerente de ventas, Administrador")]
+
     public class ClientRefundDetailsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

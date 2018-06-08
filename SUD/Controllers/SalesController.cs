@@ -12,6 +12,8 @@ using SUD.ViewModels; // New
 
 namespace SUD.Controllers
 {
+    [Authorize(Roles = "Gerente de ventas, Administrador")]
+
     public class SalesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -21,7 +23,7 @@ namespace SUD.Controllers
         public ActionResult AddProduct()
         {
             ViewBag.ProductId = new SelectList(db.Products.OrderBy(p => p.Description), "ProductId", "Description");
-            
+
 
             return View();
         }
@@ -123,7 +125,7 @@ namespace SUD.Controllers
 
                         Sale dn = (from x in db.Sales orderby x.SaleId descending select x).FirstOrDefault();
                         var docnumber = dn.DocumentNumber + 1;
-           
+
                         var sale = new Sale
                         {
                             Datetime = view.Date,
@@ -141,7 +143,7 @@ namespace SUD.Controllers
 
                         db.Sales.Add(sale);
                         db.SaveChanges();
-                      
+
                         var details = db.SaleDetailBkps.Where(pdb => pdb.User == User.Identity.Name).ToList();
                         foreach (var detail in details)
                         {
@@ -154,11 +156,11 @@ namespace SUD.Controllers
                                 Quantity = detail.Quantity,
                                 IVAPercentage = detail.IVAPercentage,
                                 DiscountRate = detail.DiscountRate
-                                
-                                
+
+
                             };
 
-                            
+
                             db.SaleDetails.Add(saleDetail);
                             db.SaleDetailBkps.Remove(detail);
                             var status = true;
@@ -167,8 +169,8 @@ namespace SUD.Controllers
                             if (status == true)
                             {
                                 CellarProduct c = (from x in db.CellarProducts
-                                           where x.ProductId == detail.ProductId
-                                           select x).First();
+                                                   where x.ProductId == detail.ProductId
+                                                   select x).First();
                                 c.Stock = c.Stock - detail.Quantity;
                                 db.SaveChanges();
 
@@ -181,7 +183,7 @@ namespace SUD.Controllers
                         db.SaveChanges();
                         transaction.Commit();
 
-                        
+
                     }
                     catch (Exception ex)
                     {
@@ -344,7 +346,7 @@ namespace SUD.Controllers
                 if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDir)))
                 {
                     w = w.OrderBy(sortColumn + " " + sortColumnDir);
-                    
+
                 }
 
                 recordsTotal = w.Count();
@@ -352,15 +354,15 @@ namespace SUD.Controllers
                 data.Union(x).ToList();
                 data.Union(y).ToList();
                 data.Union(z).ToList();
-                
-                    
-               
-            
+
+
+
+
                 return Json(new { draw, recordsFiltered = recordsTotal, recordsTotal, data }, JsonRequestBehavior.AllowGet);
             }
-        
+
         }
-      
+
 
         protected override void Dispose(bool disposing)
         {

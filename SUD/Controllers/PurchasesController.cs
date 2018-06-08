@@ -11,6 +11,8 @@ using SUD.ViewModels;
 
 namespace SUD.Controllers
 {
+    [Authorize(Roles = "Administrador")]
+
     public class PurchasesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
