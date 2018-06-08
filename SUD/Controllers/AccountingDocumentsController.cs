@@ -10,6 +10,8 @@ using SUD.Models;
 
 namespace SUD.Controllers
 {
+    [Authorize(Roles = "Administrador")]
+
     public class AccountingDocumentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

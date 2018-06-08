@@ -10,6 +10,8 @@ using SUD.Models;
 
 namespace SUD.Controllers
 {
+    [Authorize(Roles = "Jefe de bodega, Administrador")]
+
     public class CellarProductsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

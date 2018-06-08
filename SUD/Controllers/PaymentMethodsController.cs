@@ -10,6 +10,7 @@ using SUD.Models;
 
 namespace SUD.Controllers
 {
+
     public class PaymentMethodsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

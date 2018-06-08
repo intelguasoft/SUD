@@ -50,6 +50,7 @@ namespace SUD.Generic
             };
 
             userManager.Create(userASP, email);
+            CheckRole(roleName);
             userManager.AddToRole(userASP.Id, roleName);
         }
 
@@ -63,7 +64,8 @@ namespace SUD.Generic
                 UserName = email,
             };
 
-            userManager.Create(userASP, email);
+            userManager.Create(userASP, password);
+            CheckRole(roleName);
             userManager.AddToRole(userASP.Id, roleName);
         }
 

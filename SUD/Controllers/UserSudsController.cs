@@ -12,6 +12,7 @@ using SUD.Models;
 
 namespace SUD.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class UserSudsController : Controller
     {
         private ApplicationDbContext db;
@@ -61,7 +62,11 @@ namespace SUD.Controllers
             {
                 db.UserSuds.Add(userSud);
                 db.SaveChanges();
-                UsersHelper.CreateUserASP(userSud.Email, "Usuario");
+                if (userSud != null)
+                {
+                    var rol = db.Rols.Find(userSud.RolId);
+                    UsersHelper.CreateUserASP(userSud.Email, rol.Description, userSud.Password);
+                }
                 return RedirectToAction("Index");
             }
 
@@ -98,7 +103,7 @@ namespace SUD.Controllers
                 db.SaveChanges();
                 var db2 = new ApplicationDbContext();
                 var currentUser = db2.UserSuds.Find(userSud.UserSudId);
-                if(currentUser.Email != userSud.Email)
+                if (currentUser.Email != userSud.Email)
                 {
                     UsersHelper.UpdateUsername(currentUser.Email, userSud.Email);
                 }
