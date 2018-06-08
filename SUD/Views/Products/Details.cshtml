@@ -30,66 +30,72 @@
                 </button>
             </div>
             <div class="center-block table table-striped">
-                <div class="row ">
-
-                    <div class="col-xs-4 col-sm-4 ">
+                <div class="row">
+                    <div class="col-xs-5 col-sm-5">
                         @if (!string.IsNullOrEmpty(Model.Image))
                         {
                             <img class="center-block" src="@Url.Content(Model.Image)" alt="Image" style="width:350px;height:100px;max-width: 100%; height: auto;" />
                         }
 
                         <hr />
-                        <p class="text-center">
-                            <a href="@Url.Action("Edit", new { id = Model.ProductId })" class="btn btn-warning"> <i class="fa fa-edit" aria-hidden="true"></i> Editar</a>
-                            <a href="@Url.Action("Delete", new { id = Model.ProductId })" class="btn btn-danger"> <i class="fa fa-remove" aria-hidden="true"></i> Eliminar</a>
-
-                        </p>
-
+                        <div class="col-xs-12 col-sm-12">
+                                <a href="@Url.Action("Edit", new { id = Model.ProductId })" class="btn btn-warning col-xs-12 col-sm-offset-1 col-sm-4"><i class="fa fa-edit" aria-hidden="true"></i> Editar</a>
+                                <a href="@Url.Action("Delete", new { id = Model.ProductId })" class="btn btn-danger col-xs-12 col-sm-offset-1 col-sm-4"><i class="fa fa-remove" aria-hidden="true"></i> Eliminar</a>
+                        </div>
                     </div>
-                    <div class="col-xs-4 col-sm-4 ">
-                        <dl class="dl-horizontal">
-                            <dt>
-                                @Html.DisplayNameFor(model => model.Description)
-                            </dt>
-                            <dd>
+                    <div class="col-xs-6 col-sm-6">
+                        <div class="col-xs-12 col-sm-12">
+                            <div class="col-sm-12">
+                                <b>@Html.DisplayNameFor(model => model.Description)</b>
+                            </div>
+                            <div class="col-sm-12">
                                 @Html.DisplayFor(model => model.Description)
-                            </dd>
-
-                            <dt>
-                                @Html.DisplayNameFor(model => model.Category)
-                            </dt>
-                            <dd>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12">
+                            <div class="col-sm-12">
+                                <b>@Html.DisplayNameFor(model => model.Category)</b>
+                            </div>
+                            <div class="col-sm-12">
                                 @Html.DisplayFor(model => model.Category.Description)
-                            </dd>
-
-                            <dt>
-                                @Html.DisplayNameFor(model => model.Measure)
-                            </dt>
-                            <dd>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12">
+                            <div class="col-sm-12">
+                                <b>@Html.DisplayNameFor(model => model.Measure)</b>
+                            </div>
+                            <div class="col-sm-12">
                                 @Html.DisplayFor(model => model.Measure.Description)
-                            </dd>
-
-                            <dt>
-                                @Html.DisplayNameFor(model => model.Note)
-                            </dt>
-                            <dd>
-                                @Html.DisplayFor(model => model.Note)
-                            </dd>
-
-                            <dt>
-                                @Html.DisplayNameFor(model => model.Price)
-                            </dt>
-                            <dd>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12">
+                            <div class="col-sm-12">
+                                <b>@Html.DisplayNameFor(model => model.Price)</b>
+                            </div>
+                            <div class="col-sm-12">
                                 @Html.DisplayFor(model => model.Price)
-                            </dd>
-
-                        </dl>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12">
+                            <div class="col-sm-12">
+                                <b>@Html.DisplayNameFor(model => model.Medida)</b>
+                            </div>
+                            <div class="col-sm-4">
+                                @Html.DisplayFor(model => model.Medida)
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12">
+                            <div class="col-sm-12">
+                                <b>@Html.DisplayNameFor(model => model.Note)</b>
+                            </div>
+                            <div class="col-sm-12">
+                                @Html.DisplayFor(model => model.Note)
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
-
     </div>
 
 </section>
