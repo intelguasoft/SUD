@@ -20,12 +20,7 @@ namespace SUD.Controllers
         public ActionResult AddProduct()
         {
             ViewBag.ProductId = new SelectList(db.Products.OrderBy(p => p.Description), "ProductId", "Description");
-            var view = new AddProductView
-            {
-                Details = db.OrderDetailBkps.Where(pdb => pdb.User == User.Identity.Name).ToList()
-            };
-
-            return View(view);
+            return View();
         }
 
         //[HttpPost]
@@ -111,6 +106,19 @@ namespace SUD.Controllers
             return Json(view);
         }
 
+
+        public ActionResult Detalle()
+        {
+
+            var view = new DetailView
+            {
+                Details = db.OrderDetailBkps.Where(pdb => pdb.User == User.Identity.Name).ToList()
+            };
+
+            return PartialView(view);
+        }
+
+
         public ActionResult DeleteProduct(int? id)
         {
             if (id == null)
@@ -187,6 +195,7 @@ namespace SUD.Controllers
         // POST: Orders/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(NewOrderView view)
@@ -251,6 +260,7 @@ namespace SUD.Controllers
             view.Details = db.OrderDetailBkps.Where(pdb => pdb.User == User.Identity.Name).ToList();
             return View(view);
         }
+
 
         // GET: Orders/Edit/5
         public ActionResult Edit(int? id)
