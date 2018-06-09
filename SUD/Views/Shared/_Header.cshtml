@@ -1,4 +1,7 @@
-﻿@using Microsoft.AspNet.Identity
+﻿@using SUD.Models
+@{
+    var user = Session["User"] as UserSud;
+}
 <header class="main-header">
     <!-- Logo -->
     <a href="/" class="logo">
@@ -27,8 +30,8 @@
                         <li class="user-header">
                             <img src="~/Content/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                             <p>
-                                @Session["UserInfo"]
-                                <small>Member since Nov. 2004</small>
+                                @user.UserSudFullName
+                                <small> @user.Rol.Description</small>
                             </p>
                         </li>
                         <!-- Menu Body -->

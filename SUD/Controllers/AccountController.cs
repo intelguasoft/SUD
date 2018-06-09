@@ -23,6 +23,7 @@ namespace SUD.Controllers
 
         public AccountController()
         {
+            db = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -84,6 +85,7 @@ namespace SUD.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    Session["User"] = db.UserSuds.Where(u => u.Email == model.Email).FirstOrDefault();
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
