@@ -56,18 +56,36 @@ namespace SUD.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserSudId,Name,LastName,Password,ModificationDatePassword,RolId,Email, Status")] UserSud userSud)
+        public ActionResult Create([Bind(Include = "UserSudId,Name,LastName,Password,ModificationDatePassword,RolId,Email, Status, Image, FotografiaFile")] UserSud userSud)
         {
             if (ModelState.IsValid)
             {
                 db.UserSuds.Add(userSud);
                 db.SaveChanges();
+
                 if (userSud != null)
                 {
                     var rol = db.Rols.Find(userSud.RolId);
                     UsersHelper.CreateUserASP(userSud.Email, rol.Description, userSud.Password);
                 }
+
+                if (userSud.FotografiaFile != null)
+                {
+                    var folder = "~/Uploads/Usuarios";
+                    var response = FilesHelper.UploadPhoto(userSud.FotografiaFile, folder, string.Format("{0}.jpg", userSud.UserSudId));
+                    if (response)
+                    {
+                        var pic = string.Format("{0}/{1}.jpg", folder, userSud.UserSudId);
+                        userSud.Image = pic;
+
+                        db.Entry(userSud).State = EntityState.Modified;
+                        db.SaveChanges();
+
+
+                    }
+                }
                 return RedirectToAction("Index");
+
             }
 
             ViewBag.RolId = new SelectList(db.Rols, "RolId", "Description", userSud.RolId);
@@ -95,21 +113,39 @@ namespace SUD.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserSudId,Name,LastName,Password,ModificationDatePassword,RolId,Email, Status")] UserSud userSud)
+        public ActionResult Edit([Bind(Include = "UserSudId,Name,LastName,Password,ModificationDatePassword,RolId,Email, Status, Image, FotografiaFile")] UserSud userSud)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(userSud).State = EntityState.Modified;
                 db.SaveChanges();
+
                 var db2 = new ApplicationDbContext();
                 var currentUser = db2.UserSuds.Find(userSud.UserSudId);
                 if (currentUser.Email != userSud.Email)
                 {
                     UsersHelper.UpdateUsername(currentUser.Email, userSud.Email);
                 }
+
+                if (userSud.FotografiaFile != null)
+                {
+                    var folder = "~/Uploads/Usuarios";
+                    var response = FilesHelper.UploadPhoto(userSud.FotografiaFile, folder, string.Format("{0}.jpg", userSud.UserSudId));
+                    if (response)
+                    {
+                        var pic = string.Format("{0}/{1}.jpg", folder, userSud.UserSudId);
+                        userSud.Image = pic;
+
+                        db.Entry(userSud).State = EntityState.Modified;
+                        db.SaveChanges();
+
+
+                    }
+                }
                 db2.Dispose();
                 return RedirectToAction("Index");
             }
+
             ViewBag.RolId = new SelectList(db.Rols, "RolId", "Description", userSud.RolId);
             return View(userSud);
         }
