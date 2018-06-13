@@ -506,6 +506,7 @@
     <Content Include="Content\ionicons.min.css" />
     <Content Include="Content\jasny-bootstrap.css" />
     <Content Include="Content\jquery-jvectormap.css" />
+    <Content Include="Content\jquery.dataTables-dt.min.css" />
     <Content Include="Content\jquery.dataTables.min.css" />
     <Content Include="Content\loading-btn.css" />
     <Content Include="Content\loading.css" />
@@ -715,6 +716,7 @@
     <Content Include="Scripts\i18n\zh-TW.js" />
     <Content Include="Scripts\icheck.min.js" />
     <Content Include="Scripts\jasny-bootstrap.js" />
+    <Content Include="Scripts\jquery-3.3.1-dt.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -725,6 +727,7 @@
     <Content Include="Scripts\jquery-jvectormap-1.2.2.min.js" />
     <Content Include="Scripts\jquery-jvectormap-usa-en.js" />
     <Content Include="Scripts\jquery-jvectormap-world-mill-en.js" />
+    <Content Include="Scripts\jquery.dataTables-dt.min.js" />
     <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.slimscroll.js" />

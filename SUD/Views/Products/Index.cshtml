@@ -38,65 +38,68 @@
                 <a href="@Url.Action("Create")" class="btn btn-success"> <i class="fa fa-plus" aria-hidden="true"></i> Crear</a>
             </p>
 
-            <table class="table">
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Category.Description)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Measure.Description)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Description)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Price)
-                    </th>
-                    @*<th>
-                        @Html.DisplayNameFor(model => model.Note)
-                    </th>*@
-                    @*<th>
-                        @Html.DisplayNameFor(model => model.Image)
-                    </th>*@
-                    <th>
-                        @Html.DisplayNameFor(model => model.Medida)
-                    </th>
-                    <th></th>
-                </tr>
-
-                @foreach (var item in Model)
-                {
+            <table class="table table-bordered table-striped text-center" id="tblProducts">
+                <thead>
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Category.Description)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Measure.Description)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Description)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Price)
-                        </td>
-                        @*<td>
-                            @Html.DisplayFor(modelItem => item.Note)
-                        </td>*@
-                        @*<td>
-                            @Html.DisplayFor(modelItem => item.Image)
-                        </td>*@
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Medida)
-                        </td>
-                        <td>
-                            <div class="btn-group">
-                                @Html.ActionLink("Asignar Bodega", "Create", "CellarProducts", new { id = item.ProductId }, new { @class = "btn btn-warning fa fa-check-square-o" })
-                                @Html.ActionLink(" ", "Details", new { id = item.ProductId }, new { @class = "btn btn-info fa fa-info-circle" })
-                            </div>
-                        </td>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Category.Description)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Measure.Description)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Price)
+                        </th>
+                        @*<th>
+                                @Html.DisplayNameFor(model => model.Note)
+                            </th>*@
+                        @*<th>
+                                @Html.DisplayNameFor(model => model.Image)
+                            </th>*@
+                        <th>
+                            @Html.DisplayNameFor(model => model.Medida)
+                        </th>
+                        <th> Acciones </th>
                     </tr>
-                }
+                </thead>
 
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Category.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Measure.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Price)
+                            </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.Note)
+                                </td>*@
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.Image)
+                                </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Medida)
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    @Html.ActionLink("Asignar Bodega", "Create", "CellarProducts", new { id = item.ProductId }, new { @class = "btn btn-warning fa fa-check-square-o" })
+                                    @Html.ActionLink(" ", "Details", new { id = item.ProductId }, new { @class = "btn btn-info fa fa-info-circle" })
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
             </table>
         </div>
         <!-- /.box-body -->
@@ -109,3 +112,18 @@
     <!-- /.box -->
 </section>
 <!-- /.content -->
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    <script>
+
+        $(document).ready(function () {
+            $('#tblProducts').DataTable();
+        });
+
+    </script>
+
+
+}

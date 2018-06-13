@@ -41,7 +41,10 @@ namespace SUD
                       "~/Scripts/pages/dashboard2.js",
                       "~/Scripts/demo.js",
                       "~/Scripts/icheck.min.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/jquery-3.3.1-dt.js",
+                      "~/Scripts/jquery.dataTables-dt.min.js"
+                      ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
@@ -58,7 +61,8 @@ namespace SUD
                       "~/Content/skins/_all-skins.min.css",
                       "~/Content/blue.css",
                       "~/Content/skins/Site.css",
-                      "~/Content/click-form-control-feedback.css"
+                      "~/Content/click-form-control-feedback.css",
+                      "~/Content/jquery.dataTables-dt.min.css"
                       ));
 
         }

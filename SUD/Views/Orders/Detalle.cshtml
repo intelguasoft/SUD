@@ -46,7 +46,12 @@ else
             </th>
             <th width="70px">
                 <div class="btn-group">
-                    @Html.ActionLink(" Todos", "DeleteAllProduct", new { @class = "btn btn-danger fa fa-trash", onclick = "const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500}); toast({type: 'success', title: 'Ejecución correcta'})" })
+                    @Html.ActionLink(" Todos", "DeleteAllProduct", new
+                    {
+                        @class = "btn btn-danger fa fa-trash",
+                        onclick = "const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500}); " +
+                        "toast({type: 'success', title: 'Ejecución correcta'})"
+                    })
                 </div>
             </th>
         </tr>
@@ -68,7 +73,12 @@ else
                 </td>
                 <td align="center">
                     <div class="btn-group">
-                        @Html.ActionLink(" ", "DeleteProduct", new { id = item.ProductId }, new { @class = "btn btn-danger fa fa-trash", onclick = "const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500}); toast({type: 'success', title: 'Detalle eliminado correctamente'})" })
+                        @Html.ActionLink(" ", "DeleteProduct", new { id = item.ProductId }, new
+                        {
+                            @class = "btn btn-danger fa fa-trash",
+                            onclick = "const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500}); " +
+                            "toast({type: 'success', title: 'Detalle eliminado correctamente'})"
+                        })
                     </div>
                 </td>
             </tr>

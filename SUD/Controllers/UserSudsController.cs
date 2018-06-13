@@ -177,39 +177,39 @@ namespace SUD.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        public JsonResult getUserSuds()
-        {
-            // TODO Falta que hacer el filtrado del lado del servidor.
-            var draw = Request.Form.GetValues("draw").FirstOrDefault();
-            var start = Request.Form.GetValues("start").FirstOrDefault();
-            var length = Request.Form.GetValues("length").FirstOrDefault();
-            //var filter = Request.Form.GetValues("filter").FirstOrDefault();
-            //Find Order Column
-            var sortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
-            var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
+        //[HttpPost]
+        //public JsonResult getUserSuds()
+        //{
+        //    // TODO Falta que hacer el filtrado del lado del servidor.
+        //    var draw = Request.Form.GetValues("draw").FirstOrDefault();
+        //    var start = Request.Form.GetValues("start").FirstOrDefault();
+        //    var length = Request.Form.GetValues("length").FirstOrDefault();
+        //    //var filter = Request.Form.GetValues("filter").FirstOrDefault();
+        //    //Find Order Column
+        //    var sortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
+        //    var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
 
 
-            int pageSize = length != null ? Convert.ToInt32(length) : 0;
-            int skip = start != null ? Convert.ToInt32(start) : 0;
-            int recordsTotal = 0;
-            using (ApplicationDbContext _context = new ApplicationDbContext())
-            {
-                _context.Configuration.ProxyCreationEnabled = false; // esto es necesario si nuestra tabla esta relacionado y por cosiguiente tiene claves foraneas
+        //    int pageSize = length != null ? Convert.ToInt32(length) : 0;
+        //    int skip = start != null ? Convert.ToInt32(start) : 0;
+        //    int recordsTotal = 0;
+        //    using (ApplicationDbContext _context = new ApplicationDbContext())
+        //    {
+        //        _context.Configuration.ProxyCreationEnabled = false; // esto es necesario si nuestra tabla esta relacionado y por cosiguiente tiene claves foraneas
 
-                var v = (from a in _context.UserSuds.Include("Rol") select a);
+        //        var v = (from a in _context.UserSuds.Include("Rol") select a);
 
-                //SORT
-                if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDir)))
-                {
-                    v = v.OrderBy(sortColumn + " " + sortColumnDir);
-                }
+        //        //SORT
+        //        if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDir)))
+        //        {
+        //            v = v.OrderBy(sortColumn + " " + sortColumnDir);
+        //        }
 
-                recordsTotal = v.Count();
-                var data = v.Skip(skip).Take(pageSize).ToList();
-                return Json(new { draw, recordsFiltered = recordsTotal, recordsTotal, data }, JsonRequestBehavior.AllowGet);
-            }
-        }
+        //        recordsTotal = v.Count();
+        //        var data = v.Skip(skip).Take(pageSize).ToList();
+        //        return Json(new { draw, recordsFiltered = recordsTotal, recordsTotal, data }, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
 
 
         protected override void Dispose(bool disposing)

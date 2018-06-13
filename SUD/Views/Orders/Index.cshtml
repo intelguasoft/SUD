@@ -9,50 +9,75 @@
 <p>
     @Html.ActionLink("Crear Orden", "AddProduct")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Cellar.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Client.ComertialName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Route.RouteNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.State.Description)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<table class="table table-bordered table-striped text-center" id="tblOrders">
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cellar.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Client.ComertialName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Route.RouteNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.State.Description)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.OrderId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.OrderId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.OrderId })
-            </td>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.OrderId)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Cellar.Description)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Client.ComertialName)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Route.RouteNumber)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th class="text-center">Acciones</th>
         </tr>
-    }
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cellar.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Client.ComertialName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Route.RouteNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    <div class="btn-group">
+                        @Html.ActionLink(" ", "Edit", new { id = item.OrderId }, new { @class = "btn btn-warning fa fa-pencil-square-o" })
+                        @Html.ActionLink(" ", "Details", new { id = item.OrderId }, new { @class = "btn btn-info fa fa-info-circle" })
+                        @Html.ActionLink(" ", "Delete", new { id = item.OrderId }, new { @class = "btn btn-danger fa fa-trash" })
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
 
 </table>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    <script>
+
+        $(document).ready(function () {
+            $('#tblOrders').DataTable();
+        });
+
+    </script>
+
+
+}
+

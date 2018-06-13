@@ -52,19 +52,50 @@
                         <th class="text-center">Acciones</th>
                     </tr>
                 </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserSudId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Rol.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    @Html.ActionLink(" ", "Edit", new { id = item.UserSudId }, new { @class = "btn btn-warning fa fa-pencil-square-o" })
+                                    @Html.ActionLink(" ", "Details", new { id = item.UserSudId }, new { @class = "btn btn-info fa fa-info-circle" })
+                                    @Html.ActionLink(" ", "Delete", new { id = item.UserSudId }, new { @class = "btn btn-danger fa fa-trash" })
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
             </table>
 
         </div>
 
+        <!-- /.box-body -->
+        <div class="box-footer">
+            <!-- Aca se incluye aquellas acciones relacionadas con lo antes mostrado -->
+            <!-- por ejemplo botones de facturacion, exportar a excel/pdf o similares -->
+        </div>
+        <!-- /.box-footer-->
+
     </div>
-    <!-- /.box-body -->
-    <div class="box-footer">
-        <!-- Aca se incluye aquellas acciones relacionadas con lo antes mostrado -->
-        <!-- por ejemplo botones de facturacion, exportar a excel/pdf o similares -->
-    </div>
-    <!-- /.box-footer-->
-    </div>
-    <!-- /.box -->
 </section>
 <!-- /.content -->
 
@@ -73,7 +104,9 @@
 
     <script>
         $(document).ready(function () {
-            var selected = [];
+
+            $('#tblUserSud').DataTable();
+            @*var selected = [];
 
             //$.fn.dataTable.moment('HH:mm MMM D, YY');
             //$.fn.dataTable.moment('dddd, MMMM Do, YYYY');
@@ -118,7 +151,7 @@
                         , "autoWidth": true
                     }
                 ]
-            });
+            });*@
 
             //$('#tblPurchases tbody').on('click', 'tr', function () {
             //    var id = this.id;
