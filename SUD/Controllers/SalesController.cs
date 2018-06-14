@@ -28,12 +28,56 @@ namespace SUD.Controllers
             return View();
         }
 
+        //[HttpPost]
+        //public ActionResult AddNewProduct(int id, AddProductSaleView view)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var saleDetailBk = db.SaleDetailBkps.Where(odb => odb.User == User.Identity.Name && odb.ProductId == view.ProductId).FirstOrDefault();
+
+        //        if (saleDetailBk == null)
+        //        {
+        //            var product = db.Products.Find(id);
+        //            saleDetailBk = new SaleDetailBk
+        //            {
+        //                User = User.Identity.Name,
+        //                Description = product.Description,
+        //                Price = product.Price,
+        //                ProductId = product.ProductId,
+        //                Quantity = 1, //view.Quantity,
+        //                IVAPercentage = 1,//view.IVAPercentage,
+        //                DiscountRate = 1, //view.DiscountRate,
+        //                KardexId = 100 //TODO quitar la variable estatica cuando se tenga kardex listo.
+
+        //            };
+
+        //            db.SaleDetailBkps.Add(saleDetailBk);
+
+        //        }
+        //        else
+        //        {
+        //            saleDetailBk.Quantity += view.Quantity;
+        //            db.Entry(saleDetailBk).State = EntityState.Modified;
+        //        }
+
+
+        //        db.SaveChanges();
+        //        return RedirectToAction("Create");
+
+        //    }
+        //    ViewBag.ProductId = new SelectList(db.Products.OrderBy(p => p.Description), "ProductId", "Description");
+        //    return View();
+        //}
+
+        //EndNew
+
         [HttpPost]
-        public ActionResult AddProduct(AddProductSaleView view)
+        public JsonResult AddProduct(AddProductView view)
         {
             if (ModelState.IsValid)
             {
                 var saleDetailBk = db.SaleDetailBkps.Where(odb => odb.User == User.Identity.Name && odb.ProductId == view.ProductId).FirstOrDefault();
+                var producto = db.CellarProducts.Find(view.ProductId);
 
                 if (saleDetailBk == null)
                 {
@@ -45,33 +89,47 @@ namespace SUD.Controllers
                         Price = product.Price,
                         ProductId = product.ProductId,
                         Quantity = view.Quantity,
-                        IVAPercentage = view.IVAPercentage,
-                        DiscountRate = view.DiscountRate,
+                        IVAPercentage = 1,//view.IVAPercentage,
+                        DiscountRate = 1, //view.DiscountRate,
                         KardexId = 100 //TODO quitar la variable estatica cuando se tenga kardex listo.
-
                     };
 
-                    db.SaleDetailBkps.Add(saleDetailBk);
+
+
+                    if (producto.Stock > view.Quantity)
+                    {
+                        db.SaleDetailBkps.Add(saleDetailBk);
+                    }
 
                 }
                 else
                 {
-                    saleDetailBk.Quantity += view.Quantity;
-                    db.Entry(saleDetailBk).State = EntityState.Modified;
+
+                    if (producto.Stock > view.Quantity)
+                    {
+                        saleDetailBk.Quantity += view.Quantity;
+                        db.Entry(saleDetailBk).State = EntityState.Modified;
+                    }
+
                 }
 
 
                 db.SaveChanges();
-                return RedirectToAction("Create");
 
             }
-            ViewBag.ProductId = new SelectList(db.Products.OrderBy(p => p.Description), "ProductId", "Description");
-            return View();
+            return Json(view);
         }
 
-        //EndNew
+        public ActionResult Detalle()
+        {
 
+            var view = new NewSaleView
+            {
+                Details = db.SaleDetailBkps.Where(pdb => pdb.User == User.Identity.Name).ToList()
+            };
 
+            return PartialView();
+        }
 
         // GET: Sales
         public ActionResult Index()
@@ -123,8 +181,8 @@ namespace SUD.Controllers
                     try
                     {
 
-                        Sale dn = (from x in db.Sales orderby x.SaleId descending select x).FirstOrDefault();
-                        var docnumber = dn.DocumentNumber + 1;
+                        AccountingDocument dn = (from x in db.AccountingDocuments orderby x.InitialNumber descending select x).FirstOrDefault();
+                        var docnumber = dn.InitialNumber + 1;
 
                         var sale = new Sale
                         {
@@ -362,6 +420,7 @@ namespace SUD.Controllers
             }
 
         }
+
 
 
         protected override void Dispose(bool disposing)

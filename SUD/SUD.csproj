@@ -926,6 +926,9 @@
     <Content Include="Views\Sales\AddProduct.cshtml" />
     <Content Include="Views\Products\Details - Original.cshtml" />
     <Content Include="Views\Orders\Detalle.cshtml" />
+    <Content Include="Views\Sales\zzAddProduct - v1.cshtml" />
+    <Content Include="Views\Sales\Detalle.cshtml" />
+    <Content Include="Views\Sales\zzCreate - v1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
