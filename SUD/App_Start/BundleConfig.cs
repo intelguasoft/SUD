@@ -24,6 +24,7 @@ namespace SUD
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
+                      "~/Scripts/notify.min.js",
                       "~/Scripts/jasny-bootstrap.js",
                       "~/Scripts/moment.js",
                       "~/Scripts/datetime.js",

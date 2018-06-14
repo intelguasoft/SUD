@@ -1,58 +1,129 @@
-﻿@model SUD.Models.Order
+﻿
+@model SUD.Models.Order
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Orden";
+    ViewBag.Message = "Este es una Orden";
+
 }
 
-<h2>Details</h2>
+<section class="content-header">
+    <h1>
+        <!--aqui va el titulo de la pagina que se va a mostrar, como el siguiente ejemplo -->
+        @ViewBag.Title - <small>@ViewBag.Message</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index")"><i class="fa fa-pencil-square-o"></i>  Ordenes</a></li>
+        <li class="active">Detalles</li>
+    </ol>
+</section>
+<section class="content">
+    <!-- Default box -->
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">@ViewBag.Message</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                        title="Collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove" disabled>
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="box-body">
+            <!-- Aca se incluye todo el contenido de la pagina que se desea mostrar -->
+            <!-- por ejemplo el index/tabla de algun recurso -->
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-<div>
-    <h4>Order</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Cellar.Description)
-        </dt>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CellarId, "Bodega", htmlAttributes: new { @class = "control-label col-md-2" })
 
-        <dd>
-            @Html.DisplayFor(model => model.Cellar.Description)
-        </dd>
+                        @Html.DisplayFor(modelItem => Model.Cellar.Description)
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Client.Document)
-        </dt>
+                    </div>
+                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Client.Document)
-        </dd>
+                <div class="col-xs-12 col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ClientId, "Cliente", htmlAttributes: new { @class = "control-label col-md-2" })
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Route.RouteNumber)
-        </dt>
+                        @Html.DisplayFor(modelItem => Model.Client.ComertialName)
 
-        <dd>
-            @Html.DisplayFor(model => model.Route.RouteNumber)
-        </dd>
+                    </div>
+                </div>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <dd>
-            @Html.DisplayFor(model => model.Date)
-        </dd>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Route.RouteNumber, "Ruta", htmlAttributes: new { @class = "control-label col-md-2" })
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StateId)
-        </dt>
+                        @Html.DisplayFor(modelItem => Model.Route.RouteNumber)
 
-        <dd>
-            @Html.DisplayFor(model => model.StateId)
-        </dd>
+                    </div>
+                </div>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.OrderId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+                <div class="col-xs-12 col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Date, "Fecha", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                        @Html.DisplayFor(modelItem => Model.Date)
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="DetailOrders">
+
+                @Html.Partial("DetailOrders", new ViewDataDictionary { { "id", Model.OrderId } });
+
+            </div>
+        </div>
+        <div class="box-footer">
+            <!-- Aca se incluye aquellas acciones relacionadas con lo antes mostrado -->
+            <!-- por ejemplo botones de facturacion, exportar a excel/pdf o similares -->
+
+            <div class="form-group pull-right">
+                <a href="@Url.Action("Edit", new { id = Model.OrderId })" class="btn btn-warning "><i class="fa fa-edit" aria-hidden="true"></i> Editar</a>
+                <a href="@Url.Action("Delete", new { id = Model.OrderId })" class="btn btn-danger "><i class="fa fa-remove" aria-hidden="true"></i> Eliminar</a>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    <script>
+
+        $(document).ready(function () {
+
+            $.ajax({
+
+                url: "@Url.Action("DetailOrders", new { id = Model.OrderId})",
+                type: "GET",
+                contentType: "HTML"
+            }).done(function (result) {
+
+                $("#DetailOrders").html(result);
+
+                });
+
+        });
+
+
+    </script>
+
+
+}
+
+

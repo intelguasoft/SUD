@@ -36,155 +36,139 @@
             <p>
                 <a href="@Url.Action("Index", "Products")" class="btn btn-success"> <i class="fa fa-external-link" aria-hidden="true"></i> Ir a Productos</a>
             </p>
-            <table class="table table-condensed">
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Cellar.Description)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Product.Description)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Stock)
-                    </th>
-                    <th>
-                        @Html.Label("Alerta")
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Minimum)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Maximum)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ReplacementDays)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.MinimumAmount)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Location)
-                    </th>
-                </tr>
+            <table class="table table-bordered table-striped text-center" id="tblProductosBodega">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Cellar.Description)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Product.Description)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Stock)
+                        </th>
+                        <th>
+                            @*@Html.Label("Alerta")*@
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Minimum)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Maximum)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Location)
+                        </th>
+                        <th>
+                            Acciones
+                        </th>
+                    </tr>
+                </thead>
 
-                @foreach (var item in Model)
-                {
-                    if (item.Stock <= item.Minimum)
-                    {
-                        <tr class="danger">
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Cellar.Description)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Product.Description)
-                            </td>
-                            <td align="right">
-                                @Html.DisplayFor(modelItem => item.Stock)
-                            </td>
-                            <td>
-                                <span class="hint--error" aria-label="La existencia se encuentra por debajo de su nivel mínimo"> <i class="fa fa fa-exclamation-triangle"></i> </span>
-                            </td>
-                            <td align="right">
-                                @Html.DisplayFor(modelItem => item.Minimum)
-                            </td>
-                            <td align="right">
-                                @Html.DisplayFor(modelItem => item.Maximum)
-                            </td>
-                            <td align="right">
-                                @Html.DisplayFor(modelItem => item.ReplacementDays)
-                            </td>
-                            <td align="right">
-                                @Html.DisplayFor(modelItem => item.MinimumAmount)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Location)
-                            </td>
-                            <td>
-                                <div class="btn-group">
-                                    @Html.ActionLink(" ", "Edit", new { id = item.CellarProductId }, new { @class = "btn btn-warning fa fa-pencil-square-o" })
-                                    @Html.ActionLink(" ", "Details", new { id = item.CellarProductId }, new { @class = "btn btn-info fa fa-info-circle" })
-                                    @Html.ActionLink(" ", "Delete", new { id = item.CellarProductId }, new { @class = "btn btn-danger fa fa-trash" })
-                                </div>
-                        </tr>
-                    }
-                    else if (item.Stock >= item.Maximum)
-                    {
-                        <tr class="warning">
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Cellar.Description)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Product.Description)
-                            </td>
-                            <td align="right">
-                                @Html.DisplayFor(modelItem => item.Stock)
-                            </td>
-                            <td>
-                                <span class="hint--warning" aria-label="La existencia se encuentra por encima de su nivel máximo"> <i class="fa fa fa-exclamation-triangle"></i> </span>
-                            </td>
-                            <td align="right">
-                                @Html.DisplayFor(modelItem => item.Minimum)
-                            </td>
-                            <td align="right">
-                                @Html.DisplayFor(modelItem => item.Maximum)
-                            </td>
-                            <td align="right">
-                                @Html.DisplayFor(modelItem => item.ReplacementDays)
-                            </td>
-                            <td align="right">
-                                @Html.DisplayFor(modelItem => item.MinimumAmount)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Location)
-                            </td>
-                            <td>
-                                <div class="btn-group">
-                                    @Html.ActionLink(" ", "Edit", new { id = item.CellarProductId }, new { @class = "btn btn-warning fa fa-pencil-square-o" })
-                                    @Html.ActionLink(" ", "Details", new { id = item.CellarProductId }, new { @class = "btn btn-info fa fa-info-circle" })
-                                    @Html.ActionLink(" ", "Delete", new { id = item.CellarProductId }, new { @class = "btn btn-danger fa fa-trash" })
-                                </div>
-                        </tr>
-                    }
-                    else
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Cellar.Description)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Product.Description)
-                            </td>
-                            <td align="right">
-                                @Html.DisplayFor(modelItem => item.Stock)
-                            </td>
-                            <td>
-                                @Html.Label("")
-                            </td>
-                            <td align="right">
-                                @Html.DisplayFor(modelItem => item.Minimum)
-                            </td>
-                            <td align="right">
-                                @Html.DisplayFor(modelItem => item.Maximum)
-                            </td>
-                            <td align="right">
-                                @Html.DisplayFor(modelItem => item.ReplacementDays)
-                            </td>
-                            <td align="right">
-                                @Html.DisplayFor(modelItem => item.MinimumAmount)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Location)
-                            </td>
-                            <td>
-                                <div class="btn-group">
-                                    @Html.ActionLink(" ", "Edit", new { id = item.CellarProductId }, new { @class = "btn btn-warning fa fa-pencil-square-o" })
-                                    @Html.ActionLink(" ", "Details", new { id = item.CellarProductId }, new { @class = "btn btn-info fa fa-info-circle" })
-                                    @Html.ActionLink(" ", "Delete", new { id = item.CellarProductId }, new { @class = "btn btn-danger fa fa-trash" })
-                                </div>
-                        </tr>
-                    }
+                <tbody>
 
-                }
+                    @foreach (var item in Model)
+                    {
+                        if (item.Stock <= item.Minimum)
+                        {
+                            <tr class="danger">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cellar.Description)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Product.Description)
+                                </td>
+                                <td align="right">
+                                    @Html.DisplayFor(modelItem => item.Stock)
+                                </td>
+                                <td>
+                                    <span class="hint--error" aria-label="La existencia se encuentra por debajo de su nivel mínimo"> <i class="fa fa fa-exclamation-triangle"></i> </span>
+                                </td>
+                                <td align="right">
+                                    @Html.DisplayFor(modelItem => item.Minimum)
+                                </td>
+                                <td align="right">
+                                    @Html.DisplayFor(modelItem => item.Maximum)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Location)
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        @*@Html.ActionLink(" ", "Edit", new { id = item.CellarProductId }, new { @class = "btn btn-warning fa fa-pencil-square-o" })*@
+                                        @Html.ActionLink(" ", "Details", new { id = item.CellarProductId }, new { @class = "btn btn-info fa fa-info-circle" })
+                                        @*@Html.ActionLink(" ", "Delete", new { id = item.CellarProductId }, new { @class = "btn btn-danger fa fa-trash" })*@
+                                    </div>
+                            </tr>
+                        }
+                        else if (item.Stock >= item.Maximum)
+                        {
+                            <tr class="warning">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cellar.Description)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Product.Description)
+                                </td>
+                                <td align="right">
+                                    @Html.DisplayFor(modelItem => item.Stock)
+                                </td>
+                                <td>
+                                    <span class="hint--warning" aria-label="La existencia se encuentra por encima de su nivel máximo"> <i class="fa fa fa-exclamation-triangle"></i> </span>
+                                </td>
+                                <td align="right">
+                                    @Html.DisplayFor(modelItem => item.Minimum)
+                                </td>
+                                <td align="right">
+                                    @Html.DisplayFor(modelItem => item.Maximum)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Location)
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        @*@Html.ActionLink(" ", "Edit", new { id = item.CellarProductId }, new { @class = "btn btn-warning fa fa-pencil-square-o" })*@
+                                        @Html.ActionLink(" ", "Details", new { id = item.CellarProductId }, new { @class = "btn btn-info fa fa-info-circle" })
+                                        @*@Html.ActionLink(" ", "Delete", new { id = item.CellarProductId }, new { @class = "btn btn-danger fa fa-trash" })*@
+                                    </div>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cellar.Description)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Product.Description)
+                                </td>
+                                <td align="right">
+                                    @Html.DisplayFor(modelItem => item.Stock)
+                                </td>
+                                <td>
+                                    @Html.Label("")
+                                </td>
+                                <td align="right">
+                                    @Html.DisplayFor(modelItem => item.Minimum)
+                                </td>
+                                <td align="right">
+                                    @Html.DisplayFor(modelItem => item.Maximum)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Location)
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        @*@Html.ActionLink(" ", "Edit", new { id = item.CellarProductId }, new { @class = "btn btn-warning fa fa-pencil-square-o" })*@
+                                        @Html.ActionLink(" ", "Details", new { id = item.CellarProductId }, new { @class = "btn btn-info fa fa-info-circle" })
+                                        @*@Html.ActionLink(" ", "Delete", new { id = item.CellarProductId }, new { @class = "btn btn-danger fa fa-trash" })*@
+                                    </div>
+                            </tr>
+                        }
+
+                    }
+                </tbody>
 
             </table>
 
@@ -199,3 +183,18 @@
     <!-- /.box -->
 </section>
 <!-- /.content -->
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    <script>
+
+        $(document).ready(function () {
+            $('#tblProductosBodega').DataTable();
+        });
+
+    </script>
+
+
+}

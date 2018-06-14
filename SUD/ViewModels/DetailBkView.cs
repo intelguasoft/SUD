@@ -7,7 +7,7 @@ using System.Web;
 
 namespace SUD.ViewModels
 {
-    public class DetailView
+    public class DetailBkView
     {
         public List<OrderDetailBk> Details { get; set; }
 
