@@ -254,7 +254,7 @@
     <Compile Include="Models\DocumentType.cs" />
     <Compile Include="Models\Egress.cs" />
     <Compile Include="Models\EgressDetails.cs" />
-    <Compile Include="Models\FilesHelper.cs" />
+    <Compile Include="Generic\FilesHelper.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Inventory.cs" />
     <Compile Include="Models\InventoryDetail.cs" />
@@ -287,7 +287,8 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AddProductSaleView.cs" />
     <Compile Include="ViewModels\AddProductView.cs" />
-    <Compile Include="ViewModels\DetailView.cs" />
+    <Compile Include="ViewModels\DetailBkView.cs" />
+    <Compile Include="ViewModels\DetailOrderView.cs" />
     <Compile Include="ViewModels\NewOrderView.cs" />
     <Compile Include="ViewModels\NewPurchaseView.cs" />
     <Compile Include="ViewModels\NewSaleView.cs" />
@@ -506,6 +507,7 @@
     <Content Include="Content\ionicons.min.css" />
     <Content Include="Content\jasny-bootstrap.css" />
     <Content Include="Content\jquery-jvectormap.css" />
+    <Content Include="Content\jquery.dataTables-dt.min.css" />
     <Content Include="Content\jquery.dataTables.min.css" />
     <Content Include="Content\loading-btn.css" />
     <Content Include="Content\loading.css" />
@@ -715,6 +717,7 @@
     <Content Include="Scripts\i18n\zh-TW.js" />
     <Content Include="Scripts\icheck.min.js" />
     <Content Include="Scripts\jasny-bootstrap.js" />
+    <Content Include="Scripts\jquery-3.3.1-dt.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -725,6 +728,7 @@
     <Content Include="Scripts\jquery-jvectormap-1.2.2.min.js" />
     <Content Include="Scripts\jquery-jvectormap-usa-en.js" />
     <Content Include="Scripts\jquery-jvectormap-world-mill-en.js" />
+    <Content Include="Scripts\jquery.dataTables-dt.min.js" />
     <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.slimscroll.js" />
@@ -742,6 +746,7 @@
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\notify.min.js" />
     <Content Include="Scripts\pages\dashboard.js" />
     <Content Include="Scripts\pages\dashboard2.js" />
     <Content Include="Scripts\purchases.js" />
@@ -926,13 +931,12 @@
     <Content Include="Views\Sales\AddProduct.cshtml" />
     <Content Include="Views\Products\Details - Original.cshtml" />
     <Content Include="Views\Orders\Detalle.cshtml" />
-    <Content Include="Views\Sales\zzAddProduct - v1.cshtml" />
-    <Content Include="Views\Sales\Detalle.cshtml" />
-    <Content Include="Views\Sales\zzCreate - v1.cshtml" />
+    <Content Include="Views\Orders\DetailOrders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Uploads\Products\" />
+    <Folder Include="Uploads\Usuarios\" />
     <Folder Include="Views\Upload\" />
   </ItemGroup>
   <ItemGroup>

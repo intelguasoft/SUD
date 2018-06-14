@@ -56,18 +56,36 @@ namespace SUD.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserSudId,Name,LastName,Password,ModificationDatePassword,RolId,Email, Status")] UserSud userSud)
+        public ActionResult Create([Bind(Include = "UserSudId,Name,LastName,Password,ModificationDatePassword,RolId,Email, Status, Image, FotografiaFile")] UserSud userSud)
         {
             if (ModelState.IsValid)
             {
                 db.UserSuds.Add(userSud);
                 db.SaveChanges();
+
                 if (userSud != null)
                 {
                     var rol = db.Rols.Find(userSud.RolId);
                     UsersHelper.CreateUserASP(userSud.Email, rol.Description, userSud.Password);
                 }
+
+                if (userSud.FotografiaFile != null)
+                {
+                    var folder = "~/Uploads/Usuarios";
+                    var response = FilesHelper.UploadPhoto(userSud.FotografiaFile, folder, string.Format("{0}.jpg", userSud.UserSudId));
+                    if (response)
+                    {
+                        var pic = string.Format("{0}/{1}.jpg", folder, userSud.UserSudId);
+                        userSud.Image = pic;
+
+                        db.Entry(userSud).State = EntityState.Modified;
+                        db.SaveChanges();
+
+
+                    }
+                }
                 return RedirectToAction("Index");
+
             }
 
             ViewBag.RolId = new SelectList(db.Rols, "RolId", "Description", userSud.RolId);
@@ -95,21 +113,39 @@ namespace SUD.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserSudId,Name,LastName,Password,ModificationDatePassword,RolId,Email, Status")] UserSud userSud)
+        public ActionResult Edit([Bind(Include = "UserSudId,Name,LastName,Password,ModificationDatePassword,RolId,Email, Status, Image, FotografiaFile")] UserSud userSud)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(userSud).State = EntityState.Modified;
                 db.SaveChanges();
+
                 var db2 = new ApplicationDbContext();
                 var currentUser = db2.UserSuds.Find(userSud.UserSudId);
                 if (currentUser.Email != userSud.Email)
                 {
                     UsersHelper.UpdateUsername(currentUser.Email, userSud.Email);
                 }
+
+                if (userSud.FotografiaFile != null)
+                {
+                    var folder = "~/Uploads/Usuarios";
+                    var response = FilesHelper.UploadPhoto(userSud.FotografiaFile, folder, string.Format("{0}.jpg", userSud.UserSudId));
+                    if (response)
+                    {
+                        var pic = string.Format("{0}/{1}.jpg", folder, userSud.UserSudId);
+                        userSud.Image = pic;
+
+                        db.Entry(userSud).State = EntityState.Modified;
+                        db.SaveChanges();
+
+
+                    }
+                }
                 db2.Dispose();
                 return RedirectToAction("Index");
             }
+
             ViewBag.RolId = new SelectList(db.Rols, "RolId", "Description", userSud.RolId);
             return View(userSud);
         }
@@ -141,39 +177,39 @@ namespace SUD.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        public JsonResult getUserSuds()
-        {
-            // TODO Falta que hacer el filtrado del lado del servidor.
-            var draw = Request.Form.GetValues("draw").FirstOrDefault();
-            var start = Request.Form.GetValues("start").FirstOrDefault();
-            var length = Request.Form.GetValues("length").FirstOrDefault();
-            //var filter = Request.Form.GetValues("filter").FirstOrDefault();
-            //Find Order Column
-            var sortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
-            var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
+        //[HttpPost]
+        //public JsonResult getUserSuds()
+        //{
+        //    // TODO Falta que hacer el filtrado del lado del servidor.
+        //    var draw = Request.Form.GetValues("draw").FirstOrDefault();
+        //    var start = Request.Form.GetValues("start").FirstOrDefault();
+        //    var length = Request.Form.GetValues("length").FirstOrDefault();
+        //    //var filter = Request.Form.GetValues("filter").FirstOrDefault();
+        //    //Find Order Column
+        //    var sortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
+        //    var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
 
 
-            int pageSize = length != null ? Convert.ToInt32(length) : 0;
-            int skip = start != null ? Convert.ToInt32(start) : 0;
-            int recordsTotal = 0;
-            using (ApplicationDbContext _context = new ApplicationDbContext())
-            {
-                _context.Configuration.ProxyCreationEnabled = false; // esto es necesario si nuestra tabla esta relacionado y por cosiguiente tiene claves foraneas
+        //    int pageSize = length != null ? Convert.ToInt32(length) : 0;
+        //    int skip = start != null ? Convert.ToInt32(start) : 0;
+        //    int recordsTotal = 0;
+        //    using (ApplicationDbContext _context = new ApplicationDbContext())
+        //    {
+        //        _context.Configuration.ProxyCreationEnabled = false; // esto es necesario si nuestra tabla esta relacionado y por cosiguiente tiene claves foraneas
 
-                var v = (from a in _context.UserSuds.Include("Rol") select a);
+        //        var v = (from a in _context.UserSuds.Include("Rol") select a);
 
-                //SORT
-                if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDir)))
-                {
-                    v = v.OrderBy(sortColumn + " " + sortColumnDir);
-                }
+        //        //SORT
+        //        if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDir)))
+        //        {
+        //            v = v.OrderBy(sortColumn + " " + sortColumnDir);
+        //        }
 
-                recordsTotal = v.Count();
-                var data = v.Skip(skip).Take(pageSize).ToList();
-                return Json(new { draw, recordsFiltered = recordsTotal, recordsTotal, data }, JsonRequestBehavior.AllowGet);
-            }
-        }
+        //        recordsTotal = v.Count();
+        //        var data = v.Skip(skip).Take(pageSize).ToList();
+        //        return Json(new { draw, recordsFiltered = recordsTotal, recordsTotal, data }, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
 
 
         protected override void Dispose(bool disposing)

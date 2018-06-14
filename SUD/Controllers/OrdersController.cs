@@ -19,7 +19,7 @@ namespace SUD.Controllers
 
         public ActionResult AddProduct()
         {
-            ViewBag.ProductId = new SelectList(db.Products.OrderBy(p => p.Description), "ProductId", "Description");
+            ViewBag.ProductId = new SelectList(db.CellarProducts.Include(cp => cp.Product).OrderBy(cp => cp.Product.Description), "ProductId", "Product.Description");
             return View();
         }
 
@@ -66,7 +66,7 @@ namespace SUD.Controllers
             if (ModelState.IsValid)
             {
                 var orderDetailBk = db.OrderDetailBkps.Where(odb => odb.User == User.Identity.Name && odb.ProductId == view.ProductId).FirstOrDefault();
-                var bodega = db.CellarProducts.Find(view.ProductId);
+                var bodega = db.CellarProducts.Where(cp => cp.ProductId == view.ProductId).FirstOrDefault();
 
                 if (orderDetailBk == null)
                 {
@@ -110,14 +110,24 @@ namespace SUD.Controllers
         public ActionResult Detalle()
         {
 
-            var view = new DetailView
+            var view = new DetailBkView
             {
                 Details = db.OrderDetailBkps.Where(pdb => pdb.User == User.Identity.Name).ToList()
             };
 
-            return PartialView(view);
+            return PartialView("Detalle", view);
         }
 
+        public ActionResult DetailOrders(int? id)
+        {
+
+            var view = new DetailOrderView
+            {
+                Details = db.OrderDetails.Where(pdb => pdb.OrderId == id).ToList()
+            };
+
+            return PartialView("DetailOrders", view);
+        }
 
         public ActionResult DeleteProduct(int? id)
         {
@@ -231,7 +241,7 @@ namespace SUD.Controllers
                                 Quantity = detail.Quantity
                             };
 
-                            var bodega = db.CellarProducts.Find(detail.ProductId);
+                            var bodega = db.CellarProducts.Where(cp => cp.ProductId == detail.ProductId).FirstOrDefault();
 
                             bodega.Stock -= detail.Quantity;
                             db.Entry(bodega).State = EntityState.Modified;

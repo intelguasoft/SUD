@@ -30,7 +30,7 @@ namespace SUD.Models
         {
             get
             {
-                return string.Format("{0}, {1}", this.Name, this.LastName);
+                return string.Format("{0} {1}", this.Name, this.LastName);
             }
         }
 
@@ -62,9 +62,16 @@ namespace SUD.Models
         [Display(Name = "Activo")]
         public Boolean Status { get; set; }
 
+        [Display(Name = "Imagen")]
+        public string Image { get; set; }
+
+        [NotMapped]
+        public HttpPostedFileBase FotografiaFile { get; set; }
+
+
+
+
         public virtual Rol Rol { get; set; }
-
-
 
     }
 

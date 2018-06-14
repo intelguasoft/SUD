@@ -1,4 +1,4 @@
-﻿@model SUD.ViewModels.DetailBkView
+﻿@model SUD.ViewModels.DetailOrderView
 
 
 <span class="border"></span>
@@ -44,11 +44,6 @@ else
             <th align="center">
                 @Html.DisplayNameFor(model => model.Details[0].Value)
             </th>
-            <th width="70px">
-                <div class="btn-group">
-                    @Html.ActionLink(" Todos", "DeleteAllProduct", new { @class = "btn btn-danger fa fa-trash", onclick = "return confirm('Realmente desea eliminar todos los productos del detalle.?');" })
-                </div>
-            </th>
         </tr>
 
         @foreach (var item in Model.Details)
@@ -66,11 +61,6 @@ else
                 <td align="left">
                     @Html.DisplayFor(modelItem => item.Value)
                 </td>
-                <td align="center">
-                    <div class="btn-group" id="btn_delete">
-                        @Html.ActionLink(" ", "DeleteProduct", new { id = item.ProductId }, new { @class = "btn btn-danger fa fa-trash", onclick = "return confirm('Realmente desea eliminar el producto.?');" })
-                    </div>
-                </td>
             </tr>
         }
         <tr class="bg-info border-dark">
@@ -83,7 +73,6 @@ else
             <td align="left">
                 <strong>@Html.DisplayFor(modelItem => Model.TotalValue)</strong>
             </td>
-            <td></td>
         </tr>
     </table>
 }

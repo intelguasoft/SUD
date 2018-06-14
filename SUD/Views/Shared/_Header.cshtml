@@ -30,8 +30,15 @@
                         <li class="user-header">
                             <img src="~/Content/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                             <p>
-                                @user.UserSudFullName
-                                <small> @user.Rol.Description</small>
+                                @if (user == null)
+                                {
+                                    <label>Administrador</label>
+                                }
+                                else
+                                {
+                                    @user.UserSudFullName
+                                    <small> @user.Rol.Description</small>
+                                }
                             </p>
                         </li>
                         <!-- Menu Body -->
