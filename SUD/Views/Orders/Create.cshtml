@@ -66,6 +66,14 @@
 
                 <div class="row">
                     <div class="col-xs-12 col-md-6">
+                        <button type="button" class="btn btn-success" id="btn_Save">
+                            <i class="fa fa-plus" aria-hidden="true"> </i> Crear Cliente
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-md-6">
                         <div class="form-group">
                             @Html.LabelFor(model => model.RouteId, "Ruta", htmlAttributes: new { @class = "control-label col-md-2" })
 
@@ -182,7 +190,60 @@
         <!-- /.box -->
     </section>
     <!-- /.content -->
+
+
+
+
 }
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+
+    <script>
+
+
+        $("#btn_Save").click(function () {
+
+
+            $("#ModalClient").modal("show");
+
+        })
+
+        $("#btnSaveClient").click(function (e) {
+
+            //var myformdata = $("#ModalClient").serialize();
+
+            //$.ajax({
+
+            //    type: "POST",
+            //    url: "/Clients/AddClient",
+            //    data: myformdata,
+            //    success: function () {
+
+            //        $("#ModalClient").modal("hide");
+            //    },
+            //    error: function (response) {
+            //        console.info(response);
+            //    }
+
+
+            //})
+
+        })
+
+        function OnSuccess(response) {
+
+            console.log(response);
+            $.notify("Cliente agregado exitosamente", "success");
+        }
+
+        function OnFailure(response) {
+
+            console.log(response);
+            $.notify("Ha ocurrido un error", "error");
+        }
+
+    </script>
+
+
 }

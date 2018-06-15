@@ -932,6 +932,7 @@
     <Content Include="Views\Products\Details - Original.cshtml" />
     <Content Include="Views\Orders\Detalle.cshtml" />
     <Content Include="Views\Orders\DetailOrders.cshtml" />
+    <Content Include="Views\Orders\AddClient.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

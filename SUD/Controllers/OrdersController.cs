@@ -192,6 +192,7 @@ namespace SUD.Controllers
             ViewBag.CellarId = new SelectList(db.Cellars, "CellarId", "Description");
             ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "ComertialName");
             ViewBag.RouteId = new SelectList(db.Routes, "RouteId", "RouteNumber");
+            ViewBag.DocumentTypeId = new SelectList(db.DocumentTypes, "DocumentTypeId", "Description");
 
             var view = new NewOrderView
             {

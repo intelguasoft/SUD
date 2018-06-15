@@ -1,0 +1,71 @@
+﻿
+<div id="ModalClient" class=" modal fade">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4>Ingrese los datos del Cliente</h4>
+            </div>
+            <div class="modal-body">
+                @*aqui comienza el body*@
+                <div class="form-group">
+
+                    <div class="form-horizontal">
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <input type="hidden" id="Id" class="form-control" />
+                        <b>Documento</b>
+                        <input type="text" id="Document" class="form-control" />
+                        <br />
+
+                        <b></b>
+                        <br />
+
+                        <b>@Html.DisplayNameFor(model => model.ComertialName)</b>
+                        <input type="text" id="ComertialName" class="form-control" />
+                        <br />
+
+                        <b>@Html.DisplayNameFor(model => model.FirstNameContact)</b>
+                        <input type="text" id="FirstNameContact" class="form-control" />
+                        <br />
+
+                        <b>@Html.DisplayNameFor(model => model.LastNameContact)</b>
+                        <input type="text" id="LastNameContact" class="form-control" />
+                        <br />
+
+                        <b>@Html.DisplayNameFor(model => model.Address)</b>
+                        <input type="text" id="Address" class="form-control" />
+                        <br />
+
+                        <b>@Html.DisplayNameFor(model => model.Telephone1)</b>
+                        <input type="text" id="Telephone1" class="form-control" />
+                        <br />
+
+                        <b>@Html.DisplayNameFor(model => model.Telephone2)</b>
+                        <input type="text" id="Telephone2" class="form-control" />
+                        <br />
+
+                        <b>@Html.DisplayNameFor(model => model.Mail)</b>
+                        <input type="text" id="Mail" class="form-control" />
+                        <br />
+
+                        <b>@Html.DisplayNameFor(model => model.Note)</b>
+                        <input type="text" id="Note" class="form-control" />
+
+
+                    </div>
+
+                </div>
+            </div>@*aqui termina el body*@
+
+
+            <div class="modal-footer">
+                <button type="submit" id="btnSaveClient" class="btn btn-primary">Guardar</button>
+                <button type="button" id="btnClose" class="btn btn-default" data-dismiss="modal">Cancel</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
