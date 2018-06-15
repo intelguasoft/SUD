@@ -29,5 +29,7 @@ namespace SUD.ViewModels
 
         [Display(Name = "Kardex")]
         public int? KardexId { get; set; }
+
+
     }
 }
