@@ -490,6 +490,7 @@
     <Content Include="Content\img\credit\paypal2.png" />
     <Content Include="Content\img\credit\visa.png" />
     <Content Include="Content\img\default-50x50.gif" />
+    <Content Include="Content\img\defaultimg.png" />
     <Content Include="Content\img\icons.png" />
     <Content Include="Content\img\photo1.png" />
     <Content Include="Content\img\photo2.png" />
