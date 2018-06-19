@@ -12,7 +12,6 @@
 
 {
     @Html.AntiForgeryToken()
-
     <div id="ModalClient" class=" modal fade">
         <div class="modal-dialog ">
             <div class="modal-content">
@@ -31,6 +30,16 @@
                                 @Html.ValidationMessageFor(model => model.Document, "", new { @class = "text-danger" })
                             </div>
                         </div>
+
+                        <div class="col-xl-12 col-md-2">
+                            <div class="form-group">
+
+                                @Html.LabelFor(model => model.DocumentTypeId, "Tipo de Documento", htmlAttributes: new { @class = "" })
+                                @Html.DropDownList("DocumentTypeId", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.DocumentTypeId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
 
                         <div class="col-xl-12 col-md-4">
                             <div class="form-group">
@@ -117,47 +126,4 @@
         </div>
     </div>
 }
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-
-
-        <script>
-
-            //$("#btnSaveClient").click(function (e) {
-
-            //    //var myformdata = $("#ModalClient").serialize();
-
-            //    //$.ajax({
-
-            //    //    type: "POST",
-            //    //    url: "/Clients/AddClient",
-            //    //    data: myformdata,
-            //    //    success: function () {
-
-            //    //        $("#ModalClient").modal("hide");
-            //    //    },
-            //    //    error: function (response) {
-            //    //        console.info(response);
-            //    //    }
-
-
-            //    //})
-
-            //})
-
-            function OnSuccess(response) {
-
-                console.log(response);
-                $.notify("Cliente agregado exitosamente", "success");
-            }
-
-            function OnFailure(response) {
-
-                console.log(response);
-                $.notify("Ha ocurrido un error", "error");
-            }
-
-        </script>
-
-    }
 

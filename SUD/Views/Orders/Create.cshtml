@@ -187,14 +187,12 @@
     </section>
     <!-- /.content -->
 
-    <div id="ModalClient">
 
-        @Html.Partial("AddClient", new ViewDataDictionary { });
-
-    </div>
-
-    
 }
+
+@Html.Partial("AddClient", new ViewDataDictionary { });
+
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
@@ -208,6 +206,20 @@
             $("#ModalClient").modal("show");
 
         })
+
+        function OnSuccess(response) {
+            $("#ModalClient").modal("hide");
+            $.notify("Cliente agregado exitosamente", "success");
+            $("#ClientId").append("<option value = '" + response.ClientId + "' selected>" + response.ComertialName + "</option>");
+
+        }
+
+        function OnFailure(response) {
+
+            console.log(response);
+            $.notify("Ha ocurrido un error", "error");
+        }
+
 
     </script>
 

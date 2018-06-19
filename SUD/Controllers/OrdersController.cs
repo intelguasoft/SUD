@@ -11,7 +11,7 @@ using SUD.ViewModels;
 
 namespace SUD.Controllers
 {
-    [Authorize(Roles = "Administrador")]
+    [Authorize(Roles = "Jefe de bodega, Administrador")]
 
     public class OrdersController : Controller
     {
@@ -107,34 +107,25 @@ namespace SUD.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public JsonResult AddClient(Client model)
         {
             try
             {
-                Client cl = new Client();
-                cl.Document = model.Document;
-                cl.DocumentTypeId = 1;
-                cl.ComertialName = model.ComertialName;
-                cl.FirstNameContact = model.FirstNameContact;
-                cl.LastNameContact = model.LastNameContact;
-                cl.Address = model.Address;
-                cl.Telephone1 = model.Telephone1;
-                cl.Telephone2 = model.Telephone2;
-                cl.Mail = model.Mail;
-                cl.Note = model.Note;
+                if (ModelState.IsValid)
+                {
+                    db.Clients.Add(model);
+                    db.SaveChanges();
+                }
 
-                db.Clients.Add(cl);
-                db.SaveChanges();
 
+                return Json(model);
             }
             catch (Exception ex)
             {
 
-                throw ex;
+                return Json(ex);
             }
-            
-            return Json(model);
-
         }
 
 
