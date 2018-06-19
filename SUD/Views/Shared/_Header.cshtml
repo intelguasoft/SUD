@@ -21,14 +21,30 @@
             <ul class="nav navbar-nav">
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="~/Content/img/user2-160x160.jpg" class="user-image" alt="User Image" />
-                        @*@Html.ActionLink(@Session["UserInfo"].ToString(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" }) />*@
+                        @if(user.Image == null)
+                        {
+                            <img src="~/Content/img/defaultimg.png" class="user-image" alt="User Image" />
+                        }
+                        else
+                        {
+                            <img src="@Url.Content(user.Image)" class="user-image" alt="User Image" />
+                            @*@Html.ActionLink(@Session["UserInfo"].ToString(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" }) />*@
+                        }
+                        
                     </a>
 
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="~/Content/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                            @if(user.Image == null)
+                            {
+                                <img src="~/Content/img/defaultimg.png" class="img-circle" alt="User Image">
+                            }
+                            else
+                            {
+                                <img src="@Url.Content(user.Image)" class="img-circle" alt="User Image">
+                            }
+                            
                             <p>
                                 @if (user == null)
                                 {
