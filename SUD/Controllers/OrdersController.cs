@@ -110,10 +110,12 @@ namespace SUD.Controllers
         [ValidateAntiForgeryToken]
         public JsonResult AddClient(Client model)
         {
+            ViewBag.DocumentTypeId = new SelectList(db.DocumentTypes, "DocumentTypeId", "Description");
             try
             {
                 if (ModelState.IsValid)
                 {
+                    model.DocumentTypeId = 1;
                     db.Clients.Add(model);
                     db.SaveChanges();
                 }
