@@ -50,6 +50,10 @@
                             @Html.DropDownList("ClientId", null, htmlAttributes: new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.ClientId, "", new { @class = "text-danger" })
 
+                            <button type="button" class="btn btn-success" id="btn_Save">
+                                <i class="fa fa-plus" aria-hidden="true"> </i>
+                            </button>
+
                         </div>
                     </div>
 
@@ -61,14 +65,6 @@
                             @Html.ValidationMessageFor(model => model.CellarId, "", new { @class = "text-danger" })
 
                         </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xs-12 col-md-6">
-                        <button type="button" class="btn btn-success" id="btn_Save">
-                            <i class="fa fa-plus" aria-hidden="true"> </i> Crear Cliente
-                        </button>
                     </div>
                 </div>
 
@@ -191,9 +187,13 @@
     </section>
     <!-- /.content -->
 
+    <div id="ModalClient">
 
+        @Html.Partial("AddClient", new ViewDataDictionary { });
 
+    </div>
 
+    
 }
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -208,40 +208,6 @@
             $("#ModalClient").modal("show");
 
         })
-
-        $("#btnSaveClient").click(function (e) {
-
-            //var myformdata = $("#ModalClient").serialize();
-
-            //$.ajax({
-
-            //    type: "POST",
-            //    url: "/Clients/AddClient",
-            //    data: myformdata,
-            //    success: function () {
-
-            //        $("#ModalClient").modal("hide");
-            //    },
-            //    error: function (response) {
-            //        console.info(response);
-            //    }
-
-
-            //})
-
-        })
-
-        function OnSuccess(response) {
-
-            console.log(response);
-            $.notify("Cliente agregado exitosamente", "success");
-        }
-
-        function OnFailure(response) {
-
-            console.log(response);
-            $.notify("Ha ocurrido un error", "error");
-        }
 
     </script>
 

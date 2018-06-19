@@ -138,24 +138,10 @@
         function OnSuccess(response) {
 
             $("#btn-add-product").removeClass("running");
-            //alert("Producto Agregado Correctamente");
 
             LoadData();
 
             $.notify("Producto agregado exitosamente", "success");
-
-            //const toast = swal.mixin({
-            //    toast: true,
-            //    position: 'top-end',
-            //    showConfirmButton: false,
-            //    timer: 1500
-            //});
-
-            //toast({
-            //    type: 'success',
-            //    title: 'Producto agregado correctamente'
-            //})
-
         }
 
         function OnFailure(response) {

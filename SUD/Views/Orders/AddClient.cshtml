@@ -1,71 +1,163 @@
-﻿
-<div id="ModalClient" class=" modal fade">
-    <div class="modal-dialog ">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4>Ingrese los datos del Cliente</h4>
-            </div>
-            <div class="modal-body">
-                @*aqui comienza el body*@
-                <div class="form-group">
+﻿@model SUD.Models.Client
 
-                    <div class="form-horizontal">
+@using (Ajax.BeginForm("AddClient", "Orders",
 
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            new AjaxOptions
+            {
 
-                        <input type="hidden" id="Id" class="form-control" />
-                        <b>Documento</b>
-                        <input type="text" id="Document" class="form-control" />
-                        <br />
+                OnSuccess = "OnSuccess",
+                OnFailure = "OnFailure"
 
-                        <b></b>
-                        <br />
+            }))
 
-                        <b>@Html.DisplayNameFor(model => model.ComertialName)</b>
-                        <input type="text" id="ComertialName" class="form-control" />
-                        <br />
+{
+    @Html.AntiForgeryToken()
 
-                        <b>@Html.DisplayNameFor(model => model.FirstNameContact)</b>
-                        <input type="text" id="FirstNameContact" class="form-control" />
-                        <br />
+    <div id="ModalClient" class=" modal fade">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4>Ingrese los datos del Cliente</h4>
+                </div>
+                <div class="modal-body">
+                    @*aqui comienza el body*@
+                    <div class="row">
+                        <div class="col-xs-12 col-md-2">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Document, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.Document, new { htmlAttributes = new { @class = "form-control", placeholder = "Ingresar No. de Documento" } })
+                                @Html.ValidationMessageFor(model => model.Document, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-                        <b>@Html.DisplayNameFor(model => model.LastNameContact)</b>
-                        <input type="text" id="LastNameContact" class="form-control" />
-                        <br />
+                        <div class="col-xl-12 col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ComertialName, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.ComertialName, new { htmlAttributes = new { @class = "form-control", placeholder = "Ingresar Nombre Comercial" } })
+                                @Html.ValidationMessageFor(model => model.ComertialName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-                        <b>@Html.DisplayNameFor(model => model.Address)</b>
-                        <input type="text" id="Address" class="form-control" />
-                        <br />
+                        <div class="col-xs-12 col-md-2">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.FirstNameContact, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.FirstNameContact, new { htmlAttributes = new { @class = "form-control", placeholder = "Ingresar Nombres" } })
+                                @Html.ValidationMessageFor(model => model.FirstNameContact, "", new { @class = "text-danger" })
+                            </div>
 
-                        <b>@Html.DisplayNameFor(model => model.Telephone1)</b>
-                        <input type="text" id="Telephone1" class="form-control" />
-                        <br />
-
-                        <b>@Html.DisplayNameFor(model => model.Telephone2)</b>
-                        <input type="text" id="Telephone2" class="form-control" />
-                        <br />
-
-                        <b>@Html.DisplayNameFor(model => model.Mail)</b>
-                        <input type="text" id="Mail" class="form-control" />
-                        <br />
-
-                        <b>@Html.DisplayNameFor(model => model.Note)</b>
-                        <input type="text" id="Note" class="form-control" />
-
+                        </div>
+                        <div class="col-xl-12 col-md-2">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.LastNameContact, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.LastNameContact, new { htmlAttributes = new { @class = "form-control", placeholder = "Ingresar Apellidos" } })
+                                @Html.ValidationMessageFor(model => model.LastNameContact, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
                     </div>
 
+
+                    <div class="row">
+                        <div class="col-xs-12 col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", placeholder = "Ingresar Dirección" } })
+                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-xl-12 col-md-2">
+                            <div class="form-group">
+
+                                @Html.LabelFor(model => model.Telephone1, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.Telephone1, new { htmlAttributes = new { @class = "form-control", placeholder = "Teléfono 1" } })
+                                @Html.ValidationMessageFor(model => model.Telephone1, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-md-2">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Telephone2, htmlAttributes: new { @class = "" })
+
+                                @Html.EditorFor(model => model.Telephone2, new { htmlAttributes = new { @class = "form-control", placeholder = "Telefono 2" } })
+                                @Html.ValidationMessageFor(model => model.Telephone2, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-xl-12 col-md-2">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Mail, htmlAttributes: new { @class = "" })
+
+                                @Html.EditorFor(model => model.Mail, new { htmlAttributes = new { @class = "form-control", placeholder = "Ingresar Correo Electrónico" } })
+                                @Html.ValidationMessageFor(model => model.Mail, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-2">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "" })
+                                @Html.EditorFor(model => model.Note, new { htmlAttributes = new { @class = "form-control", placeholder = "Ingresar Notas" } })
+                                @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-            </div>@*aqui termina el body*@
+                @*aqui termina el body*@
 
 
-            <div class="modal-footer">
-                <button type="submit" id="btnSaveClient" class="btn btn-primary">Guardar</button>
-                <button type="button" id="btnClose" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <div class="modal-footer">
+                    <button type="submit" id="btnSaveClient" class="btn btn-primary">Guardar</button>
+                    <button type="button" id="btnClose" class="btn btn-default" data-dismiss="modal">Cancel</button>
 
+                </div>
             </div>
-        </div>
 
+        </div>
     </div>
-</div>
+}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+
+
+        <script>
+
+            //$("#btnSaveClient").click(function (e) {
+
+            //    //var myformdata = $("#ModalClient").serialize();
+
+            //    //$.ajax({
+
+            //    //    type: "POST",
+            //    //    url: "/Clients/AddClient",
+            //    //    data: myformdata,
+            //    //    success: function () {
+
+            //    //        $("#ModalClient").modal("hide");
+            //    //    },
+            //    //    error: function (response) {
+            //    //        console.info(response);
+            //    //    }
+
+
+            //    //})
+
+            //})
+
+            function OnSuccess(response) {
+
+                console.log(response);
+                $.notify("Cliente agregado exitosamente", "success");
+            }
+
+            function OnFailure(response) {
+
+                console.log(response);
+                $.notify("Ha ocurrido un error", "error");
+            }
+
+        </script>
+
+    }
+

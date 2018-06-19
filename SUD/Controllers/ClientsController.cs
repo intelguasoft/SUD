@@ -65,38 +65,6 @@ namespace SUD.Controllers
             return View(client);
         }
 
-        [HttpPost]
-        public JsonResult AddClient(NewOrderView model)
-        {
-            try
-            {
-                Client cl = new Client();
-                cl.Document = model.Document;
-                cl.DocumentTypeId = model.DocumentTypeId;
-                cl.ComertialName = model.ComertialName;
-                cl.FirstNameContact = model.FirstNameContact;
-                cl.LastNameContact = model.LastNameContact;
-                cl.Address = model.Address;
-                cl.Telephone1 = model.Telephone1;
-                cl.Telephone2 = model.Telephone2;
-                cl.Mail = model.Mail;
-                cl.Note = model.Note;
-
-                db.Clients.Add(cl);
-                db.SaveChanges();
-
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-
-            ViewBag.DocumentTypeId = new SelectList(db.DocumentTypes, "DocumentTypeId", "Description");
-            return Json(model);
-
-        }
-
         // GET: Clients/Edit/5
         public ActionResult Edit(int? id)
         {
