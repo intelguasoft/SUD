@@ -3,7 +3,7 @@
     ViewBag.Title = "Usuarios del Sistema";
     ViewBag.Message = "Crear nuevo usuario";
 }
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "UserSuds", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
