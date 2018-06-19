@@ -3,7 +3,7 @@
     ViewBag.Title = "Usuario";
     ViewBag.Message = "Modificar Usuario";
 }
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "UserSuds", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
