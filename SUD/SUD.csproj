@@ -290,6 +290,7 @@
     <Compile Include="ViewModels\DetailBkView.cs" />
     <Compile Include="ViewModels\DetailOrderView.cs" />
     <Compile Include="ViewModels\NewOrderView.cs" />
+    <Compile Include="ViewModels\NewProductView.cs" />
     <Compile Include="ViewModels\NewPurchaseView.cs" />
     <Compile Include="ViewModels\NewSaleView.cs" />
   </ItemGroup>
@@ -930,10 +931,10 @@
     <Content Include="Views\Orders\AddProduct.cshtml" />
     <Content Include="Views\Sales\zzCreateoriginal.cshtml" />
     <Content Include="Views\Sales\AddProduct.cshtml" />
-    <Content Include="Views\Products\Details - Original.cshtml" />
     <Content Include="Views\Orders\Detalle.cshtml" />
     <Content Include="Views\Orders\DetailOrders.cshtml" />
     <Content Include="Views\Orders\AddClient.cshtml" />
+    <Content Include="Views\Products\BarCodeDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

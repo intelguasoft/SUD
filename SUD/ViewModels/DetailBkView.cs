@@ -10,11 +10,11 @@ namespace SUD.ViewModels
     public class DetailBkView
     {
         public List<OrderDetailBk> Details { get; set; }
-
-        [DisplayFormat(DataFormatString = "{0:N2}", ApplyFormatInEditMode = false)]
+        
         public double TotalQuantity { get { return Details == null ? 0 : Details.Sum(d => d.Quantity); } }
 
-        [DisplayFormat(DataFormatString = "{0:N2}", ApplyFormatInEditMode = false)]
+        [DisplayFormat(DataFormatString = "{0:C2}", ApplyFormatInEditMode = false)]
+        [DataType(DataType.Currency)]
         public decimal TotalValue { get { return Details == null ? 0 : Details.Sum(d => d.Value); } }
     }
 }

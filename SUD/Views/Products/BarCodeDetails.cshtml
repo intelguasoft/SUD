@@ -1,0 +1,71 @@
+﻿@model SUD.ViewModels.NewProductView
+
+<span class="border"></span>
+
+@if (Model == null)
+{
+    <table class="table table-bordered" id="detailBarCodes" width="500">
+        <tr>
+            <th align="center">
+                @Html.DisplayNameFor(model => model.BarCodes[0].Bar)
+            </th>
+
+            <th></th>
+        </tr>
+        <tr>
+            <td class="info" colspan="7" align="center">
+                <h4>No hay detalles para esta orden.</h4>
+            </td>
+        </tr>
+    </table>
+
+}
+else
+{
+    <table class="table table-condensed">
+        <tr class="bg-info border-secondary border-dark">
+            <th align="center">
+                @Html.DisplayNameFor(model => model.BarCodes[0].Bar)
+            </th>
+
+            <th width="70px">
+                <div class="btn-group">
+                    @Html.ActionLink(" Todos", "DeleteAllBarCodes", new { @class = "btn btn-danger fa fa-trash", onclick = "return confirm('Realmente desea eliminar todos los codigos de barras asociados al producto?');" })
+                </div>
+            </th>
+        </tr>
+
+        @foreach (var item in Model.BarCodes)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bar)
+                </td>
+
+                <td align="center">
+                    <div class="btn-group" id="btn_delete">
+                        @Html.ActionLink(" ", "DeleteBarCode", new { id = item.BarCodeId }, new { @class = "btn btn-danger fa fa-trash", onclick = "return confirm('Realmente desea eliminar el codigo de barra.?');" })
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+}
+
+<div class="row">
+    <div class="col-xs-12 col-md-8">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Bar, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            @Html.EditorFor(model => model.Bar, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Bar, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    }

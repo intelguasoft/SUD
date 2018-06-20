@@ -110,7 +110,6 @@ namespace SUD.Controllers
         [ValidateAntiForgeryToken]
         public JsonResult AddClient(Client model)
         {
-            ViewBag.DocumentTypeId = new SelectList(db.DocumentTypes, "DocumentTypeId", "Description");
             try
             {
                 if (ModelState.IsValid)
@@ -215,10 +214,9 @@ namespace SUD.Controllers
         // GET: Orders/Create
         public ActionResult Create()
         {
-            ViewBag.CellarId = new SelectList(db.Cellars, "CellarId", "Description");
-            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "ComertialName");
-            ViewBag.RouteId = new SelectList(db.Routes, "RouteId", "RouteNumber");
-            ViewBag.DocumentTypeId = new SelectList(db.DocumentTypes, "DocumentTypeId", "Description");
+            ViewBag.CellarId = new SelectList(db.Cellars.OrderBy(b => b.Description), "CellarId", "Description");
+            ViewBag.ClientId = new SelectList(db.Clients.OrderBy(cl => cl.ComertialName), "ClientId", "ComertialName");
+            ViewBag.RouteId = new SelectList(db.Routes.OrderBy(rt => rt.RouteNumber), "RouteId", "RouteNumber");
 
             var view = new NewOrderView
             {

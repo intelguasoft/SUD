@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SUD.Models;
+using SUD.ViewModels;
 
 namespace SUD.Controllers
 {
@@ -38,11 +39,40 @@ namespace SUD.Controllers
             return View(product);
         }
 
+        // GET: Products/BarCodes
+        public ActionResult BarCodeDetails(int? id)
+        {
+            var view = new NewProductView
+            {
+                BarCodes = db.BarCodes.Where(bc => bc.ProductId == id).ToList()
+            };
+
+            return PartialView("BarCodeDetails", view);
+        }
+
+        [HttpPost]
+        public JsonResult AddBarCodes(NewProductView view)
+        {
+            if (ModelState.IsValid)
+            {
+                var BarCode = new BarCode
+                {
+                    ProductId = view.ProductId,
+                    Bar = view.Bar
+                };
+
+                db.BarCodes.Add(BarCode);
+                db.SaveChanges();
+
+            }
+            return Json(view);
+        }
+
         // GET: Products/Create
         public ActionResult Create()
         {
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Description");
-            ViewBag.MeasureId = new SelectList(db.Measures, "MeasureId", "Description");
+            ViewBag.CategoryId = new SelectList(db.Categories.OrderBy(p => p.Description), "CategoryId", "Description");
+            ViewBag.MeasureId = new SelectList(db.Measures.OrderBy(m => m.Description), "MeasureId", "Description");
             return View();
         }
 
@@ -81,8 +111,8 @@ namespace SUD.Controllers
 
             }
 
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Description", product.CategoryId);
-            ViewBag.MeasureId = new SelectList(db.Measures, "MeasureId", "Description", product.MeasureId);
+            ViewBag.CategoryId = new SelectList(db.Categories.OrderBy(p => p.Description), "CategoryId", "Description");
+            ViewBag.MeasureId = new SelectList(db.Measures.OrderBy(m => m.Description), "MeasureId", "Description");
             return View(product);
         }
 
@@ -98,8 +128,8 @@ namespace SUD.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Description", product.CategoryId);
-            ViewBag.MeasureId = new SelectList(db.Measures, "MeasureId", "Description", product.MeasureId);
+            ViewBag.CategoryId = new SelectList(db.Categories.OrderBy(p => p.Description), "CategoryId", "Description");
+            ViewBag.MeasureId = new SelectList(db.Measures.OrderBy(m => m.Description), "MeasureId", "Description");
             return View(product);
         }
 
