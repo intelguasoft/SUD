@@ -51,22 +51,43 @@ namespace SUD.Controllers
         }
 
         [HttpPost]
-        public JsonResult AddBarCodes(NewProductView view)
+        public JsonResult AddBarCodes(Product product, long bar)
         {
             if (ModelState.IsValid)
             {
+
                 var BarCode = new BarCode
                 {
-                    ProductId = view.ProductId,
-                    Bar = view.Bar
+                    ProductId = 4,
+                    Bar = bar
                 };
 
                 db.BarCodes.Add(BarCode);
                 db.SaveChanges();
 
             }
-            return Json(view);
+            return Json(product);
         }
+
+        // Metodo para Elminar Codigos de Barras a los productos
+        public ActionResult DeleteBarCode(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var barCode = db.BarCodes.Where(bc => bc.BarCodeId == id).FirstOrDefault();
+            if (barCode == null)
+            {
+                return HttpNotFound();
+            }
+
+            db.BarCodes.Remove(barCode);
+            db.SaveChanges();
+
+            return RedirectToAction("Details", id);
+        }
+
 
         // GET: Products/Create
         public ActionResult Create()

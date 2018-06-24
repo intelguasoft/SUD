@@ -29,9 +29,7 @@ else
             </th>
 
             <th width="70px">
-                <div class="btn-group">
-                    @Html.ActionLink(" Todos", "DeleteAllBarCodes", new { @class = "btn btn-danger fa fa-trash", onclick = "return confirm('Realmente desea eliminar todos los codigos de barras asociados al producto?');" })
-                </div>
+                <div class="btn-group"> Accion </div>
             </th>
         </tr>
 
@@ -51,18 +49,6 @@ else
         }
     </table>
 }
-
-<div class="row">
-    <div class="col-xs-12 col-md-8">
-        <div class="form-group">
-            @Html.LabelFor(model => model.Bar, htmlAttributes: new { @class = "control-label col-md-2" })
-
-            @Html.EditorFor(model => model.Bar, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Bar, "", new { @class = "text-danger" })
-
-        </div>
-    </div>
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
