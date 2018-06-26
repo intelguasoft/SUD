@@ -10,6 +10,10 @@ namespace SUD.ViewModels
 {
     public class NewProductView
     {
+        public Product Product { get; set; }
+
+        public BarCode BarCode { get; set; }
+
         public List<BarCode> BarCodes { get; set; }
 
     }

@@ -1,153 +1,156 @@
-﻿@model SUD.Models.Product
+﻿@model SUD.ViewModels.NewProductView
 
 @{
     ViewBag.Title = "Producto";
     ViewBag.Message = "Este es un Producto";
 }
 
-@using (Ajax.BeginForm("AddBarCodes", "Products",
+<section class="content-header">
+    <h1>
+        <!--aqui va el titulo de la pagina que se va a mostrar, como el siguiente ejemplo -->
+        @ViewBag.Title - <small>@ViewBag.Message</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index")"><i class="fa fa-cubes"></i>  Productos</a></li>
+        <li class="active">Detalles</li>
+    </ol>
+</section>
+<section class="content">
+    <!-- Default box -->
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Detalles del Producto</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                        title="Collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove" disabled>
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+            <div class="center-block table table-striped">
+                <div class="row">
+                    <div class="col-xs-5 col-sm-5">
+                        @if (!string.IsNullOrEmpty(Model.Product.Image))
+                        {
+                            @*<img class="center-block" src="@Url.Content(Model.Image)" alt="Image" style="width:350px;height:100px;max-width: 100%; height: auto;" />*@
+                            <img class="center-block" src="@Url.Content(Model.Product.Image)" alt="Image" style="width:200px;height:300px;" />
+                        }
 
-            new AjaxOptions
-            {
 
-                OnSuccess = "OnSuccess",
-                OnFailure = "OnFailure",
-                LoadingElementId = "progress"
+                        <div class="col-xs-12 col-sm-12">
+                            <a href="@Url.Action("Edit", new { id = Model.Product.ProductId })" class="btn btn-warning col-xs-12 col-sm-offset-1 col-sm-4"><i class="fa fa-edit" aria-hidden="true"></i> Editar</a>
+                            <a href="@Url.Action("Delete", new { id = Model.Product.ProductId })" class="btn btn-danger col-xs-12 col-sm-offset-1 col-sm-4"><i class="fa fa-remove" aria-hidden="true"></i> Eliminar</a>
+                        </div>
+                    </div>
+                    <div class="col-xs-7 col-sm-7">
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Product.Description)
+                            </dt>
 
-            }))
+                            <dd>
+                                @Html.DisplayFor(model => model.Product.Description)
+                            </dd>
 
-{
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Product.Category)
+                            </dt>
 
-    @Html.AntiForgeryToken()
+                            <dd>
+                                @Html.DisplayFor(model => model.Product.Category.Description)
+                            </dd>
 
-    <section class="content-header">
-        <h1>
-            <!--aqui va el titulo de la pagina que se va a mostrar, como el siguiente ejemplo -->
-            @ViewBag.Title - <small>@ViewBag.Message</small>
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="@Url.Action("Index")"><i class="fa fa-cubes"></i>  Productos</a></li>
-            <li class="active">Detalles</li>
-        </ol>
-    </section>
-    <section class="content">
-        <!-- Default box -->
-        <div class="box">
-            <div class="box-header with-border">
-                <h3 class="box-title">Detalles del Producto</h3>
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                            title="Collapse">
-                        <i class="fa fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove" disabled>
-                        <i class="fa fa-times"></i>
-                    </button>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Product.Measure)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Product.Measure.Description)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Product.Price)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Product.Price)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Product.Medida)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Product.Medida)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Product.Note)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Product.Note)
+                            </dd>
+                        </dl>
+                    </div>
                 </div>
-                <div class="center-block table table-striped">
-                    <div class="row">
-                        <div class="col-xs-5 col-sm-5">
-                            @if (!string.IsNullOrEmpty(Model.Image))
-                            {
-                                @*<img class="center-block" src="@Url.Content(Model.Image)" alt="Image" style="width:350px;height:100px;max-width: 100%; height: auto;" />*@
-                                <img class="center-block" src="@Url.Content(Model.Image)" alt="Image" style="width:200px;height:300px;" />
-                            }
+                <hr />
+                <div class="row">
+                    <div class="col-xs-12 col-md-6">
 
-                            <hr />
-                            <div class="col-xs-12 col-sm-12">
-                                <a href="@Url.Action("Edit", new { id = Model.ProductId })" class="btn btn-warning col-xs-12 col-sm-offset-1 col-sm-4"><i class="fa fa-edit" aria-hidden="true"></i> Editar</a>
-                                <a href="@Url.Action("Delete", new { id = Model.ProductId })" class="btn btn-danger col-xs-12 col-sm-offset-1 col-sm-4"><i class="fa fa-remove" aria-hidden="true"></i> Eliminar</a>
-                            </div>
-                        </div>
-                        <div class="col-xs-7 col-sm-7">
-                            <dl class="dl-horizontal">
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.Description)
-                                </dt>
+                        <div id="DetailBarCodes">
 
-                                <dd>
-                                    @Html.DisplayFor(model => model.Description)
-                                </dd>
+                            @Html.Partial("BarCodeDetails", new ViewDataDictionary { { "id", Model.Product.ProductId } });
 
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.Category)
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.Category.Description)
-                                </dd>
-
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.Measure)
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.Measure.Description)
-                                </dd>
-
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.Price)
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.Price)
-                                </dd>
-
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.Medida)
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.Medida)
-                                </dd>
-
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.Note)
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.Note)
-                                </dd>
-                            </dl>
                         </div>
                     </div>
-                    <br /><br />
-                    <div class="row">
-                        <div class="col-xs-5 col-md-6">
 
-                            <div id="DetailBarCodes">
+                    <div class="col-xs-12 col-md-6">
+                        @using (Ajax.BeginForm("AddBarCodes", "Products",
 
-                                @Html.Partial("BarCodeDetails", new ViewDataDictionary { { "id", Model.ProductId } });
+                               new AjaxOptions
+                               {
 
-                            </div>
-                        </div>
+                                   OnSuccess = "OnSuccess",
+                                   OnFailure = "OnFailure"
 
-                        <div class="col-xs-5 col-md-6">
+                               }))
+
+                        {
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.BarCode.ProductId)
+
                             <div class="form-group">
-                                <label>Codigo de Barra</label>
-                                <input type="text" name="bar" value="" />
+                                @Html.LabelFor(model => model.BarCode.Bar, htmlAttributes: new { @class = "control-label" })
+                                <div class="input-group">
+                                    @Html.EditorFor(model => model.BarCode.Bar, new { htmlAttributes = new { @class = "form-control" } })
+                                    <span class="input-group-btn">
+                                        <button type="submit" class="btn btn-primary ld-ext-right" id="btn-add-barcodes">
+                                            <i class="fa fa-floppy-o" aria-hidden="true"> </i> Agregar
+                                            <div class="ld ld-ring ld-spin"></div>
+                                        </button>
+                                    </span>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.BarCode.Bar, "", new { @class = "text-danger" })
+
                             </div>
 
-                            <div class="form-group pull-left">
-                                <button type="submit" class="btn btn-primary ld-ext-right" id="btn-add-barcodes">
-                                    <i class="fa fa-floppy-o" aria-hidden="true"> </i> Agregar
-                                    <div class="ld ld-ring ld-spin"></div>
-                                </button>
-                            </div>
-                        </div>
-
+                        }
                     </div>
 
 
-                             
 
-                  </div>
+                </div>
+
             </div>
         </div>
+    </div>
 
-    </section>
+</section>
 
-}
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
@@ -166,7 +169,7 @@
         function LoadData() {
             $.ajax({
 
-                url: "@Url.Action("BarCodeDetails", new { id = Model.ProductId})",
+                url: "@Url.Action("BarCodeDetails", new { id = Model.Product.ProductId})",
                 type: "GET",
                 contentType: "HTML"
             }).done(function (result) {
@@ -175,6 +178,7 @@
 
                 });
         }
+
         function OnSuccess(response) {
 
             $("#btn-add-barcodes").removeClass("running");
@@ -185,7 +189,8 @@
         }
 
         function OnFailure(response) {
-
+            console.error(response);
+            $("#btn-add-barcodes").removeClass("running");
             $.notify("Ha ocurrido un error", "error");
         }
 

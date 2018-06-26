@@ -22,44 +22,7 @@ namespace SUD.Controllers
             ViewBag.ProductId = new SelectList(db.CellarProducts.Include(cp => cp.Product).OrderBy(cp => cp.Product.Description), "ProductId", "Product.Description");
             return View();
         }
-
-        //[HttpPost]
-        //public ActionResult AddProduct(AddProductView view)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var orderDetailBk = db.OrderDetailBkps.Where(odb => odb.User == User.Identity.Name && odb.ProductId == view.ProductId).FirstOrDefault();
-
-        //        if (orderDetailBk == null)
-        //        {
-        //            var product = db.Products.Find(view.ProductId);
-        //            orderDetailBk = new OrderDetailBk
-        //            {
-        //                User = User.Identity.Name,
-        //                Description = product.Description,
-        //                Price = product.Price,
-        //                ProductId = product.ProductId,
-        //                Quantity = view.Quantity
-        //            };
-
-        //            db.OrderDetailBkps.Add(orderDetailBk);
-
-        //        }
-        //        else
-        //        {
-        //            orderDetailBk.Quantity += view.Quantity;
-        //            db.Entry(orderDetailBk).State = EntityState.Modified;
-        //        }
-
-
-        //        db.SaveChanges();
-        //        return RedirectToAction("AddProduct");
-
-        //    }
-        //    ViewBag.ProductId = new SelectList(db.Products.OrderBy(p => p.Description), "ProductId", "Description");
-        //    return View();
-        //}
-
+        
         [HttpPost]
         public JsonResult AddProduct(AddProductView view)
         {
@@ -114,7 +77,6 @@ namespace SUD.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    model.DocumentTypeId = 1;
                     db.Clients.Add(model);
                     db.SaveChanges();
                 }

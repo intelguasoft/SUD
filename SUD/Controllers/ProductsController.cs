@@ -31,12 +31,24 @@ namespace SUD.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
-            if (product == null)
+
+            var product = db.Products.Find(id);
+            var Barra = new BarCode
+            {
+                ProductId = product.ProductId
+            };
+
+            NewProductView np = new NewProductView();
+            np.Product = product;
+            np.BarCode = Barra;
+
+            
+            if (np == null)
             {
                 return HttpNotFound();
             }
-            return View(product);
+
+            return View(np);
         }
 
         // GET: Products/BarCodes
@@ -51,22 +63,24 @@ namespace SUD.Controllers
         }
 
         [HttpPost]
-        public JsonResult AddBarCodes(Product product, long bar)
+        public JsonResult AddBarCodes(NewProductView view)
         {
+
             if (ModelState.IsValid)
             {
-
-                var BarCode = new BarCode
+                var barCode = new BarCode
                 {
-                    ProductId = 4,
-                    Bar = bar
+                    ProductId = view.BarCode.ProductId,
+                    Bar = view.BarCode.Bar
                 };
 
-                db.BarCodes.Add(BarCode);
+                db.BarCodes.Add(barCode);
                 db.SaveChanges();
-
+           
             }
-            return Json(product);
+
+            
+            return Json(view, JsonRequestBehavior.AllowGet);
         }
 
         // Metodo para Elminar Codigos de Barras a los productos
@@ -85,7 +99,7 @@ namespace SUD.Controllers
             db.BarCodes.Remove(barCode);
             db.SaveChanges();
 
-            return RedirectToAction("Details", id);
+            return RedirectToAction("Details", new { id = barCode.ProductId });
         }
 
 
