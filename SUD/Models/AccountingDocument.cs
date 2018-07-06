@@ -31,6 +31,10 @@ namespace SUD.Models
         public long InitialNumber { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es requerido")]
+        [Display(Name = "Numero Actual")]
+        public long CurrentNumber { get; set; }
+
+        [Required(ErrorMessage = "El campo {0} es requerido")]
         [Display(Name = "Numero Final")]
         public long FinalNumber { get; set; }
 

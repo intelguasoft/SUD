@@ -16,8 +16,8 @@
         @ViewBag.Title - <small>@ViewBag.Message</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="@Url.Action(" Index")"><i class="fa fa-pencil-square-o"></i> Ordenes</a></li>
-        <li><a href="@Url.Action(" AddProduct")"><i class="fa fa-pencil-square-o"></i> Crear</a></li>
+        <li><a href="@Url.Action("Index")"><i class="fa fa-pencil-square-o"></i> Ordenes</a></li>
+        <li><a href="@Url.Action("AddProduct")"><i class="fa fa-pencil-square-o"></i> Crear</a></li>
         <li class="active">Confirmar</li>
     </ol>
 </section>
@@ -160,7 +160,6 @@
                     <td align="left">
                         <strong>@Html.DisplayFor(modelItem => Model.TotalValue)</strong>
                     </td>
-                    <td></td>
                 </tr>
             </table>
             }

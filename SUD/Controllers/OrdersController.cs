@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using SUD.Generic;
 using SUD.Models;
 using SUD.ViewModels;
 
@@ -151,11 +152,61 @@ namespace SUD.Controllers
             return RedirectToAction("AddProduct");
         }
 
+        [HttpPost]
+        public ActionResult Shipping(int? OrderId)
+        {
+            if (ModelState.IsValid)
+            {
+                using (var transaction = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        Order ord = db.Orders.Find(OrderId);
+                        
+                        ord.StateId = 2;
+                        db.Entry(ord).State = EntityState.Modified;
+
+                        var document = db.AccountingDocuments.Where(acd => acd.AccountingDocumentId == ord.Route.AccountingDocumentId).FirstOrDefault();
+
+                        var ship = new Shipping
+                        {
+                            OrderId = ord.OrderId,
+                            Date = DateTime.Now.AddDays(1),
+                            InvoiceNumber = document.CurrentNumber,
+                            StateId = 2
+                        };
+
+                        db.Shippings.Add(ship);
+
+                        var account = new AccountingDocument
+                        {
+                            CurrentNumber = document.CurrentNumber + 1
+                        };
+
+                        db.Entry(account).State = EntityState.Modified;
+
+                        db.SaveChanges();
+                        transaction.Commit(); 
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        ModelState.AddModelError(string.Empty, ex.Message);
+                    }
+                }
+
+                return RedirectToAction("Index", "Shipments");
+            }
+
+            return RedirectToAction("Index");
+        }
+
+
         // GET: Orders
         public ActionResult Index()
         {
             var orders = db.Orders.Include(o => o.Cellar).Include(o => o.Client).Include(o => o.Route).Include(o => o.State);
-            return View(orders.ToList());
+            return View(orders.Where(o => o.StateId == 1).ToList());
         }
 
         // GET: Orders/Details/5

@@ -80,7 +80,7 @@ namespace SUD.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AccountingDocumentId,Document,Description,SerialNumber,InitialNumber,FinalNumber,ResolutionNumber,ExpirationDate")] AccountingDocument accountingDocument)
+        public ActionResult Edit([Bind(Include = "AccountingDocumentId,Document,Description,SerialNumber,InitialNumber,FinalNumber,CurrentNumber,ResolutionNumber,ExpirationDate")] AccountingDocument accountingDocument)
         {
             if (ModelState.IsValid)
             {
