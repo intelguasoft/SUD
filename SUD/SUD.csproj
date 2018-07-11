@@ -917,7 +917,6 @@
     <Content Include="Views\Suppliers\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutGuest.cshtml" />
     <Content Include="Views\Account\Register - Copia.cshtml" />
-    <Content Include="Views\Sales\zzIndexoriginal.cshtml" />
     <Content Include="Views\Routes\Create.cshtml" />
     <Content Include="Views\Routes\Delete.cshtml" />
     <Content Include="Views\Routes\Details.cshtml" />
@@ -929,12 +928,13 @@
     <Content Include="Views\Orders\Edit.cshtml" />
     <Content Include="Views\Orders\Index.cshtml" />
     <Content Include="Views\Orders\AddProduct.cshtml" />
-    <Content Include="Views\Sales\zzCreateoriginal.cshtml" />
     <Content Include="Views\Sales\AddProduct.cshtml" />
     <Content Include="Views\Orders\Detalle.cshtml" />
     <Content Include="Views\Orders\DetailOrders.cshtml" />
     <Content Include="Views\Orders\AddClient.cshtml" />
     <Content Include="Views\Products\BarCodeDetails.cshtml" />
+    <Content Include="Views\Sales\Detalle.cshtml" />
+    <Content Include="Views\Sales\zzAddProduct - V2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
