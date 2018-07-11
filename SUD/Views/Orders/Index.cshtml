@@ -36,6 +36,7 @@
             <p>
                 <a href="@Url.Action("AddProduct")" class="btn btn-success"> <i class="fa fa-plus" aria-hidden="true"></i> Crear</a>
             </p>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
             <table class="table table-bordered table-striped text-center" id="tblOrders">
                 <thead>
@@ -61,34 +62,53 @@
 
                 <tbody>
 
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.OrderId)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Cellar.Description)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Client.ComertialName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Route.RouteNumber)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Date)
-                            </td>
-                            <td>
-                                <div class="btn-group">
-                                    @*@Html.ActionLink(" ", "Edit", new { id = item.OrderId }, new { @class = "btn btn-warning fa fa-pencil-square-o" })*@
-                                    @Html.ActionLink(" ", "Details", new { id = item.OrderId }, new { @class = "btn btn-info fa fa-info-circle" })
-                                    @*@Html.ActionLink(" ", "Delete", new { id = item.OrderId }, new { @class = "btn btn-danger fa fa-trash" })*@
-                                </div>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OrderId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cellar.Description)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Client.ComertialName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Route.RouteNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Date)
+                                </td>
+                                <td>
+                                    <div class="input-group">
+                                        @Html.ActionLink(" ", "Details", new { id = item.OrderId }, new { @class = "btn btn-info fa fa-info-circle" })
+
+
+                                        @using (Ajax.BeginForm("Shipping", "Orders",
+
+                                            new AjaxOptions
+                                            {
+
+                                                OnSuccess = "OnSuccess",
+                                                OnFailure = "OnFailure"
+
+                                            }))
+
+                                            {
+                                                <span class="input-group-btn">
+                                                    <button type="submit" class="btn btn-primary">
+                                                        <i class="fa fa-truck" aria-hidden="true"> </i>
+                                                    </button>
+                                                </span>
+                                                <input type="hidden" value="@item.OrderId" name="OrderId" />
+                                            }
+                                            
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
 
             </table>
         </div>
@@ -114,6 +134,16 @@
         $(document).ready(function () {
             $('#tblOrders').DataTable();
         });
+
+        function OnSuccess(response) {
+            
+            $.notify("Order despachada exitosamente", "success");
+        }
+
+        function OnFailure(response) {
+
+            $.notify("Ha ocurrido un error", "error");
+        }
 
     </script>
 

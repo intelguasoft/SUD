@@ -215,6 +215,8 @@
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\ShipmentsController.cs" />
+    <Compile Include="Generic\DBHelper.cs" />
     <Compile Include="Controllers\DocumentTypesController.cs" />
     <Compile Include="Controllers\InventoriesController.cs" />
     <Compile Include="Controllers\InventoryDetailsController.cs" />
@@ -935,6 +937,11 @@
     <Content Include="Views\Products\BarCodeDetails.cshtml" />
     <Content Include="Views\Sales\Detalle.cshtml" />
     <Content Include="Views\Sales\zzAddProduct - V2.cshtml" />
+    <Content Include="Views\Shipments\Create.cshtml" />
+    <Content Include="Views\Shipments\Delete.cshtml" />
+    <Content Include="Views\Shipments\Details.cshtml" />
+    <Content Include="Views\Shipments\Edit.cshtml" />
+    <Content Include="Views\Shipments\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

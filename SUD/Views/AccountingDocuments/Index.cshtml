@@ -15,9 +15,6 @@
             @Html.DisplayNameFor(model => model.Document)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.SerialNumber)
         </th>
         <th>
@@ -27,10 +24,7 @@
             @Html.DisplayNameFor(model => model.FinalNumber)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ResolutionNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ExpirationDate)
+            @Html.DisplayNameFor(model => model.CurrentNumber)
         </th>
         <th></th>
     </tr>
@@ -39,9 +33,6 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Document)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.SerialNumber)
@@ -53,10 +44,7 @@
             @Html.DisplayFor(modelItem => item.FinalNumber)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ResolutionNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ExpirationDate)
+            @Html.DisplayFor(modelItem => item.CurrentNumber)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.AccountingDocumentId }) |
