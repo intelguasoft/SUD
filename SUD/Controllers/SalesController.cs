@@ -72,52 +72,73 @@ namespace SUD.Controllers
         //EndNew
 
         [HttpPost]
-        public JsonResult AddProduct(AddProductView view)
+        public JsonResult AddProduct(AddProductSaleView view)
         {
             if (ModelState.IsValid)
             {
-                var saleDetailBk = db.SaleDetailBkps.Where(odb => odb.User == User.Identity.Name && odb.ProductId == view.ProductId).FirstOrDefault();
-                var producto = db.CellarProducts.Find(view.ProductId);
-
-                if (saleDetailBk == null)
+                
+                try
                 {
-                    var product = db.Products.Find(view.ProductId);
-                    saleDetailBk = new SaleDetailBk
+                    var saleDetailBk = db.SaleDetailBkps.Where(odb => odb.User == User.Identity.Name && odb.ProductId == view.ProductId).FirstOrDefault();
+                    var barCode = db.BarCodes.Where(bc => bc.Bar == view.BarCode).FirstOrDefault();
+                    var cellarProduct = db.CellarProducts.Where(cp => cp.ProductId == barCode.ProductId).FirstOrDefault();
+                    var producto = db.Products.Where(pr => pr.ProductId == cellarProduct.ProductId).FirstOrDefault();
+                    view.ProductId = producto.ProductId;
+
+                    if (saleDetailBk == null)
                     {
-                        User = User.Identity.Name,
-                        Description = product.Description,
-                        Price = product.Price,
-                        ProductId = product.ProductId,
-                        Quantity = view.Quantity,
-                        IVAPercentage = 1,//view.IVAPercentage,
-                        DiscountRate = 1, //view.DiscountRate,
-                        KardexId = 100 //TODO quitar la variable estatica cuando se tenga kardex listo.
-                    };
+
+
+                        saleDetailBk = new SaleDetailBk
+                        {
+                            User = User.Identity.Name,
+                            Description = producto.Description,
+                            Price = producto.Price,
+                            ProductId = producto.ProductId,
+                            Quantity = 1,
+                            IVAPercentage = 1,//view.IVAPercentage,
+                            DiscountRate = 1, //view.DiscountRate,
+                            KardexId = 100, //TODO quitar la variable estatica cuando se tenga kardex listo.
+
+                        };
 
 
 
-                    if (producto.Stock > view.Quantity)
+                        if (cellarProduct.Stock > 1)
+                        {
+                            db.SaleDetailBkps.Add(saleDetailBk);
+                        }
+
+                    }
+                    else
                     {
-                        db.SaleDetailBkps.Add(saleDetailBk);
+
+                        if (cellarProduct.Stock > 1)
+                        {
+                            saleDetailBk.Quantity += 1;
+                            db.Entry(saleDetailBk).State = EntityState.Modified;
+                        }
+
                     }
 
+
+                    db.SaveChanges();
                 }
-                else
+                catch (Exception ex)
                 {
-
-                    if (producto.Stock > view.Quantity)
+                    var errormsg = ex.HResult.ToString();
+                    if(errormsg != null)
                     {
-                        saleDetailBk.Quantity += view.Quantity;
-                        db.Entry(saleDetailBk).State = EntityState.Modified;
+                        int errorcode = 400;
+                        return Json(errorcode);
                     }
-
+                    
                 }
-
-
-                db.SaveChanges();
+                
 
             }
-            return Json(view);
+            
+            return Json(200);
         }
 
         public ActionResult Detalle()
@@ -128,7 +149,7 @@ namespace SUD.Controllers
                 Details = db.SaleDetailBkps.Where(pdb => pdb.User == User.Identity.Name).ToList()
             };
 
-            return PartialView();
+            return PartialView("Detalle", view);
         }
 
         // GET: Sales
@@ -277,7 +298,7 @@ namespace SUD.Controllers
             db.SaleDetailBkps.Remove(saleDetailBk);
             db.SaveChanges();
 
-            return RedirectToAction("Create");
+            return RedirectToAction("AddProduct");
         }
 
         public ActionResult DeleteAllProduct()

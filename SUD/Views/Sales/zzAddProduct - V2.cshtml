@@ -49,19 +49,42 @@
             <div class="box-body">
                 <!-- Aca se incluye todo el contenido de la pagina que se desea mostrar -->
                 <!-- por ejemplo el index/tabla de algun recurso -->
-                
+                @*<div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ProductId, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                            @Html.DropDownList("ProductId", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ProductId, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                            @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>*@
+
 
                     @*--------------- Insertar por codigo de barra--------------------*@
+
                     
                 <div class="row">
                     <div class="col-xs-12 col-md-6">
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.BarCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
 
-                            @Html.EditorFor(model => model.BarCode, new { htmlAttributes = new { @class = "form-control" } })
-                            
+                            @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
 
                         </div>
                     </div>
@@ -105,36 +128,21 @@
     @Scripts.Render("~/bundles/jqueryval")
 
     <script>
-        
+        //variables de lector de codigo de barras
+        var inputStart, inputStop, firstKey, lastKey, timing, userFinishedEntering;
+        var minChars = 3;
+        var textval =$("scanInput").value;
+
+
         $(document).ready(function () {
-            LoadData(); //recargamos el detalle para ver si tenemos datos antiguos
+            LoadData();
             $("#btn-add-product").click(function () {
-                $("#btn-add-product").addClass("running");
-                if (FastClick) { // luego de 1.5 segundos quita la animacion de circulo en el boton del submit
-                    setTimeout(function () {
-                        $("#btn-add-product").removeClass("running");
-                    }, 1500);
-                }
-            });
-        });
-
-        $("#BarCode").keypress(function () {
-            //luego de 1 segundo despues de que se preciono la ultima tecla el llama a la funcion sendata
-                clearTimeout($.data(this, 'timer'));
-                var wait = setTimeout(sendata, 1000);
-                $(this).data('timer', wait);
-            
-        });
-
-        function sendata() {
-            //hace el submit del formulario
-            $("#btn-add-product").trigger("click", function () {
 
                 $("#btn-add-product").addClass("running");
 
             });
 
-        }
+        });
 
         function LoadData() {
             $.ajax({
@@ -150,39 +158,52 @@
 
             });
         }
-
         function OnSuccess(response) {
 
             $("#btn-add-product").removeClass("running");
+            //alert("Producto Agregado Correctamente");
+
             LoadData();
-            if (response == 200) {
-                $.notify("Registro Agregado Correctamente status:" + response + "", "success");
-                //Limpia la caja de texto
-                document.getElementById('form0').reset();
-            }
-            else if (response == 400) {
-                $.notify("Producto no encontrado status: " + response + "", "error");
-                document.getElementById('form0').reset();
-            }
-            else {
-                $.notify("Error Desconocido: "+ response +"", "error");
-                document.getElementById('form0').reset();
-            }
-            
-            $("#BarCode").focus();
+
+            $.notify("Producto agregado exitosamente", "success");
 
         }
 
         function OnFailure(response) {
 
             $.notify("Ha ocurrido un error", "error");
-            
-            $("#BarCode").focus();
         }
 
-        $("#BarCode").focus();
-       
+        
+        $("#scanInput").keypress(function (e) {
+            // restart the timer
+           // if (timing) {
+               // clearTimeout(timing);
+           // }
 
+            // handle the key event
+            if (e.which == 13) {
+                // Enter key was entered
+
+                // don't submit the form
+                e.preventDefault();
+
+                // has the user finished entering manually?
+                if ($("#scanInput").val().length >= minChars) {
+                    userFinishedEntering = true; // incase the user pressed the enter key
+
+
+                    inputComplete();
+                }
+            }
+            else {
+
+                // start the timer again
+                
+            }
+        });
+
+        $("#scanInput").focus();
 
     </script>
 

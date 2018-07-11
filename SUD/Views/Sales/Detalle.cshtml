@@ -1,89 +1,95 @@
-﻿@model SUD.ViewModels.DetailView
+﻿@model SUD.ViewModels.NewSaleView
 
 
 <span class="border"></span>
-@if (Model.Details.Count == 0 || null)
+@if (Model == null)
 {
-    <table class="table table-bordered" id="detailProducts">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Details[0].Description)
-            </th>
-            <th align="center">
-                @Html.DisplayNameFor(model => model.Details[0].Price)
-            </th>
-            <th align="center">
-                @Html.DisplayNameFor(model => model.Details[0].Quantity)
-            </th>
-            <th align="center">
-                @Html.DisplayNameFor(model => model.Details[0].Value)
-            </th>
-            <th></th>
-        </tr>
-        <tr>
-            <td class="info" colspan="7" align="center">
-                <h4>No hay detalles para esta orden.</h4>
-            </td>
-        </tr>
-    </table>
+<table class="table table-bordered" id="detailProducts">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Details[0].Description)
+        </th>
+        <th align="center">
+            @Html.DisplayNameFor(model => model.Details[0].Price)
+        </th>
+        <th align="center">
+            @Html.DisplayNameFor(model => model.Details[0].Quantity)
+        </th>
+        <th align="center">
+            @Html.DisplayNameFor(model => model.Details[0].Value)
+        </th>
+        <th></th>
+    </tr>
+    <tr>
+        <td class="info" colspan="7" align="center">
+            <h4>No hay detalles para esta orden.</h4>
+        </td>
+    </tr>
+</table>
 
 }
 else
 {
-    <table class="table table-condensed">
-        <tr class="bg-info border-secondary border-dark">
-            <th>
-                @Html.DisplayNameFor(model => model.Details[0].Description)
-            </th>
-            <th align="center">
-                @Html.DisplayNameFor(model => model.Details[0].Price)
-            </th>
-            <th align="center">
-                @Html.DisplayNameFor(model => model.Details[0].Quantity)
-            </th>
-            <th align="center">
-                @Html.DisplayNameFor(model => model.Details[0].Value)
-            </th>
-            <th width="70px">
-                <div class="btn-group">
-                    @Html.ActionLink(" Todos", "DeleteAllProduct", new { @class = "btn btn-danger fa fa-trash", onclick = "const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500}); toast({type: 'success', title: 'Ejecución correcta'})" })
-                </div>
-            </th>
-        </tr>
+<table class="table table-condensed">
+    <tr class="bg-info border-secondary border-dark">
+        <th>
+            @Html.DisplayNameFor(model => model.Details[0].Description)
+        </th>
+        <th align="center">
+            @Html.DisplayNameFor(model => model.Details[0].Price)
+        </th>
+        <th align="center">
+            @Html.DisplayNameFor(model => model.Details[0].Quantity)
+        </th>
+        <th align="center">
+            @Html.DisplayNameFor(model => model.Details[0].Value)
+        </th>
+        <th width="70px">
+            <div class="btn-group">
+                @Html.ActionLink(" Todos", "DeleteAllProduct", new { @class = "btn btn-danger fa fa-trash", onclick = "return confirm('Realmente desea eliminar todos los productos del detalle.?');" })
+            </div>
+        </th>
+    </tr>
 
-        @foreach (var item in Model.Details)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td align="left">
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td align="left">
-                    @Html.DisplayFor(modelItem => item.Quantity)
-                </td>
-                <td align="left">
-                    @Html.DisplayFor(modelItem => item.Value)
-                </td>
-                <td align="center">
-                    <div class="btn-group">
-                        @Html.ActionLink(" ", "DeleteProduct", new { id = item.ProductId }, new { @class = "btn btn-danger fa fa-trash", onclick = "const toast = swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500}); toast({type: 'success', title: 'Detalle eliminado correctamente'})" })
-                    </div>
-                </td>
-            </tr>
-        }
-        <tr class="bg-info border-dark">
-            <td colspan="2" align="left">
-                <strong>Total </strong>
-            </td>
-            <td align="left">
-                <strong>@Html.DisplayFor(modelItem => Model.TotalQuantity)</strong>
-            </td>
-            <td align="left">
-                <strong>@Html.DisplayFor(modelItem => Model.TotalValue)</strong>
-            </td>
-            <td></td>
-        </tr>
-    </table>
+    @foreach (var item in Model.Details)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td align="left">
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td align="left">
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+        <td align="left">
+            @Html.DisplayFor(modelItem => item.Value)
+        </td>
+        <td align="center">
+            <div class="btn-group" id="btn_delete">
+                @Html.ActionLink(" ", "DeleteProduct", new { id = item.ProductId }, new { @class = "btn btn-danger fa fa-trash", onclick = "return confirm('Realmente desea eliminar el producto.?');" })
+            </div>
+        </td>
+    </tr>
+    }
+    <tr class="bg-info border-dark">
+        <td colspan="2" align="left">
+            <strong>Total </strong>
+        </td>
+        <td align="left">
+            <strong>@Html.DisplayFor(modelItem => Model.TotalQuantity)</strong>
+        </td>
+        <td align="left">
+            <strong>@Html.DisplayFor(modelItem => Model.TotalValue)</strong>
+        </td>
+        <td></td>
+    </tr>
+</table>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+
 }
