@@ -149,6 +149,8 @@ namespace SUD.Controllers
                 Details = db.SaleDetailBkps.Where(pdb => pdb.User == User.Identity.Name).ToList()
             };
 
+            view.Details.Reverse();
+
             return PartialView("Detalle", view);
         }
 

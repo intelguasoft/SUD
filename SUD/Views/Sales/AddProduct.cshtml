@@ -54,31 +54,25 @@
                     @*--------------- Insertar por codigo de barra--------------------*@
                     
                 <div class="row">
-                    <div class="col-xs-12 col-md-6">
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
+                    <div class="col-xs-12">
                         <div class="form-group">
-                            @Html.LabelFor(model => model.BarCode, htmlAttributes: new { @class = "control-label col-md-2" })
-
-                            @Html.EditorFor(model => model.BarCode, new { htmlAttributes = new { @class = "form-control" } })
-                            
-
+                            @Html.LabelFor(model => model.BarCode, htmlAttributes: new { @class = "control-label col-md-6" })
                         </div>
                     </div>
-
-                </div>
-
-                <div class="form-group pull-right">
-                    <button type="submit" class="btn btn-primary ld-ext-right" id="btn-add-product">
-                        <i class="fa fa-floppy-o" aria-hidden="true"> </i> Agregar
-                        <div class="ld ld-ring ld-spin"></div>
-                    </button>
+                    <div class="col-xs-7 col-md-2">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.BarCode, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                        <button type="submit" class="btn btn-primary ld-ext-right" id="btn-add-product">
+                            <i class="fa fa-floppy-o" aria-hidden="true"> </i> Agregar
+                            <div class="ld ld-ring ld-spin"></div>
+                        </button>
                 </div>
 
                 <div id="DetailProducts">
-
                     @Html.Partial("Detalle")
-
                 </div>
 
             </div>
@@ -121,7 +115,7 @@
         $("#BarCode").keypress(function () {
             //luego de 1 segundo despues de que se preciono la ultima tecla el llama a la funcion sendata
                 clearTimeout($.data(this, 'timer'));
-                var wait = setTimeout(sendata, 1000);
+                var wait = setTimeout(sendata, 500);
                 $(this).data('timer', wait);
             
         });

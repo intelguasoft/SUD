@@ -30,6 +30,7 @@ namespace SUD.ViewModels
         //[Display(Name = "Kardex")]
         //public int? KardexId { get; set; }
 
+        [Display(Name = "Codigo de Barras")]
         public long BarCode { get; set; }
 
 
