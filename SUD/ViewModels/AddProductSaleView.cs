@@ -33,6 +33,8 @@ namespace SUD.ViewModels
         [Display(Name = "Codigo de Barras")]
         public long BarCode { get; set; }
 
+        
+
 
 
 

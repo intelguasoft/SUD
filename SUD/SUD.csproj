@@ -294,6 +294,7 @@
     <Compile Include="ViewModels\NewOrderView.cs" />
     <Compile Include="ViewModels\NewProductView.cs" />
     <Compile Include="ViewModels\NewPurchaseView.cs" />
+    <Compile Include="ViewModels\ModalSaleView.cs" />
     <Compile Include="ViewModels\NewSaleView.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -936,12 +937,13 @@
     <Content Include="Views\Orders\AddClient.cshtml" />
     <Content Include="Views\Products\BarCodeDetails.cshtml" />
     <Content Include="Views\Sales\Detalle.cshtml" />
-    <Content Include="Views\Sales\zzAddProduct - V2.cshtml" />
     <Content Include="Views\Shipments\Create.cshtml" />
     <Content Include="Views\Shipments\Delete.cshtml" />
     <Content Include="Views\Shipments\Details.cshtml" />
     <Content Include="Views\Shipments\Edit.cshtml" />
     <Content Include="Views\Shipments\Index.cshtml" />
+    <Content Include="Views\Sales\ModalDetail.cshtml" />
+    <Content Include="Views\Sales\SearchModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

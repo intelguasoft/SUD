@@ -1,0 +1,61 @@
+﻿@model SUD.ViewModels.ModalSaleView
+
+<span class="border"></span>
+@if (Model == null)
+{
+    <table class="table table-bordered" id="DetailProductModalTable">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th align="center">
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+        <tr>
+            <td class="info" colspan="7" align="center">
+                <h4>No hay datos.</h4>
+            </td>
+        </tr>
+    </table>
+
+}
+else
+{
+    <table class="table table-condensed">
+        <tr class="bg-info border-secondary border-dark">
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th align="center">
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th width="70px">
+                <div class="btn-group">
+                    
+                </div>
+            </th>
+        </tr>
+
+         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Description)
+            </td>
+            <td align="left">
+                @Html.DisplayFor(modelItem => Model.Price)
+            </td>
+            <td align="center">
+                <div class="btn-group" id="">
+                    @Html.ActionLink(" ", "AddProduct", new {  }, new { @class = "btn btn-default fa fa-plus", onclick = "return confirm(':( Agregar el producto aun no esta listo, Disculpa las molestias. NOTA: Convierto el agua en codigo, puedes donarme para mas diversion.');" })
+                </div>
+            </td>
+         </tr>
+    </table>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+}

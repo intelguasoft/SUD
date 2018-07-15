@@ -1,0 +1,47 @@
+﻿@model SUD.ViewModels.AddProductSaleView
+
+
+@using (Ajax.BeginForm("SearchCodeBar", "Sales",
+
+            new AjaxOptions
+            {
+
+                OnSuccess = "OnSuccess2",
+                OnFailure = "OnFailure2",
+                
+
+            }))
+
+{
+    @Html.AntiForgeryToken()
+
+
+<section>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.BarCode, htmlAttributes: new { @class = "control-label col-md-6" })
+            </div>
+        </div>
+        <div class="col-xs-7 col-md-4">
+
+            <div class="form-group">
+                @Html.EditorFor(model => model.BarCode, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary ld-ext-right" id="form01submit">
+            <i class="fa fa-search" aria-hidden="true"> </i> Buscar
+            <div class="ld ld-ring ld-spin"></div>
+        </button>
+    </div>
+</section>
+}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+
+      
+
+
+
+
+    }

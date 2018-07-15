@@ -49,10 +49,8 @@
             <div class="box-body">
                 <!-- Aca se incluye todo el contenido de la pagina que se desea mostrar -->
                 <!-- por ejemplo el index/tabla de algun recurso -->
-                
+                @*--------------- Insertar por codigo de barra--------------------*@
 
-                    @*--------------- Insertar por codigo de barra--------------------*@
-                    
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="form-group">
@@ -60,48 +58,67 @@
                         </div>
                     </div>
                     <div class="col-xs-7 col-md-2">
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="form-group">
                             @Html.EditorFor(model => model.BarCode, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
                     </div>
-                        <button type="submit" class="btn btn-primary ld-ext-right" id="btn-add-product">
-                            <i class="fa fa-floppy-o" aria-hidden="true"> </i> Agregar
-                            <div class="ld ld-ring ld-spin"></div>
-                        </button>
+                    <button type="submit" class="btn btn-primary ld-ext-right" id="btn-add-product">
+                        <i class="fa fa-floppy-o" aria-hidden="true"> </i> Agregar
+                        <div class="ld ld-ring ld-spin"></div>
+                    </button>
                 </div>
 
                 <div id="DetailProducts">
                     @Html.Partial("Detalle")
                 </div>
-
             </div>
             <!-- /.box-body -->
 
             <div class="box-footer">
                 <!-- Aca se incluye aquellas acciones relacionadas con lo antes mostrado -->
                 <!-- por ejemplo botones de facturacion, exportar a excel/pdf o similares -->
-
                 <div class="form-group pull-right">
                     <a href="@Url.Action("Index")" class="btn btn-success"> <i class="fa fa-undo" aria-hidden="true"> </i> Regresar</a>
                     <a href="@Url.Action("Create")" class="btn btn-primary"> <i class="fa fa-forward" aria-hidden="true"> </i> Confirmar</a>
                 </div>
-
             </div>
-
             <!-- /.box-footer-->
         </div>
         <!-- /.box -->
     </section>
     <!-- /.content -->
 }
+
+@*Barcode Manual modal*@
+
+<div class="modal fade" id="manualbarcodemodal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2><span class="fa fa-barcode"></span> | Buscador de Codigo de Barras</h2>
+            </div>
+            <div class="modal-body">
+                <div>
+                    @Html.Partial("SearchModal")
+                </div>
+                <div id="DetailProductModal">
+                    @Html.Partial("ModalDetail")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
     <script>
-        
+
         $(document).ready(function () {
             LoadData(); //recargamos el detalle para ver si tenemos datos antiguos
+            $("#BarCode").focus();
             $("#btn-add-product").click(function () {
                 $("#btn-add-product").addClass("running");
                 if (FastClick) { // luego de 1.5 segundos quita la animacion de circulo en el boton del submit
@@ -110,18 +127,46 @@
                     }, 1500);
                 }
             });
+
+            //si se presiona la tecla control se abre el modal de buscar.
+            document.onkeydown = function (e) {
+                e = e || window.event;
+                var key = e.which || e.keyCode;
+                if (key === 17) {
+
+                    $("#manualbarcodemodal").modal("show")
+                }
+            }
+
+            $("#manualbarcodemodal").on('shown.bs.modal', function () {
+                $('#BarCode').focus()
+            })
+
+            $("#manualbarcodemodal").on('submit', '#form01submit', function () {
+               
+                var form = $(this);
+                $.ajax({
+                    url: form.attr("action"),
+                    method: form.attr("method"),  // post
+                    data: form.serialize(),
+                   
+                });
+            });
+
         });
 
-        $("#BarCode").keypress(function () {
-            //luego de 1 segundo despues de que se preciono la ultima tecla el llama a la funcion sendata
-                clearTimeout($.data(this, 'timer'));
-                var wait = setTimeout(sendata, 500);
-                $(this).data('timer', wait);
-            
+        // se acciona al momento de presionar una tecla y el foco este en la caja de texto
+        $("#BarCode").keypress(function (event) {
+
+            //luego de 0.5 segundo despues de que se presiono la ultima tecla el llama a la funcion sendata
+            clearTimeout($.data(this, 'timer'));
+            var wait = setTimeout(sendata, 500);
+            $(this).data('timer', wait);
+
         });
 
         function sendata() {
-            //hace el submit del formulario
+            //hace el submit del formulario principal
             $("#btn-add-product").trigger("click", function () {
 
                 $("#btn-add-product").addClass("running");
@@ -137,7 +182,6 @@
                 type: "GET",
                 contentType: "HTML"
 
-
             }).done(function (result) {
 
                 $("#DetailProducts").html(result);
@@ -151,7 +195,6 @@
             LoadData();
             if (response == 200) {
                 $.notify("Registro Agregado Correctamente status:" + response + "", "success");
-                //Limpia la caja de texto
                 document.getElementById('form0').reset();
             }
             else if (response == 400) {
@@ -162,7 +205,7 @@
                 $.notify("Error Desconocido: "+ response +"", "error");
                 document.getElementById('form0').reset();
             }
-            
+
             $("#BarCode").focus();
 
         }
@@ -170,13 +213,26 @@
         function OnFailure(response) {
 
             $.notify("Ha ocurrido un error", "error");
-            
             $("#BarCode").focus();
         }
 
-        $("#BarCode").focus();
-       
+        function OnSuccess2(response) {
 
+            if (response == 404) {
+
+                $.notify("Producto no encontrado", "error");
+            }
+            else {
+
+                $("#DetailProductModal").html(response);
+            }
+    
+        }
+
+        function OnFailure2(response) {
+
+            $.notify("Ha ocurrido un error en el modal", "error");  
+        }
 
     </script>
 

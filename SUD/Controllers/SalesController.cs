@@ -88,7 +88,6 @@ namespace SUD.Controllers
                     if (saleDetailBk == null)
                     {
 
-
                         saleDetailBk = new SaleDetailBk
                         {
                             User = User.Identity.Name,
@@ -101,8 +100,6 @@ namespace SUD.Controllers
                             KardexId = 100, //TODO quitar la variable estatica cuando se tenga kardex listo.
 
                         };
-
-
 
                         if (cellarProduct.Stock > 1)
                         {
@@ -121,7 +118,6 @@ namespace SUD.Controllers
 
                     }
 
-
                     db.SaveChanges();
                 }
                 catch (Exception ex)
@@ -135,7 +131,6 @@ namespace SUD.Controllers
                     
                 }
                 
-
             }
             
             return Json(200);
@@ -153,6 +148,61 @@ namespace SUD.Controllers
 
             return PartialView("Detalle", view);
         }
+
+        [HttpPost]
+        public ActionResult SearchCodeBar(AddProductSaleView barcode2)
+        {
+            if (ModelState.IsValid)
+            {
+                if (barcode2 != null)
+                {
+                    try
+                    {
+                        var barCode = db.BarCodes.Where(bc => bc.Bar == barcode2.BarCode).FirstOrDefault();
+
+                        if(barCode != null)
+                        {
+                       
+                            var cellarProduct = db.CellarProducts.Where(cp => cp.ProductId == barCode.ProductId).FirstOrDefault();
+                            var producto = db.Products.Where(pr => pr.ProductId == cellarProduct.ProductId).FirstOrDefault();
+                            barcode2.ProductId = producto.ProductId;
+
+                            var response = new ModalSaleView
+                            {
+                                Description = producto.Description,
+                                Price = producto.Price,
+                                ProductId = producto.ProductId,
+                                Barcode = barCode.Bar
+                            };
+
+                            return PartialView("ModalDetail", response);
+                           
+                        }
+                        else
+                        {
+                            return Json(404);
+                        }
+
+                    }
+                    
+                    catch (Exception ex)
+                    {
+                        var errormsg = ex.HResult;
+                        return Json (errormsg);
+                    }
+                }
+
+                else
+                {
+                    var nullmessage = "No se encontro ningun resultado";
+                    return Json(nullmessage);
+                }
+
+            }
+
+            return Json(404);
+
+        }   
 
         // GET: Sales
         public ActionResult Index()
