@@ -47,7 +47,7 @@ else
             </td>
             <td align="center">
                 <div class="btn-group" id="">
-                    @Html.ActionLink(" ", "AddProduct", new {  }, new { @class = "btn btn-default fa fa-plus", onclick = "return confirm(':( Agregar el producto aun no esta listo, Disculpa las molestias. NOTA: Convierto el agua en codigo, puedes donarme para mas diversion.');" })
+                    @Html.ActionLink(" ", "AddProduct", new {   }, new { @class = "btn btn-default fa fa-plus", onclick = "sendsearchdata("+Model.Barcode+")" })
                 </div>
             </td>
          </tr>

@@ -139,7 +139,8 @@
             }
 
             $("#manualbarcodemodal").on('shown.bs.modal', function () {
-                $('#BarCode').focus()
+                $("#BarCode2").focus()
+               
             })
 
             $("#manualbarcodemodal").on('submit', '#form01submit', function () {
@@ -232,6 +233,20 @@
         function OnFailure2(response) {
 
             $.notify("Ha ocurrido un error en el modal", "error");  
+        }
+
+        function sendsearchdata(modeldata) {
+             
+            $.ajax({
+                url:"@Url.Action("AddProduct")",
+                type: "POST",
+                data: {Barcode : modeldata}
+            }).done(function () {
+
+                $("#manualbarcodemodal").modal("hide")
+                LoadData();
+
+                   });
         }
 
     </script>
