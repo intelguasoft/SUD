@@ -31,69 +31,51 @@
             </div>
             <div class="center-block table table-striped">
                 <div class="row">
-                    <div class="col-xs-5 col-sm-5">
+                    <div class="col-xs-12 col-sm-6">
                         @if (!string.IsNullOrEmpty(Model.Product.Image))
                         {
                             @*<img class="center-block" src="@Url.Content(Model.Image)" alt="Image" style="width:350px;height:100px;max-width: 100%; height: auto;" />*@
-                            <img class="center-block" src="@Url.Content(Model.Product.Image)" alt="Image" style="width:200px;height:300px;" />
+                            <img class="center-block img-responsive" src="@Url.Content(Model.Product.Image)" alt="Image" style="width:320px;height:320px;" />
                         }
 
 
                         <div class="col-xs-12 col-sm-12">
-                            <a href="@Url.Action("Edit", new { id = Model.Product.ProductId })" class="btn btn-warning col-xs-12 col-sm-offset-1 col-sm-4"><i class="fa fa-edit" aria-hidden="true"></i> Editar</a>
-                            <a href="@Url.Action("Delete", new { id = Model.Product.ProductId })" class="btn btn-danger col-xs-12 col-sm-offset-1 col-sm-4"><i class="fa fa-remove" aria-hidden="true"></i> Eliminar</a>
+                            <a href="@Url.Action("Edit", new { id = Model.Product.ProductId })" class="btn btn-warning col-xs-6  col-sm-offset-1 col-sm-4"><i class="fa fa-edit" aria-hidden="true"></i> Editar</a>
+                            <a href="@Url.Action("Delete", new { id = Model.Product.ProductId })" class="btn btn-danger col-xs-6  col-sm-offset-1 col-sm-4"><i class="fa fa-remove" aria-hidden="true"></i> Eliminar</a>
                         </div>
                     </div>
-                    <div class="col-xs-7 col-sm-7">
-                        <dl class="dl-horizontal">
-                            <dt>
-                                @Html.DisplayNameFor(model => model.Product.Description)
-                            </dt>
-
-                            <dd>
-                                @Html.DisplayFor(model => model.Product.Description)
-                            </dd>
-
-                            <dt>
-                                @Html.DisplayNameFor(model => model.Product.Category)
-                            </dt>
-
-                            <dd>
-                                @Html.DisplayFor(model => model.Product.Category.Description)
-                            </dd>
-
-                            <dt>
-                                @Html.DisplayNameFor(model => model.Product.Measure)
-                            </dt>
-
-                            <dd>
-                                @Html.DisplayFor(model => model.Product.Measure.Description)
-                            </dd>
-
-                            <dt>
-                                @Html.DisplayNameFor(model => model.Product.Price)
-                            </dt>
-
-                            <dd>
-                                @Html.DisplayFor(model => model.Product.Price)
-                            </dd>
-
-                            <dt>
-                                @Html.DisplayNameFor(model => model.Product.Medida)
-                            </dt>
-
-                            <dd>
-                                @Html.DisplayFor(model => model.Product.Medida)
-                            </dd>
-
-                            <dt>
-                                @Html.DisplayNameFor(model => model.Product.Note)
-                            </dt>
-
-                            <dd>
-                                @Html.DisplayFor(model => model.Product.Note)
-                            </dd>
-                        </dl>
+                    <div class=" container col-sm-6 col-md-6">
+                        <div>
+                            <h4 class="text-center text-bold">Descripcion del Producto</h4>
+                        </div>
+                        <div class="content">
+                            <div class="form-group">
+                                <div>
+                                    <h4 class="text-bold">@Html.DisplayNameFor(model => model.Product.Description)</h4>
+                                    <h5>@Html.DisplayFor(model => model.Product.Description)</h5>
+                                </div>
+                                <div>
+                                    <h4 class="text-bold">@Html.DisplayNameFor(model => model.Product.Category)</h4>
+                                    <h5>@Html.DisplayFor(model => model.Product.Category.Description)</h5>
+                                </div>
+                                <div>
+                                    <h4 class="text-bold">@Html.DisplayNameFor(model => model.Product.Measure)</h4>
+                                    <h5>@Html.DisplayFor(model => model.Product.Measure.Description)</h5>
+                                </div>
+                                <div>
+                                    <h4 class="text-bold">@Html.DisplayNameFor(model => model.Product.Medida)</h4>
+                                    <h5>@Html.DisplayFor(model => model.Product.Medida)</h5>
+                                </div>
+                                <div>
+                                    <h4 class="text-bold">@Html.DisplayNameFor(model => model.Product.Note)</h4>
+                                    <h5>@Html.DisplayFor(model => model.Product.Note)</h5>
+                                </div>
+                                <div>
+                                    <h4 class="text-bold">@Html.DisplayNameFor(model => model.Product.Price)</h4>
+                                    <h5>@Html.DisplayFor(model => model.Product.Price)</h5>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <hr />
@@ -110,33 +92,39 @@
                     <div class="col-xs-12 col-md-6">
                         @using (Ajax.BeginForm("AddBarCodes", "Products",
 
-                               new AjaxOptions
-                               {
+           new AjaxOptions
+           {
 
-                                   OnSuccess = "OnSuccess",
-                                   OnFailure = "OnFailure"
+               OnSuccess = "OnSuccess",
+               OnFailure = "OnFailure"
 
-                               }))
+           }))
 
-                        {
+    {
 
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            @Html.HiddenFor(model => model.BarCode.ProductId)
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.BarCode.ProductId)
 
-                            <div class="form-group">
+                    <table class="table table-condensed">
+                        <tr class="bg-info border-secondary border-dark">
+                            <th align="center">
                                 @Html.LabelFor(model => model.BarCode.Bar, htmlAttributes: new { @class = "control-label" })
-                                <div class="input-group">
-                                    @Html.EditorFor(model => model.BarCode.Bar, new { htmlAttributes = new { @class = "form-control" } })
+                            </th>
+                        </tr>
+                        </table>
+                        <div class="form-group">
+                            <div class="input-group">
+                                 @Html.EditorFor(model => model.BarCode.Bar, new { htmlAttributes = new { @class = "form-control" } })
                                     <span class="input-group-btn">
-                                        <button type="submit" class="btn btn-primary ld-ext-right" id="btn-add-barcodes">
-                                            <i class="fa fa-floppy-o" aria-hidden="true"> </i> Agregar
-                                            <div class="ld ld-ring ld-spin"></div>
+                                    <button type="submit" class="btn btn-primary ld-ext-right" id="btn-add-barcodes">
+                                        <i class="fa fa-floppy-o" aria-hidden="true"> </i> Agregar
+                                        <div class="ld ld-ring ld-spin"></div>
                                         </button>
                                     </span>
-                                </div>
-                                @Html.ValidationMessageFor(model => model.BarCode.Bar, "", new { @class = "text-danger" })
-
                             </div>
+                                @Html.ValidationMessageFor(model => model.BarCode.Bar, "", new { @class = "text-danger" })
+                        </div>
+                       
 
                         }
                     </div>
