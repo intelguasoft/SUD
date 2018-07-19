@@ -52,6 +52,10 @@ namespace SUD.Models
         public int RolId { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es requerido")]
+        [Display(Name = "Ruta:")]
+        public int RouteId { get; set; }
+
+        [Required(ErrorMessage = "El campo {0} es requerido")]
         [StringLength(255, ErrorMessage = "Debe contener entre 8 y 25 caracteres", MinimumLength = 8)]
         [RegularExpression("^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-.]+$", ErrorMessage = "Debe ser un correo electronico valido")]
         [DataType(DataType.EmailAddress)]
@@ -72,6 +76,7 @@ namespace SUD.Models
 
 
         public virtual Rol Rol { get; set; }
+        public virtual Route Route { get; set; }
 
     }
 

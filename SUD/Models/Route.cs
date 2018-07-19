@@ -28,6 +28,7 @@ namespace SUD.Models
         public virtual AccountingDocument AccountingDocument { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<UserSud> UserSuds { get; set; }
 
     }
 }

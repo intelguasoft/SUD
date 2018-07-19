@@ -48,6 +48,7 @@
                         <th class="text-center">Apellido</th>
                         <th class="text-center">Correo</th>
                         <th class="text-center">Perfil</th>
+                        <th class="text-center">Ruta</th>
                         <th class="text-center">Estado</th>
                         <th class="text-center">Acciones</th>
                     </tr>
@@ -70,6 +71,9 @@
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Rol.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Route.RouteNumber)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Status)

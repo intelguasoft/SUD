@@ -25,7 +25,7 @@ namespace SUD.Controllers
         // GET: UserSuds
         public ActionResult Index()
         {
-            var userSuds = db.UserSuds.Include(u => u.Rol);
+            var userSuds = db.UserSuds.Include(u => u.Rol).Include(u => u.Route);
             return View(userSuds.ToList());
         }
 
@@ -47,7 +47,8 @@ namespace SUD.Controllers
         // GET: UserSuds/Create
         public ActionResult Create()
         {
-            ViewBag.RolId = new SelectList(db.Rols, "RolId", "Description");
+            ViewBag.RolId = new SelectList(db.Rols.OrderBy(u => u.Description), "RolId", "Description");
+            ViewBag.RouteId = new SelectList(db.Routes.OrderBy(u => u.RouteNumber), "RouteId", "RouteNumber");
             return View();
         }
 
@@ -56,7 +57,7 @@ namespace SUD.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserSudId,Name,LastName,Password,ModificationDatePassword,RolId,Email, Status, Image, FotografiaFile")] UserSud userSud)
+        public ActionResult Create([Bind(Include = "UserSudId,Name,LastName,Password,ModificationDatePassword,RolId,RouteId,Email, Status, Image, FotografiaFile")] UserSud userSud)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +89,8 @@ namespace SUD.Controllers
 
             }
 
-            ViewBag.RolId = new SelectList(db.Rols, "RolId", "Description", userSud.RolId);
+            ViewBag.RolId = new SelectList(db.Rols.OrderBy(u => u.Description), "RolId", "Description");
+            ViewBag.RouteId = new SelectList(db.Routes.OrderBy(u => u.RouteNumber), "RouteId", "RouteNumber");
             return View(userSud);
         }
 
@@ -104,7 +106,8 @@ namespace SUD.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.RolId = new SelectList(db.Rols, "RolId", "Description", userSud.RolId);
+            ViewBag.RolId = new SelectList(db.Rols.OrderBy(u => u.Description), "RolId", "Description");
+            ViewBag.RouteId = new SelectList(db.Routes.OrderBy(u => u.RouteNumber), "RouteId", "RouteNumber");
             return View(userSud);
         }
 
@@ -113,7 +116,7 @@ namespace SUD.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserSudId,Name,LastName,Password,ModificationDatePassword,RolId,Email, Status, Image, FotografiaFile")] UserSud userSud)
+        public ActionResult Edit([Bind(Include = "UserSudId,Name,LastName,Password,ModificationDatePassword,RolId,RouteId,Email, Status, Image, FotografiaFile")] UserSud userSud)
         {
             if (ModelState.IsValid)
             {
@@ -146,7 +149,8 @@ namespace SUD.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.RolId = new SelectList(db.Rols, "RolId", "Description", userSud.RolId);
+            ViewBag.RolId = new SelectList(db.Rols.OrderBy(u => u.Description), "RolId", "Description");
+            ViewBag.RouteId = new SelectList(db.Routes.OrderBy(u => u.RouteNumber), "RouteId", "RouteNumber");
             return View(userSud);
         }
 
