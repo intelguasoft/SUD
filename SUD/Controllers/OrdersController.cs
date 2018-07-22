@@ -153,7 +153,7 @@ namespace SUD.Controllers
         }
 
         [HttpPost]
-        public ActionResult Shipping(int? OrderId)
+        public ActionResult Shipping(int? id)
         {
             if (ModelState.IsValid)
             {
@@ -161,7 +161,7 @@ namespace SUD.Controllers
                 {
                     try
                     {
-                        Order ord = db.Orders.Find(OrderId);
+                        Order ord = db.Orders.Find(id);
                         
                         ord.StateId = 2;
                         db.Entry(ord).State = EntityState.Modified;
@@ -178,12 +178,9 @@ namespace SUD.Controllers
 
                         db.Shippings.Add(ship);
 
-                        var account = new AccountingDocument
-                        {
-                            CurrentNumber = document.CurrentNumber + 1
-                        };
-
-                        db.Entry(account).State = EntityState.Modified;
+                        document.CurrentNumber = document.CurrentNumber + 1;
+                       
+                        db.Entry(document).State = EntityState.Modified;
 
                         db.SaveChanges();
                         transaction.Commit(); 
