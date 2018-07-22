@@ -94,24 +94,6 @@
                 <a href="@Url.Action("Delete", new { id = Model.OrderId })" class="btn btn-danger "><i class="fa fa-remove" aria-hidden="true"></i> Eliminar</a>
 
             </div>
-
-            <div class="form-group pull-left">
-                @using (Ajax.BeginForm("Shipping", "Orders",
-
-                              new AjaxOptions
-                              {
-
-                                  OnSuccess = "OnSuccess",
-                                  OnFailure = "OnFailure"
-
-                              }))
-
-                {
-                <button type="submit" class="btn btn-primary">
-                    <i class="fa fa-truck" aria-hidden="true"> Despachar</i>
-                </button>
-                }
-            </div>
         </div>
     </div>
 
@@ -137,16 +119,6 @@
                 });
 
         });
-
-        function OnSuccess(response) {
-
-            $.notify("Order despachada exitosamente", "success");
-        }
-
-        function OnFailure(response) {
-
-            $.notify("Ha ocurrido un error", "error");
-        }
 
 
     </script>
