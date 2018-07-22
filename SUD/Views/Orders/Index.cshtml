@@ -81,30 +81,8 @@
                                     @Html.DisplayFor(modelItem => item.Date)
                                 </td>
                                 <td>
-                                    <div class="input-group">
-                                        @Html.ActionLink(" ", "Details", new { id = item.OrderId }, new { @class = "btn btn-info fa fa-info-circle" })
+                                    @Html.ActionLink(" ", "Details", new { id = item.OrderId }, new { @class = "btn btn-info fa fa-info-circle" })
 
-
-                                        @using (Ajax.BeginForm("Shipping", "Orders",
-
-                                            new AjaxOptions
-                                            {
-
-                                                OnSuccess = "OnSuccess",
-                                                OnFailure = "OnFailure"
-
-                                            }))
-
-                                            {
-                                                <span class="input-group-btn">
-                                                    <button type="submit" class="btn btn-primary">
-                                                        <i class="fa fa-truck" aria-hidden="true"> </i>
-                                                    </button>
-                                                </span>
-                                                <input type="hidden" value="@item.OrderId" name="OrderId" />
-                                            }
-                                            
-                                    </div>
                                 </td>
                             </tr>
                         }
@@ -127,26 +105,6 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-
-
-    <script>
-
-        $(document).ready(function () {
-            $('#tblOrders').DataTable();
-        });
-
-        function OnSuccess(response) {
-            
-            $.notify("Order despachada exitosamente", "success");
-        }
-
-        function OnFailure(response) {
-
-            $.notify("Ha ocurrido un error", "error");
-        }
-
-    </script>
-
 
 }
 
